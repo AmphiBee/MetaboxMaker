@@ -1,0 +1,32 @@
+{
+    "name": "amphibee/metabox-maker",
+    "description": "Create MetaBox fields in a fluent way.",
+    "license": "GPL-2.0-or-later",
+    "authors": [
+        {
+            "name": "Olivier Gorzalka",
+            "email": "olivier@amphibee.fr",
+            "role": "Developer"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "AmphiBee\\MetaboxMaker\\": "src/"
+        }
+    },
+    "require-dev": {
+        "pestphp/pest": "^2.19",
+        "rector/rector": "^0.18.4",
+        "nunomaduro/phpinsights": "^2.8"
+    },
+    "config": {
+        "allow-plugins": {
+            "pestphp/pest-plugin": true,
+            "dealerdirect/phpcodesniffer-composer-installer": true
+        }
+    },
+    "require": {
+        "php": "^8.1.0",
+        "laravel/pint": "^1.13"
+    }
+}
