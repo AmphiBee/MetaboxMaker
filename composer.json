@@ -16,7 +16,7 @@
     },
     "require-dev": {
         "pestphp/pest": "^2.19",
-        "rector/rector": "^0.18.4",
+        "rector/rector": "^1.0.0",
         "nunomaduro/phpinsights": "^2.8"
     },
     "config": {
