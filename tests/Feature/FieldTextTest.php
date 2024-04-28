@@ -54,7 +54,6 @@ test('Field: text with all properties', function () {
         'max_clone' => 5,
         'min_clone' => 1,
         'add_button' => 'Add More Text',
-        'attributes' => []  // Ensure any other generic attributes or conditions are tested here if needed
     ]);
 });
 

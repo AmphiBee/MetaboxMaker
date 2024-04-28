@@ -24,9 +24,7 @@ use AmphiBee\MetaboxMaker\Fields\Settings\Sortable;
 abstract class Field
 {
     protected string $type = 'text';
-    protected array $settings = [
-        'attributes' => [],
-    ];
+    protected array $settings = [];
 
     use Placeholder, Required, Description, DefaultValue, FieldAccess, Multiple, Clonable, Sortable;
 

@@ -19,26 +19,22 @@ test('Group with nested groups and fields', function () {
             'type' => 'group',
             'name' => 'Multi-level nested groups',
             'id' => 'main_group',
-            'attributes' => [],
             'fields' => [
                 [
                     'type' => 'text',
                     'name' => 'Main Text',
                     'id' => 'main_text',
-                    'attributes' => [],
                     'placeholder' => 'Enter main text',
                 ],
                 [
                     'type' => 'group',
                     'name' => 'Sub group',
                     'id' => 'sub_group',
-                    'attributes' => [],
                     'fields' => [
                         [
                             'type' => 'text',
                             'name' => 'Sub Text',
                             'id' => 'sub_text',
-                            'attributes' => [],
                             'placeholder' => 'Enter sub text',
                         ],
                     ],
@@ -49,6 +45,7 @@ test('Group with nested groups and fields', function () {
 
         expect($mainGroup->build())->toMatchArray($expectedArray);
 });
+
 
 test('Group with advanced properties handles settings correctly', function () {
     $group = Group::make('Advanced Settings', 'advanced_settings')
@@ -64,25 +61,23 @@ test('Group with advanced properties handles settings correctly', function () {
         ->groupTitle('Advanced Settings Title');
 
     $expectedArray = [
-        'type' => 'group',
         'name' => 'Advanced Settings',
         'id' => 'advanced_settings',
-        'attributes' => [],
-        'clone' => true,
-        'sort_clone' => true,
-        'collapsible' => true,
-        'save_state' => true,
-        'default_state' => 'collapsed',
-        'group_title' => 'Advanced Settings Title',
+        'type' => 'group',
         'fields' => [
             [
                 'type' => 'text',
                 'name' => 'Setting One',
                 'id' => 'setting_one',
-                'attributes' => [],
                 'placeholder' => 'Enter setting one'
             ]
         ],
+        'clone' => true,
+        'sort_clone' => true,
+        'collapsible' => true,
+        'save_state' => true,
+        'default_state' => 'collapsed',
+        'group_title' => 'Advanced Settings Title'
     ];
 
     expect($group->build())->toMatchArray($expectedArray);
