@@ -1,6 +1,7 @@
 <?php
 namespace AmphiBee\MetaboxMaker\Helpers;
 
+use InvalidArgumentException;
 class OptionValidator
 {
     /**
@@ -21,7 +22,7 @@ class OptionValidator
                 if (!$errorMessage) {
                     $errorMessage = static::generateErrorMessage($enumClass);
                 }
-                throw new \InvalidArgumentException($errorMessage);
+                throw new InvalidArgumentException($errorMessage);
             }
         }
 
@@ -29,7 +30,7 @@ class OptionValidator
             return $value->value;
         }
 
-        throw new \InvalidArgumentException("Type must be either a string or an instance of {$enumClass}.");
+        throw new InvalidArgumentException("Type must be either a string or an instance of {$enumClass}.");
     }
 
     /**

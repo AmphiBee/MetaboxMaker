@@ -46,9 +46,7 @@ class Fieldset {
 
     public function build(): array
     {
-        $fieldsBuilt = array_map(function($field) {
-            return $field->build();
-        }, $this->fields);
+        $fieldsBuilt = array_map(fn($field) => $field->build(), $this->fields);
 
         return [
             'title' => $this->title,

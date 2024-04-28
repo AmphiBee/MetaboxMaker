@@ -12,6 +12,7 @@ declare(strict_types=1);
 
 namespace AmphiBee\MetaboxMaker\Fields;
 
+use InvalidArgumentException;
 use AmphiBee\MetaboxMaker\Fields\Options\GroupState;
 use AmphiBee\MetaboxMaker\Helpers\OptionValidator;
 
@@ -28,7 +29,7 @@ class Group extends Field
     {
         foreach ($fields as $field) {
             if (!$field instanceof Field) {
-                throw new \InvalidArgumentException("All fields must be instances of Field.");
+                throw new InvalidArgumentException("All fields must be instances of Field.");
             }
             $this->fields[] = $field;
         }
