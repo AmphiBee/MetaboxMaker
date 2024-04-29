@@ -7,18 +7,13 @@
  *
  * @see https://github.com/AmphiBee/metabox-builder
  */
+
 declare(strict_types=1);
 
-namespace AmphiBee\MetaboxMaker\Fields\Settings;
+namespace AmphiBee\MetaboxMaker\Enums;
 
-trait Multiple
+enum GroupState: string
 {
-    protected bool $multiple = false;
-
-    public function multiple(bool $multiple = true): static
-    {
-        $this->multiple = $multiple;
-
-        return $this;
-    }
+    case Collapsed = 'collapsed';
+    case Expanded = 'expanded';
 }

@@ -12,7 +12,8 @@ declare(strict_types=1);
 
 namespace AmphiBee\MetaboxMaker;
 
-class Location {
+class Location
+{
     protected array $conditions = [];
 
     public function __construct(protected string $type, mixed $values)
@@ -25,7 +26,13 @@ class Location {
         return new static($type, $values);
     }
 
-    public function get() {
+    public static function default(): static
+    {
+        return new static('post_type', ['post']);
+    }
+
+    public function get()
+    {
         return $this->conditions;
     }
 }

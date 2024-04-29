@@ -10,10 +10,10 @@
 
 declare(strict_types=1);
 
-namespace AmphiBee\MetaboxMaker\Fields\Options;
+namespace AmphiBee\MetaboxMaker\Enums;
 
-enum InputTextType: string {
-    case Text = 'text';
-    case URL = 'url';
-    case Email = 'email';
+enum BoxStyle: string
+{
+    case Default = 'default';
+    case Seamless = 'seamless';
 }

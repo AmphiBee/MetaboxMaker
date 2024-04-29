@@ -14,9 +14,11 @@ namespace AmphiBee\MetaboxMaker\Fields\Settings;
 
 trait Size
 {
-    public function placeholder(string $size): static
+    protected ?string $size = null;
+
+    public function size(string $size): static
     {
-        $this->settings['size'] = $size;
+        $this->size = $size;
 
         return $this;
     }

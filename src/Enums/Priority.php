@@ -10,9 +10,10 @@
 
 declare(strict_types=1);
 
-namespace AmphiBee\MetaboxMaker\Fields\Options;
+namespace AmphiBee\MetaboxMaker\Enums;
 
-enum GroupState: string {
-    case Collapsed = 'collapsed';
-    case Expanded = 'expanded';
+enum Priority: string
+{
+    case High = 'high';
+    case Low = 'low';
 }

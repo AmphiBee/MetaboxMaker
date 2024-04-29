@@ -7,18 +7,14 @@
  *
  * @see https://github.com/AmphiBee/metabox-builder
  */
+
 declare(strict_types=1);
 
-namespace AmphiBee\MetaboxMaker\Fields\Settings;
+namespace AmphiBee\MetaboxMaker\Enums;
 
-trait Multiple
+enum InputTextType: string
 {
-    protected bool $multiple = false;
-
-    public function multiple(bool $multiple = true): static
-    {
-        $this->multiple = $multiple;
-
-        return $this;
-    }
+    case Text = 'text';
+    case URL = 'url';
+    case Email = 'email';
 }

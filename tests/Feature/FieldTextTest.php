@@ -1,9 +1,9 @@
 <?php
 
-use AmphiBee\MetaboxMaker\Fields\Options\InputTextType;
+use AmphiBee\MetaboxMaker\Enums\InputTextType;
 use AmphiBee\MetaboxMaker\Fields\Text;
 
-test('Field: text with all properties', function () {
+test('can add text with all properties', function () {
     $args = Text::make('Website URL', 'website_url')
         ->type(InputTextType::URL)  // Using the enum to set the type
         ->placeholder('Enter your website URL')
@@ -38,7 +38,7 @@ test('Field: text with all properties', function () {
         'append' => '.com',
         'datalist' => [
             'id' => 'website_url_list',
-            'options' => ['google.com', 'example.com']
+            'options' => ['google.com', 'example.com'],
         ],
         'required' => true,
         'label_description' => 'This is a label description',
@@ -57,7 +57,7 @@ test('Field: text with all properties', function () {
     ]);
 });
 
-test('Field: text with string type', function () {
+test('can add text with string type', function () {
     $args = Text::make('Email', 'email')
         ->type('email')  // Using the string to set the type
         ->build();
@@ -69,13 +69,12 @@ test('Field: text with string type', function () {
     ]);
 });
 
-/*
-it('throws an exception for invalid field type string', function () {
+it('can throws an exception for invalid field type string', function () {
     Text::make('Invalid Type Field', 'invalid_type')
         ->type('invalid');  // This should be an invalid type and trigger the exception
-})->throws(\InvalidArgumentException::class, "Invalid type specified. Allowed types are 'text', 'url', or 'email'.");
+})->throws(InvalidArgumentException::class);
 
-it('throws an exception for incorrect type usage', function () {
+it('can throws an exception for incorrect type usage', function () {
     Text::make('Incorrect Type Usage', 'incorrect_usage')
         ->type(123);  // This is an incorrect usage, passing an integer instead of string or FieldType
-})->throws(\InvalidArgumentException::class, "Type must be either a string or an instance of FieldType.");*/
+})->throws(InvalidArgumentException::class);

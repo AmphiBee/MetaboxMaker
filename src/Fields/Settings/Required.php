@@ -7,16 +7,17 @@
  *
  * @see https://github.com/AmphiBee/metabox-builder
  */
-
 declare(strict_types=1);
 
 namespace AmphiBee\MetaboxMaker\Fields\Settings;
 
 trait Required
 {
+    protected bool $required = false;
+
     public function required(bool $required = true): static
     {
-        $this->settings['required'] = $required;
+        $this->required = $required;
 
         return $this;
     }

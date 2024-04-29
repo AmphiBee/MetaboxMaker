@@ -7,16 +7,17 @@
  *
  * @see https://github.com/AmphiBee/metabox-builder
  */
-
 declare(strict_types=1);
 
 namespace AmphiBee\MetaboxMaker\Fields\Settings;
 
 trait Placeholder
 {
+    protected ?string $placeholder = null;
+
     public function placeholder(string $placeholder): static
     {
-        $this->settings['placeholder'] = $placeholder;
+        $this->placeholder = $placeholder;
 
         return $this;
     }

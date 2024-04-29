@@ -7,46 +7,63 @@
  *
  * @see https://github.com/AmphiBee/metabox-builder
  */
-
 declare(strict_types=1);
 
 namespace AmphiBee\MetaboxMaker\Fields\Settings;
 
 trait Clonable
 {
+    protected bool $clone = false;
+
+    protected bool $clone_default = false;
+
+    protected bool $clone_as_multiple = false;
+
+    protected ?int $max_clone = null;
+
+    protected ?int $min_clone = null;
+
+    protected ?string $add_button = null;
+
     public function cloneable(bool $clone = true): static
     {
-        $this->settings['clone'] = $clone;
+        $this->clone = $clone;
+
         return $this;
     }
 
     public function cloneDefaults(bool $cloneDefault = true): static
     {
-        $this->settings['clone_default'] = $cloneDefault;
+        $this->clone_default = $cloneDefault;
+
         return $this;
     }
 
     public function cloneAsMultiple(bool $cloneAsMultiple = true): static
     {
-        $this->settings['clone_as_multiple'] = $cloneAsMultiple;
+        $this->clone_as_multiple = $cloneAsMultiple;
+
         return $this;
     }
 
     public function maxClones(int $maxClone): static
     {
-        $this->settings['max_clone'] = $maxClone;
+        $this->max_clone = $maxClone;
+
         return $this;
     }
 
     public function minClones(int $minClone): static
     {
-        $this->settings['min_clone'] = $minClone;
+        $this->min_clone = $minClone;
+
         return $this;
     }
 
     public function addButton(string $addButton): static
     {
-        $this->settings['add_button'] = $addButton;
+        $this->add_button = $addButton;
+
         return $this;
     }
 }

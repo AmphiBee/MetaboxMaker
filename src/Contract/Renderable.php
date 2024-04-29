@@ -7,18 +7,14 @@
  *
  * @see https://github.com/AmphiBee/metabox-builder
  */
+
 declare(strict_types=1);
 
-namespace AmphiBee\MetaboxMaker\Fields\Settings;
+namespace AmphiBee\MetaboxMaker\Contract;
 
-trait Multiple
+interface Renderable
 {
-    protected bool $multiple = false;
+    public static function make(string $name, string $id): static;
 
-    public function multiple(bool $multiple = true): static
-    {
-        $this->multiple = $multiple;
-
-        return $this;
-    }
+    public function build(): array;
 }

@@ -7,22 +7,26 @@
  *
  * @see https://github.com/AmphiBee/metabox-builder
  */
-
 declare(strict_types=1);
 
 namespace AmphiBee\MetaboxMaker\Fields\Settings;
 
 trait FieldAccess
 {
+    protected bool $readonly = false;
+
+    protected bool $disabled = false;
+
     public function readOnly(bool $readOnly = true): static
     {
-        $this->settings['readonly'] = $readOnly;
+        $this->readonly = $readOnly;
+
         return $this;
     }
 
     public function disabled(bool $disabled = true): static
     {
-        $this->settings['disabled'] = $disabled;
+        $this->disabled = $disabled;
 
         return $this;
     }

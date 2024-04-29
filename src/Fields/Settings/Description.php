@@ -14,16 +14,21 @@ namespace AmphiBee\MetaboxMaker\Fields\Settings;
 
 trait Description
 {
+    protected ?string $desc = null;
+
+    protected ?string $label_description = null;
 
     public function description(string $description): static
     {
-        $this->settings['desc'] = $description;
+        $this->desc = $description;
+
         return $this;
     }
 
     public function labelDescription(string $labelDescription): static
     {
-        $this->settings['label_description'] = $labelDescription;
+        $this->label_description = $labelDescription;
+
         return $this;
     }
 }

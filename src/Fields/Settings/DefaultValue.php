@@ -14,9 +14,12 @@ namespace AmphiBee\MetaboxMaker\Fields\Settings;
 
 trait DefaultValue
 {
+    protected mixed $std = null;
+
     public function default($value): static
     {
-        $this->settings['std'] = $value;
+        $this->std = $value;
+
         return $this;
     }
 }
