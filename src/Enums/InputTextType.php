@@ -12,9 +12,31 @@ declare(strict_types=1);
 
 namespace AmphiBee\MetaboxMaker\Enums;
 
+/**
+ * Enum representing different types of input text fields.
+ *
+ * @package AmphiBee\MetaboxMaker\Enums
+ */
 enum InputTextType: string
 {
+    /**
+     * Represents a standard text input field.
+     *
+     * @var string Text
+     */
     case Text = 'text';
+
+    /**
+     * Represents a URL input field.
+     *
+     * @var string URL
+     */
     case URL = 'url';
+
+    /**
+     * Represents an email input field.
+     *
+     * @var string Email
+     */
     case Email = 'email';
 }

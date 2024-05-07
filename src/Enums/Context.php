@@ -12,13 +12,59 @@ declare(strict_types=1);
 
 namespace AmphiBee\MetaboxMaker\Enums;
 
+/**
+ * Enum representing different contexts for metaboxes.
+ *
+ * @package AmphiBee\MetaboxMaker\Enums
+ */
 enum Context: string
 {
+    /**
+     * Normal context for a metabox.
+     *
+     * @var string Normal
+     */
     case Normal = 'normal';
+
+    /**
+     * Advanced context for a metabox.
+     *
+     * @var string Advanced
+     */
     case Advanced = 'advanced';
+
+    /**
+     * Side context for a metabox.
+     *
+     * @var string
+     */
     case Side = 'seamless';
+
+    /**
+     * Form top context for a metabox.
+     *
+     * @var string
+     */
     case FormTop = 'side';
+
+    /**
+     * After title context for a metabox.
+     *
+     * @var string
+     */
     case AfterTitle = 'after_title';
+
+    /**
+     * After editor context for a metabox.
+     *
+     * @var string
+     */
     case AfterEditor = 'after_editor';
+
+    /**
+     * Before permalink context for a metabox.
+     *
+     * @var string
+     */
     case BeforePermalink = 'before_permalink';
 }

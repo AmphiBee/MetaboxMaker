@@ -15,18 +15,54 @@ namespace AmphiBee\MetaboxMaker\Fields;
 use AmphiBee\MetaboxMaker\Enums\InputTextType;
 use AmphiBee\MetaboxMaker\Helpers\OptionValidator;
 
-class Text extends Field
+/**
+ * Text field class for creating text input fields.
+ *
+ * @package AmphiBee\MetaboxMaker\Fields
+ */
+final class Text extends Field
 {
+    /**
+     * The type of input field. Defaults to 'text'.
+     *
+     * @var string
+     */
     protected string $type = 'text';
 
-    protected int $size = 0; // Default size set to 0, assuming no default size is needed
+    /**
+     * The size of the input field.
+     *
+     * @var int|null
+     */
+    protected ?int $size = null;
 
+    /**
+     * The text to prepend to the input field.
+     *
+     * @var string
+     */
     protected string $prepend = '';
 
+    /**
+     * The text to append to the input field.
+     *
+     * @var string
+     */
     protected string $append = '';
 
+    /**
+     * The datalist options for the input field.
+     *
+     * @var array
+     */
     protected array $datalist = [];
 
+    /**
+     * Set the type of input field.
+     *
+     * @param string|InputTextType $type The type of input field.
+     * @return static Returns the instance of the Text class for method chaining.
+     */
     public function type(string|InputTextType $type): static
     {
         $this->type = OptionValidator::check($type, InputTextType::class);
@@ -34,6 +70,12 @@ class Text extends Field
         return $this;
     }
 
+    /**
+     * Set the size of the input field.
+     *
+     * @param int $size The size of the input field.
+     * @return static Returns the instance of the Text class for method chaining.
+     */
     public function size(int $size): static
     {
         $this->size = $size;
@@ -41,6 +83,12 @@ class Text extends Field
         return $this;
     }
 
+    /**
+     * Set the text to prepend to the input field.
+     *
+     * @param string $text The text to prepend.
+     * @return static Returns the instance of the Text class for method chaining.
+     */
     public function prepend(string $text): static
     {
         $this->prepend = $text;
@@ -48,6 +96,12 @@ class Text extends Field
         return $this;
     }
 
+    /**
+     * Set the text to append to the input field.
+     *
+     * @param string $text The text to append.
+     * @return static Returns the instance of the Text class for method chaining.
+     */
     public function append(string $text): static
     {
         $this->append = $text;
@@ -55,6 +109,13 @@ class Text extends Field
         return $this;
     }
 
+    /**
+     * Set the datalist options for the input field.
+     *
+     * @param string $id The ID of the datalist.
+     * @param array $options The options for the datalist.
+     * @return static Returns the instance of the Text class for method chaining.
+     */
     public function datalist(string $id, array $options): static
     {
         $this->datalist = [

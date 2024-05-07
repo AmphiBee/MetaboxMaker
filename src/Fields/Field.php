@@ -22,23 +22,111 @@ use AmphiBee\MetaboxMaker\Fields\Settings\Placeholder;
 use AmphiBee\MetaboxMaker\Fields\Settings\Required;
 use AmphiBee\MetaboxMaker\Fields\Settings\Sortable;
 
+/**
+ * Abstract class for all fields.
+ *
+ * @package AmphiBee\MetaboxMaker\Fields
+ */
 abstract class Field implements Renderable
 {
+    /**
+     * The type of the field.
+     *
+     * @var string
+     */
     protected string $type = 'text';
 
+    /**
+     * The settings for the field.
+     *
+     * @var array
+     */
     protected array $settings = [];
 
-    use Clonable, DefaultValue, Description, FieldAccess, Multiple, Placeholder, Required, Sortable;
+    /**
+     * Trait for cloning the field.
+     */
+    use Clonable;
 
-    public function __construct(protected string $name, protected string $id)
+    /**
+     * Trait for setting a default value for the field.
+     */
+    use DefaultValue;
+
+    /**
+     * Trait for adding a description to the field.
+     */
+    use Description;
+
+    /**
+     * Trait for setting the field access.
+     */
+    use FieldAccess;
+
+    /**
+     * Trait for setting whether the field is multiple or not.
+     */
+    use Multiple;
+
+    /**
+     * Trait for setting a placeholder for the field.
+     */
+    use Placeholder;
+
+    /**
+     * Trait for setting whether the field is required or not.
+     */
+    use Required;
+
+    /**
+     * Trait for setting the sort order of the field.
+     */
+    use Sortable;
+
+    /**
+     * The name of the field.
+     *
+     * @var string
+     */
+    protected string $name;
+
+    /**
+     * The id of the field.
+     *
+     * @var string
+     */
+    protected string $id;
+
+    /**
+     * Constructor for the Field class.
+     *
+     * @param string $name The name of the field.
+     * @param string $id The id of the field.
+     */
+    public function __construct(string $name, string $id)
     {
+        $this->name = $name;
+        $this->id = $id;
     }
 
+    /**
+     * Factory method for creating a new instance of the Field class.
+     *
+     * @param string $name The name of the field.
+     * @param string $id The id of the field.
+     *
+     * @return static
+     */
     public static function make(string $name, string $id): static
     {
         return new static($name, $id);
     }
 
+    /**
+     * Builds the field and returns its properties as an associative array.
+     *
+     * @return array The properties of the field.
+     */
     public function build(): array
     {
         return array_filter(get_object_vars($this));

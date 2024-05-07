@@ -12,8 +12,24 @@ declare(strict_types=1);
 
 namespace AmphiBee\MetaboxMaker\Enums;
 
+/**
+ * Enum representing the state of a group in a metabox.
+ *
+ * @package AmphiBee\MetaboxMaker\Enums
+ */
 enum GroupState: string
 {
+    /**
+     * The group is collapsed and hidden.
+     *
+     * @var string Collapsed
+     */
     case Collapsed = 'collapsed';
+
+    /**
+     * The group is expanded and visible.
+     *
+     * @var string Expanded
+     */
     case Expanded = 'expanded';
 }

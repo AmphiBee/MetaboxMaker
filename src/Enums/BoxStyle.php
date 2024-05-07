@@ -12,8 +12,24 @@ declare(strict_types=1);
 
 namespace AmphiBee\MetaboxMaker\Enums;
 
+/**
+ * Enum representing different box styles.
+ *
+ * @package AmphiBee\MetaboxMaker\Enums
+ */
 enum BoxStyle: string
 {
+    /**
+     * Default box style.
+     *
+     * @var string Default
+     */
     case Default = 'default';
+
+    /**
+     * Seamless box style.
+     *
+     * @var string Seamless
+     */
     case Seamless = 'seamless';
 }

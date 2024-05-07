@@ -3,17 +3,6 @@
 use AmphiBee\MetaboxMaker\Fields\Group;
 use AmphiBee\MetaboxMaker\Fields\Text;
 
-$mainGroup = Group::make('Multi-level nested groups', 'main_group')
-    ->fields([
-        Text::make('Main Text', 'main_text')
-            ->placeholder('Enter main text'),
-        Group::make('Sub group', 'sub_group')
-            ->fields([
-                Text::make('Sub Text', 'sub_text')
-                    ->placeholder('Enter sub text'),
-            ]),
-    ]);
-
 test('can add group with nested groups and fields', function () {
     $mainGroup = Group::make('Multi-level nested groups', 'main_group')
         ->fields([
@@ -52,6 +41,8 @@ test('can add group with nested groups and fields', function () {
             ],
         ],
     ];
+
+    var_export($mainGroup->build());
 
     expect($mainGroup->build())->toMatchArray($expectedArray);
 });

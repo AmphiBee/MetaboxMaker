@@ -12,26 +12,77 @@ declare(strict_types=1);
 
 namespace AmphiBee\MetaboxMaker;
 
-class Location
+/**
+ * This class is used to define conditions for a conditional location of a fieldset.
+ *
+ * @package AmphiBee\MetaboxMaker
+ */
+final class Location
 {
+    /**
+     * @var array $conditions
+     *
+     * Stores the conditions for the location.
+     */
     protected array $conditions = [];
 
-    public function __construct(protected string $type, mixed $values)
+    /**
+     * Location constructor.
+     *
+     * Initializes a new instance of the Location class with the specified type and values.
+     *
+     * @param string $type
+     * The type of condition to be applied.
+     *
+     * @param string|array $values
+     * The values associated with the condition.
+     */
+    public function __construct(protected string $type, string|array $values)
     {
         $this->conditions[$type] = $values;
     }
 
-    public static function where(string $type, mixed $values): static
+    /**
+     * Location::where
+     *
+     * Creates a new instance of the Location class with the specified type and values.
+     *
+     * @param string $type
+     * The type of condition to be applied.
+     *
+     * @param string|array $values
+     * The values associated with the condition.
+     *
+     * @return static
+     * Returns a new instance of the Location class with the specified type and values.
+     */
+    public static function where(string $type, string|array $values): static
     {
         return new static($type, $values);
     }
 
+    /**
+     * Location::default
+     *
+     * Creates a new instance of the Location class with the default type and values.
+     *
+     * @return static
+     * Returns a new instance of the Location class with the default type and values.
+     */
     public static function default(): static
     {
         return new static('post_type', ['post']);
     }
 
-    public function get()
+    /**
+     * Location::get
+     *
+     * Retrieves the conditions associated with the location.
+     *
+     * @return array
+     * Returns an array containing the conditions associated with the location.
+     */
+    public function get(): array
     {
         return $this->conditions;
     }

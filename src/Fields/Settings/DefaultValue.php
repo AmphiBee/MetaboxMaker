@@ -12,11 +12,26 @@ declare(strict_types=1);
 
 namespace AmphiBee\MetaboxMaker\Fields\Settings;
 
+/**
+ * Trait for setting default values for fields.
+ */
 trait DefaultValue
 {
+    /**
+     * The default value for the field.
+     *
+     * @var mixed
+     */
     protected mixed $std = null;
 
-    public function default($value): static
+    /**
+     * Set the default value for the field.
+     *
+     * @param mixed $value The default value to set.
+     *
+     * @return static The instance of the field with the default value set.
+     */
+    public function default(mixed $value): static
     {
         $this->std = $value;
 
