@@ -11,3 +11,7 @@
 |
 */
 // uses(Tests\TestCase::class)->in('Feature')
+
+function add_filter($tag, $function_to_add, $priority = 10, $accepted = 2) {
+    //
+}

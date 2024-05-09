@@ -18,6 +18,8 @@ use AmphiBee\MetaboxMaker\Enums\Context;
 use AmphiBee\MetaboxMaker\Enums\Priority;
 use AmphiBee\MetaboxMaker\Validation\OptionValidation;
 
+use add_filter;
+
 /**
  * Fieldset class for creating a field groups.
  */
@@ -86,6 +88,14 @@ class Fieldset implements Renderable
      */
     public function __construct(protected string $title, protected string $id)
     {
+        if (!function_exists('add_filter')) {
+            throw new \Exception('Metabox Maker requires WordPress to be loaded.');
+        }
+
+        add_filter( 'rwmb_meta_boxes', function ( $meta_boxes ) {
+            $meta_boxes[] = $this->build();
+            return $meta_boxes;
+        } );
     }
 
     /**
