@@ -1,4 +1,5 @@
 <?php
+
 use AmphiBee\MetaboxMaker\Fields\ImageSelect;
 
 test('image select field can be configured with multiple options', function () {
@@ -18,7 +19,7 @@ test('image select field can be configured with multiple options', function () {
         'name' => 'Layout',
         'id' => 'image_select',
         'options' => $options,
-        'multiple' => true
+        'multiple' => true,
     ]);
 });
 
@@ -37,6 +38,6 @@ test('image select field handles single selection correctly', function () {
         'name' => 'Layout',
         'id' => 'image_select_single',
         'options' => $options,
-        'multiple' => false
+        'multiple' => false,
     ]);
 });

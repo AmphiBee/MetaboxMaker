@@ -1,4 +1,5 @@
 <?php
+
 use AmphiBee\MetaboxMaker\Fields\Color;
 
 test('color field can be created with valid js_options', function () {
@@ -14,7 +15,7 @@ test('color field can be created with valid js_options', function () {
         'name' => 'Color picker',
         'id' => 'field_id',
         'alpha_channel' => true,
-        'js_options' => $jsOptions
+        'js_options' => $jsOptions,
     ]);
 });
 
@@ -26,6 +27,6 @@ test('color field throws exception for invalid color formats', function () {
     $colorField = Color::make('Color picker', 'field_id');
 
     // Expect an exception when invalid colors are set
-    expect(fn() => $colorField->jsOptions($jsOptions))
+    expect(fn () => $colorField->jsOptions($jsOptions))
         ->toThrow(InvalidArgumentException::class, 'Please provide a valid color.');
 });

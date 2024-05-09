@@ -25,8 +25,7 @@ trait Placeholder
     /**
      * Set the placeholder text for the field.
      *
-     * @param string|array $placeholder The placeholder text. Array with 'key' and 'value' as keys and placeholder text as values for the KeyValye field.
-     *
+     * @param  string|array  $placeholder  The placeholder text. Array with 'key' and 'value' as keys and placeholder text as values for the KeyValye field.
      * @return static The instance of the class with the updated placeholder.
      */
     public function placeholder(string|array $placeholder): static

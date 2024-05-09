@@ -14,8 +14,6 @@ namespace AmphiBee\MetaboxMaker\Enums;
 
 /**
  * Enum representing the priority levels.
- *
- * @package AmphiBee\MetaboxMaker\Enums
  */
 enum Priority: string
 {

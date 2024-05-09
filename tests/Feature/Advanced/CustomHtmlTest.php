@@ -1,4 +1,5 @@
 <?php
+
 use AmphiBee\MetaboxMaker\Fields\CustomHtml;
 
 test('custom html field stores static html content', function () {
@@ -10,12 +11,12 @@ test('custom html field stores static html content', function () {
         'type' => 'custom_html',
         'name' => 'Custom HTML',
         'id' => 'custom_html',
-        'std' => $htmlContent
+        'std' => $htmlContent,
     ]);
 });
 
 test('custom html field stores callback', function () {
-    $callback = fn() => '<div><p>Dynamic Content</p></div>';
+    $callback = fn () => '<div><p>Dynamic Content</p></div>';
     $customHtmlField = CustomHtml::make('Custom HTML Callback', 'custom_html_callback');
     $customHtmlField->callback($callback);
 

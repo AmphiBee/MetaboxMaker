@@ -17,8 +17,6 @@ use AmphiBee\MetaboxMaker\Fields\Settings\Size;
 
 /**
  * Autocomplete field class for creating input fields with autocomplete functionality.
- *
- * @package AmphiBee\MetaboxMaker\Fields
  */
 class Autocomplete extends Field
 {

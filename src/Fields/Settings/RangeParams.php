@@ -20,48 +20,50 @@ use AmphiBee\MetaboxMaker\Validation\NumericValidation;
 trait RangeParams
 {
     /**
-     * @var float|int $min The minimum value allowed for the range input.
+     * @var float|int The minimum value allowed for the range input.
      */
     protected float|int $min;
 
     /**
-     * @var float|int $max The maximum value allowed for the range input.
+     * @var float|int The maximum value allowed for the range input.
      */
     protected float|int $max;
 
     /**
-     * @var int|float|string $step The increment or decrement value for the range input.
+     * @var int|float|string The increment or decrement value for the range input.
      */
     protected int|float|string $step;
 
     /**
      * Set the minimum value allowed for the range input.
      *
-     * @param int|float $min The minimum value.
+     * @param  int|float  $min  The minimum value.
      * @return static The instance of the class for method chaining.
      */
     public function min(int|float $min): static
     {
         $this->min = $min;
+
         return $this;
     }
 
     /**
      * Set the maximum value allowed for the range input.
      *
-     * @param int|float $max The maximum value.
+     * @param  int|float  $max  The maximum value.
      * @return static The instance of the class for method chaining.
      */
     public function max(int|float $max): static
     {
         $this->max = $max;
+
         return $this;
     }
 
     /**
      * Set the increment or decrement value for the range input.
      *
-     * @param int|float|string $step The increment or decrement value.
+     * @param  int|float|string  $step  The increment or decrement value.
      * @return static The instance of the class for method chaining.
      */
     public function step(int|float|string $step): static
@@ -69,6 +71,7 @@ trait RangeParams
         NumericValidation::ensureIsNumeric($step);
 
         $this->step = $step;
+
         return $this;
     }
 }

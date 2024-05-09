@@ -14,8 +14,6 @@ namespace AmphiBee\MetaboxMaker\Fields;
 
 /**
  * KeyValue field class for creating inputs that accept key-value pairs.
- *
- * @package AmphiBee\MetaboxMaker\Fields
  */
 class KeyValue extends Field
 {

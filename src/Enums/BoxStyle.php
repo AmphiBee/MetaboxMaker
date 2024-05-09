@@ -14,8 +14,6 @@ namespace AmphiBee\MetaboxMaker\Enums;
 
 /**
  * Enum representing different box styles.
- *
- * @package AmphiBee\MetaboxMaker\Enums
  */
 enum BoxStyle: string
 {

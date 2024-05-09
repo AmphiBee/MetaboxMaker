@@ -27,11 +27,10 @@ trait DateParams
      */
     protected string $save_format;
 
-
     /**
      * Set whether to save the date as a Unix timestamp.
      *
-     * @param bool $timestamp Save as timestamp.
+     * @param  bool  $timestamp  Save as timestamp.
      * @return static Returns the instance of the DatePicker class for method chaining.
      */
     public function saveAsTimestamp(bool $timestamp = true): static
@@ -44,7 +43,7 @@ trait DateParams
     /**
      * Set the PHP save format for the date.
      *
-     * @param string $save_format PHP date format.
+     * @param  string  $save_format  PHP date format.
      * @return static Returns the instance of the DatePicker class for method chaining.
      */
     public function saveFormat(string $save_format): static

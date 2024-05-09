@@ -25,7 +25,7 @@ trait Attributes
     /**
      * Set custom HTML5 attributes for the field.
      *
-     * @param array $attributes Attributes in 'key' => 'value' format.
+     * @param  array  $attributes  Attributes in 'key' => 'value' format.
      * @return $this
      */
     public function setAttributes(array $attributes): self

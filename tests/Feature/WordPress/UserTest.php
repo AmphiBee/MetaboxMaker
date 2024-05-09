@@ -1,6 +1,7 @@
 <?php
-use AmphiBee\MetaboxMaker\Fields\User;
+
 use AmphiBee\MetaboxMaker\Enums\EntityFieldType;
+use AmphiBee\MetaboxMaker\Fields\User;
 
 test('can add user field with specific query args', function () {
     $args = User::make('User Field', 'user_field')

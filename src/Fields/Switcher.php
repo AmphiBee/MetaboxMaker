@@ -14,8 +14,6 @@ namespace AmphiBee\MetaboxMaker\Fields;
 
 /**
  * Switch field class for creating toggle switches in forms.
- *
- * @package AmphiBee\MetaboxMaker\Fields
  */
 class Switcher extends Field
 {
@@ -42,34 +40,36 @@ class Switcher extends Field
     /**
      * Set the style of the switch.
      *
-     * @param string $style The style of the switch ('rounded' or 'square').
+     * @param  string  $style  The style of the switch ('rounded' or 'square').
      */
     public function style(string $style): static
     {
         $this->style = $style;
+
         return $this;
     }
 
     /**
      * Set the custom "On" label.
      *
-     * @param string $on_label The label for the "On" status.
+     * @param  string  $on_label  The label for the "On" status.
      */
     public function onLabel(string $on_label): static
     {
         $this->on_label = $on_label;
+
         return $this;
     }
 
     /**
      * Set the custom "Off" label.
      *
-     * @param string $off_label The label for the "Off" status.
+     * @param  string  $off_label  The label for the "Off" status.
      */
     public function offLabel(string $off_label): static
     {
         $this->off_label = $off_label;
+
         return $this;
     }
-
 }

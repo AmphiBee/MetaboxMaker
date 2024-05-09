@@ -16,8 +16,6 @@ use AmphiBee\MetaboxMaker\Fields\Settings\ToggleAll;
 
 /**
  * CheckboxList field class for creating a list of checkboxes.
- *
- * @package AmphiBee\MetaboxMaker\Fields
  */
 class CheckboxList extends Radio
 {

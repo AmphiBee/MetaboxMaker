@@ -16,8 +16,6 @@ use AmphiBee\MetaboxMaker\Fields\Settings\RangeParams;
 
 /**
  * Number field class for creating number input fields.
- *
- * @package AmphiBee\MetaboxMaker\Fields
  */
 class Number extends Text
 {

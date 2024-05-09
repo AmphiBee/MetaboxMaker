@@ -16,13 +16,11 @@ use AmphiBee\MetaboxMaker\Fields\Settings\MapParams;
 
 /**
  * OpenStreetMap field class for integrating Open Street Map into forms or meta boxes.
- *
- * @package AmphiBee\MetaboxMaker\Fields
  */
 class OpenStreetMap extends Field
 {
-
     use MapParams;
+
     /**
      * The type of input field. Set to 'osm'.
      */

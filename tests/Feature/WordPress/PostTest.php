@@ -1,7 +1,6 @@
 <?php
 
 use AmphiBee\MetaboxMaker\Fields\Post;
-use AmphiBee\MetaboxMaker\Enums\EntityFieldType;
 
 test('can add post field with specific query args and post type', function () {
     $args = Post::make('Post Field', 'post_field')

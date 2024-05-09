@@ -14,8 +14,6 @@ namespace AmphiBee\MetaboxMaker\Fields;
 
 /**
  * Checkbox field class for creating checkbox input fields.
- *
- * @package AmphiBee\MetaboxMaker\Fields
  */
 class Checkbox extends Field
 {
@@ -34,7 +32,7 @@ class Checkbox extends Field
     /**
      * Set whether the checkbox is checked by default.
      *
-     * @param bool $std Whether the checkbox is checked by default.
+     * @param  bool  $std  Whether the checkbox is checked by default.
      * @return static Returns the instance of the Checkbox class for method chaining.
      */
     public function checkedByDefault(bool $std = true): static

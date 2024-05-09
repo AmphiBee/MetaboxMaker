@@ -14,8 +14,6 @@ namespace AmphiBee\MetaboxMaker\Fields;
 
 /**
  * CustomHtml field class for rendering custom HTML content.
- *
- * @package AmphiBee\MetaboxMaker\Fields
  */
 class CustomHtml extends Field
 {
@@ -34,22 +32,24 @@ class CustomHtml extends Field
     /**
      * Set the HTML content.
      *
-     * @param string $html HTML content.
+     * @param  string  $html  HTML content.
      */
     public function content(string $html): static
     {
         $this->std = $html;
+
         return $this;
     }
 
     /**
      * Set a PHP callback function that returns the HTML content.
      *
-     * @param callable $callback PHP callback.
+     * @param  callable  $callback  PHP callback.
      */
     public function callback(callable $callback): static
     {
         $this->callback = $callback;
+
         return $this;
     }
 }

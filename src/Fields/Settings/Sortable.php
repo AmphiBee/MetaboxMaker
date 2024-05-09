@@ -25,7 +25,7 @@ trait Sortable
     /**
      * Sets whether the field should be sortable and cloned when sorting.
      *
-     * @param bool $sortClone Whether the field should be sortable and cloned when sorting.
+     * @param  bool  $sortClone  Whether the field should be sortable and cloned when sorting.
      * @return static The instance of the class with the updated sorting behavior.
      */
     public function sortable(bool $sortClone = true): static

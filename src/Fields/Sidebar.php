@@ -17,8 +17,6 @@ use AmphiBee\MetaboxMaker\Validation\OptionValidation;
 
 /**
  * Sidebar field class for creating different types of sidebar input fields.
- *
- * @package AmphiBee\MetaboxMaker\Fields
  */
 class Sidebar extends Field
 {
@@ -35,11 +33,12 @@ class Sidebar extends Field
     /**
      * Set the type of the field.
      *
-     * @param SidebarFieldType|string $fieldType The type of the field.
+     * @param  SidebarFieldType|string  $fieldType  The type of the field.
      */
     public function fieldType(SidebarFieldType|string $fieldType): static
     {
         $this->field_type = OptionValidation::check($fieldType, SidebarFieldType::class);
+
         return $this;
     }
 }

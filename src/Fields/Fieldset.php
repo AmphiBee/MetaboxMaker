@@ -14,8 +14,6 @@ namespace AmphiBee\MetaboxMaker\Fields;
 
 /**
  * Fieldset field class for grouping multiple input fields.
- *
- * @package AmphiBee\MetaboxMaker\Fields
  */
 class Fieldset extends Field
 {
@@ -32,11 +30,12 @@ class Fieldset extends Field
     /**
      * Set the input fields for the fieldset.
      *
-     * @param array $options Array of 'key' => 'Input Label' pairs.
+     * @param  array  $options  Array of 'key' => 'Input Label' pairs.
      */
     public function inputs(array $options): static
     {
         $this->options = $options;
+
         return $this;
     }
 }

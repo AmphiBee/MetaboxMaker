@@ -18,12 +18,10 @@ use AmphiBee\MetaboxMaker\Fields\Settings\TimepickerOptions;
 
 /**
  * Timepicker field class for creating time input fields with enhanced jQuery UI timepicker functionalities.
- *
- * @package AmphiBee\MetaboxMaker\Fields
  */
 class Timepicker extends Field
 {
-    use TimepickerOptions, Inline, Size;
+    use Inline, Size, TimepickerOptions;
 
     /**
      * The type of input field. Set to 'time'.

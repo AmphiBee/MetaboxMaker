@@ -14,8 +14,6 @@ namespace AmphiBee\MetaboxMaker\Enums;
 
 /**
  * Enum representing different types of input text fields.
- *
- * @package AmphiBee\MetaboxMaker\Enums
  */
 enum InputTextType: string
 {

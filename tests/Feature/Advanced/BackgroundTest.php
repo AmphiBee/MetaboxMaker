@@ -1,4 +1,5 @@
 <?php
+
 use AmphiBee\MetaboxMaker\Fields\Background;
 
 test('can initialize background field with minimal settings', function () {
@@ -8,6 +9,6 @@ test('can initialize background field with minimal settings', function () {
     expect($args)->toMatchArray([
         'type' => 'background',
         'name' => 'Section background',
-        'id' => 'background'
+        'id' => 'background',
     ]);
 });

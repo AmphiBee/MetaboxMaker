@@ -14,8 +14,6 @@ namespace AmphiBee\MetaboxMaker\Fields;
 
 /**
  * Autocomplete field class for creating input fields with autocomplete functionality.
- *
- * @package AmphiBee\MetaboxMaker\Fields
  */
 class Icon extends SelectAdvanced
 {
@@ -49,45 +47,48 @@ class Icon extends SelectAdvanced
     /**
      * Set the icon set.
      *
-     * @param string $icon_set Icon set name.
+     * @param  string  $icon_set  Icon set name.
      */
     public function iconSet(string $icon_set): static
     {
         $this->icon_set = $icon_set;
+
         return $this;
     }
 
     /**
      * Set the icon file path.
      *
-     * @param string $icon_file Path to the icon file.
+     * @param  string  $icon_file  Path to the icon file.
      */
     public function iconFile(string $icon_file): static
     {
         $this->icon_file = $icon_file;
+
         return $this;
     }
 
     /**
      * Set the CSS or script setup for the icons.
      *
-     * @param string|callable $icon_css URL to the CSS file or callable function.
+     * @param  string|callable  $icon_css  URL to the CSS file or callable function.
      */
     public function iconCss($icon_css): static
     {
         $this->icon_css = $icon_css;
+
         return $this;
     }
 
     /**
      * Set the directory containing icons.
      *
-     * @param string $icon_dir Directory path.
+     * @param  string  $icon_dir  Directory path.
      */
     public function iconDir(string $icon_dir): static
     {
         $this->icon_dir = $icon_dir;
+
         return $this;
     }
-
 }

@@ -13,13 +13,10 @@ declare(strict_types=1);
 namespace AmphiBee\MetaboxMaker\Fields;
 
 use AmphiBee\MetaboxMaker\Enums\EntityFieldType;
-use AmphiBee\MetaboxMaker\Fields\Settings\Ajax;
 use AmphiBee\MetaboxMaker\Validation\OptionValidation;
 
 /**
  * User field class for creating fields that allow selecting users.
- *
- * @package AmphiBee\MetaboxMaker\Fields
  */
 class User extends Field
 {
@@ -32,12 +29,14 @@ class User extends Field
     public function queryArgs(array $queryArgs): static
     {
         $this->query_args = $queryArgs;
+
         return $this;
     }
 
     public function fieldType(EntityFieldType|string $fieldType): static
     {
         $this->field_type = OptionValidation::check($fieldType, EntityFieldType::class);
+
         return $this;
     }
 }

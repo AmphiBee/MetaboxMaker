@@ -16,8 +16,6 @@ use AmphiBee\MetaboxMaker\Fields\Settings\Size;
 
 /**
  * Password field class for creating secure password input fields.
- *
- * @package AmphiBee\MetaboxMaker\Fields
  */
 class Password extends Field
 {

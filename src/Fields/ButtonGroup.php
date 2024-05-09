@@ -18,12 +18,10 @@ use AmphiBee\MetaboxMaker\Fields\Settings\Options;
 
 /**
  * ButtonGroup field class for creating groups of button elements.
- *
- * @package AmphiBee\MetaboxMaker\Fields
  */
 class ButtonGroup extends Field
 {
-    use Options, Inline, Multiple;
+    use Inline, Multiple, Options;
 
     /**
      * The type of input field. Set to 'button_group'.

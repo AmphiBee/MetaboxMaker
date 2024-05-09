@@ -25,8 +25,7 @@ trait Size
     /**
      * Set the size of the field.
      *
-     * @param int|string $size The size of the field.
-     *
+     * @param  int|string  $size  The size of the field.
      * @return static The instance of the class with the updated size.
      */
     public function size(int|string $size): static

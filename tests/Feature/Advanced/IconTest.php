@@ -1,4 +1,5 @@
 <?php
+
 use AmphiBee\MetaboxMaker\Fields\Icon;
 
 test('icon field can be configured with various icon library settings', function () {
@@ -17,6 +18,6 @@ test('icon field can be configured with various icon library settings', function
         'icon_set' => 'font-awesome-pro',
         'icon_file' => 'assets/icons.json',
         'icon_css' => 'https://url/to/icon/style.css',
-        'icon_dir' => 'assets/icons'
+        'icon_dir' => 'assets/icons',
     ]);
 });

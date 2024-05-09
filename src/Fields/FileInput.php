@@ -14,8 +14,6 @@ namespace AmphiBee\MetaboxMaker\Fields;
 
 /**
  * FileInput field class for creating a simple text input for uploading a single file
- *
- * @package AmphiBee\MetaboxMaker\Fields
  */
 class FileInput extends Field
 {

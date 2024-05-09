@@ -18,8 +18,6 @@ use InvalidArgumentException;
 
 /**
  * Represents a group field in a metabox.
- *
- * @package AmphiBee\MetaboxMaker\Fields
  */
 class Group extends Field
 {
@@ -56,8 +54,7 @@ class Group extends Field
     /**
      * Adds fields to the group, which can include nested groups.
      *
-     * @param array $fields An array of Field instances to add to the group.
-     *
+     * @param  array  $fields  An array of Field instances to add to the group.
      * @return self The instance of the Group class for method chaining.
      *
      * @throws InvalidArgumentException If any of the fields is not an instance of Field.
@@ -77,8 +74,7 @@ class Group extends Field
     /**
      * Sets whether the group is collapsible.
      *
-     * @param bool $collapsible Whether the group should be collapsible. Default is true.
-     *
+     * @param  bool  $collapsible  Whether the group should be collapsible. Default is true.
      * @return self The instance of the Group class for method chaining.
      */
     public function collapsible(bool $collapsible = true): self
@@ -91,8 +87,7 @@ class Group extends Field
     /**
      * Sets whether the group state should be saved.
      *
-     * @param bool $saveState Whether the group state should be saved. Default is true.
-     *
+     * @param  bool  $saveState  Whether the group state should be saved. Default is true.
      * @return self The instance of the Group class for method chaining.
      */
     public function saveState(bool $saveState = true): self
@@ -105,8 +100,7 @@ class Group extends Field
     /**
      * Sets the default state of the group.
      *
-     * @param string|GroupState $state The default state of the group.
-     *
+     * @param  string|GroupState  $state  The default state of the group.
      * @return static The instance of the Group class.
      */
     public function defaultState(string|GroupState $state): static
@@ -119,8 +113,7 @@ class Group extends Field
     /**
      * Sets the title of the group.
      *
-     * @param string $title The title of the group.
-     *
+     * @param  string  $title  The title of the group.
      * @return self The instance of the Group class for method chaining.
      */
     public function groupTitle(string $title): self

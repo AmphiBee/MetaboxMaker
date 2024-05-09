@@ -37,6 +37,7 @@ class Wysiwyg extends Field
     public function raw(bool $raw = true): static
     {
         $this->raw = $raw;
+
         return $this;
     }
 }

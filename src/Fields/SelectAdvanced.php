@@ -19,8 +19,6 @@ use AmphiBee\MetaboxMaker\Fields\Settings\ToggleAll;
 
 /**
  * SelectAdvanced field class for creating enhanced select input fields using Select2.
- *
- * @package AmphiBee\MetaboxMaker\Fields
  */
 class SelectAdvanced extends Field
 {
@@ -29,5 +27,5 @@ class SelectAdvanced extends Field
      */
     protected string $type = 'select_advanced';
 
-    use Options, ToggleAll, Multiple, JsOptions;
+    use JsOptions, Multiple, Options, ToggleAll;
 }

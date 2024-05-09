@@ -16,8 +16,6 @@ use AmphiBee\MetaboxMaker\Fields\Settings\Attributes;
 
 /**
  * Button field class for creating button elements.
- *
- * @package AmphiBee\MetaboxMaker\Fields
  */
 class Button extends Field
 {

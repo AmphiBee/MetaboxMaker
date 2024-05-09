@@ -1,5 +1,7 @@
 <?php
+
 use AmphiBee\MetaboxMaker\Fields\Slider;
+
 test('slider field can be configured with individual js options', function () {
     $sliderField = Slider::make('Volume Control', 'volume');
     $sliderField->prefix('$')
@@ -23,7 +25,7 @@ test('slider field can be configured with individual js options', function () {
             'max' => 255,
             'step' => 5,
             'range' => true,
-            'value' => 150
-        ]
+            'value' => 150,
+        ],
     ]);
 });

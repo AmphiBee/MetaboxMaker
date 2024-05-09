@@ -24,9 +24,9 @@ final class OptionValidation
      * Validates and converts a string to an enum or returns the enum directly.
      * Throws an exception if the input is neither a valid string nor an enum instance.
      *
-     * @param mixed $value The value to convert or verify.
-     * @param string $enumClass The enum class to check against.
-     * @param string|bool $errorMessage The error message for the exception if validation fails.
+     * @param  mixed  $value  The value to convert or verify.
+     * @param  string  $enumClass  The enum class to check against.
+     * @param  string|bool  $errorMessage  The error message for the exception if validation fails.
      * @return string The validated enum instance.
      *
      * @throws InvalidArgumentException If the input is neither a valid string nor an enum instance.
@@ -40,6 +40,7 @@ final class OptionValidation
         }
 
         StringValidation::ensureIsString($value, $enumClass);
+
         return EnumTransformer::convertStringToEnumValue($value, $enumClass, $errorMessage);
     }
 }

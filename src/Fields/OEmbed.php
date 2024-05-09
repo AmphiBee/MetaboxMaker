@@ -16,12 +16,11 @@ use AmphiBee\MetaboxMaker\Fields\Settings\Size;
 
 /**
  * OEmbed field class for embedding media content from various oEmbed-supported services.
- *
- * @package AmphiBee\MetaboxMaker\Fields
  */
 final class OEmbed extends Field
 {
     use Size;
+
     /**
      * The type of input field. Set to 'oembed'.
      */
@@ -32,15 +31,15 @@ final class OEmbed extends Field
      */
     protected string $not_available_string = 'Content not available';
 
-
     /**
      * Set the text message for unavailable embedded media.
      *
-     * @param string $message Message to display.
+     * @param  string  $message  Message to display.
      */
     public function notAvailableText(string $message): static
     {
         $this->not_available_string = $message;
+
         return $this;
     }
 }

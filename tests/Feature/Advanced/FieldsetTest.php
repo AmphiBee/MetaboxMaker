@@ -1,4 +1,5 @@
 <?php
+
 use AmphiBee\MetaboxMaker\Fields\Fieldset;
 
 test('fieldset field can be configured with multiple inputs', function () {
@@ -6,7 +7,7 @@ test('fieldset field can be configured with multiple inputs', function () {
     $fieldset->inputs([
         'first_name' => 'First Name',
         'last_name' => 'Last Name',
-        'email' => 'Email Address'
+        'email' => 'Email Address',
     ]);
 
     $config = $fieldset->build();
@@ -18,7 +19,7 @@ test('fieldset field can be configured with multiple inputs', function () {
         'options' => [
             'first_name' => 'First Name',
             'last_name' => 'Last Name',
-            'email' => 'Email Address'
-        ]
+            'email' => 'Email Address',
+        ],
     ]);
 });

@@ -30,7 +30,7 @@ trait Description
     /**
      * Sets the description of the field.
      *
-     * @param string $description The description to set.
+     * @param  string  $description  The description to set.
      * @return static The instance of the class with the updated description.
      */
     public function description(string $description): static
@@ -43,7 +43,7 @@ trait Description
     /**
      * Sets the label description of the field.
      *
-     * @param string $labelDescription The label description to set.
+     * @param  string  $labelDescription  The label description to set.
      * @return static The instance of the class with the updated label description.
      */
     public function labelDescription(string $labelDescription): static

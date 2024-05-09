@@ -1,11 +1,12 @@
 <?php
+
 use AmphiBee\MetaboxMaker\Fields\File;
 use AmphiBee\MetaboxMaker\Fields\FileAdvanced;
 use AmphiBee\MetaboxMaker\Fields\FileInput;
 use AmphiBee\MetaboxMaker\Fields\FileUpload;
 
 test('can configure file field with specific settings', function () {
-    $uniqueFilenameCallback = fn($dir, $name) => $dir . '/custom_' . $name;
+    $uniqueFilenameCallback = fn ($dir, $name) => $dir.'/custom_'.$name;
 
     $args = File::make('Upload Field', 'upload_field')
         ->maxFileUploads(5)

@@ -25,7 +25,7 @@ trait Inline
     /**
      * Set whether the inputs are displayed inline.
      *
-     * @param bool $inline Display inline.
+     * @param  bool  $inline  Display inline.
      * @return static Returns the instance of the class for method chaining.
      */
     public function inline(bool $inline = true): static

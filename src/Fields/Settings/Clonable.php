@@ -18,39 +18,39 @@ namespace AmphiBee\MetaboxMaker\Fields\Settings;
 trait Clonable
 {
     /**
-     * @var bool $clone Defaults to false.
+     * @var bool Defaults to false.
      */
     protected bool $clone;
 
     /**
-     * @var bool $clone_default Defaults to false.
+     * @var bool Defaults to false.
      */
     protected bool $clone_default;
 
     /**
-     * @var bool $clone_as_multiple Defaults to false.
+     * @var bool Defaults to false.
      */
     protected bool $clone_as_multiple;
 
     /**
-     * @var int $max_clone Defaults to null.
+     * @var int Defaults to null.
      */
     protected int $max_clone;
 
     /**
-     * @var int $min_clone Defaults to null.
+     * @var int Defaults to null.
      */
     protected int $min_clone;
 
     /**
-     * @var string $add_button Defaults to null.
+     * @var string Defaults to null.
      */
     protected string $add_button;
 
     /**
      * Indicates whether the field can be cloned.
      *
-     * @param bool $clone Defaults to true.
+     * @param  bool  $clone  Defaults to true.
      */
     public function cloneable(bool $clone = true): static
     {
@@ -62,7 +62,7 @@ trait Clonable
     /**
      * Indicates whether the field should clone its default values.
      *
-     * @param bool $cloneDefault Defaults to true.
+     * @param  bool  $cloneDefault  Defaults to true.
      */
     public function cloneDefaults(bool $cloneDefault = true): static
     {
@@ -74,7 +74,7 @@ trait Clonable
     /**
      * Indicates whether the field should clone as multiple instances.
      *
-     * @param bool $cloneAsMultiple Defaults to true.
+     * @param  bool  $cloneAsMultiple  Defaults to true.
      */
     public function cloneAsMultiple(bool $cloneAsMultiple = true): static
     {

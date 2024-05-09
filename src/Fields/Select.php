@@ -17,8 +17,6 @@ use AmphiBee\MetaboxMaker\Fields\Settings\ToggleAll;
 
 /**
  * Select field class for creating dropdown select fields.
- *
- * @package AmphiBee\MetaboxMaker\Fields
  */
 class Select extends Field
 {
@@ -37,7 +35,7 @@ class Select extends Field
     /**
      * Set whether to display sub items without indentation.
      *
-     * @param bool $flatten Display sub items without indentation.
+     * @param  bool  $flatten  Display sub items without indentation.
      * @return static Returns the instance of the Select class for method chaining.
      */
     public function flatten(bool $flatten = true): static

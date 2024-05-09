@@ -14,8 +14,6 @@ namespace AmphiBee\MetaboxMaker\Fields;
 
 /**
  * Hidden field class for creating a hidden field.
- *
- * @package AmphiBee\MetaboxMaker\Fields
  */
 class Hidden extends Field
 {

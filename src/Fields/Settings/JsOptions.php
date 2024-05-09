@@ -19,7 +19,6 @@ use AmphiBee\MetaboxMaker\Validation\ColorValidation;
  */
 trait JsOptions
 {
-
     /**
      * JavaScript options for the field.
      */
@@ -28,7 +27,7 @@ trait JsOptions
     /**
      * Set JavaScript options for the field.
      *
-     * @param array $js_options JavaScript options.
+     * @param  array  $js_options  JavaScript options.
      * @return static Returns the instance of the field class for method chaining.
      */
     public function jsOptions(array $js_options): static
@@ -41,7 +40,6 @@ trait JsOptions
         }
 
         $this->js_options = $js_options;
-
 
         return $this;
     }

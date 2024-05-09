@@ -14,13 +14,11 @@ namespace AmphiBee\MetaboxMaker;
 
 /**
  * This class is used to define conditions for a conditional location of a fieldset.
- *
- * @package AmphiBee\MetaboxMaker
  */
 class Location
 {
     /**
-     * @var array $conditions
+     * @var array
      *
      * Stores the conditions for the location.
      */
@@ -31,11 +29,10 @@ class Location
      *
      * Initializes a new instance of the Location class with the specified type and values.
      *
-     * @param string $type
-     * The type of condition to be applied.
-     *
-     * @param string|array $values
-     * The values associated with the condition.
+     * @param  string  $type
+     *                        The type of condition to be applied.
+     * @param  string|array  $values
+     *                                The values associated with the condition.
      */
     public function __construct(protected string $type, string|array $values)
     {
@@ -47,14 +44,12 @@ class Location
      *
      * Creates a new instance of the Location class with the specified type and values.
      *
-     * @param string $type
-     * The type of condition to be applied.
-     *
-     * @param string|array $values
-     * The values associated with the condition.
-     *
+     * @param  string  $type
+     *                        The type of condition to be applied.
+     * @param  string|array  $values
+     *                                The values associated with the condition.
      * @return static
-     * Returns a new instance of the Location class with the specified type and values.
+     *                Returns a new instance of the Location class with the specified type and values.
      */
     public static function where(string $type, string|array $values): static
     {
@@ -67,7 +62,7 @@ class Location
      * Creates a new instance of the Location class with the default type and values.
      *
      * @return static
-     * Returns a new instance of the Location class with the default type and values.
+     *                Returns a new instance of the Location class with the default type and values.
      */
     public static function default(): static
     {
@@ -80,7 +75,7 @@ class Location
      * Retrieves the conditions associated with the location.
      *
      * @return array
-     * Returns an array containing the conditions associated with the location.
+     *               Returns an array containing the conditions associated with the location.
      */
     public function get(): array
     {

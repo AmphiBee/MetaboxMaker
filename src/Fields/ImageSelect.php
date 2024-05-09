@@ -17,8 +17,6 @@ use AmphiBee\MetaboxMaker\Fields\Settings\Options;
 
 /**
  * ImageSelect field class for creating image selection fields.
- *
- * @package AmphiBee\MetaboxMaker\Fields
  */
 class ImageSelect extends Field
 {
@@ -27,5 +25,5 @@ class ImageSelect extends Field
      */
     protected string $type = 'image_select';
 
-    use Options, Multiple;
+    use Multiple, Options;
 }

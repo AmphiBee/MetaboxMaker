@@ -15,6 +15,6 @@ test('can create textarea with custom rows and cols', function () {
         'id' => 'description',
         'placeholder' => 'Enter your description here...',
         'cols' => 80,
-        'rows' => 10
+        'rows' => 10,
     ]);
 });

@@ -16,12 +16,11 @@ use AmphiBee\MetaboxMaker\Fields\Settings\MapParams;
 
 /**
  * GoogleMap field class for integrating Google Maps into forms or meta boxes.
- *
- * @package AmphiBee\MetaboxMaker\Fields
  */
 class GoogleMap extends Field
 {
     use MapParams;
+
     /**
      * The type of input field. Set to 'google_map'.
      */
@@ -35,11 +34,12 @@ class GoogleMap extends Field
     /**
      * Set the Google Maps API key.
      *
-     * @param string $api_key Google Maps API key.
+     * @param  string  $api_key  Google Maps API key.
      */
     public function apiKey(string $api_key): static
     {
         $this->api_key = $api_key;
+
         return $this;
     }
 }

@@ -1,5 +1,7 @@
 <?php
+
 use AmphiBee\MetaboxMaker\Fields\Wysiwyg;
+
 test('wysiwyg field can be configured with specific editor settings', function () {
     $wysiwygField = Wysiwyg::make('Advanced Editor', 'advanced_editor');
     $wysiwygField->raw()
@@ -19,7 +21,7 @@ test('wysiwyg field can be configured with specific editor settings', function (
             'wpautop' => false,
             'media_buttons' => true,
             'drag_drop_upload' => true,
-            'textarea_name' => 'custom_content'
-        ]
+            'textarea_name' => 'custom_content',
+        ],
     ]);
 });

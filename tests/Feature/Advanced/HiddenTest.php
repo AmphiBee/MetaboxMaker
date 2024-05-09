@@ -1,4 +1,5 @@
 <?php
+
 use AmphiBee\MetaboxMaker\Fields\Hidden;
 
 test('hidden field stores predefined value', function () {
@@ -9,6 +10,6 @@ test('hidden field stores predefined value', function () {
     expect($config)->toMatchArray([
         'type' => 'hidden',
         'id' => 'hidden_field_id',
-        'std' => 'Hidden value'
+        'std' => 'Hidden value',
     ]);
 });

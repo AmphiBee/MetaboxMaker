@@ -17,8 +17,6 @@ use AmphiBee\MetaboxMaker\Validation\OptionValidation;
 
 /**
  * Text field class for creating text input fields.
- *
- * @package AmphiBee\MetaboxMaker\Fields
  */
 class Text extends Field
 {
@@ -50,7 +48,7 @@ class Text extends Field
     /**
      * Set the type of input field.
      *
-     * @param string|InputTextType $type The type of input field.
+     * @param  string|InputTextType  $type  The type of input field.
      * @return static Returns the instance of the Text class for method chaining.
      */
     public function type(string|InputTextType $type): static
@@ -63,7 +61,7 @@ class Text extends Field
     /**
      * Set the size of the input field.
      *
-     * @param int $size The size of the input field.
+     * @param  int  $size  The size of the input field.
      * @return static Returns the instance of the Text class for method chaining.
      */
     public function size(int $size): static
@@ -76,7 +74,7 @@ class Text extends Field
     /**
      * Set the text to prepend to the input field.
      *
-     * @param string $text The text to prepend.
+     * @param  string  $text  The text to prepend.
      * @return static Returns the instance of the Text class for method chaining.
      */
     public function prepend(string $text): static
@@ -89,7 +87,7 @@ class Text extends Field
     /**
      * Set the text to append to the input field.
      *
-     * @param string $text The text to append.
+     * @param  string  $text  The text to append.
      * @return static Returns the instance of the Text class for method chaining.
      */
     public function append(string $text): static
@@ -102,8 +100,8 @@ class Text extends Field
     /**
      * Set the datalist options for the input field.
      *
-     * @param string $id The ID of the datalist.
-     * @param array $options The options for the datalist.
+     * @param  string  $id  The ID of the datalist.
+     * @param  array  $options  The options for the datalist.
      * @return static Returns the instance of the Text class for method chaining.
      */
     public function datalist(string $id, array $options): static

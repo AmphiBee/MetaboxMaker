@@ -1,10 +1,11 @@
 <?php
+
 use AmphiBee\MetaboxMaker\Fields\Select;
 
 test('can configure select with multiple choices and toggle all feature', function () {
     $options = [
         'value1' => 'Label One',
-        'value2' => 'Label Two'
+        'value2' => 'Label Two',
     ];
 
     $args = Select::make('Select Your Option', 'select_your_option')
@@ -23,6 +24,6 @@ test('can configure select with multiple choices and toggle all feature', functi
         'multiple' => true,
         'placeholder' => 'Choose an option',
         'select_all_none' => true,
-        'flatten' => false
+        'flatten' => false,
     ]);
 });

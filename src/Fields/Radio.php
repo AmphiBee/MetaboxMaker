@@ -17,8 +17,6 @@ use AmphiBee\MetaboxMaker\Fields\Settings\Options;
 
 /**
  * Radio field class for creating radio button input fields.
- *
- * @package AmphiBee\MetaboxMaker\Fields
  */
 class Radio extends Field
 {
@@ -27,5 +25,5 @@ class Radio extends Field
      */
     protected string $type = 'radio';
 
-    use Options, Inline;
+    use Inline, Options;
 }

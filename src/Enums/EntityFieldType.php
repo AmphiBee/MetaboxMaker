@@ -14,8 +14,6 @@ namespace AmphiBee\MetaboxMaker\Enums;
 
 /**
  * Enum representing different types of post fields.
- *
- * @package AmphiBee\MetaboxMaker\Enums
  */
 enum EntityFieldType: string
 {

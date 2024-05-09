@@ -1,4 +1,5 @@
 <?php
+
 use AmphiBee\MetaboxMaker\Fields\Range;
 
 test('can add range field with min, max and step values', function () {

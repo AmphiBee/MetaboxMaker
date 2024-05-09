@@ -14,8 +14,6 @@ namespace AmphiBee\MetaboxMaker\Fields;
 
 /**
  * Taxonomy Advanced field class for creating fields that allow selecting terms.
- *
- * @package AmphiBee\MetaboxMaker\Fields
  */
 class TaxonomyAdvanced extends Taxonomy
 {

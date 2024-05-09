@@ -14,8 +14,6 @@ namespace AmphiBee\MetaboxMaker\Enums;
 
 /**
  * Enum representing the state of a group in a metabox.
- *
- * @package AmphiBee\MetaboxMaker\Enums
  */
 enum GroupState: string
 {

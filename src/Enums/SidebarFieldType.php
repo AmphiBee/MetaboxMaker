@@ -14,8 +14,6 @@ namespace AmphiBee\MetaboxMaker\Enums;
 
 /**
  * Enum representing different types of sidebar fields.
- *
- * @package AmphiBee\MetaboxMaker\Enums
  */
 enum SidebarFieldType: string
 {

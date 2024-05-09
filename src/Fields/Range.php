@@ -16,8 +16,6 @@ use AmphiBee\MetaboxMaker\Fields\Settings\RangeParams;
 
 /**
  * Range field class for creating rang input fields.
- *
- * @package AmphiBee\MetaboxMaker\Fields
  */
 class Range extends Text
 {

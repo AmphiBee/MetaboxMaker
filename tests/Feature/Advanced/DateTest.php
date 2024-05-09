@@ -1,6 +1,7 @@
 <?php
-use AmphiBee\MetaboxMaker\Fields\DatetimePicker;
+
 use AmphiBee\MetaboxMaker\Fields\Datepicker;
+use AmphiBee\MetaboxMaker\Fields\DatetimePicker;
 
 test('date field can be configured correctly', function () {
     $dateField = DatetimePicker::make('Event Date', 'event_date');
@@ -8,11 +9,11 @@ test('date field can be configured correctly', function () {
         ->inline(true)
         ->saveAsTimestamp(true)
         ->jsOptions([
-            'stepMinute'      => 15,
-            'showTimepicker'  => true,
-            'controlType'     => 'select',
+            'stepMinute' => 15,
+            'showTimepicker' => true,
+            'controlType' => 'select',
             'showButtonPanel' => false,
-            'oneLine'         => true,
+            'oneLine' => true,
         ])
         ->saveFormat('Y-m-d');
 
@@ -26,21 +27,20 @@ test('date field can be configured correctly', function () {
         'inline' => true,
         'timestamp' => true,
         'js_options' => [
-            'stepMinute'      => 15,
-            'showTimepicker'  => true,
-            'controlType'     => 'select',
+            'stepMinute' => 15,
+            'showTimepicker' => true,
+            'controlType' => 'select',
             'showButtonPanel' => false,
-            'oneLine'         => true,
+            'oneLine' => true,
         ],
-        'save_format' => 'Y-m-d'
+        'save_format' => 'Y-m-d',
     ]);
 });
-
 
 test('can configure date picker with specific settings', function () {
     $jsOptions = [
         'dateFormat' => 'yy-mm-dd',
-        'firstDay' => 1  // Monday as first day of week
+        'firstDay' => 1,  // Monday as first day of week
     ];
 
     $args = DatePicker::make('Event Date', 'event_date')
@@ -59,6 +59,6 @@ test('can configure date picker with specific settings', function () {
         'inline' => true,
         'timestamp' => true,
         'js_options' => $jsOptions,
-        'save_format' => 'Y-m-d'
+        'save_format' => 'Y-m-d',
     ]);
 });

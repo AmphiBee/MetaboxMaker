@@ -14,8 +14,6 @@ namespace AmphiBee\MetaboxMaker\Enums;
 
 /**
  * Enum representing different contexts for metaboxes.
- *
- * @package AmphiBee\MetaboxMaker\Enums
  */
 enum Context: string
 {

@@ -16,8 +16,6 @@ use AmphiBee\MetaboxMaker\Fields\Settings\JsOptions;
 
 /**
  * Color field class for creating color picker elements.
- *
- * @package AmphiBee\MetaboxMaker\Fields
  */
 final class Color extends Field
 {
@@ -39,6 +37,7 @@ final class Color extends Field
     public function alphaChannel(bool $alpha_channel = true): static
     {
         $this->alpha_channel = $alpha_channel;
+
         return $this;
     }
 }

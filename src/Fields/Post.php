@@ -18,12 +18,11 @@ use AmphiBee\MetaboxMaker\Validation\OptionValidation;
 
 /**
  * Post field class for creating fields that allow selecting posts.
- *
- * @package AmphiBee\MetaboxMaker\Fields
  */
 class Post extends Field
 {
     use Ajax;
+
     /**
      * The type of field.
      */
@@ -52,44 +51,48 @@ class Post extends Field
     /**
      * Set the type of post to select.
      *
-     * @param string|array $postType The type of post to select.
+     * @param  string|array  $postType  The type of post to select.
      */
     public function postType(string|array $postType): static
     {
         $this->post_type = $postType;
+
         return $this;
     }
 
     /**
      * Set the arguments to pass to the WP_Query function.
      *
-     * @param array $queryArgs The arguments to pass to the WP_Query function.
+     * @param  array  $queryArgs  The arguments to pass to the WP_Query function.
      */
     public function queryArgs(array $queryArgs): static
     {
         $this->query_args = $queryArgs;
+
         return $this;
     }
 
     /**
      * Set whether the field should allow selecting parent posts.
      *
-     * @param bool $parent Whether the field should allow selecting parent posts.
+     * @param  bool  $parent  Whether the field should allow selecting parent posts.
      */
     public function setAsParent(bool $parent): static
     {
         $this->parent = $parent;
+
         return $this;
     }
 
     /**
      * Set the type of field.
      *
-     * @param EntityFieldType|string $fieldType The type of field.
+     * @param  EntityFieldType|string  $fieldType  The type of field.
      */
     public function fieldType(EntityFieldType|string $fieldType): static
     {
         $this->field_type = OptionValidation::check($fieldType, EntityFieldType::class);
+
         return $this;
     }
 }

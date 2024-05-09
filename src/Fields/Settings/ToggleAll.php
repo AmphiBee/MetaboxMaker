@@ -25,7 +25,7 @@ trait ToggleAll
     /**
      * Set whether to display a "Toggle All" button.
      *
-     * @param bool $select_all_none Display "Toggle All" button.
+     * @param  bool  $select_all_none  Display "Toggle All" button.
      * @return static Returns the instance of the class for method chaining.
      */
     public function toggleAllButton(bool $select_all_none = true): static

@@ -1,6 +1,7 @@
 <?php
-use AmphiBee\MetaboxMaker\Fields\Sidebar;
+
 use AmphiBee\MetaboxMaker\Enums\SidebarFieldType;
+use AmphiBee\MetaboxMaker\Fields\Sidebar;
 
 test('can add sidebar with advanced select type', function () {
     $args = Sidebar::make('Sidebar', 'sidebar')

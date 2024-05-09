@@ -25,8 +25,7 @@ trait DefaultValue
     /**
      * Set the default value for the field.
      *
-     * @param mixed $value The default value to set.
-     *
+     * @param  mixed  $value  The default value to set.
      * @return static The instance of the field with the default value set.
      */
     public function default(mixed $value): static

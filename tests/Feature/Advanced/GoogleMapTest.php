@@ -1,5 +1,7 @@
 <?php
+
 use AmphiBee\MetaboxMaker\Fields\GoogleMap;
+
 test('google map field is properly configured', function () {
     $googleMapField = GoogleMap::make('Map Location', 'map_location');
     $googleMapField->apiKey('YOUR_API_KEY')
@@ -18,6 +20,6 @@ test('google map field is properly configured', function () {
         'std' => '53.346881,-6.258860',
         'address_field' => 'address1,address2',
         'language' => 'en',
-        'region' => 'IE'
+        'region' => 'IE',
     ]);
 });

@@ -1,4 +1,5 @@
 <?php
+
 use AmphiBee\MetaboxMaker\Fields\Switcher;
 
 test('switch field can be configured with specific style and labels', function () {

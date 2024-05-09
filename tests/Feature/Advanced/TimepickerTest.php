@@ -1,5 +1,7 @@
 <?php
+
 use AmphiBee\MetaboxMaker\Fields\Timepicker;
+
 test('timepicker field can be configured with specific settings', function () {
     $timepicker = Timepicker::make('Appointment Time', 'appointment_time');
     $timepicker->hourMax(23)
@@ -23,7 +25,7 @@ test('timepicker field can be configured with specific settings', function () {
             'stepMinute' => 15,
             'timeOnly' => false,
             'currentText' => 'Now',
-            'closeText' => 'Close'
-        ]
+            'closeText' => 'Close',
+        ],
     ]);
 });

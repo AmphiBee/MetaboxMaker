@@ -14,8 +14,6 @@ namespace AmphiBee\MetaboxMaker\Fields;
 
 /**
  * Background field class for creating a field used to set background properties in a UI.
- *
- * @package AmphiBee\MetaboxMaker\Fields
  */
 class Background extends Field
 {

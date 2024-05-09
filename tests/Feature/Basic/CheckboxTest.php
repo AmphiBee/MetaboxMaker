@@ -1,4 +1,5 @@
 <?php
+
 use AmphiBee\MetaboxMaker\Fields\Checkbox;
 use AmphiBee\MetaboxMaker\Fields\CheckboxList;
 
@@ -11,14 +12,14 @@ test('can set checkbox as checked by default', function () {
         'type' => 'checkbox',
         'name' => 'Accept Terms',
         'id' => 'accept_terms',
-        'std' => true  // True indicates that the checkbox is checked by default
+        'std' => true,  // True indicates that the checkbox is checked by default
     ]);
 });
 
 test('can configure checkbox list with options and toggle all feature', function () {
     $options = [
         'option1' => 'Label One',
-        'option2' => 'Label Two'
+        'option2' => 'Label Two',
     ];
 
     $args = CheckboxList::make('Select Options', 'select_options')
@@ -33,6 +34,6 @@ test('can configure checkbox list with options and toggle all feature', function
         'id' => 'select_options',
         'options' => $options,
         'inline' => true,
-        'select_all_none' => true
+        'select_all_none' => true,
     ]);
 });

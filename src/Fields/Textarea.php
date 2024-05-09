@@ -14,8 +14,6 @@ namespace AmphiBee\MetaboxMaker\Fields;
 
 /**
  * Text field class for creating text input fields.
- *
- * @package AmphiBee\MetaboxMaker\Fields
  */
 class Textarea extends Field
 {
@@ -37,7 +35,7 @@ class Textarea extends Field
     /**
      * Set the number of columns for the textarea.
      *
-     * @param int $cols The number of columns.
+     * @param  int  $cols  The number of columns.
      * @return static Returns the instance of the Textarea class for method chaining.
      */
     public function cols(int $cols): static
@@ -50,7 +48,7 @@ class Textarea extends Field
     /**
      * Set the number of rows for the textarea.
      *
-     * @param int $rows The number of rows.
+     * @param  int  $rows  The number of rows.
      * @return static Returns the instance of the Textarea class for method chaining.
      */
     public function rows(int $rows): static

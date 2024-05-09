@@ -30,7 +30,7 @@ trait FieldAccess
     /**
      * Sets the field as read-only.
      *
-     * @param bool $readOnly Defaults to true.
+     * @param  bool  $readOnly  Defaults to true.
      * @return static Returns the instance of the class for method chaining.
      */
     public function readOnly(bool $readOnly = true): static
@@ -43,7 +43,7 @@ trait FieldAccess
     /**
      * Sets the field as disabled.
      *
-     * @param bool $disabled Defaults to true.
+     * @param  bool  $disabled  Defaults to true.
      * @return static Returns the instance of the class for method chaining.
      */
     public function disabled(bool $disabled = true): static

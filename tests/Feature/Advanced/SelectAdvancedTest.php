@@ -1,10 +1,11 @@
 <?php
+
 use AmphiBee\MetaboxMaker\Fields\SelectAdvanced;
 
 test('select advanced field can be configured with multiple options and Select2 features', function () {
     $options = [
         'option1' => 'Label One',
-        'option2' => 'Label Two'
+        'option2' => 'Label Two',
     ];
 
     $jsOptions = ['width' => '100%', 'placeholder' => 'Select an option'];
@@ -12,7 +13,7 @@ test('select advanced field can be configured with multiple options and Select2 
     $selectAdvanced = SelectAdvanced::make('Advanced Selection', 'advanced_selection');
     $selectAdvanced->options($options)
         ->multiple(true)
-        ->placeholder("Choose options")
+        ->placeholder('Choose options')
         ->toggleAllButton(true)
         ->jsOptions($jsOptions);
 
@@ -26,6 +27,6 @@ test('select advanced field can be configured with multiple options and Select2 
         'multiple' => true,
         'placeholder' => 'Choose options',
         'select_all_none' => true,
-        'js_options' => $jsOptions
+        'js_options' => $jsOptions,
     ]);
 });

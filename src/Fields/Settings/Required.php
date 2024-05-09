@@ -25,7 +25,7 @@ trait Required
     /**
      * Sets whether the field is required.
      *
-     * @param bool $required Whether the field is required.
+     * @param  bool  $required  Whether the field is required.
      */
     public function required(bool $required = true): static
     {

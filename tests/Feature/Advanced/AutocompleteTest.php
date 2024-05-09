@@ -1,10 +1,11 @@
 <?php
+
 use AmphiBee\MetaboxMaker\Fields\Autocomplete;
 
 test('can configure autocomplete with static and remote options', function () {
     $staticOptions = [
         'option1' => 'Label One',
-        'option2' => 'Label Two'
+        'option2' => 'Label Two',
     ];
 
     $remoteURL = 'https://example.com/api/options';
@@ -24,14 +25,14 @@ test('can configure autocomplete with static and remote options', function () {
         'name' => 'Static Autocomplete',
         'id' => 'static_autocomplete',
         'options' => $staticOptions,
-        'size' => 25
+        'size' => 25,
     ])
         ->and($argsRemote)->toMatchArray([
             'type' => 'autocomplete',
             'name' => 'Remote Autocomplete',
             'id' => 'remote_autocomplete',
             'options' => $remoteURL,
-            'size' => 40
+            'size' => 40,
         ]);
 
 });

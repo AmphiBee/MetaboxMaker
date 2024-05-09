@@ -1,11 +1,6 @@
 <?php
-use AmphiBee\MetaboxMaker\Fields\Number;
 
-var_export(Number::make('Number', 'number')
-    ->min(0)
-    ->max(100)
-    ->step(0.5)
-    ->build());
+use AmphiBee\MetaboxMaker\Fields\Number;
 
 test('can add number field with min, max and step values', function () {
     $args = Number::make('Number', 'number')

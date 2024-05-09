@@ -19,8 +19,6 @@ use AmphiBee\MetaboxMaker\Fields\Settings\Size;
 
 /**
  * DatePicker field class for creating date input fields with a date picker.
- *
- * @package AmphiBee\MetaboxMaker\Fields
  */
 class Datepicker extends Field
 {
@@ -29,5 +27,5 @@ class Datepicker extends Field
      */
     protected string $type = 'date';
 
-    use Size, Inline, JsOptions, DateParams;
+    use DateParams, Inline, JsOptions, Size;
 }

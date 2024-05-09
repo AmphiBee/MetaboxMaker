@@ -18,12 +18,11 @@ use AmphiBee\MetaboxMaker\Validation\OptionValidation;
 
 /**
  * Taxonomy field class for creating fields that allow selecting terms.
- *
- * @package AmphiBee\MetaboxMaker\Fields
  */
 class Taxonomy extends Field
 {
     use Ajax;
+
     /**
      * The type of field.
      */
@@ -57,56 +56,60 @@ class Taxonomy extends Field
     /**
      * Set the type of taxomies to select.
      *
-     * @param string|array $taxonomies The type of post to select.
+     * @param  string|array  $taxonomies  The type of post to select.
      */
     public function taxonomies(string|array $taxonomies): static
     {
         $this->taxonomies = $taxonomies;
+
         return $this;
     }
 
     /**
      * Set the arguments to pass to the WP_Query function.
      *
-     * @param array $queryArgs The arguments to pass to the WP_Query function.
+     * @param  array  $queryArgs  The arguments to pass to the WP_Query function.
      */
     public function queryArgs(array $queryArgs): static
     {
         $this->query_args = $queryArgs;
+
         return $this;
     }
 
     /**
      * Allow users to create a new term when submitting the post.
      *
-     * @param bool $addNew Defaults to true.
+     * @param  bool  $addNew  Defaults to true.
      */
     public function addNew(bool $addNew = true): static
     {
         $this->add_new = $addNew;
+
         return $this;
     }
 
     /**
      * Remove the default WordPress taxonomy meta box. Only works with the classic editor.
      *
-     * @param bool $removeDefault Defaults to true.
+     * @param  bool  $removeDefault  Defaults to true.
      */
     public function removeDefault(bool $removeDefault = true): static
     {
         $this->remove_default = $removeDefault;
+
         return $this;
     }
-
 
     /**
      * Set the type of field.
      *
-     * @param EntityFieldType|string $fieldType The type of field.
+     * @param  EntityFieldType|string  $fieldType  The type of field.
      */
     public function fieldType(EntityFieldType|string $fieldType): static
     {
         $this->field_type = OptionValidation::check($fieldType, EntityFieldType::class);
+
         return $this;
     }
 }

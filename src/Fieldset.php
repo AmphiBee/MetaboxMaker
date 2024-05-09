@@ -20,8 +20,6 @@ use AmphiBee\MetaboxMaker\Validation\OptionValidation;
 
 /**
  * Fieldset class for creating a field groups.
- *
- * @package AmphiBee\MetaboxMaker
  */
 class Fieldset implements Renderable
 {
@@ -34,6 +32,11 @@ class Fieldset implements Renderable
      * The fields within the fieldset.
      */
     protected array $fields;
+
+    /**
+     * The tabs within the fieldset.
+     */
+    protected array $tabs;
 
     /**
      * The location of the fieldset.
@@ -78,8 +81,8 @@ class Fieldset implements Renderable
     /**
      * Construct a new Fieldset instance.
      *
-     * @param string $title The title of the fieldset.
-     * @param string $id The unique identifier of the fieldset.
+     * @param  string  $title  The title of the fieldset.
+     * @param  string  $id  The unique identifier of the fieldset.
      */
     public function __construct(protected string $title, protected string $id)
     {
@@ -88,8 +91,8 @@ class Fieldset implements Renderable
     /**
      * Create a new Fieldset instance with default values.
      *
-     * @param string $title The title of the fieldset.
-     * @param string $id The unique identifier of the fieldset.
+     * @param  string  $title  The title of the fieldset.
+     * @param  string  $id  The unique identifier of the fieldset.
      */
     public static function make(string $title, string $id): static
     {
@@ -99,7 +102,7 @@ class Fieldset implements Renderable
     /**
      * Set the context of the fieldset.
      *
-     * @param string $context The context of the fieldset.
+     * @param  string  $context  The context of the fieldset.
      */
     public function context(string $context): static
     {
@@ -111,7 +114,7 @@ class Fieldset implements Renderable
     /**
      * Add fields to the fieldset.
      *
-     * @param array $fields The fields to add.
+     * @param  array  $fields  The fields to add.
      */
     public function fields(array $fields): static
     {
@@ -121,9 +124,21 @@ class Fieldset implements Renderable
     }
 
     /**
+     * Set the tabs of the fieldset.
+     *
+     * @param  array  $tabs  The tabs of the fieldset.
+     */
+    public function tabs(array $tabs): static
+    {
+        $this->tabs = $tabs;
+
+        return $this;
+    }
+
+    /**
      * Set the priority of the fieldset.
      *
-     * @param string|Priority $priority The priority of the fieldset.
+     * @param  string|Priority  $priority  The priority of the fieldset.
      */
     public function priority(string|Priority $priority): static
     {
@@ -135,7 +150,7 @@ class Fieldset implements Renderable
     /**
      * Set the location of the fieldset.
      *
-     * @param Location $location The location of the fieldset.
+     * @param  Location  $location  The location of the fieldset.
      */
     public function location(Location $location): static
     {
@@ -147,7 +162,7 @@ class Fieldset implements Renderable
     /**
      * Set the style of the fieldset.
      *
-     * @param string|BoxStyle $style The style of the fieldset.
+     * @param  string|BoxStyle  $style  The style of the fieldset.
      */
     public function style(string|BoxStyle $style): static
     {
@@ -159,7 +174,7 @@ class Fieldset implements Renderable
     /**
      * Set whether the fieldset is initially closed.
      *
-     * @param bool $closed Whether the fieldset is initially closed.
+     * @param  bool  $closed  Whether the fieldset is initially closed.
      */
     public function closed(bool $closed): static
     {
@@ -171,7 +186,7 @@ class Fieldset implements Renderable
     /**
      * Set whether the fieldset is initially hidden.
      *
-     * @param bool $defaultHidden Whether the fieldset is initially hidden.
+     * @param  bool  $defaultHidden  Whether the fieldset is initially hidden.
      */
     public function defaultHidden(bool $defaultHidden): static
     {
@@ -183,7 +198,7 @@ class Fieldset implements Renderable
     /**
      * Set whether the fieldset autosaves its content.
      *
-     * @param bool $autosave Whether the fieldset autosaves its content.
+     * @param  bool  $autosave  Whether the fieldset autosaves its content.
      */
     public function autosave(bool $autosave): static
     {
@@ -195,7 +210,7 @@ class Fieldset implements Renderable
     /**
      * Set whether the fieldset opens a media modal when clicked.
      *
-     * @param bool $mediaModal Whether the fieldset opens a media modal when clicked.
+     * @param  bool  $mediaModal  Whether the fieldset opens a media modal when clicked.
      */
     public function mediaModal(bool $mediaModal): static
     {
@@ -207,7 +222,7 @@ class Fieldset implements Renderable
     /**
      * Set the class of the fieldset.
      *
-     * @param string|null $class The class of the fieldset.
+     * @param  string|null  $class  The class of the fieldset.
      */
     public function class(?string $class): static
     {
@@ -227,7 +242,7 @@ class Fieldset implements Renderable
             $this->location = Location::default();
         }
 
-        $settings = array_filter(get_object_vars($this), fn($value) => (!is_array($value) && $value !== null) || (is_array($value) && !empty($value)));
+        $settings = array_filter(get_object_vars($this), fn ($value) => (! is_array($value) && $value !== null) || (is_array($value) && ! empty($value)));
 
         unset($settings['location']);
 

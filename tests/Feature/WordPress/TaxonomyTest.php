@@ -31,7 +31,6 @@ test('can add taxonomy field with specific query args and taxonomy type', functi
     ]);
 });
 
-
 test('can add advanced taxonomy field with specific query args and taxonomy type', function () {
     $args = TaxonomyAdvanced::make('Taxonomy Field', 'taxonomy_field')
         ->taxonomies(['post_tag', 'gender'])
