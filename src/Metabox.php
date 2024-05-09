@@ -12,6 +12,7 @@ declare(strict_types=1);
 
 namespace AmphiBee\MetaboxMaker;
 
+use Exception;
 use AmphiBee\MetaboxMaker\Contract\Renderable;
 use AmphiBee\MetaboxMaker\Enums\BoxStyle;
 use AmphiBee\MetaboxMaker\Enums\Context;
@@ -89,7 +90,7 @@ class Metabox implements Renderable
     public function __construct(protected string $title, protected string $id)
     {
         if (!function_exists('add_filter')) {
-            throw new \Exception('Metabox Maker requires WordPress to be loaded.');
+            throw new Exception('Metabox Maker requires WordPress to be loaded.');
         }
 
         add_filter( 'rwmb_meta_boxes', function ( $meta_boxes ) {
