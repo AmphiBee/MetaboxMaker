@@ -41,10 +41,9 @@ $numberField = Number::make('Age', 'age')
                 ->step(1);
 
 // Add fields to your metabox and display it in the post editor
-Metabox::create('User Information', [$textField, $numberField])
+Metabox::make('User Information', [$textField, $numberField])
        ->context('side')
-       ->priority('high')
-       ->register();
+       ->priority('high');
 ```
 
 ### Advanced Features
@@ -61,10 +60,9 @@ $imageField = ImageUpload::make('Profile Picture', 'profile_picture')
                 ->imageSize('medium')
                 ->forceDelete(true);
 
-Metabox::create('Profile', [$imageField])
+Metabox::make('Profile', [$imageField])
        ->context('normal')
-       ->priority('default')
-       ->register();
+       ->priority('default');
 ```
 
 ## Contributing
@@ -74,10 +72,3 @@ Contributions are welcome! Please feel free to submit pull requests or create is
 ## License
 
 This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details.
-```
-
-### Customization
-
-You should replace the URL in the `git clone` command with the actual URL of your repository, and adjust the examples to better fit the actual capabilities of your package. If your package has additional setup instructions or dependencies, those should be included in the Installation section. 
-
-This `README.md` provides a comprehensive yet concise introduction to your package, making it accessible to other developers and encouraging its use and contribution.
