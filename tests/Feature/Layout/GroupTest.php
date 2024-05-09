@@ -42,8 +42,6 @@ test('can add group with nested groups and fields', function () {
         ],
     ];
 
-    var_export($mainGroup->build());
-
     expect($mainGroup->build())->toMatchArray($expectedArray);
 });
 

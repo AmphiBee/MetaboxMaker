@@ -19,10 +19,8 @@ trait Sortable
 {
     /**
      * Indicates whether the field should be sortable and cloned when sorting.
-     *
-     * @var bool
      */
-    protected bool $sort_clone = false;
+    protected bool $sort_clone;
 
     /**
      * Sets whether the field should be sortable and cloned when sorting.

@@ -20,12 +20,12 @@ trait FieldAccess
     /**
      * @var bool Indicates whether the field is read-only.
      */
-    protected bool $readonly = false;
+    protected bool $readonly;
 
     /**
      * @var bool Indicates whether the field is disabled.
      */
-    protected bool $disabled = false;
+    protected bool $disabled;
 
     /**
      * Sets the field as read-only.

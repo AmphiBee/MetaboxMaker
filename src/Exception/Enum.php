@@ -31,9 +31,7 @@ final class Enum
     public static function generateErrorMessageFromEnumValues(string $enumClass): string
     {
         $values = array_map(
-            static function ($e) {
-                return $e->value;
-            },
+            static fn($e) => $e->value,
             $enumClass::cases()
         );
         $formattedValues = implode("', '", $values);

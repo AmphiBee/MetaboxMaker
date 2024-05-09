@@ -10,17 +10,15 @@
 
 declare(strict_types=1);
 
-namespace AmphiBee\MetaboxMaker\Helpers;
+namespace AmphiBee\MetaboxMaker\Validation;
 
 use AmphiBee\MetaboxMaker\Transformer\EnumTransformer;
-use AmphiBee\MetaboxMaker\Validation\EnumValidation;
-use AmphiBee\MetaboxMaker\Validation\StringValidation;
 use InvalidArgumentException;
 
 /**
  * Helper class for validating and converting values to enums.
  */
-final class OptionValidator
+final class OptionValidation
 {
     /**
      * Validates and converts a string to an enum or returns the enum directly.

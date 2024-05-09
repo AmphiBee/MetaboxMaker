@@ -13,49 +13,39 @@ declare(strict_types=1);
 namespace AmphiBee\MetaboxMaker\Fields;
 
 use AmphiBee\MetaboxMaker\Enums\InputTextType;
-use AmphiBee\MetaboxMaker\Helpers\OptionValidator;
+use AmphiBee\MetaboxMaker\Validation\OptionValidation;
 
 /**
  * Text field class for creating text input fields.
  *
  * @package AmphiBee\MetaboxMaker\Fields
  */
-final class Text extends Field
+class Text extends Field
 {
     /**
      * The type of input field. Defaults to 'text'.
-     *
-     * @var string
      */
     protected string $type = 'text';
 
     /**
      * The size of the input field.
-     *
-     * @var int|null
      */
-    protected ?int $size = null;
+    protected int $size;
 
     /**
      * The text to prepend to the input field.
-     *
-     * @var string
      */
-    protected string $prepend = '';
+    protected string $prepend;
 
     /**
      * The text to append to the input field.
-     *
-     * @var string
      */
-    protected string $append = '';
+    protected string $append;
 
     /**
      * The datalist options for the input field.
-     *
-     * @var array
      */
-    protected array $datalist = [];
+    protected array $datalist;
 
     /**
      * Set the type of input field.
@@ -65,7 +55,7 @@ final class Text extends Field
      */
     public function type(string|InputTextType $type): static
     {
-        $this->type = OptionValidator::check($type, InputTextType::class);
+        $this->type = OptionValidation::check($type, InputTextType::class);
 
         return $this;
     }

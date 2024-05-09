@@ -19,10 +19,8 @@ trait DefaultValue
 {
     /**
      * The default value for the field.
-     *
-     * @var mixed
      */
-    protected mixed $std = null;
+    protected mixed $std;
 
     /**
      * Set the default value for the field.

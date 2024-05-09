@@ -31,15 +31,11 @@ abstract class Field implements Renderable
 {
     /**
      * The type of the field.
-     *
-     * @var string
      */
     protected string $type = 'text';
 
     /**
      * The settings for the field.
-     *
-     * @var array
      */
     protected array $settings = [];
 
@@ -84,29 +80,22 @@ abstract class Field implements Renderable
     use Sortable;
 
     /**
-     * The name of the field.
-     *
-     * @var string
-     */
-    protected string $name;
-
-    /**
-     * The id of the field.
-     *
-     * @var string
-     */
-    protected string $id;
-
-    /**
      * Constructor for the Field class.
      *
      * @param string $name The name of the field.
      * @param string $id The id of the field.
      */
-    public function __construct(string $name, string $id)
+    public function __construct(
+        /**
+         * The name of the field.
+         */
+        protected string $name,
+        /**
+         * The id of the field.
+         */
+        protected string $id
+    )
     {
-        $this->name = $name;
-        $this->id = $id;
     }
 
     /**
@@ -114,8 +103,6 @@ abstract class Field implements Renderable
      *
      * @param string $name The name of the field.
      * @param string $id The id of the field.
-     *
-     * @return static
      */
     public static function make(string $name, string $id): static
     {
@@ -129,6 +116,6 @@ abstract class Field implements Renderable
      */
     public function build(): array
     {
-        return array_filter(get_object_vars($this));
+        return array_filter(get_object_vars($this), fn($value) => (!is_array($value) && $value !== null) || (is_array($value) && !empty($value)));
     }
 }

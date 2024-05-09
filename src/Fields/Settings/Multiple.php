@@ -19,10 +19,8 @@ trait Multiple
 {
     /**
      * Indicates whether the field allows multiple selections.
-     *
-     * @var bool
      */
-    protected bool $multiple = false;
+    protected bool $multiple;
 
     /**
      * Sets whether the field allows multiple selections.

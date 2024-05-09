@@ -17,7 +17,7 @@ namespace AmphiBee\MetaboxMaker;
  *
  * @package AmphiBee\MetaboxMaker
  */
-final class Location
+class Location
 {
     /**
      * @var array $conditions

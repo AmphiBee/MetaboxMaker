@@ -19,16 +19,13 @@ trait Required
 {
     /**
      * Indicates whether the field is required.
-     *
-     * @var bool
      */
-    protected bool $required = false;
+    protected bool $required;
 
     /**
      * Sets whether the field is required.
      *
      * @param bool $required Whether the field is required.
-     * @return static
      */
     public function required(bool $required = true): static
     {

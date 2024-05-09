@@ -20,38 +20,37 @@ trait Clonable
     /**
      * @var bool $clone Defaults to false.
      */
-    protected bool $clone = false;
+    protected bool $clone;
 
     /**
      * @var bool $clone_default Defaults to false.
      */
-    protected bool $clone_default = false;
+    protected bool $clone_default;
 
     /**
      * @var bool $clone_as_multiple Defaults to false.
      */
-    protected bool $clone_as_multiple = false;
+    protected bool $clone_as_multiple;
 
     /**
-     * @var ?int $max_clone Defaults to null.
+     * @var int $max_clone Defaults to null.
      */
-    protected ?int $max_clone = null;
+    protected int $max_clone;
 
     /**
-     * @var ?int $min_clone Defaults to null.
+     * @var int $min_clone Defaults to null.
      */
-    protected ?int $min_clone = null;
+    protected int $min_clone;
 
     /**
-     * @var ?string $add_button Defaults to null.
+     * @var string $add_button Defaults to null.
      */
-    protected ?string $add_button = null;
+    protected string $add_button;
 
     /**
      * Indicates whether the field can be cloned.
      *
      * @param bool $clone Defaults to true.
-     * @return static
      */
     public function cloneable(bool $clone = true): static
     {
@@ -64,7 +63,6 @@ trait Clonable
      * Indicates whether the field should clone its default values.
      *
      * @param bool $cloneDefault Defaults to true.
-     * @return static
      */
     public function cloneDefaults(bool $cloneDefault = true): static
     {
@@ -77,7 +75,6 @@ trait Clonable
      * Indicates whether the field should clone as multiple instances.
      *
      * @param bool $cloneAsMultiple Defaults to true.
-     * @return static
      */
     public function cloneAsMultiple(bool $cloneAsMultiple = true): static
     {
@@ -88,9 +85,6 @@ trait Clonable
 
     /**
      * Sets the maximum number of clones allowed.
-     *
-     * @param int $maxClone
-     * @return static
      */
     public function maxClones(int $maxClone): static
     {
@@ -101,9 +95,6 @@ trait Clonable
 
     /**
      * Sets the minimum number of clones allowed.
-     *
-     * @param int $minClone
-     * @return static
      */
     public function minClones(int $minClone): static
     {
@@ -114,9 +105,6 @@ trait Clonable
 
     /**
      * Sets the text for the clone button.
-     *
-     * @param string $addButton
-     * @return static
      */
     public function addButton(string $addButton): static
     {

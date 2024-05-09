@@ -19,19 +19,17 @@ trait Placeholder
 {
     /**
      * The placeholder text for the field.
-     *
-     * @var string|null
      */
-    protected ?string $placeholder = null;
+    protected string|array $placeholder;
 
     /**
      * Set the placeholder text for the field.
      *
-     * @param string $placeholder The placeholder text.
+     * @param string|array $placeholder The placeholder text. Array with 'key' and 'value' as keys and placeholder text as values for the KeyValye field.
      *
      * @return static The instance of the class with the updated placeholder.
      */
-    public function placeholder(string $placeholder): static
+    public function placeholder(string|array $placeholder): static
     {
         $this->placeholder = $placeholder;
 

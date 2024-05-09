@@ -20,12 +20,12 @@ trait Description
     /**
      * @var string|null The description of the field.
      */
-    protected ?string $desc = null;
+    protected string $desc;
 
     /**
-     * @var string|null The label description of the field.
+     * @var string The label description of the field.
      */
-    protected ?string $label_description = null;
+    protected string $label_description;
 
     /**
      * Sets the description of the field.

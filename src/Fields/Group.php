@@ -13,7 +13,7 @@ declare(strict_types=1);
 namespace AmphiBee\MetaboxMaker\Fields;
 
 use AmphiBee\MetaboxMaker\Enums\GroupState;
-use AmphiBee\MetaboxMaker\Helpers\OptionValidator;
+use AmphiBee\MetaboxMaker\Validation\OptionValidation;
 use InvalidArgumentException;
 
 /**
@@ -21,49 +21,37 @@ use InvalidArgumentException;
  *
  * @package AmphiBee\MetaboxMaker\Fields
  */
-final class Group extends Field
+class Group extends Field
 {
     /**
      * The type of field.
-     *
-     * @var string
      */
     protected string $type = 'group';
 
     /**
      * Container for all fields including nested groups.
-     *
-     * @var array
      */
     protected array $fields = [];
 
     /**
      * Whether the group is collapsible.
-     *
-     * @var bool
      */
-    protected bool $collapsible = false;
+    protected bool $collapsible;
 
     /**
      * Whether the group state should be saved.
-     *
-     * @var bool
      */
-    protected bool $save_state = false;
+    protected bool $save_state;
 
     /**
      * The default state of the group.
-     *
-     * @var string|GroupState
      */
     protected string|GroupState $default_state;
 
     /**
      * The title of the group.
-     *
-     * @var string
      */
-    protected string $group_title = '';
+    protected string $group_title;
 
     /**
      * Adds fields to the group, which can include nested groups.
@@ -123,7 +111,7 @@ final class Group extends Field
      */
     public function defaultState(string|GroupState $state): static
     {
-        $this->default_state = OptionValidator::check($state, GroupState::class);
+        $this->default_state = OptionValidation::check($state, GroupState::class);
 
         return $this;
     }
