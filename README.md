@@ -44,6 +44,26 @@ $numberField = Number::make('Age', 'age')
 Metabox::make('User Information', [$textField, $numberField])
        ->context('side')
        ->priority('high');
+
+// Full Example
+use AmphiBee\MetaboxMaker\Fields\Group;
+use AmphiBee\MetaboxMaker\Fields\Text;
+use AmphiBee\MetaboxMaker\Metabox;
+use AmphiBee\MetaboxMaker\Location;
+
+Metabox::make('Test Fieldset', 'test_fieldset')
+        ->fields([
+            Text::make('Main Text', 'main_text')
+                ->placeholder('Enter main text'),
+            Group::make('Sub group', 'sub_group')
+                ->fields([
+                    Text::make('Sub Text', 'sub_text')
+                        ->placeholder('Enter sub text'),
+                ]),
+        ])
+        ->priority('high')
+        ->context('side')
+        ->location(Location::where('post_type', ['post', 'page']));
 ```
 
 ### Advanced Features
