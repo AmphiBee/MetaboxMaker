@@ -2,9 +2,9 @@
 
 use AmphiBee\MetaboxMaker\Fields\Group;
 use AmphiBee\MetaboxMaker\Fields\Text;
-use AmphiBee\MetaboxMaker\Fieldset;
+use AmphiBee\MetaboxMaker\Metabox;
 
-$mainGroup = Fieldset::make('Multi-level nested groups', 'main_group')
+$mainGroup = Metabox::make('Multi-level nested groups', 'main_group')
     ->tabs([
         'contact' => 'Contact',
         'social' => [
@@ -25,7 +25,7 @@ $mainGroup = Fieldset::make('Multi-level nested groups', 'main_group')
     ]);
 
 test('can assign tabs to fields', function () {
-    $tabs = Fieldset::make('Multi-level nested groups', 'main_group')
+    $tabs = Metabox::make('Multi-level nested groups', 'main_group')
         ->tabs([
             'contact' => 'Contact',
             'social' => [

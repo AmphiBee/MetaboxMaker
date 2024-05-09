@@ -2,19 +2,19 @@
 
 use AmphiBee\MetaboxMaker\Fields\Group;
 use AmphiBee\MetaboxMaker\Fields\Text;
-use AmphiBee\MetaboxMaker\Fieldset;
+use AmphiBee\MetaboxMaker\Metabox;
 use AmphiBee\MetaboxMaker\Location;
 
-$fieldset = Fieldset::make('Example Fieldset', 'example_fieldset');
+$fieldset = Metabox::make('Example Fieldset', 'example_fieldset');
 
 beforeEach(function () {
     // Simulate a location object
     $this->location = Location::where('post_type', ['post', 'page']); // Assurez-vous de définir correctement cette classe selon votre implémentation
-    $this->fieldset = Fieldset::make('Example Fieldset', 'example_fieldset');
+    $this->fieldset = Metabox::make('Example Fieldset', 'example_fieldset');
 });
 
 test('can create a Fieldset instance', function () {
-    expect($this->fieldset)->toBeInstanceOf(Fieldset::class)
+    expect($this->fieldset)->toBeInstanceOf(Metabox::class)
         ->and($this->fieldset->build())->toHaveKey('title', 'Example Fieldset')
         ->and($this->fieldset->build())->toHaveKey('id', 'example_fieldset');
 });
@@ -53,7 +53,7 @@ test('can set location', function () {
 });
 
 test('can add groups and fields', function () {
-    $mainGroup = Fieldset::make('Test Fieldset', 'test_fieldset')
+    $mainGroup = Metabox::make('Test Fieldset', 'test_fieldset')
         ->fields([
             Text::make('Main Text', 'main_text')
                 ->placeholder('Enter main text'),

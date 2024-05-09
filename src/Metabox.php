@@ -23,7 +23,7 @@ use add_filter;
 /**
  * Fieldset class for creating a field groups.
  */
-class Fieldset implements Renderable
+class Metabox implements Renderable
 {
     /**
      * The context of the fieldset.
