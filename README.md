@@ -41,7 +41,8 @@ $numberField = Number::make('Age', 'age')
                 ->step(1);
 
 // Add fields to your metabox and display it in the post editor
-Metabox::make('User Information', [$textField, $numberField])
+Metabox::make('User Information', 'user_info')
+       ->fields([$textField, $numberField])
        ->context('side')
        ->priority('high');
 
