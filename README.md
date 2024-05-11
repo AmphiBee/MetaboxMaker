@@ -30,19 +30,16 @@ Here is a quick example of how to create a custom metabox with text and number f
 use AmphiBee\MetaboxMaker\Fields\Text;
 use AmphiBee\MetaboxMaker\Fields\Number;
 
-// Create a new text field
-$textField = Text::make('Username', 'username')
-                ->placeholder('Enter your username');
-
-// Create a new number field
-$numberField = Number::make('Age', 'age')
-                ->min(18)
-                ->max(100)
-                ->step(1);
-
 // Add fields to your metabox and display it in the post editor
 Metabox::make('User Information', 'user_info')
-       ->fields([$textField, $numberField])
+       ->fields([
+           Text::make('Username', 'username')
+                ->placeholder('Enter your username'),
+           Number::make('Age', 'age')
+                ->min(18)
+                ->max(100)
+                ->step(1)
+       ])
        ->context('side')
        ->priority('high');
 
