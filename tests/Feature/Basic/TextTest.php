@@ -23,8 +23,8 @@ test('can add text with all properties', function () {
         ->sortable()
         ->cloneDefaults()
         ->cloneAsMultiple()
-        ->maxClones(5)
-        ->minClones(1)
+        ->maxClone(5)
+        ->minClone(1)
         ->addButton('Add More Text')
         ->build();
 

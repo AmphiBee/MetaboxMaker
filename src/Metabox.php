@@ -34,7 +34,7 @@ class Metabox implements Renderable
     /**
      * The context of the fieldset.
      */
-    protected string $context = 'normal';
+    protected string $context;
 
     /**
      * The fields within the fieldset.
@@ -59,7 +59,7 @@ class Metabox implements Renderable
     /**
      * The style of the fieldset.
      */
-    protected string $style = 'default';
+    protected string $style;
 
     /**
      * Whether the fieldset is initially closed.
@@ -85,6 +85,11 @@ class Metabox implements Renderable
      * The class of the fieldset.
      */
     protected string $class;
+
+    /**
+     * The description of the fieldset.
+     */
+    protected string $description;
 
     /**
      * Construct a new Fieldset instance.
@@ -243,6 +248,30 @@ class Metabox implements Renderable
     {
         $this->class = $class;
 
+        return $this;
+    }
+
+    /**
+     * Set the description of the fieldset.
+     *
+     * @param string $description The description of the fieldset.
+     * @return static
+     */
+    public function description(string $description): static
+    {
+        $this->description = $description;
+        return $this;
+    }
+
+    /**
+     * Set the type of the fieldset.
+     *
+     * @param string $type The type of the fieldset.
+     * @return static
+     */
+    public function type(string $type): static
+    {
+        $this->type = $type;
         return $this;
     }
 

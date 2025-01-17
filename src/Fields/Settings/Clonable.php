@@ -35,7 +35,7 @@ trait Clonable
     /**
      * @var int Defaults to null.
      */
-    protected int $max_clone;
+    protected int|string $max_clone;
 
     /**
      * @var int Defaults to null.
@@ -52,7 +52,7 @@ trait Clonable
      *
      * @param  bool  $clone  Defaults to true.
      */
-    public function cloneable(bool $clone = true): static
+    public function cloneable(?bool $clone = true): static
     {
         $this->clone = $clone;
 
@@ -86,7 +86,7 @@ trait Clonable
     /**
      * Sets the maximum number of clones allowed.
      */
-    public function maxClones(int $maxClone): static
+    public function maxClone(int|string $maxClone): static
     {
         $this->max_clone = $maxClone;
 
@@ -96,7 +96,7 @@ trait Clonable
     /**
      * Sets the minimum number of clones allowed.
      */
-    public function minClones(int $minClone): static
+    public function minClone(int $minClone): static
     {
         $this->min_clone = $minClone;
 

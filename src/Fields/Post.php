@@ -31,7 +31,7 @@ class Post extends Field
     /**
      * The type of post to select.
      */
-    protected string|array $post_type = 'post';
+    protected string|array $post_type;
 
     /**
      * The arguments to pass to the WP_Query function.

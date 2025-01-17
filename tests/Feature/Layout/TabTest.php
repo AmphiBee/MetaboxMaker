@@ -27,7 +27,6 @@ test('can assign tabs to fields', function () {
         ]);
 
     expect($tabs->build())->toMatchArray([
-            'context' => 'normal',
             'fields' => [
                 [
                     'type' => 'text',
@@ -56,7 +55,6 @@ test('can assign tabs to fields', function () {
                     'icon' => 'dashicons-share'
                 ]
             ],
-            'style' => 'default',
             'title' => 'Multi-level nested groups',
             'id' => 'main_group',
             'post_type' => ['post']
@@ -84,7 +82,6 @@ test('can assign group tabs', function () {
         ]);
 
     expect($tabs->build())->toMatchArray([
-            'context' => 'normal',
             'fields' => [
                 [
                     'type' => 'text',
@@ -102,7 +99,8 @@ test('can assign group tabs', function () {
                         [
                             'type' => 'text',
                             'name' => 'Sub Text',
-                            'id' => 'sub_text', 'placeholder' => 'Enter sub text'
+                            'id' => 'sub_text',
+                            'placeholder' => 'Enter sub text',
                         ]
                     ]
                 ]
@@ -116,7 +114,6 @@ test('can assign group tabs', function () {
                     'icon' => 'dashicons-share'
                 ]
             ],
-            'style' => 'default',
             'title' => 'Multi-level nested groups',
             'id' => 'main_group',
             'post_type' => ['post']
