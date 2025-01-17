@@ -64,6 +64,39 @@ Metabox::make('Test Fieldset', 'test_fieldset')
         ->location(Location::where('post_type', ['post', 'page']));
 ```
 
+### Creating Gutenberg Blocks
+
+You can also create custom Gutenberg blocks using the `Block` class:
+
+```php
+<?php
+
+use AmphiBee\MetaboxMaker\Block;
+use AmphiBee\MetaboxMaker\Fields\Text;
+use AmphiBee\MetaboxMaker\Fields\Wysiwyg;
+use AmphiBee\MetaboxMaker\Fields\Group;
+
+Block::make('Example Block', 'example-block')
+    ->description('An example Gutenberg block')
+    ->icon('book-alt')
+    ->category('layout')
+    ->renderCallback(function ($attributes) {
+        echo '<div>' . $attributes['content'] . '</div>';
+    })
+    ->fields([
+        Text::make('Title', 'title'),
+        Wysiwyg::make('Content', 'content'),
+        Group::make('Links', 'links')
+            ->cloneable()
+            ->addButton('Add a link')
+            ->maxClone(3)
+            ->fields([
+                Text::make('Link', 'link'),
+                Text::make('Label', 'label'),
+            ]),
+    ]);
+```
+
 ### Advanced Features
 
 You can also utilize advanced features such as image upload fields with custom settings:
