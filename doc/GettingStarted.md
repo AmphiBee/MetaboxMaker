@@ -17,14 +17,14 @@ MetaboxMaker is designed to simplify the process of creating metaboxes and custo
 
 To help you get started, we've organized the documentation into several sections:
 
-- **[Metabox](Metabox.md)**: Apprenez à créer et gérer des metaboxes avec MetaboxMaker.
-- **[Basics](Basics.md)**: Découvrez les concepts de base pour commencer avec MetaboxMaker.
+- **[Metabox](Metabox.md)**: Learn how to create and manage metaboxes with MetaboxMaker.
+- **[Basics](Basics.md)**: Discover the basic concepts to get started with MetaboxMaker.
 - **[Advanced Fields](Advanced.md)**: Learn about the advanced fields available in MetaboxMaker, including autocomplete, sliders, and more.
 - **[HTML5 Fields](Html5.md)**: Discover the HTML5 fields supported by MetaboxMaker, such as email, number, and URL inputs.
 - **[WordPress Fields](WordPress.md)**: Get to know the fields specifically designed for WordPress, such as post, taxonomy, and user selectors.
 - **[Upload Fields](Upload.md)**: Understand how to handle file uploads with fields like file, image, and video uploads.
 - **[Layout Fields](Layout.md)**: Explore the layout fields that help you organize and structure your metaboxes, including dividers, groups, and tabs.
-- **[Block](Block.md)**: Explorez comment utiliser les blocs pour structurer vos metaboxes dans WordPress.
+- **[Block](Block.md)**: Learn how to use blocks to structure your metaboxes in WordPress.
 
 ## Getting Started
 
