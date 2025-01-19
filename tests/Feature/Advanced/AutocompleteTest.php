@@ -2,6 +2,7 @@
 
 use AmphiBee\MetaboxMaker\Fields\Autocomplete;
 
+
 test('can configure autocomplete with static and remote options', function () {
     $staticOptions = [
         'option1' => 'Label One',

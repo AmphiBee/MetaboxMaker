@@ -18,20 +18,19 @@ namespace AmphiBee\MetaboxMaker\Fields\Settings;
 trait Options
 {
     /**
-     * Array of 'value' => 'Label' for the inputs. For Autocomplete field, it can be an URL to a remote resource that returns the array of data in JSON format.
+     * Array of 'value' => 'Label' for the inputs or a URL for AJAX.
      */
     protected array|string $options;
 
     /**
      * Set the options for the inputs.
      *
-     * @param  array|string  $options  Array of 'value' => 'Label'.
+     * @param  array|string  $options  Array of 'value' => 'Label' or URL for AJAX.
      * @return static Returns the instance of the class for method chaining.
      */
     public function options(array|string $options): static
     {
         $this->options = $options;
-
         return $this;
     }
 }

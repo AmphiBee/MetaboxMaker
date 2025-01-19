@@ -12,8 +12,10 @@ declare(strict_types=1);
 
 namespace AmphiBee\MetaboxMaker\Fields;
 
+use AmphiBee\MetaboxMaker\Fields\Settings\Placeholder;
+
 /**
- * KeyValue field class for creating inputs that accept key-value pairs.
+ * KeyValue field class for creating key-value pair inputs.
  */
 class KeyValue extends Field
 {
@@ -21,4 +23,6 @@ class KeyValue extends Field
      * The type of input field. Set to 'key_value'.
      */
     protected string $type = 'key_value';
+
+    use Placeholder;
 }
