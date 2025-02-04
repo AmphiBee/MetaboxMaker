@@ -22,6 +22,7 @@ use AmphiBee\MetaboxMaker\Fields\Settings\Placeholder;
 use AmphiBee\MetaboxMaker\Fields\Settings\Required;
 use AmphiBee\MetaboxMaker\Fields\Settings\Sortable;
 use AmphiBee\MetaboxMaker\Fields\Settings\Tab;
+use AmphiBee\MetaboxMaker\Fields\Utils\Builder;
 use AmphiBee\MetaboxMaker\Transformer\EmptyValueFilter;
 
 /**
@@ -29,6 +30,7 @@ use AmphiBee\MetaboxMaker\Transformer\EmptyValueFilter;
  */
 abstract class Field implements Renderable
 {
+    use Builder;
     /**
      * The type of the field.
      */
@@ -108,16 +110,6 @@ abstract class Field implements Renderable
     public static function make(string $name, string $id): static
     {
         return new static($name, $id);
-    }
-
-    /**
-     * Builds the field and returns its properties as an associative array.
-     *
-     * @return array The properties of the field.
-     */
-    public function build(): array
-    {
-        return EmptyValueFilter::filter(get_object_vars($this));
     }
 
     public function getType(): string

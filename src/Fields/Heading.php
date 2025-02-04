@@ -12,24 +12,24 @@ declare(strict_types=1);
 
 namespace AmphiBee\MetaboxMaker\Fields;
 
+use AmphiBee\MetaboxMaker\Fields\Settings\Description;
 use AmphiBee\MetaboxMaker\Fields\Settings\Tab;
+use AmphiBee\MetaboxMaker\Contract\SimpleRenderable;
+use AmphiBee\MetaboxMaker\Fields\Utils\Builder;
+use AmphiBee\MetaboxMaker\Transformer\EmptyValueFilter;
 
 /**
  * Heading field class for creating section headings in the UI.
+ * Cette classe est un type spécial de champ qui ne nécessite qu'un titre.
  */
-class Heading
+class Heading implements SimpleRenderable
 {
-    use Tab;
+    use Tab, Description, Builder;
 
     /**
      * The type of field.
      */
     protected string $type = 'heading';
-
-    /**
-     * Optional description for the heading.
-     */
-    protected string $desc;
 
     /**
      * Constructor for the Heading class.
@@ -60,19 +60,5 @@ class Heading
         $this->desc = $desc;
 
         return $this;
-    }
-
-    /**
-     * Builds the field and returns its properties as an associative array.
-     *
-     * @return array The properties of the field.
-     */
-    public function build(): array
-    {
-        return [
-            'type' => $this->type,
-            'name' => $this->name,
-            'desc' => $this->desc,
-        ];
     }
 }
