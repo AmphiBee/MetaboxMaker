@@ -12,14 +12,14 @@ declare(strict_types=1);
 
 namespace AmphiBee\MetaboxMaker\Fields;
 
-use AmphiBee\MetaboxMaker\Contract\SimpleRenderable;
+use AmphiBee\MetaboxMaker\Contract\Renderable;
 use AmphiBee\MetaboxMaker\Fields\Settings\Tab;
 use AmphiBee\MetaboxMaker\Fields\Utils\Builder;
 
 /**
  * Divider field class for creating visual separators in the UI.
  */
-class Divider implements SimpleRenderable
+class Divider implements Renderable
 {
     use Tab, Builder;
 
@@ -30,8 +30,11 @@ class Divider implements SimpleRenderable
 
     /**
      * Factory method for creating a new instance of the Field class.
+     * 
+     * @param string|null $name Not used for Divider.
+     * @param string|null $id Not used for Divider.
      */
-    public static function make(string $name = ''): static
+    public static function make(string $name = null, string $id = null): static
     {
         return new static();
     }

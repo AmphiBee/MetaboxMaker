@@ -14,7 +14,6 @@ namespace AmphiBee\MetaboxMaker\Transformer;
 
 use AmphiBee\MetaboxMaker\Contract\Renderable;
 use AmphiBee\MetaboxMaker\Fields\Tab;
-use AmphiBee\MetaboxMaker\Contract\SimpleRenderable;
 
 /**
  * Trait for handling field transformations.
@@ -34,8 +33,6 @@ trait FieldTransformer
                 $this->processTab($field);
             } elseif ($field instanceof Renderable) {
                 $this->addField($field);
-            } elseif ($field instanceof SimpleRenderable) {
-                $this->fields[] = $field->build();
             }
         }
 
@@ -62,7 +59,7 @@ trait FieldTransformer
     /**
      * Add a single Field to the fields array.
      *
-     * @param Field $field The field to add.
+     * @param Renderable $field The field to add.
      */
     protected function addField(Renderable $field): void
     {
