@@ -29,12 +29,11 @@ class Divider implements Renderable
     protected string $type = 'divider';
 
     /**
-     * Factory method for creating a new instance of the Field class.
+     * Factory method for creating a new instance of the Divider class.
      * 
-     * @param string|null $name Not used for Divider.
-     * @param string|null $id Not used for Divider.
+     * @param mixed ...$args Not used for Divider
      */
-    public static function make(string $name = null, string $id = null): static
+    public static function make(mixed ...$args): static
     {
         return new static();
     }

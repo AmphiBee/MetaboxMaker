@@ -27,6 +27,11 @@ class SettingsPage implements Renderable
     /**
      * Default first submenu title
      */
+    protected ?string $menu_title = null;
+
+    /**
+     * Default first submenu title
+     */
     protected ?string $submenu_title = null;
 
     /**
@@ -119,11 +124,19 @@ class SettingsPage implements Renderable
      */
     protected ?string $option_name = null;
 
-    public function __construct(protected string $id, protected string $menu_title, protected ?string $page_title = null)
+    /**
+     * Constructor for the SettingsPage class.
+     *
+     * @param string $page_title The title of the settings page
+     * @param string $id The unique identifier for the settings page
+     */
+    public function __construct(protected string $page_title, protected string $id)
     {
         if (!function_exists('add_filter')) {
             throw new Exception('Metabox Maker requires WordPress to be loaded.');
         }
+
+        $this->menu_title = $page_title;
 
         add_filter('mb_settings_pages', function ($settings_pages) {
             $settings_pages[] = $this->build();
@@ -131,9 +144,15 @@ class SettingsPage implements Renderable
         });
     }
 
-    public static function make(string $id, string $menu_title, ?string $page_title = null): static
+    /**
+     * Create a new SettingsPage instance.
+     *
+     * @param mixed ...$args Required arguments (page_title, id)
+     */
+    public static function make(mixed ...$args): static
     {
-        return new static($id, $menu_title, $page_title);
+        [$page_title, $id] = $args;
+        return new static($page_title, $id);
     }
 
     public function menuType(string|MenuType $type): static
@@ -145,6 +164,12 @@ class SettingsPage implements Renderable
     public function position(int $position): static
     {
         $this->position = $position;
+        return $this;
+    }
+
+    public function menuTitle(string $title): static
+    {
+        $this->menu_title = $title;
         return $this;
     }
 

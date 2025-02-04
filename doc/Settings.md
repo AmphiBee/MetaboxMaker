@@ -4,7 +4,7 @@ MetaboxMaker allows you to easily create settings pages in WordPress using the `
 
 ## Basic Usage
 
-To create a settings page, use the `SettingsPage::make()` method which initializes a new page with an ID and menu title. You can then chain methods to configure the page's properties.
+To create a settings page, use the `SettingsPage::make()` method which initializes a new page with a page title and an ID. By default, the menu title will be the same as the page title, but you can customize it using the `menuTitle()` method.
 
 ### Example
 
@@ -16,7 +16,8 @@ use AmphiBee\MetaboxMaker\Enums\MenuType;
 use AmphiBee\MetaboxMaker\Enums\IconType;
 use AmphiBee\MetaboxMaker\Enums\TabStyle;
 
-SettingsPage::make('theme-options', 'Theme Options')
+SettingsPage::make('Theme Options', 'theme-options')
+    ->menuTitle('Theme Settings') // Optional: customize menu title
     ->menuType(MenuType::TOP_LEVEL)
     ->position(25)
     ->iconType(IconType::DASHICONS)
@@ -34,6 +35,7 @@ SettingsPage::make('theme-options', 'Theme Options')
 
 #### Menu Configuration
 
+- **`menuTitle(string $title)`**: Sets a custom menu title (different from page title).
 - **`menuType(MenuType|string $type)`**: Sets the menu type (`TOP_LEVEL` or `SUBMENU`).
 - **`position(int $position)`**: Sets the menu position in the sidebar.
 - **`submenuTitle(string $title)`**: Sets the default first submenu title.
@@ -78,7 +80,7 @@ SettingsPage::make('theme-options', 'Theme Options')
 ### Simple Settings Page
 
 ```php
-SettingsPage::make('site-options', 'Site Options')
+SettingsPage::make('Site Options', 'site-options')
     ->menuType(MenuType::TOP_LEVEL)
     ->iconType(IconType::DASHICONS)
     ->icon('dashicons-admin-settings')
@@ -88,7 +90,8 @@ SettingsPage::make('site-options', 'Site Options')
 ### Submenu Settings Page
 
 ```php
-SettingsPage::make('theme-options', 'Theme Options')
+SettingsPage::make('Theme Options', 'theme-options')
+    ->menuTitle('Theme Settings')
     ->menuType(MenuType::SUBMENU)
     ->parent('themes.php')
     ->capability('edit_theme_options');
@@ -97,7 +100,7 @@ SettingsPage::make('theme-options', 'Theme Options')
 ### Settings Page with Tabs
 
 ```php
-SettingsPage::make('advanced-options', 'Advanced Options')
+SettingsPage::make('Advanced Options', 'advanced-options')
     ->menuType(MenuType::TOP_LEVEL)
     ->iconType(IconType::DASHICONS)
     ->icon('dashicons-admin-tools')
@@ -118,7 +121,7 @@ SettingsPage::make('advanced-options', 'Advanced Options')
 ### Customizer Settings Page
 
 ```php
-SettingsPage::make('customizer-options', 'Customizer Options')
+SettingsPage::make('Customizer Options', 'customizer-options')
     ->customizer(true)
     ->optionName('my_theme_options');
 ```

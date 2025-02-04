@@ -104,11 +104,11 @@ abstract class Field implements Renderable
     /**
      * Factory method for creating a new instance of the Field class.
      *
-     * @param  string  $name  The name of the field.
-     * @param  string  $id  The id of the field.
+     * @param mixed ...$args Required arguments (name, id)
      */
-    public static function make(string $name, string $id): static
+    public static function make(mixed ...$args): static
     {
+        [$name, $id] = $args;
         return new static($name, $id);
     }
 

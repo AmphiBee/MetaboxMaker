@@ -20,11 +20,10 @@ interface Renderable
     /**
      * Create a new instance of the Renderable class.
      *
-     * @param  string|null  $name  The name of the instance.
-     * @param  string|null  $id  The unique identifier for the instance.
+     * @param mixed ...$args Required arguments for instance creation
      * @return static A new instance of the Renderable class.
      */
-    public static function make(string $name = null, string $id = null): static;
+    public static function make(mixed ...$args): static;
 
     /**
      * Build the instance and return its data as an array.

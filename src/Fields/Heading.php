@@ -42,12 +42,11 @@ class Heading implements Renderable
     /**
      * Static make method to create a new instance of the Heading.
      *
-     * @param  string|null  $name  The title of the heading.
-     * @param  string|null  $id  Not used for Heading.
+     * @param mixed ...$args Required arguments (name)
      */
-    public static function make(string $name = null, string $id = null): static
+    public static function make(mixed ...$args): static
     {
-        return new static($name ?? '');
+        return new static($args[0] ?? '');
     }
 
     /**

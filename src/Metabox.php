@@ -13,7 +13,6 @@ declare(strict_types=1);
 namespace AmphiBee\MetaboxMaker;
 
 use AmphiBee\MetaboxMaker\Fields\Field;
-use AmphiBee\MetaboxMaker\Fields\Tab;
 use AmphiBee\MetaboxMaker\Transformer\EmptyValueFilter;
 use AmphiBee\MetaboxMaker\Transformer\FieldTransformer;
 use Exception;
@@ -92,12 +91,17 @@ class Metabox implements Renderable
     protected string $description;
 
     /**
+     * The type of the metabox.
+     */
+    protected string $type;
+
+    /**
      * Construct a new Fieldset instance.
      *
      * @param string $title The title of the fieldset.
      * @param string $id The unique identifier of the fieldset.
      */
-    public function __construct(protected string $title, protected string $id)
+    public function __construct(protected string $id, protected string $title)
     {
         if (!function_exists('add_filter')) {
             throw new Exception('Metabox Maker requires WordPress to be loaded.');
@@ -112,12 +116,12 @@ class Metabox implements Renderable
     /**
      * Create a new Fieldset instance with default values.
      *
-     * @param string $title The title of the fieldset.
-     * @param string $id The unique identifier of the fieldset.
+     * @param mixed ...$args Required arguments (title, id)
      */
-    public static function make(string $title, string $id): static
+    public static function make(mixed ...$args): static
     {
-        return new static($title, $id);
+        [$title, $id] = $args;
+        return new static($id, $title);
     }
 
     /**
