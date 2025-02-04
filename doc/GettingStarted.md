@@ -25,6 +25,7 @@ To help you get started, we've organized the documentation into several sections
 - **[Upload Fields](Upload.md)**: Understand how to handle file uploads with fields like file, image, and video uploads.
 - **[Layout Fields](Layout.md)**: Explore the layout fields that help you organize and structure your metaboxes, including dividers, groups, and tabs.
 - **[Block](Block.md)**: Learn how to use blocks to structure your metaboxes in WordPress.
+- **[Settings](Settings.md)**: Discover how to create settings pages for your WordPress themes and plugins.
 
 ## Getting Started
 
