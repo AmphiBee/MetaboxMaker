@@ -75,6 +75,56 @@ Block::make('Post Details', 'post_details')
     ]);
 ```
 
+## Restricting Blocks by Post Type
+
+MetaboxMaker allows you to restrict the availability of blocks based on post types, making it easy to control which blocks can be used in different content types.
+
+### Methods
+
+- **`restrictToPostTypes(array $postTypes)`**: Restricts the block to be used only with the specified post types.
+- **`excludePostTypes(array $postTypes)`**: Prevents the block from being used with the specified post types.
+
+### Examples
+
+#### Restricting a Block to Specific Post Types:
+
+```php
+<?php
+
+Block::make('My Block', 'my-block')
+    ->restrictToPostTypes(['page', 'product'])
+    ->fields([
+        // field definitions
+    ]);
+```
+
+In this example, "My Block" will only be available for "page" and "product" post types.
+
+#### Excluding a Block from Specific Post Types:
+
+```php
+<?php
+
+Block::make('Blog Summary', 'summary-post')
+    ->excludePostTypes(['post'])
+    ->fields([
+        // field definitions
+    ]);
+```
+
+In this example, the "Blog Summary" block will be available for all post types except for "post".
+
+### How It Works
+
+This functionality uses the WordPress `allowed_block_types_all` filter to control which blocks are available in the editor based on the current post type.
+
+The `BlockTypeFilter` service manages these restrictions efficiently, respecting the constraints defined for each block.
+
+### Important Notes
+
+- If you use both `restrictToPostTypes()` and `excludePostTypes()` on the same block, both restrictions will be applied.
+- These methods only affect the visibility of blocks in the editor interface, not blocks that have already been inserted into existing content.
+
 ---
 
 **Previous :** [Layout Fields](Layout.md)
