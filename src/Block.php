@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace AmphiBee\MetaboxMaker;
 
+use AmphiBee\MetaboxMaker\Services\BlockTypeFilter;
+
 /**
  * Class for creating Gutenberg blocks.
  */
@@ -87,6 +89,16 @@ class Block extends Metabox
      * The storage type for the block fields.
      */
     protected string $storage_type;
+
+    /**
+     * The post types for the block.
+     */
+    protected array $post_types;
+
+    /**
+     * The excluded post types for the block.
+     */
+    protected array $excluded_post_types;
 
     /**
      * Set the block version.
@@ -241,6 +253,32 @@ class Block extends Metabox
     public function storageType(string $storageType): static
     {
         $this->storage_type = $storageType;
+        return $this;
+    }
+
+    /**
+     * Restrict block to specific post types
+     *
+     * @param array $postTypes The allowed post types
+     * @return static
+     */
+    public function restrictToPostTypes(array $postTypes): static
+    {
+        $this->post_types = $postTypes;
+        BlockTypeFilter::registerRestrictions($this->id, ['allowed' => $postTypes]);
+        return $this;
+    }
+
+    /**
+     * Exclude block from specific post types
+     *
+     * @param array $postTypes The excluded post types
+     * @return static
+     */
+    public function excludePostTypes(array $postTypes): static
+    {
+        $this->excluded_post_types = $postTypes;
+        BlockTypeFilter::registerRestrictions($this->id, ['excluded' => $postTypes]);
         return $this;
     }
 }
