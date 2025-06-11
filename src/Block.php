@@ -15,6 +15,12 @@ class Block extends Metabox
      * The block type.
      */
     protected string $type = 'block';
+
+    /**
+     * The context of the block (override parent default).
+     */
+    protected string $context = 'normal';
+
     /**
      * The block title.
      */
@@ -68,7 +74,7 @@ class Block extends Metabox
     /**
      * The default mode of the block.
      */
-    protected string $mode;
+    protected string $mode = 'edit';
 
     /**
      * The render callback for the block.
