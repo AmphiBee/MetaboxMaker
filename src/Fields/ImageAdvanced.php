@@ -26,6 +26,11 @@ class ImageAdvanced extends Image
     use ImageSize, MaxStatus;
 
     /**
+     * The type of field.
+     */
+    protected string $type = 'image_advanced';
+
+    /**
      * Placement of new images in the list.
      */
     protected string $add_to = 'end';
