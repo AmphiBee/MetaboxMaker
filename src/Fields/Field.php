@@ -116,4 +116,10 @@ abstract class Field implements Renderable
     {
         return $this->type;
     }
+
+    public function setting(string $key, mixed $value): static
+    {
+        $this->settings[$key] = $value;
+        return $this;
+    }
 }
