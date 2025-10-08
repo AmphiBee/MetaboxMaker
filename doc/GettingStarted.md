@@ -11,6 +11,7 @@ MetaboxMaker is designed to simplify the process of creating metaboxes and custo
 - **Wide Range of Field Types**: From basic text inputs to advanced file uploads, MetaboxMaker supports a variety of field types to meet your needs.
 - **Easy to Use**: With a simple and intuitive API, you can quickly create and configure fields without writing a lot of code.
 - **Highly Customizable**: Customize the appearance and behavior of your fields with a variety of options and settings.
+- **Custom Settings**: Add any Meta Box-specific settings using the `setting()` method for maximum flexibility.
 - **Extensible**: Easily extend MetaboxMaker with your own custom fields and functionality.
 
 ## Documentation

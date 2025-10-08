@@ -73,6 +73,10 @@ SettingsPage::make('Theme Options', 'theme-options')
 - **`network(bool $enabled)`**: Enables network-wide settings (multisite).
 - **`optionName(string $name)`**: Sets the option name for storing settings.
 
+#### Custom Settings
+
+- **`setting(string $key, mixed $value)`**: Adds a custom Meta Box setting that isn't explicitly defined. This allows you to pass any Meta Box-specific option directly.
+
 ## Usage Examples
 
 ### Simple Settings Page
@@ -127,6 +131,48 @@ SettingsPage::make('Customizer Options', 'customizer-options')
     ->customizer(true)
     ->optionName('my_theme_options');
 ```
+
+## Custom Settings
+
+The `setting()` method allows you to add any Meta Box settings page option that isn't explicitly provided by MetaboxMaker. This is particularly useful for advanced configurations.
+
+### Example with Custom Settings
+
+```php
+<?php
+
+SettingsPage::make('Advanced Settings', 'advanced-settings')
+    ->parent('options-general.php')
+    ->setting('help_tabs', [
+        [
+            'title' => 'Overview',
+            'content' => '<p>This is the overview tab content.</p>'
+        ],
+        [
+            'title' => 'FAQ',
+            'content' => '<p>Frequently asked questions...</p>'
+        ]
+    ])
+    ->setting('contextual_help', 'This is contextual help content')
+    ->setting('ajax', true)
+    ->setting('sanitize_callback', 'custom_sanitize_function')
+    ->tabs([
+        'general' => 'General',
+        'advanced' => 'Advanced'
+    ]);
+```
+
+### Use Cases for Custom Settings
+
+Custom settings are useful when you need to:
+- Add help tabs to your settings page
+- Set up custom sanitization callbacks
+- Enable AJAX functionality
+- Add any Meta Box Settings Page feature not yet wrapped by MetaboxMaker
+
+### Important Note
+
+When using custom settings, refer to the [Meta Box Settings Page documentation](https://docs.metabox.io/extensions/mb-settings-page/) for available options and their correct format.
 
 ---
 

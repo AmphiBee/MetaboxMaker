@@ -44,6 +44,7 @@ Block::make('Example Block', 'example-block')
 - **`category(string $category)`**: Sets the category of the block. Options include `text`, `media`, `design`, `widgets`, `theme`, and `embed`.
 - **`renderCallback(callable $callback)`**: Sets the callback function to render the block.
 - **`fields(array $fields)`**: Adds fields to the block. Accepts an array of field instances.
+- **`setting(string $key, mixed $value)`**: Adds a custom Meta Box setting that isn't explicitly defined. This allows you to pass any Meta Box-specific option directly.
 
 ## Adding Fields
 
@@ -124,6 +125,38 @@ The `BlockTypeFilter` service manages these restrictions efficiently, respecting
 
 - If you use both `restrictToPostTypes()` and `excludePostTypes()` on the same block, both restrictions will be applied.
 - These methods only affect the visibility of blocks in the editor interface, not blocks that have already been inserted into existing content.
+
+## Custom Settings
+
+Just like with metaboxes, the `setting()` method allows you to add any Meta Box-specific option that isn't explicitly provided by MetaboxMaker. This is particularly useful for block-specific settings.
+
+### Example with Custom Settings
+
+```php
+<?php
+
+Block::make('Advanced Block', 'advanced-block')
+    ->setting('supports', [
+        'align' => ['wide', 'full'],
+        'html' => false,
+        'multiple' => true,
+    ])
+    ->setting('example', [
+        'attributes' => [
+            'title' => 'Example Title',
+            'content' => 'Example content...'
+        ]
+    ])
+    ->setting('keywords', ['custom', 'advanced', 'block'])
+    ->fields([
+        Text::make('Title', 'title')
+            ->setting('save_field', false),
+        Wysiwyg::make('Content', 'content')
+            ->setting('autoresize', true),
+    ]);
+```
+
+The custom settings work on both the block itself and individual fields within the block.
 
 ---
 

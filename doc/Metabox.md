@@ -35,6 +35,7 @@ Metabox::make('User Information', 'user_info')
 - **`context(string $context)`**: Sets the context where the metabox should appear. Options include `normal`, `side`, and `advanced`.
 - **`priority(string $priority)`**: Sets the priority of the metabox. Options include `high`, `core`, `default`, and `low`.
 - **`fields(array $fields)`**: Adds fields to the metabox. Accepts an array of field instances.
+- **`setting(string $key, mixed $value)`**: Adds a custom Meta Box setting that isn't explicitly defined. This allows you to pass any Meta Box-specific option directly.
 
 ## Adding Fields
 
@@ -64,6 +65,40 @@ Metabox::make('Post Details', 'post_details')
             ->maxFileSize('2mb')
             ->imageSize('large'),
     ]);
+```
+
+## Custom Settings
+
+The `setting()` method allows you to add any Meta Box-specific option that isn't explicitly provided by MetaboxMaker. This is useful when you need to use Meta Box features that aren't yet wrapped by MetaboxMaker.
+
+### Example with Custom Settings
+
+```php
+<?php
+
+Metabox::make('Advanced Metabox', 'advanced_metabox')
+    ->setting('autosave', true)
+    ->setting('validation', [
+        'rules' => [
+            'field_id' => [
+                'required' => true,
+                'minlength' => 5
+            ]
+        ]
+    ])
+    ->setting('class', 'custom-metabox-class')
+    ->fields([
+        Text::make('Custom Field', 'custom_field')
+            ->setting('custom_attribute', 'custom_value'),
+    ]);
+```
+
+Note that custom settings also work on individual fields:
+
+```php
+Text::make('Email', 'email')
+    ->setting('pattern', '[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$')
+    ->setting('custom_validation', true);
 ```
 
 ## Setting the Location
