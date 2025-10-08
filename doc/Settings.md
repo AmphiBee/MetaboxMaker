@@ -16,25 +16,8 @@ use AmphiBee\MetaboxMaker\Enums\MenuType;
 use AmphiBee\MetaboxMaker\Enums\IconType;
 use AmphiBee\MetaboxMaker\Enums\TabStyle;
 
-// Using enums
 SettingsPage::make('Theme Options', 'theme-options')
     ->menuTitle('Theme Settings')
-    ->menuType(MenuType::TOP_LEVEL)
-    ->position(25)
-    ->iconType(IconType::DASHICONS)
-    ->icon('dashicons-admin-settings')
-    ->capability('manage_options')
-    ->tabs([
-        'general' => 'General Settings',
-        'style' => 'Style',
-        'advanced' => 'Advanced'
-    ])
-    ->tabStyle(TabStyle::LEFT);
-
-// Using strings
-SettingsPage::make('Theme Options', 'theme-options')
-    ->menuTitle('Theme Settings')
-    ->menuType('top')
     ->position(25)
     ->iconType('dashicons')
     ->icon('dashicons-admin-settings')
@@ -52,7 +35,6 @@ SettingsPage::make('Theme Options', 'theme-options')
 #### Menu Configuration
 
 - **`menuTitle(string $title)`**: Sets a custom menu title (different from page title).
-- **`menuType(MenuType|string $type)`**: Sets the menu type (`TOP_LEVEL`/`'top'` or `SUBMENU`/`'submenu'`).
 - **`position(int $position)`**: Sets the menu position in the sidebar.
 - **`submenuTitle(string $title)`**: Sets the default first submenu title.
 - **`parent(string $parent)`**: Sets the parent menu slug (for submenus).
@@ -98,14 +80,12 @@ SettingsPage::make('Theme Options', 'theme-options')
 ```php
 // Using enums
 SettingsPage::make('Site Options', 'site-options')
-    ->menuType(MenuType::TOP_LEVEL)
     ->iconType(IconType::DASHICONS)
     ->icon('dashicons-admin-settings')
     ->capability('manage_options');
 
 // Using strings
 SettingsPage::make('Site Options', 'site-options')
-    ->menuType('top')
     ->iconType('dashicons')
     ->icon('dashicons-admin-settings')
     ->capability('manage_options');
@@ -114,17 +94,8 @@ SettingsPage::make('Site Options', 'site-options')
 ### Submenu Settings Page
 
 ```php
-// Using enums
 SettingsPage::make('Theme Options', 'theme-options')
     ->menuTitle('Theme Settings')
-    ->menuType(MenuType::SUBMENU)
-    ->parent('themes.php')
-    ->capability('edit_theme_options');
-
-// Using strings
-SettingsPage::make('Theme Options', 'theme-options')
-    ->menuTitle('Theme Settings')
-    ->menuType('submenu')
     ->parent('themes.php')
     ->capability('edit_theme_options');
 ```
@@ -132,9 +103,7 @@ SettingsPage::make('Theme Options', 'theme-options')
 ### Settings Page with Tabs
 
 ```php
-// Using enums
 SettingsPage::make('Advanced Options', 'advanced-options')
-    ->menuType(MenuType::TOP_LEVEL)
     ->iconType(IconType::DASHICONS)
     ->icon('dashicons-admin-tools')
     ->tabs([
@@ -148,24 +117,6 @@ SettingsPage::make('Advanced Options', 'advanced-options')
         ]
     ])
     ->tabStyle(TabStyle::LEFT)
-    ->columns(2);
-
-// Using strings
-SettingsPage::make('Advanced Options', 'advanced-options')
-    ->menuType('top')
-    ->iconType('dashicons')
-    ->icon('dashicons-admin-tools')
-    ->tabs([
-        'general' => [
-            'label' => 'General',
-            'icon' => 'dashicons-admin-settings'
-        ],
-        'appearance' => [
-            'label' => 'Appearance',
-            'icon' => 'dashicons-admin-customizer'
-        ]
-    ])
-    ->tabStyle('left')
     ->columns(2);
 ```
 

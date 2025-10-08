@@ -38,7 +38,7 @@ test('can configure image advanced field with specific settings', function () {
         ->build();
 
     expect($args)->toMatchArray([
-        'type' => 'image',
+        'type' => 'image_advanced',
         'name' => 'Advanced Image Field',
         'id' => 'advanced_image_field',
         'max_file_uploads' => 10,

@@ -38,12 +38,12 @@ class Metabox implements Renderable
     /**
      * The fields within the fieldset.
      */
-    protected array $fields;
+    protected array $fields = [];
 
     /**
      * The tabs within the fieldset.
      */
-    protected array $tabs;
+    protected array $tabs = [];
 
     /**
      * The location of the fieldset.
@@ -94,6 +94,11 @@ class Metabox implements Renderable
      * The type of the metabox.
      */
     protected string $type;
+
+    /**
+     * The custom settings for the metabox.
+     */
+    protected array $settings = [];
 
     /**
      * Construct a new Fieldset instance.
@@ -280,6 +285,29 @@ class Metabox implements Renderable
     }
 
     /**
+     * Set a custom setting for the metabox.
+     *
+     * @param string $key The setting key.
+     * @param mixed $value The setting value.
+     * @return static
+     */
+    public function setting(string $key, mixed $value): static
+    {
+        $this->settings[$key] = $value;
+        return $this;
+    }
+
+    /**
+     * Get the custom settings for the metabox.
+     *
+     * @return array The custom settings.
+     */
+    public function getSettings(): array
+    {
+        return $this->settings;
+    }
+
+    /**
      * Build the fieldset and return its settings.
      *
      * @return array The settings of the fieldset.
@@ -290,10 +318,16 @@ class Metabox implements Renderable
             $this->location = Location::default();
         }
 
-        $settings = EmptyValueFilter::filter(get_object_vars($this));
+        $metaboxData = EmptyValueFilter::filter(get_object_vars($this));
 
-        unset($settings['location']);
+        // Remove the settings array and location from the metabox data
+        unset($metaboxData['settings'], $metaboxData['location']);
 
-        return $settings + $this->location->get();
+        // Merge custom settings if they exist
+        if (!empty($this->settings)) {
+            $metaboxData = array_merge($metaboxData, $this->settings);
+        }
+
+        return $metaboxData + $this->location->get();
     }
 }

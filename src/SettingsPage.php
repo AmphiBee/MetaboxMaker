@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace AmphiBee\MetaboxMaker;
 
 use AmphiBee\MetaboxMaker\Contract\Renderable;
-use AmphiBee\MetaboxMaker\Enums\MenuType;
 use AmphiBee\MetaboxMaker\Enums\IconType;
 use AmphiBee\MetaboxMaker\Enums\TabStyle;
 use AmphiBee\MetaboxMaker\Transformer\EmptyValueFilter;
@@ -14,11 +13,6 @@ use Exception;
 
 class SettingsPage implements Renderable
 {
-    /**
-     * Menu type (top-level or submenu)
-     */
-    protected string $menu_type;
-
     /**
      * Menu position
      */
@@ -125,6 +119,11 @@ class SettingsPage implements Renderable
     protected ?string $option_name = null;
 
     /**
+     * The custom settings for the settings page.
+     */
+    protected array $settings = [];
+
+    /**
      * Constructor for the SettingsPage class.
      *
      * @param string $page_title The title of the settings page
@@ -153,12 +152,6 @@ class SettingsPage implements Renderable
     {
         [$page_title, $id] = $args;
         return new static($page_title, $id);
-    }
-
-    public function menuType(string|MenuType $type): static
-    {
-        $this->menu_type = OptionValidation::check($type, MenuType::class);
-        return $this;
     }
 
     public function position(int $position): static
@@ -287,8 +280,40 @@ class SettingsPage implements Renderable
         return $this;
     }
 
-    public function build(): array
+    /**
+     * Set a custom setting for the settings page.
+     *
+     * @param string $key The setting key.
+     * @param mixed $value The setting value.
+     * @return static
+     */
+    public function setting(string $key, mixed $value): static
     {
-        return EmptyValueFilter::filter(get_object_vars($this));
+        $this->settings[$key] = $value;
+        return $this;
+    }
+
+    /**
+     * Get the custom settings for the settings page.
+     *
+     * @return array The custom settings.
+     */
+    public function getSettings(): array
+    {
+        return $this->settings;
+    }
+
+    public function build(): array
+    {$pageData = EmptyValueFilter::filter(get_object_vars($this));
+        
+        // Remove the settings array from the page data
+        unset($pageData['settings']);
+        
+        // Merge custom settings if they exist
+        if (!empty($this->settings)) {
+            $pageData = array_merge($pageData, $this->settings);
+        }
+        
+        return $pageData;
     }
 } 

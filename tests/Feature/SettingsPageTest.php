@@ -1,7 +1,6 @@
 <?php
 
 use AmphiBee\MetaboxMaker\SettingsPage;
-use AmphiBee\MetaboxMaker\Enums\MenuType;
 use AmphiBee\MetaboxMaker\Enums\IconType;
 use AmphiBee\MetaboxMaker\Enums\TabStyle;
 
@@ -21,10 +20,6 @@ test('can set menu title different from page title', function () {
     expect($this->settings->build())->toHaveKey('menu_title', 'Custom Menu Title');
 });
 
-test('can set menu type', function () {
-    $this->settings->menuType(MenuType::TOP_LEVEL);
-    expect($this->settings->build())->toHaveKey('menu_type', 'top');
-});
 
 test('can set menu position', function () {
     $this->settings->position(25);
@@ -125,7 +120,6 @@ test('can configure network settings', function () {
 test('can create a complete settings page configuration', function () {
     $settings = SettingsPage::make('Complete Settings', 'complete-settings')
         ->menuTitle('Custom Menu')
-        ->menuType(MenuType::TOP_LEVEL)
         ->position(25)
         ->iconType(IconType::DASHICONS)
         ->icon('dashicons-admin-settings')
@@ -141,7 +135,6 @@ test('can create a complete settings page configuration', function () {
         'page_title' => 'Complete Settings',
         'id' => 'complete-settings',
         'menu_title' => 'Custom Menu',
-        'menu_type' => 'top',
         'position' => 25,
         'icon_type' => 'dashicons',
         'icon' => 'dashicons-admin-settings',

@@ -122,4 +122,14 @@ abstract class Field implements Renderable
         $this->settings[$key] = $value;
         return $this;
     }
+
+    /**
+     * Get the custom settings for the field.
+     *
+     * @return array The custom settings.
+     */
+    public function getSettings(): array
+    {
+        return $this->settings;
+    }
 }
