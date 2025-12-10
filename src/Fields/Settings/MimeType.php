@@ -18,18 +18,18 @@ namespace AmphiBee\MetaboxMaker\Fields\Settings;
 trait MimeType
 {
     /**
-     * The allowed MIME types for uploaded files.
+     * The allowed MIME type for uploaded files.
      */
-    protected array $mime_types;
+    protected string $mime_type;
 
     /**
-     * Set the allowed MIME types for uploaded files.
+     * Set the allowed MIME type for uploaded files.
      *
-     * @param  array  $types  An array of MIME types.
+     * @param  string  $type  A MIME type string.
      */
-    public function mimeTypes(array $types): static
+    public function mimeType(string $type): static
     {
-        $this->mime_types = $types;
+        $this->mime_type = $type;
 
         return $this;
     }

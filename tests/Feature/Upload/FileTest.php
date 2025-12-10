@@ -30,7 +30,7 @@ test('can configure file advanced field with specific settings', function () {
     $args = FileAdvanced::make('Advanced Upload Field', 'advanced_upload_field')
         ->maxFileUploads(10)
         ->forceDelete(false)
-        ->mimeTypes(['image/jpeg', 'image/png'])
+        ->mimeType('application/pdf')
         ->showMaxStatus(true)
         ->build();
 
@@ -40,7 +40,7 @@ test('can configure file advanced field with specific settings', function () {
         'id' => 'advanced_upload_field',
         'max_file_uploads' => 10,
         'force_delete' => false,
-        'mime_types' => ['image/jpeg', 'image/png'],
+        'mime_type' => 'application/pdf',
         'max_status' => true,
     ]);
 });
@@ -50,7 +50,7 @@ test('can configure file upload field with specific settings', function () {
         ->maxFileUploads(10)
         ->forceDelete(false)
         ->maxFileSize('20gb')
-        ->mimeTypes(['image/jpeg', 'image/png'])
+        ->mimeType('application/pdf')
         ->showMaxStatus(true)
         ->build();
 
@@ -61,7 +61,7 @@ test('can configure file upload field with specific settings', function () {
         'max_file_uploads' => 10,
         'max_file_size' => '20gb',
         'force_delete' => false,
-        'mime_types' => ['image/jpeg', 'image/png'],
+        'mime_type' => 'application/pdf',
         'max_status' => true,
     ]);
 });

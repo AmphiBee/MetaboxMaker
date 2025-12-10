@@ -44,7 +44,7 @@ FileAdvanced::make('Upload Advanced File', 'upload_advanced_file')
     ->forceDelete(true)
     ->maxFileUpload(10)
     ->maxStatus(true)
-    ->mimeType(['image/jpeg', 'image/png']);
+    ->mimeType('image/jpeg');
 ```
 
 ### Methods
@@ -52,7 +52,7 @@ FileAdvanced::make('Upload Advanced File', 'upload_advanced_file')
 - **`forceDelete(bool $forceDelete = true)`**: Sets whether to force delete files when removed.
 - **`maxFileUpload(int $maxFiles)`**: Sets the maximum number of files that can be uploaded.
 - **`maxStatus(bool $maxStatus = true)`**: Sets whether to display the maximum file upload status.
-- **`mimeType(array $mimeTypes)`**: Sets the allowed MIME types for file uploads.
+- **`mimeType(string $mimeType)`**: Sets the allowed MIME type for file uploads.
 
 ## FileInput Field
 
