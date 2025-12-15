@@ -112,10 +112,12 @@ class Metabox implements Renderable
             throw new Exception('Metabox Maker requires WordPress to be loaded.');
         }
 
-        add_filter('rwmb_meta_boxes', function ($meta_boxes) {
-            $meta_boxes[] = $this->build();
-            return $meta_boxes;
-        });
+        if (!doing_filter('rwmb_meta_boxes')) {
+            add_filter('rwmb_meta_boxes', function ($meta_boxes) {
+                $meta_boxes[] = $this->build();
+                return $meta_boxes;
+            });
+        }
     }
 
     /**
