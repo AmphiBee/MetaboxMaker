@@ -15,7 +15,7 @@
         }
     },
     "require-dev": {
-        "pestphp/pest": "^3.0",
+        "pestphp/pest": "^4.0",
         "rector/rector": "^2.0.0",
         "nunomaduro/phpinsights": "^2.8"
     },
