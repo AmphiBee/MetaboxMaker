@@ -13,6 +13,7 @@ declare(strict_types=1);
 namespace AmphiBee\MetaboxMaker\Fields;
 
 use AmphiBee\MetaboxMaker\Enums\EntityFieldType;
+use AmphiBee\MetaboxMaker\Fields\Settings\Ajax;
 use AmphiBee\MetaboxMaker\Validation\OptionValidation;
 
 /**
@@ -20,11 +21,18 @@ use AmphiBee\MetaboxMaker\Validation\OptionValidation;
  */
 class User extends Field
 {
+    use Ajax;
+
     protected string $type = 'user';
 
     protected array $query_args;
 
     protected string $field_type = 'select';
+
+    /**
+     * The user property used as the option label.
+     */
+    protected string $display_field = 'display_name';
 
     public function queryArgs(array $queryArgs): static
     {
@@ -36,6 +44,18 @@ class User extends Field
     public function fieldType(EntityFieldType|string $fieldType): static
     {
         $this->field_type = OptionValidation::check($fieldType, EntityFieldType::class);
+
+        return $this;
+    }
+
+    /**
+     * Set the user property used as the option label.
+     *
+     * @param  string  $displayField  A WP_User property, e.g. display_name or user_email.
+     */
+    public function displayField(string $displayField): static
+    {
+        $this->display_field = $displayField;
 
         return $this;
     }
