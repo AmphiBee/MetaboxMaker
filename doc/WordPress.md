@@ -112,10 +112,32 @@ User::make('Select User', 'select_user')
     ->fieldType('select');
 ```
 
+### Example with AJAX search
+
+On sites with many users, loading every option into the page is expensive. Enable
+AJAX so Meta Box queries users on demand instead:
+
+```php
+<?php
+
+use AmphiBee\MetaboxMaker\Fields\User;
+
+User::make('Speakers', 'speaker_ids')
+    ->queryArgs(['role' => 'subscriber'])
+    ->fieldType('select_advanced')
+    ->multiple()
+    ->ajax()
+    ->minimumInputLength(2)
+    ->placeholder('Search for a user');
+```
+
 ### Methods
 
 - **`queryArgs(array $queryArgs)`**: Sets the arguments to pass to the WP_User_Query function.
 - **`fieldType(EntityFieldType|string $fieldType)`**: Sets the type of field.
+- **`displayField(string $displayField)`**: Sets the `WP_User` property used as the option label. Defaults to `display_name`.
+- **`ajax(bool $ajax = true)`**: Enables AJAX search. Requires `fieldType('select_advanced')`.
+- **`minimumInputLength(int $length)`**: Sets how many characters must be typed before the AJAX search fires.
 
 ---
 
