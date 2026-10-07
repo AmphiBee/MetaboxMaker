@@ -2,6 +2,7 @@
 
 declare(strict_types=1);
 
+use AmphiBee\MetaboxMaker\Enums\Context;
 use AmphiBee\MetaboxMaker\Fields\Text;
 use AmphiBee\MetaboxMaker\Location;
 use AmphiBee\MetaboxMaker\Metabox;
@@ -13,7 +14,7 @@ test('can add custom settings to a metabox', function () {
         ->setting('custom_option', 'custom_value')
         ->setting('enable_ajax', true)
         ->setting('data_source', '/api/data')
-        ->location(Location::where('post_type', 'post'));
+        ->location(Location::where('post_types', 'post'));
 
     $data = $metabox->build();
 
@@ -25,7 +26,7 @@ test('can add custom settings to a metabox', function () {
         'custom_option' => 'custom_value',
         'enable_ajax' => true,
         'data_source' => '/api/data',
-        'post_type' => 'post',
+        'post_types' => 'post',
     ]);
 });
 
@@ -36,7 +37,7 @@ $metabox = Metabox::make('Metabox with Fields', 'metabox_with_fields')
     ])
     ->setting('validation_endpoint', '/api/validate')
     ->setting('autosave_interval', 30)
-    ->location(Location::where('post_type', 'page'));
+    ->location(Location::where('post_types', 'page'));
 
 test('custom settings work with fields', function () {
     $metabox = Metabox::make('Metabox with Fields', 'metabox_with_fields')
@@ -46,7 +47,7 @@ test('custom settings work with fields', function () {
         ])
         ->setting('validation_endpoint', '/api/validate')
         ->setting('autosave_interval', 30)
-        ->location(Location::where('post_type', 'page'));
+        ->location(Location::where('post_types', 'page'));
 
     $data = $metabox->build();
 
@@ -55,7 +56,7 @@ test('custom settings work with fields', function () {
         'id' => 'metabox_with_fields',
         'validation_endpoint' => '/api/validate',
         'autosave_interval' => 30,
-        'post_type' => 'page',
+        'post_types' => 'page',
     ]);
 
     expect($data['fields'])->toHaveCount(2);
@@ -70,7 +71,7 @@ test('custom settings work with fields', function () {
 test('empty custom settings are not included in metabox build output', function () {
     $metabox = Metabox::make('No Custom Settings', 'no_custom_settings')
         ->description('Test without custom settings')
-        ->location(Location::where('post_type', 'post'));
+        ->location(Location::where('post_types', 'post'));
 
     $data = $metabox->build();
 
@@ -79,7 +80,7 @@ test('empty custom settings are not included in metabox build output', function 
         'title' => 'No Custom Settings',
         'id' => 'no_custom_settings',
         'description' => 'Test without custom settings',
-        'post_type' => 'post',
+        'post_types' => 'post',
     ]);
 });
 
@@ -87,7 +88,7 @@ test('custom settings can override existing metabox properties', function () {
     $metabox = Metabox::make('override_test', 'Override Test')
         ->description('Original description')
         ->setting('description', 'Overridden description')
-        ->location(Location::where('post_type', 'post'));
+        ->location(Location::where('post_types', 'post'));
 
     $data = $metabox->build();
 
@@ -107,4 +108,18 @@ test('getSettings method returns all custom settings', function () {
         'option2' => 'value2',
         'option3' => true,
     ]);
+});
+
+it('uses valid Meta Box values for the context enum', function () {
+    expect(Context::Side->value)->toBe('side')
+        ->and(Context::FormTop->value)->toBe('form_top');
+});
+
+it('accepts a null class', function () {
+    expect(Metabox::make('Box', 'box')->class(null)->build())->not->toHaveKey('class');
+});
+
+it('targets posts with the post_types key by default', function () {
+    expect(Metabox::make('Box', 'box')->build())->toHaveKey('post_types', ['post'])
+        ->not->toHaveKey('post_type');
 });

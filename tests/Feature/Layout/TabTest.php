@@ -59,7 +59,7 @@ test('can assign tabs to fields', function () {
         ],
         'title' => 'Multi-level nested groups',
         'id' => 'main_group',
-        'post_type' => ['post'],
+        'post_types' => ['post'],
     ]
     );
 });
@@ -118,7 +118,7 @@ test('can assign group tabs', function () {
         ],
         'title' => 'Multi-level nested groups',
         'id' => 'main_group',
-        'post_type' => ['post'],
+        'post_types' => ['post'],
     ]
     );
 });

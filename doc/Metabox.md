@@ -113,7 +113,7 @@ The `Location` class allows you to define where the metabox should appear based 
 use AmphiBee\MetaboxMaker\Location;
 
 Metabox::make('Custom Metabox', 'custom_metabox')
-    ->location(Location::where('post_type', 'page'))
+    ->location(Location::where('post_types', 'page'))
     ->fields([
         Text::make('Page Title', 'page_title'),
     ]);

@@ -31,12 +31,12 @@ enum Context: string
     /**
      * Side context for a metabox.
      */
-    case Side = 'seamless';
+    case Side = 'side';
 
     /**
      * Form top context for a metabox.
      */
-    case FormTop = 'side';
+    case FormTop = 'form_top';
 
     /**
      * After title context for a metabox.

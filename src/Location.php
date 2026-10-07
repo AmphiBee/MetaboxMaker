@@ -69,7 +69,7 @@ class Location
      */
     public static function default(): static
     {
-        return new static('post_type', ['post']);
+        return new static('post_types', ['post']);
     }
 
     /**

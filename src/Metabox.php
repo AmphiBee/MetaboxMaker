@@ -85,7 +85,7 @@ class Metabox implements Renderable
     /**
      * The class of the fieldset.
      */
-    protected string $class;
+    protected ?string $class = null;
 
     /**
      * The description of the fieldset.
