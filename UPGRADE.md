@@ -1,5 +1,38 @@
 # Upgrade guide
 
+## From pollora/metabox 2.4 to 2.5
+
+Nothing needs to change: 2.5 adds methods and fields.
+
+`jsOptions()` now merges its options with the ones set before instead of replacing them. A field calling `jsOptions()` once, as usual, behaves the same. A field calling it after `timeFormat()`, `stepMinute()` or another method setting a JavaScript option now keeps that option: Meta Box ignored it before. Find these calls with:
+
+```bash
+grep -rnE "\->jsOptions\(" app config --include='*.php'
+```
+
+Settings passed with `setting()` keep working. They can be replaced with the new methods, which validate their values:
+
+| Before | After |
+|---|---|
+| `->setting('geo', ['api_key' => 'KEY'])` on a meta box | `->geolocation(apiKey: 'KEY')` |
+| `->setting('binding', 'locality')` | `->geoBinding('locality')` |
+| `->setting('address_field', 'address_ho')` on a text field | `->addressField('address_ho')` |
+| `->setting('add_to_wpseo_analysis', true)` or `->setting('rank_math_analysis', true)` | `->seoAnalysis()` |
+| `->setting('columns', ['column-1' => 4])` with `->setting('column', 'column-1')` on fields | `Column::make(4)->fields([...])` |
+| `->setting('panel', '')` | `->customizer()` |
+| `->setting('tooltip_input', 'Help')` | `->inputTooltip('Help')` |
+| `->setting('hide_from_block_bindings', true)` | `->hideFromBlockBindings()` |
+| `->setting('field_name', 'name')`, `->setting('autofocus', true)` | `->fieldName('name')`, `->autofocus()` |
+| `Select::make(...)->setting('type', 'select_tree')`, options with `parent` keys and `flatten => false` | `SelectTree::make(...)->tree([...])` |
+| `->setting('type', 'backup')` | `Backup::make()` |
+| `->setting('add_new', true)` on `Post` or `User` | `->addNew()` |
+| `->jsOptions(['dateFormat' => 'dd/mm/yy'])` | `->dateFormat('dd/mm/yy')` |
+| `->setting('wrap', 'hard')`, `->setting('minlength', 10)` on `Textarea` | `->wrap('hard')`, `->minLength(10)` |
+| `->tinymce(...)` with `->setting('options', ['dfw' => false])` | `->distractionFreeWriting(false)` |
+| `->setting('attributes', [...])` on a block | `->attributes([...])`: the MB Blocks attributes are kept |
+| `->tabs(['general' => ['label' => 'General', 'icon' => 'dashicons-admin-generic']])` | `->tab('general', 'General', icon: 'dashicons-admin-generic')` |
+| `Location::settingsPages('options')->andWhere('tab', 'general')` | `Location::settingsPages('options', tab: 'general')` |
+
 ## From pollora/metabox 2.3 to 2.4
 
 Most projects have nothing to change. Check the following calls:

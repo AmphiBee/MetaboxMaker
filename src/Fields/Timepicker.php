@@ -4,7 +4,9 @@ declare(strict_types=1);
 
 namespace Pollora\Metabox\Fields;
 
+use Pollora\Metabox\Fields\Settings\AutocompleteAttribute;
 use Pollora\Metabox\Fields\Settings\Inline;
+use Pollora\Metabox\Fields\Settings\InputTooltip;
 use Pollora\Metabox\Fields\Settings\Size;
 use Pollora\Metabox\Fields\Settings\TimepickerOptions;
 
@@ -13,7 +15,9 @@ use Pollora\Metabox\Fields\Settings\TimepickerOptions;
  */
 class Timepicker extends Field
 {
+    use AutocompleteAttribute;
     use Inline, Size, TimepickerOptions;
+    use InputTooltip;
 
     /**
      * The type of input field. Set to 'time'.

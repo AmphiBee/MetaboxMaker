@@ -69,6 +69,18 @@ Text::make('Last name', 'last_name')->columns(6),
 
 - **`columns(int $columns)`**: Sets how many columns the field spans, from 1 to 12.
 
+To put several fields in one column, use a [`Column`](layout-fields.md#column):
+
+```php
+Column::make(4)->fields([
+    Text::make('Name', 'name'),
+    Email::make('Email', 'email'),
+]),
+Column::make(8)->fields([
+    Textarea::make('Message', 'message'),
+]),
+```
+
 ## Tooltip
 
 Shows a tooltip next to the field label. Requires [Meta Box Tooltip](https://docs.metabox.io/extensions/meta-box-tooltip/).
@@ -83,6 +95,7 @@ Number::make('Price', 'price')
 ```
 
 - **`tooltip(string $content, ?string $icon = null, string|TooltipPosition|null $position = null, bool $allowHtml = false)`**: The icon is `info` (default), `help`, a Dashicons name or an image URL. The position is `top` (default), `bottom`, `left` or `right`.
+- **`inputTooltip(...)`**: Shows the tooltip next to the input instead of the label, with the same arguments. Meta Box Tooltip supports it on `Text` (type `text`), `Email`, `Url`, `Number`, `Password`, `Datepicker`, `DatetimePicker`, `Timepicker`, `Select` and `SelectAdvanced` fields only: the method exists on these classes, and throws a `LogicException` for an unsupported type, such as `Text::make(...)->type('tel')` or an `Icon` field.
 
 ## Admin columns
 
@@ -125,6 +138,38 @@ Textarea::make('Summary', 'summary')->maxWords(40);
 - **`maxWords(int $limit)`**: Limits the number of words.
 
 MB Text Limiter ignores the other input types: on a `Text` field whose `type()` is changed, for instance to `email`, both methods throw a `LogicException`. To limit other inputs, use `maxLength()`, which the browser enforces without a counter.
+
+## Geolocation
+
+Fills fields from an address selected in an autocomplete field. Requires [MB Geolocation](https://docs.metabox.io/extensions/meta-box-geolocation/).
+
+The autocomplete field is a text field whose ID starts with `address`. When an address is selected, the fields named after an address component, such as `locality` or `postal_code`, are filled, and a map field moves its marker.
+
+```php
+Metabox::make('Venue', 'venue')
+    ->geolocation(apiKey: 'GOOGLE_MAPS_API_KEY', countries: ['fr', 'be'])
+    ->fields([
+        Text::make('Address', 'address'),
+        Text::make('City', 'locality'),
+        Text::make('Department', 'department')->geoBinding('administrative_area_level_2'),
+        Hidden::make('Country code', 'country_code')->geoBinding('short:country'),
+        GoogleMap::make('Map', 'map')->addressField('address'),
+    ]);
+```
+
+- **`Metabox::geolocation(?string $apiKey = null, array $types = [], string|array $countries = [])`**: Enables the autocomplete. Without an API key, and without a Google Maps field, OpenStreetMap is used. `$types` restricts the Google suggestions to place types, e.g. `['establishment']` or `['(cities)']`. `$countries` restricts them to at most 5 countries, as ISO 3166-1 alpha-2 codes: another value throws an exception.
+- **`geoBinding(string $binding, bool $bindIfEmpty = true)`**: Fills the field with an address component when its ID is not the component name: a component (`locality`), its short name (`short:country`), or an expression combining components (`'postal_code + " " + locality'`). With `bindIfEmpty: false`, an empty component keeps the current value. Available on input, `Textarea`, `Hidden`, `Select` and `SelectAdvanced` fields.
+- **`addressField(string $addressField)`**: When the meta box has several autocomplete fields, binds the field to one of them, e.g. the head office address and the branch address.
+
+## SEO analysis
+
+Adds the field content to the content analyzed by Yoast SEO or Rank Math. Requires [MB Yoast SEO](https://docs.metabox.io/extensions/meta-box-yoast-seo/) or [MB Rank Math](https://docs.metabox.io/extensions/mb-rank-math/).
+
+```php
+Wysiwyg::make('Introduction', 'introduction')->seoAnalysis(),
+```
+
+- **`seoAnalysis(bool $analyze = true)`**: Available on `Text`, `Textarea` and `Wysiwyg` fields, including inside groups. It sets the keys of both extensions, so it works with either plugin.
 
 ## Include, exclude, show and hide
 

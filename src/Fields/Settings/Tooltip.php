@@ -27,6 +27,16 @@ trait Tooltip
      */
     public function tooltip(string $content, ?string $icon = null, string|TooltipPosition|null $position = null, bool $allowHtml = false): static
     {
+        $this->tooltip = $this->tooltipSettings($content, $icon, $position, $allowHtml);
+
+        return $this;
+    }
+
+    /**
+     * The tooltip settings: the content alone when no other setting is given.
+     */
+    protected function tooltipSettings(string $content, ?string $icon, string|TooltipPosition|null $position, bool $allowHtml): string|array
+    {
         $settings = array_filter([
             'content' => $content,
             'icon' => $icon,
@@ -34,8 +44,6 @@ trait Tooltip
             'allow_html' => $allowHtml ?: null,
         ], fn ($value) => $value !== null);
 
-        $this->tooltip = count($settings) === 1 ? $content : $settings;
-
-        return $this;
+        return count($settings) === 1 ? $content : $settings;
     }
 }

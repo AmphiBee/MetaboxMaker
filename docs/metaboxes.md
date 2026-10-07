@@ -35,16 +35,18 @@ Metabox::make('User Information', 'user_info')
 
 - **`description(string $description)`**: Sets the description of the metabox.
 - **`context(string|Context $context)`**: Sets where the metabox appears: `normal`, `advanced`, `side`, `form_top`, `after_title`, `after_editor` or `before_permalink`.
-- **`priority(string|Priority $priority)`**: Sets the priority of the metabox: `high`, `low` or `default`.
+- **`priority(string|int|Priority $priority)`**: Sets the priority of the metabox: `high` or `low`. An integer sets the position of a Customizer section: it throws a `LogicException` unless the meta box uses `customizer()` or a settings page location.
 - **`style(string|BoxStyle $style)`**: Sets the style: `default` or `seamless` (without the box wrapper).
 - **`closed(bool $closed)`**: Collapses the metabox by default.
 - **`defaultHidden(bool $defaultHidden)`**: Hides the metabox by default. It can be shown again from the screen options.
 - **`class(?string $class)`**: Adds a CSS class to the metabox.
 - **`location(Location $location)`**: Sets where the metabox is displayed. See [Setting the Location](#setting-the-location).
+- **`customizer(?string $panel = null, ?string $optionName = null)`**: Displays the meta box as a section of the Customizer instead of an edit screen, at the top level or in the given panel. The values are saved in the theme mods, or in the given option. See [Settings pages](settings-pages.md#customizer-sections-without-a-settings-page).
 
 **Fields and tabs**
 
-- **`fields(array $fields)`**: Adds fields to the metabox. Accepts an array of field instances, including `Tab` instances.
+- **`fields(array $fields)`**: Adds fields to the metabox. Accepts an array of field instances, including `Tab` and [`Column`](layout-fields.md#column) instances.
+- **`geolocation(?string $apiKey = null, array $types = [], string|array $countries = [])`**: Fills the fields from an autocomplete address field (MB Geolocation). See [Extensions](extensions.md#geolocation).
 - **`tabStyle(string|TabStyle $style)`**: Sets the style of the tabs: `default`, `box` or `left` (Meta Box Tabs).
 - **`tabWrapper(bool $wrapper = true)`**: Set to `false` to remove the metabox wrapper around the tabs.
 - **`tabDefaultActive(string $tabId)`**: Sets the tab active by default.
@@ -167,10 +169,10 @@ Metabox::make('Custom Metabox', 'custom_metabox')
 
 - **`Location::postTypes(string|array $postTypes)`**: Shows the metabox on the given post types.
 - **`Location::taxonomies(string|array $taxonomies)`**: Shows the metabox on terms of the given taxonomies (MB Term Meta).
-- **`Location::settingsPages(string|array $settingsPages)`**: Shows the metabox on the given settings pages (MB Settings Page).
+- **`Location::settingsPages(string|array $settingsPages, ?string $tab = null)`**: Shows the metabox on the given settings pages (MB Settings Page), in the given tab when the pages have tabs: `Location::settingsPages('theme-options', tab: 'general')`.
 - **`Location::user()`**: Shows the metabox on user profiles (MB User Meta).
 - **`Location::comment()`**: Shows the metabox on comments (MB Comment Meta).
-- **`andWhere(string $type, string|array $values)`**: Adds another condition, e.g. `Location::settingsPages('options')->andWhere('tab', 'general')`.
+- **`andWhere(string $type, string|array $values)`**: Adds another condition with any Meta Box key.
 - **`Location::where(string $type, string|array $values)`**: Creates a condition with any Meta Box key. Note that Meta Box expects `post_types`, not `post_type`.
 - **`Location::default()`**: The location used when none is set: posts.
 

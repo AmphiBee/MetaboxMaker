@@ -2,6 +2,28 @@
 
 ## 2.5.0 - Unreleased
 
+### Added
+
+- Geolocation (MB Geolocation): `Metabox::geolocation()` with the API key, place types and countries (validated ISO codes, 5 at most), and `geoBinding()` and `addressField()` on input, `Textarea`, `Hidden`, `Select` and `SelectAdvanced` fields.
+- `seoAnalysis()` on `Text`, `Textarea` and `Wysiwyg` fields, for MB Yoast SEO and MB Rank Math.
+- `Column` layout element holding several fields in one column of the grid (Meta Box Columns), in meta boxes, blocks and tabs.
+- Customizer sections without a settings page: `Metabox::customizer()`, with an optional panel and option name. `priority()` accepts an integer, the position of a Customizer section: it throws a `LogicException` on a meta box displayed elsewhere.
+- `inputTooltip()` on the field types supported by Meta Box Tooltip. Other types throw a `LogicException`.
+- `hideFromBlockBindings()`, `autofocus()` and `fieldName()` on every field.
+- `SelectTree` field, and `tree()` and `collapse()` on `CheckboxList`, building hierarchical options from a nested array.
+- `Backup` field, exporting and importing the values of a settings page.
+- `addNew()` on `Post` and `User` fields (`Post` requires a single post type), and `toggleAllButton()` on `Post`, `Taxonomy` and `User` fields.
+- `dateFormat()` and `autocomplete()` on `Datepicker` and `DatetimePicker`, `timeFormat()` on `DatetimePicker`, `autocomplete()` on `Timepicker`.
+- `minLength()`, `maxLength()`, `autocomplete()` and `wrap()` on `Textarea`, with the `TextareaWrap` enum.
+- `distractionFreeWriting()` on `Wysiwyg`.
+- `Block::attributes()`, adding validated attributes to the block type while keeping the MB Blocks ones.
+- `SettingsPage::tab()`, adding a tab with an optional icon, and a `tab` argument on `Location::settingsPages()`.
+- `Metabox::context()` accepts the `Context` enum, as documented.
+
+### Changed
+
+- `jsOptions()` merges the options with the ones set before, by `jsOptions()` or by the methods setting a JavaScript option such as `timeFormat()`, instead of replacing them.
+
 ### Documentation
 
 - The defaults that differ from Meta Box are documented, with how to get the Meta Box behavior: settings pages have one column (`columns(2)` for the sidebar layout) and blocks display their fields in the block body (`context('side')` for the block sidebar).

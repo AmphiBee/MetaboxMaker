@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Pollora\Metabox\Transformer;
 
 use Pollora\Metabox\Contract\Renderable;
+use Pollora\Metabox\Fields\Column;
 use Pollora\Metabox\Fields\Tab;
 
 /**
@@ -23,6 +24,8 @@ trait FieldTransformer
         foreach ($fields as $field) {
             if ($field instanceof Tab) {
                 $this->processTab($field);
+            } elseif ($field instanceof Column) {
+                $this->addColumn($field);
             } elseif ($field instanceof Renderable) {
                 $this->addField($field);
             }
@@ -42,7 +45,9 @@ trait FieldTransformer
         $this->tabs[$tabData['id']] = $this->filterTabData($tabData);
 
         foreach ($tabData['fields'] as $subField) {
-            if ($subField instanceof Renderable) {
+            if ($subField instanceof Column) {
+                $this->addColumn($subField, $tabData['id']);
+            } elseif ($subField instanceof Renderable) {
                 $this->addField($subField);
             }
         }
@@ -56,6 +61,21 @@ trait FieldTransformer
     protected function addField(Renderable $field): void
     {
         $this->fields[] = $field->build();
+    }
+
+    /**
+     * Add the fields of a column, and the column to the meta box columns (Meta Box Columns).
+     *
+     * @param  string|null  $tab  The ID of the tab holding the column.
+     */
+    protected function addColumn(Column $column, ?string $tab = null): void
+    {
+        $id = 'column-'.(count($this->columns) + 1);
+        $this->columns[$id] = $column->build();
+
+        foreach ($column->getFields() as $field) {
+            $this->fields[] = array_filter(['tab' => $tab]) + $field->build() + ['column' => $id];
+        }
     }
 
     /**

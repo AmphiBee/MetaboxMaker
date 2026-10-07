@@ -51,6 +51,11 @@ class Tab extends Field
     public function fields(array $fields): self
     {
         foreach ($fields as $field) {
+            if ($field instanceof Column) {
+                $this->fields[] = $field;
+
+                continue;
+            }
             if (! $field instanceof Renderable) {
                 throw new InvalidArgumentException('All fields must implement Renderable.');
             }

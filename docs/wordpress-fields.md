@@ -25,6 +25,8 @@ Post::make('Select Post', 'select_post')
 - **`postType(string|array $postType)`**: Sets the type of post to select.
 - **`queryArgs(array $queryArgs)`**: Sets the arguments to pass to the WP_Query function.
 - **`setAsParent(bool $parent)`**: Sets whether the field should allow selecting parent posts.
+- **`addNew(bool $addNew = true)`**: Shows a button opening a form to create a new post. Meta Box only shows it for a single post type: with several post types, building the field throws a `LogicException`.
+- **`toggleAllButton(bool $select_all_none = true)`**: Adds a button selecting or unselecting every option, for the `checkbox_list` field type or a multiple select.
 - **`fieldType(EntityFieldType|string $fieldType)`**: Sets the type of field.
 
 ## Sidebar Field
@@ -71,6 +73,7 @@ Taxonomy::make('Select Category', 'select_category')
 - **`queryArgs(array $queryArgs)`**: Sets the arguments to pass to the WP_Term_Query function.
 - **`addNew(bool $addNew = true)`**: Allows users to create a new term when submitting the post.
 - **`removeDefault(bool $removeDefault = true)`**: Removes the default WordPress taxonomy meta box.
+- **`toggleAllButton(bool $select_all_none = true)`**: Adds a button selecting or unselecting every term, for the `checkbox_list` field type or a multiple select.
 - **`fieldType(EntityFieldType|string $fieldType)`**: Sets the type of field.
 
 ## TaxonomyAdvanced Field
@@ -136,6 +139,8 @@ User::make('Speakers', 'speaker_ids')
 - **`queryArgs(array $queryArgs)`**: Sets the arguments to pass to the WP_User_Query function.
 - **`fieldType(EntityFieldType|string $fieldType)`**: Sets the type of field.
 - **`displayField(string $displayField)`**: Sets the `WP_User` property used as the option label. Defaults to `display_name`.
+- **`addNew(bool $addNew = true)`**: Shows a button opening a form to create a new user.
+- **`toggleAllButton(bool $select_all_none = true)`**: Adds a button selecting or unselecting every user, for the `checkbox_list` field type or a multiple select.
 - **`ajax(bool $ajax = true)`**: Enables AJAX search. Meta Box only supports it with `select_advanced`, so the default `select` field type is switched to `select_advanced`.
 - **`minimumInputLength(int $length)`**: Sets how many characters must be typed before the AJAX search fires.
 

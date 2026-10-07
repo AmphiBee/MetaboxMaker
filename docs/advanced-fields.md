@@ -184,9 +184,11 @@ Datepicker::make('Event Date', 'event_date')
 
 - **`inline()`**: Sets whether the date picker should be displayed inline.
 - **`size(int $size)`**: Sets the size of the input field.
-- **`jsOptions(array $options)`**: Sets JavaScript options for the date picker.
+- **`jsOptions(array $options)`**: Sets JavaScript options for the date picker, merged with the options set by the other methods.
+- **`dateFormat(string $format)`**: Sets the displayed date format, in the jQuery UI format, e.g. `dd/mm/yy`. Defaults to `yy-mm-dd`.
 - **`saveFormat(string $format)`**: Sets the PHP date format of the saved value, e.g. `Y-m-d`, when it differs from the displayed format.
 - **`saveAsTimestamp(bool $timestamp = true)`**: Saves the value as a Unix timestamp.
+- **`autocomplete(string $autocomplete)`**: Sets the browser autocomplete attribute. Meta Box sets it to `off` for the date and time pickers.
 
 ## DatetimePicker Field
 
@@ -209,9 +211,11 @@ DatetimePicker::make('Event DateTime', 'event_datetime')
 
 - **`inline()`**: Sets whether the datetime picker should be displayed inline.
 - **`size(int $size)`**: Sets the size of the input field.
-- **`jsOptions(array $options)`**: Sets JavaScript options for the datetime picker.
+- **`jsOptions(array $options)`**: Sets JavaScript options for the datetime picker, merged with the options set by the other methods.
+- **`dateFormat(string $format)`** / **`timeFormat(string $format)`**: Sets the displayed date and time formats, e.g. `dd/mm/yy` and `HH:mm:ss`. Default to `yy-mm-dd` and `HH:mm`.
 - **`saveFormat(string $format)`**: Sets the PHP date format of the saved value, e.g. `Y-m-d`, when it differs from the displayed format.
 - **`saveAsTimestamp(bool $timestamp = true)`**: Saves the value as a Unix timestamp.
+- **`autocomplete(string $autocomplete)`**: Sets the browser autocomplete attribute. Defaults to `off`.
 
 ## FieldsetText Field
 
@@ -553,6 +557,7 @@ Timepicker::make('Appointment Time', 'appointment_time')
 ### Methods
 
 - **`inline()`**: Sets whether the timepicker should be displayed inline.
+- **`autocomplete(string $autocomplete)`**: Sets the browser autocomplete attribute. Defaults to `off`.
 - **`size(int $size)`**: Sets the size of the input field.
 - **jQuery UI Timepicker options**: every [option](https://trentrichardson.com/examples/timepicker/#tp-options) has a method of the same name: `showButtonPanel()`, `timeOnly()`, `timeOnlyShowDate()`, `stepHour()`, `stepMinute()`, `stepSecond()`, `stepMillisec()`, `stepMicrosec()`, `hour()`, `minute()`, `second()`, `millisec()`, `microsec()`, `timezone()`, `controlType()`, `oneLine()`, `currentText()`, `closeText()`, `amNames()`, `pmNames()`, `timeFormat()`, `timeSuffix()`, `timeOnlyTitle()`, `timeText()`, `hourText()`, `minuteText()`, `secondText()`, `millisecText()`, `microsecText()`, `timezoneText()`, `isRTL()`, `hourGrid()`, `minuteGrid()`, `secondGrid()`, `millisecGrid()`, `microsecGrid()`, `showHour()`, `showMinute()`, `showSecond()`, `showMillisec()`, `showMicrosec()`, `showTimezone()`, `hourMin()`, `minuteMin()`, `secondMin()`, `millisecMin()`, `microsecMin()`, `hourMax()`, `minuteMax()`, `secondMax()`, `millisecMax()`, `microsecMax()`, `minDateTime()`, `maxDateTime()`, `minTime()`, `maxTime()`, `alwaysSetTime()`, `addSliderAccess()`, `sliderAccessArgs()`, `showTimepicker()`, `defaultTimeValue()` and `parse()`.
 
@@ -580,6 +585,7 @@ Wysiwyg::make('Content', 'content')
 - **`textareaName(string $name)`**, **`textareaRows(int $rows)`**, **`tabindex(int $index)`**, **`tabfocusElements(string $elements)`**: Set the textarea name, rows, tab index and focus elements.
 - **`editorCss(string $css)`** / **`editorClass(string $class)`**: Adds CSS or a CSS class to the editor.
 - **`teeny(bool $useTeeny)`**: Uses the minimal editor toolbar.
+- **`distractionFreeWriting(bool $enabled = true)`**: Enables the distraction-free writing mode (full screen). Enabled by default: use `distractionFreeWriting(false)` to remove the button.
 - **`tinymce(array $settings)`** / **`quicktags(array $settings)`**: Passes settings to TinyMCE or to the text editor toolbar.
 - **`maxCharacters(int $limit)`** / **`maxWords(int $limit)`**: Limits the length with a live counter (MB Text Limiter).
 

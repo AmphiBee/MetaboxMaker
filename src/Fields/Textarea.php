@@ -4,13 +4,23 @@ declare(strict_types=1);
 
 namespace Pollora\Metabox\Fields;
 
+use Pollora\Metabox\Enums\TextareaWrap;
+use Pollora\Metabox\Fields\Settings\AutocompleteAttribute;
+use Pollora\Metabox\Fields\Settings\GeoBinding;
+use Pollora\Metabox\Fields\Settings\SeoAnalysis;
+use Pollora\Metabox\Fields\Settings\TextLength;
 use Pollora\Metabox\Fields\Settings\TextLimiter;
+use Pollora\Metabox\Validation\OptionValidation;
 
 /**
  * Text field class for creating text input fields.
  */
 class Textarea extends Field
 {
+    use AutocompleteAttribute;
+    use GeoBinding;
+    use SeoAnalysis;
+    use TextLength;
     use TextLimiter;
 
     /**
@@ -27,6 +37,11 @@ class Textarea extends Field
      * The number of rows for the textarea.
      */
     protected int $rows = 4;
+
+    /**
+     * How the text wraps when the form is submitted.
+     */
+    protected string $wrap;
 
     /**
      * Set the number of columns for the textarea.
@@ -50,6 +65,17 @@ class Textarea extends Field
     public function rows(int $rows): static
     {
         $this->rows = $rows;
+
+        return $this;
+    }
+
+    /**
+     * Set how the text wraps when the form is submitted: 'soft' (default), 'hard'
+     * (line breaks are added, requires cols()) or 'off'.
+     */
+    public function wrap(string|TextareaWrap $wrap): static
+    {
+        $this->wrap = OptionValidation::check($wrap, TextareaWrap::class);
 
         return $this;
     }
