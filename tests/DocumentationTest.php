@@ -11,7 +11,7 @@ declare(strict_types=1);
 /**
  * @return array<string, array<string>> Public method names, with the classes declaring them.
  */
-function publicApi(): array
+function publicApi(bool $withGetters = false): array
 {
     $root = dirname(__DIR__).'/src/';
     $api = [];
@@ -28,7 +28,7 @@ function publicApi(): array
         }
 
         $reflection = new ReflectionClass($class);
-        $documented = str_contains($class, '\\Fields\\') || in_array($reflection->getShortName(), ['Metabox', 'Block', 'SettingsPage', 'Location', 'Rule', 'Relationship', 'Side'], true);
+        $documented = str_contains($class, '\\Fields\\') || in_array($reflection->getShortName(), ['Metabox', 'Block', 'SettingsPage', 'Location', 'Rule', 'Relationship', 'Side', 'MetaboxModel'], true);
 
         if (! $documented) {
             continue;
@@ -37,7 +37,7 @@ function publicApi(): array
         foreach ($reflection->getMethods(ReflectionMethod::IS_PUBLIC) as $method) {
             $name = $method->getName();
 
-            if (str_starts_with($name, '__') || str_starts_with($name, 'get') || in_array($name, ['build', 'buildFieldset', 'valueFor', 'key'], true)) {
+            if (str_starts_with($name, '__') || (! $withGetters && str_starts_with($name, 'get')) || in_array($name, ['build', 'buildFieldset', 'valueFor', 'key'], true)) {
                 continue;
             }
 
@@ -69,11 +69,12 @@ test('every public method is documented', function () {
 });
 
 test('every documented method exists', function () {
-    $api = publicApi() + ['setting' => true, 'make' => true];
+    $api = publicApi(withGetters: true) + ['setting' => true, 'make' => true];
     $unknown = [];
 
     preg_match_all('/^\s*-\s+\*\*`(?:[A-Za-z]+::)?([A-Za-z_]+)\(/m', documentation(), $listed);
-    preg_match_all('/->([A-Za-z_]+)\(/', documentation(), $called);
+    // Lines starting with $table-> are Laravel migration examples.
+    preg_match_all('/->([A-Za-z_]+)\(/', (string) preg_replace('/^\s*\$table->.*$/m', '', documentation()), $called);
 
     foreach (array_unique([...$listed[1], ...$called[1]]) as $method) {
         if (! isset($api[$method])) {

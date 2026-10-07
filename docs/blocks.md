@@ -54,7 +54,7 @@ Block::make('Example Block', 'example-block')
 - **`preview(array $preview)`**: Sets the field values used in the block inserter preview.
 - **`attributes(array $attributes)`**: Adds attributes to the block type, e.g. `['theme' => ['type' => 'string', 'default' => 'light']]`, available in the render template or callback. Each attribute needs a type: `string`, `number`, `integer`, `boolean`, `object`, `array` or `null`. The MB Blocks attributes (`id`, `name`, `data` and `anchor`) are kept, and their names are reserved.
 - **`storageType(string $storageType)`**: Sets where the field values are stored: `attributes` (default, in the block), `post_meta` or `custom_table`.
-- **`customTable(string $table)`**: Stores the field values in a custom table (MB Custom Table).
+- **`customTable(string $table, bool $prefix = true)`**: Stores the field values in a custom table (MB Custom Table), named without the WordPress table prefix. See [Custom tables](custom-tables.md).
 - **`restrictToPostTypes(array $postTypes)`** / **`excludePostTypes(array $postTypes)`**: See [Restricting Blocks by Post Type](#restricting-blocks-by-post-type).
 - **`fields(array $fields)`**: Adds fields to the block. Accepts an array of field instances.
 - **`setting(string $key, mixed $value)`**: Adds a custom Meta Box setting that isn't explicitly defined. This allows you to pass any Meta Box-specific option directly.

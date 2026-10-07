@@ -5,6 +5,14 @@
 ### Added
 
 - Relationships (MB Relationships): `Relationship::make()` with `from()`, `to()` and `reciprocal()`, and `Side::posts()`, `Side::terms()` and `Side::users()` with `metaBox()`, `field()`, `adminColumn()` and `hasOne()`. Every setting of a side applies to the screens of its objects: the package moves the field settings to the side where Meta Box expects them. Relationships are registered on `mb_relationships_init`; a relationship declared too late, declared twice, or reciprocal between different objects throws a `LogicException`.
+- Custom models (MB Custom Table): `MetaboxModel::make()` with `table()`, `labels()`, `menuIcon()`, `menuPosition()`, `parent()`, `showInMenu()`, `capability()` and `supports()` (`ModelSupport` enum), registered on `init`.
+- `Location::models()`: a meta box located on custom models stores its values in their table, without `customTable()`.
+- `customTable()` and `MetaboxModel::table()` accept a class with a `getTable()` method, such as an Eloquent model, and `prefix: false` for an existing table without the prefix. Table names are validated.
+- Documentation page for custom tables, with Laravel migrations.
+
+### Changed
+
+- `customTable()` adds the WordPress table prefix of the current site to the table name: `customTable('events')` stores the values in `wp_events`. See the [upgrade guide](UPGRADE.md#from-pollorametabox-25-to-26).
 
 ## 2.5.0 - 2026-10-07
 

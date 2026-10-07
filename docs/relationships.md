@@ -114,4 +114,5 @@ MB_Relationships_API::delete($eventId, $speakerId, 'events_to_speakers');
 
 ---
 
-**Previous:** [Extensions](extensions.md)
+**Previous:** [Extensions](extensions.md)  
+**Next:** [Custom tables](custom-tables.md)

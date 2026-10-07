@@ -8,6 +8,7 @@ use Exception;
 use InvalidArgumentException;
 use LogicException;
 use Pollora\Metabox\Contract\Renderable;
+use Pollora\Metabox\CustomTable\TableName;
 use Pollora\Metabox\Enums\BoxStyle;
 use Pollora\Metabox\Enums\Context;
 use Pollora\Metabox\Enums\Priority;
@@ -134,7 +135,7 @@ class Metabox implements Renderable
     /**
      * The custom table storing the field values (MB Custom Table).
      */
-    protected string $table;
+    protected ?TableName $table = null;
 
     /**
      * How conditional logic shows and hides elements.
@@ -452,12 +453,16 @@ class Metabox implements Renderable
     }
 
     /**
-     * Store the field values in a custom table (MB Custom Table).
+     * Store the field values in a custom table (MB Custom Table), named without the
+     * WordPress table prefix, which is added.
+     *
+     * @param  string  $table  The table name, or a class with a getTable() method, such as an Eloquent model.
+     * @param  bool  $prefix  Set to false for an existing table without the prefix.
      */
-    public function customTable(string $table): static
+    public function customTable(string $table, bool $prefix = true): static
     {
         $this->storage_type = 'custom_table';
-        $this->table = $table;
+        $this->table = new TableName($table, $prefix);
 
         return $this;
     }
@@ -609,6 +614,7 @@ class Metabox implements Renderable
         }
 
         $metaboxData = EmptyValueFilter::filter(get_object_vars($this));
+        $metaboxData = array_merge($metaboxData, $this->customTableSettings());
 
         // Remove the settings array and location from the metabox data
         unset($metaboxData['settings'], $metaboxData['location']);
@@ -619,6 +625,36 @@ class Metabox implements Renderable
         }
 
         return $metaboxData + ($this->location?->get() ?? []);
+    }
+
+    /**
+     * The custom table settings: the table set with customTable(), or the table of the models
+     * the meta box is displayed on.
+     */
+    protected function customTableSettings(): array
+    {
+        if ($this->table !== null) {
+            return ['table' => $this->table->resolve()];
+        }
+
+        $models = (array) ($this->location?->get()['models'] ?? []);
+
+        if ($models === []) {
+            return [];
+        }
+
+        $tables = array_unique(array_map(function (string $name) {
+            $model = MetaboxModel::get($name)
+                ?? throw new LogicException("The model '{$name}' is not declared with MetaboxModel: call customTable() with its table.");
+
+            return $model->getTable();
+        }, $models));
+
+        if (count($tables) > 1) {
+            throw new LogicException('The models of a meta box must share the same table: '.implode(', ', $tables).'.');
+        }
+
+        return ['storage_type' => 'custom_table', 'table' => $tables[0]];
     }
 
     /**

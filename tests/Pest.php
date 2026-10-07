@@ -17,6 +17,8 @@ function add_filter(string $hookName, callable $callback, int $priority = 10, in
     return true;
 }
 
+$GLOBALS['wpdb'] = (object) ['prefix' => 'wp_'];
+
 function add_action(string $hookName, callable $callback, int $priority = 10, int $acceptedArgs = 1): bool
 {
     $GLOBALS['test_actions'][$hookName][] = $priority;

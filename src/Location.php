@@ -91,6 +91,15 @@ class Location
     }
 
     /**
+     * Show the meta box on the add and edit screens of the given custom models (MB Custom Table).
+     * The field values are stored in the table of the models declared with MetaboxModel.
+     */
+    public static function models(string|array $models): static
+    {
+        return new static('models', (array) $models);
+    }
+
+    /**
      * Show the meta box on the user profile screen (MB User Meta).
      */
     public static function user(): static
