@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Copyright (c) AmphiBee
  *
@@ -19,10 +20,10 @@ use AmphiBee\MetaboxMaker\Fields\Settings\ToggleAll;
  */
 class CheckboxList extends Radio
 {
+    use ToggleAll;
+
     /**
      * The type of input field. Defaults to 'checkbox_list'.
      */
     protected string $type = 'checkbox_list';
-
-    use ToggleAll;
 }

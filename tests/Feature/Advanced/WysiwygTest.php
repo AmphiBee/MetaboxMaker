@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 use AmphiBee\MetaboxMaker\Fields\Wysiwyg;
 
 test('wysiwyg field can be configured with specific editor settings', function () {

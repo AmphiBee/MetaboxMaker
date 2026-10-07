@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 use AmphiBee\MetaboxMaker\Fields\CustomHtml;
 
 test('custom html field stores static html content', function () {

@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 use AmphiBee\MetaboxMaker\Fields\Fieldset;
 
 test('fieldset field can be configured with multiple inputs', function () {

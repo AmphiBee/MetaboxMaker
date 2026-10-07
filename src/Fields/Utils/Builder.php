@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Copyright (c) AmphiBee
  *
@@ -27,15 +28,15 @@ trait Builder
     public function build(): array
     {
         $fieldData = EmptyValueFilter::filter(get_object_vars($this));
-        
+
         // Remove the settings array from the field data
         unset($fieldData['settings']);
-        
+
         // Merge custom settings if they exist
-        if (method_exists($this, 'getSettings') && !empty($settings = $this->getSettings())) {
+        if (method_exists($this, 'getSettings') && ! empty($settings = $this->getSettings())) {
             $fieldData = array_merge($fieldData, $settings);
         }
-        
+
         return $fieldData;
     }
 }

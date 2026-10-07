@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 use AmphiBee\MetaboxMaker\Fields\File;
 use AmphiBee\MetaboxMaker\Fields\FileAdvanced;
 use AmphiBee\MetaboxMaker\Fields\FileInput;

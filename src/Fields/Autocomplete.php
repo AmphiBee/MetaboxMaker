@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Copyright (c) AmphiBee
  *
@@ -20,10 +21,10 @@ use AmphiBee\MetaboxMaker\Fields\Settings\Size;
  */
 class Autocomplete extends Field
 {
+    use Options, Size;
+
     /**
      * The type of input field. Set to 'autocomplete'.
      */
     protected string $type = 'autocomplete';
-
-    use Options, Size;
 }

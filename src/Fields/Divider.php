@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Copyright (c) AmphiBee
  *
@@ -21,7 +22,7 @@ use AmphiBee\MetaboxMaker\Fields\Utils\Builder;
  */
 class Divider implements Renderable
 {
-    use Tab, Builder;
+    use Builder, Tab;
 
     /**
      * The type of field, set to 'divider'.
@@ -30,11 +31,11 @@ class Divider implements Renderable
 
     /**
      * Factory method for creating a new instance of the Divider class.
-     * 
-     * @param mixed ...$args Not used for Divider
+     *
+     * @param  mixed  ...$args  Not used for Divider
      */
     public static function make(mixed ...$args): static
     {
-        return new static();
+        return new static;
     }
 }

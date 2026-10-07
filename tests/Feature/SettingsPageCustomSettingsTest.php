@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 use AmphiBee\MetaboxMaker\SettingsPage;
 
 test('can add custom settings to a settings page', function () {

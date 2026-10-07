@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Copyright (c) AmphiBee
  *
@@ -19,10 +20,10 @@ use AmphiBee\MetaboxMaker\Fields\Settings\Placeholder;
  */
 class KeyValue extends Field
 {
+    use Placeholder;
+
     /**
      * The type of input field. Set to 'key_value'.
      */
     protected string $type = 'key_value';
-
-    use Placeholder;
 }

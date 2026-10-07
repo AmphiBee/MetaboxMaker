@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Copyright (c) AmphiBee
  *
@@ -19,7 +20,7 @@ use AmphiBee\MetaboxMaker\Fields\Settings\RangeParams;
  */
 class Number extends Text
 {
-    protected string $type = 'number';
-
     use RangeParams;
+
+    protected string $type = 'number';
 }

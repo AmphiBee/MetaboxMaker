@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Copyright (c) AmphiBee
  *
@@ -20,10 +21,10 @@ use AmphiBee\MetaboxMaker\Fields\Settings\Options;
  */
 class ImageSelect extends Field
 {
+    use Multiple, Options;
+
     /**
      * The type of the field.
      */
     protected string $type = 'image_select';
-
-    use Multiple, Options;
 }

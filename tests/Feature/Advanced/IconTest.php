@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 use AmphiBee\MetaboxMaker\Fields\Icon;
 
 test('icon field can be configured with various icon library settings', function () {

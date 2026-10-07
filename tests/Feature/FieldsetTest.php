@@ -1,9 +1,11 @@
 <?php
 
+declare(strict_types=1);
+
 use AmphiBee\MetaboxMaker\Fields\Group;
 use AmphiBee\MetaboxMaker\Fields\Text;
-use AmphiBee\MetaboxMaker\Metabox;
 use AmphiBee\MetaboxMaker\Location;
+use AmphiBee\MetaboxMaker\Metabox;
 
 $fieldset = Metabox::make('Example Fieldset', 'example_fieldset');
 

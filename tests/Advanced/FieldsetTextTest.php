@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 use AmphiBee\MetaboxMaker\Fields\FieldsetText;
 
 it('can create a fieldset text field', function () {
@@ -18,4 +20,4 @@ it('can create a fieldset text field', function () {
             'email' => 'Email',
             'phone' => 'Phone',
         ]);
-}); 
+});

@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 use AmphiBee\MetaboxMaker\Enums\EntityFieldType;
 use AmphiBee\MetaboxMaker\Fields\Taxonomy;
 use AmphiBee\MetaboxMaker\Fields\TaxonomyAdvanced;

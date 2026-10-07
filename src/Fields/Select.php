@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Copyright (c) AmphiBee
  *
@@ -20,6 +21,8 @@ use AmphiBee\MetaboxMaker\Fields\Settings\ToggleAll;
  */
 class Select extends Field
 {
+    use Options, ToggleAll;
+
     /**
      * The type of input field. Defaults to 'select'.
      */
@@ -29,8 +32,6 @@ class Select extends Field
      * Whether to display sub items without indentation.
      */
     protected bool $flatten;
-
-    use Options, ToggleAll;
 
     /**
      * Set whether to display sub items without indentation.

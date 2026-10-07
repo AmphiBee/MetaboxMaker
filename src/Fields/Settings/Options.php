@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Copyright (c) AmphiBee
  *
@@ -31,6 +32,7 @@ trait Options
     public function options(array|string $options): static
     {
         $this->options = $options;
+
         return $this;
     }
 }

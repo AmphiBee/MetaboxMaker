@@ -22,8 +22,8 @@ class BlockTypeFilter
     /**
      * Register a block's post type restrictions
      *
-     * @param string $blockId The block identifier
-     * @param array $restrictions The restrictions configuration
+     * @param  string  $blockId  The block identifier
+     * @param  array  $restrictions  The restrictions configuration
      */
     public static function registerRestrictions(string $blockId, array $restrictions): void
     {
@@ -32,26 +32,15 @@ class BlockTypeFilter
     }
 
     /**
-     * Setup the WordPress filter for block types
-     */
-    protected static function setupFilter(): void
-    {
-        if (!self::$filterAdded) {
-            add_filter('allowed_block_types_all', [self::class, 'filterBlockTypes'], 99999, 2);
-            self::$filterAdded = true;
-        }
-    }
-
-    /**
      * Filter blocks based on post type restrictions
      *
-     * @param mixed $allowed_blocks List of allowed blocks
-     * @param object $context Editor context
+     * @param  mixed  $allowed_blocks  List of allowed blocks
+     * @param  object  $context  Editor context
      * @return mixed Filtered list of allowed blocks
      */
     public static function filterBlockTypes($allowed_blocks, $context): mixed
     {
-        if (!isset($context->post) || empty(self::$restrictions)) {
+        if (! isset($context->post) || empty(self::$restrictions)) {
             return $allowed_blocks;
         }
 
@@ -62,7 +51,7 @@ class BlockTypeFilter
             $allowed_blocks = array_keys($registry->get_all_registered());
         }
 
-        if (!is_array($allowed_blocks)) {
+        if (! is_array($allowed_blocks)) {
             return $allowed_blocks;
         }
 
@@ -73,7 +62,7 @@ class BlockTypeFilter
 
             foreach (self::$restrictions as $block_id => $restrictions) {
                 if (strpos($block_name, $block_id) !== false) {
-                    if (isset($restrictions['allowed']) && !in_array($post_type, $restrictions['allowed'])) {
+                    if (isset($restrictions['allowed']) && ! in_array($post_type, $restrictions['allowed'])) {
                         $should_keep = false;
                         break;
                     }
@@ -91,5 +80,16 @@ class BlockTypeFilter
         }
 
         return $filtered_blocks;
+    }
+
+    /**
+     * Setup the WordPress filter for block types
+     */
+    protected static function setupFilter(): void
+    {
+        if (! self::$filterAdded) {
+            add_filter('allowed_block_types_all', [self::class, 'filterBlockTypes'], 99999, 2);
+            self::$filterAdded = true;
+        }
     }
 }

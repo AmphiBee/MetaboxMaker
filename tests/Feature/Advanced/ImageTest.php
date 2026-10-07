@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 use AmphiBee\MetaboxMaker\Fields\ImageSelect;
 
 test('image select field can be configured with multiple options', function () {

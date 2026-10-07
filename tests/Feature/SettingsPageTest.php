@@ -1,8 +1,10 @@
 <?php
 
-use AmphiBee\MetaboxMaker\SettingsPage;
+declare(strict_types=1);
+
 use AmphiBee\MetaboxMaker\Enums\IconType;
 use AmphiBee\MetaboxMaker\Enums\TabStyle;
+use AmphiBee\MetaboxMaker\SettingsPage;
 
 beforeEach(function () {
     $this->settings = SettingsPage::make('Example Settings', 'example-settings');
@@ -19,7 +21,6 @@ test('can set menu title different from page title', function () {
     $this->settings->menuTitle('Custom Menu Title');
     expect($this->settings->build())->toHaveKey('menu_title', 'Custom Menu Title');
 });
-
 
 test('can set menu position', function () {
     $this->settings->position(25);
@@ -66,12 +67,12 @@ test('can configure tabs', function () {
     $tabs = [
         'general' => [
             'label' => 'General',
-            'icon' => 'dashicons-admin-settings'
+            'icon' => 'dashicons-admin-settings',
         ],
         'advanced' => [
             'label' => 'Advanced',
-            'icon' => 'dashicons-admin-tools'
-        ]
+            'icon' => 'dashicons-admin-tools',
+        ],
     ];
 
     $this->settings
@@ -126,7 +127,7 @@ test('can create a complete settings page configuration', function () {
         ->capability('manage_options')
         ->tabs([
             'general' => 'General Settings',
-            'advanced' => 'Advanced Settings'
+            'advanced' => 'Advanced Settings',
         ])
         ->tabStyle(TabStyle::LEFT)
         ->columns(2);
@@ -141,11 +142,11 @@ test('can create a complete settings page configuration', function () {
         'capability' => 'manage_options',
         'tabs' => [
             'general' => 'General Settings',
-            'advanced' => 'Advanced Settings'
+            'advanced' => 'Advanced Settings',
         ],
         'tab_style' => 'left',
-        'columns' => 2
+        'columns' => 2,
     ];
 
     expect($settings->build())->toMatchArray($expectedArray);
-}); 
+});

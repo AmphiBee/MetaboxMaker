@@ -7,7 +7,7 @@ namespace AmphiBee\MetaboxMaker\Enums;
 enum IconType: string
 {
     case DASHICONS = 'dashicons';
-    case FONTAWESOME = 'fontawesome'; 
+    case FONTAWESOME = 'fontawesome';
     case SVG = 'svg';
     case URL = 'url';
-} 
+}

@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Copyright (c) AmphiBee
  *
@@ -22,10 +23,10 @@ use AmphiBee\MetaboxMaker\Fields\Settings\Size;
  */
 class Datepicker extends Field
 {
+    use DateParams, Inline, JsOptions, Size;
+
     /**
      * The type of input field. Set to 'date'.
      */
     protected string $type = 'date';
-
-    use DateParams, Inline, JsOptions, Size;
 }

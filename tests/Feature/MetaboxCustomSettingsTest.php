@@ -1,8 +1,10 @@
 <?php
 
-use AmphiBee\MetaboxMaker\Metabox;
-use AmphiBee\MetaboxMaker\Location;
+declare(strict_types=1);
+
 use AmphiBee\MetaboxMaker\Fields\Text;
+use AmphiBee\MetaboxMaker\Location;
+use AmphiBee\MetaboxMaker\Metabox;
 
 test('can add custom settings to a metabox', function () {
     $metabox = Metabox::make('Custom Settings Test', 'custom_settings_test')
@@ -26,7 +28,6 @@ test('can add custom settings to a metabox', function () {
         'post_type' => 'post',
     ]);
 });
-
 
 $metabox = Metabox::make('Metabox with Fields', 'metabox_with_fields')
     ->fields([

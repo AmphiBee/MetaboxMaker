@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Copyright (c) AmphiBee
  *
@@ -20,10 +21,10 @@ use AmphiBee\MetaboxMaker\Fields\Settings\Options;
  */
 class Radio extends Field
 {
+    use Inline, Options;
+
     /**
      * The type of the field.
      */
     protected string $type = 'radio';
-
-    use Inline, Options;
 }

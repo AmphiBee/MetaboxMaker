@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 use AmphiBee\MetaboxMaker\Fields\Textarea;
 
 test('can create textarea with custom rows and cols', function () {

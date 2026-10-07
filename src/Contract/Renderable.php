@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Copyright (c) AmphiBee
  *
@@ -20,7 +21,7 @@ interface Renderable
     /**
      * Create a new instance of the Renderable class.
      *
-     * @param mixed ...$args Required arguments for instance creation
+     * @param  mixed  ...$args  Required arguments for instance creation
      * @return static A new instance of the Renderable class.
      */
     public static function make(mixed ...$args): static;

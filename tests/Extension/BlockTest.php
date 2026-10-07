@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 use AmphiBee\MetaboxMaker\Block;
 
 it('can initialize a block', function () {
@@ -37,4 +39,4 @@ it('can configure a block', function () {
         ->and($settings['mode'])->toBe('edit')
         ->and($settings['preview'])->toBe(['title' => 'Preview Title'])
         ->and($settings['storage_type'])->toBe('attributes');
-}); 
+});

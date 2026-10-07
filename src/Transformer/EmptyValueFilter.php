@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Copyright (c) AmphiBee
  *
@@ -17,7 +18,7 @@ final class EmptyValueFilter
     /**
      * Convert a string to an enum value.
      *
-     * @param array $values The values to be filtered to an enum value.
+     * @param  array  $values  The values to be filtered to an enum value.
      * @return array The filtered array.
      */
     public static function filter(array $values): array

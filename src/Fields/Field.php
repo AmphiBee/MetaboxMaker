@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Copyright (c) AmphiBee
  *
@@ -23,7 +24,6 @@ use AmphiBee\MetaboxMaker\Fields\Settings\Required;
 use AmphiBee\MetaboxMaker\Fields\Settings\Sortable;
 use AmphiBee\MetaboxMaker\Fields\Settings\Tab;
 use AmphiBee\MetaboxMaker\Fields\Utils\Builder;
-use AmphiBee\MetaboxMaker\Transformer\EmptyValueFilter;
 
 /**
  * Abstract class for all fields.
@@ -31,15 +31,6 @@ use AmphiBee\MetaboxMaker\Transformer\EmptyValueFilter;
 abstract class Field implements Renderable
 {
     use Builder;
-    /**
-     * The type of the field.
-     */
-    protected string $type = 'text';
-
-    /**
-     * The settings for the field.
-     */
-    protected array $settings = [];
 
     /**
      * Trait for cloning the field.
@@ -84,6 +75,16 @@ abstract class Field implements Renderable
     use Tab;
 
     /**
+     * The type of the field.
+     */
+    protected string $type = 'text';
+
+    /**
+     * The settings for the field.
+     */
+    protected array $settings = [];
+
+    /**
      * Constructor for the Field class.
      *
      * @param  string  $name  The name of the field.
@@ -98,17 +99,17 @@ abstract class Field implements Renderable
          * The id of the field.
          */
         protected string $id
-    ) {
-    }
+    ) {}
 
     /**
      * Factory method for creating a new instance of the Field class.
      *
-     * @param mixed ...$args Required arguments (name, id)
+     * @param  mixed  ...$args  Required arguments (name, id)
      */
     public static function make(mixed ...$args): static
     {
         [$name, $id] = $args;
+
         return new static($name, $id);
     }
 
@@ -120,6 +121,7 @@ abstract class Field implements Renderable
     public function setting(string $key, mixed $value): static
     {
         $this->settings[$key] = $value;
+
         return $this;
     }
 

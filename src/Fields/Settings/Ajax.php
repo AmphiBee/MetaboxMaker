@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Copyright (c) AmphiBee
  *
@@ -17,12 +18,12 @@ namespace AmphiBee\MetaboxMaker\Fields\Settings;
  */
 trait Ajax
 {
+    use JsOptions;
+
     /**
      * @var bool Whether the field should use AJAX. Defaults to true.
      */
     protected bool $ajax;
-
-    use JsOptions;
 
     /**
      * Set whether the field should use AJAX.

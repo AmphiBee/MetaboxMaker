@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace AmphiBee\MetaboxMaker\Fields;
 
-use AmphiBee\MetaboxMaker\Fields\Settings\Clonable;
 use AmphiBee\MetaboxMaker\Fields\Settings\Options;
 
 /**
@@ -18,4 +17,4 @@ class TextList extends Field
      * The type of input field. Set to 'text_list'.
      */
     protected string $type = 'text_list';
-} 
+}

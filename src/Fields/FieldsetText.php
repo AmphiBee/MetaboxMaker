@@ -17,4 +17,4 @@ class FieldsetText extends Field
      * The type of input field. Set to 'fieldset_text'.
      */
     protected string $type = 'fieldset_text';
-} 
+}

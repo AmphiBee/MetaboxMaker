@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Copyright (c) AmphiBee
  *
@@ -12,9 +13,9 @@ declare(strict_types=1);
 
 namespace AmphiBee\MetaboxMaker\Fields;
 
+use AmphiBee\MetaboxMaker\Contract\Renderable;
 use AmphiBee\MetaboxMaker\Fields\Settings\Description;
 use AmphiBee\MetaboxMaker\Fields\Settings\Tab;
-use AmphiBee\MetaboxMaker\Contract\Renderable;
 use AmphiBee\MetaboxMaker\Fields\Utils\Builder;
 
 /**
@@ -23,7 +24,7 @@ use AmphiBee\MetaboxMaker\Fields\Utils\Builder;
  */
 class Heading implements Renderable
 {
-    use Tab, Description, Builder;
+    use Builder, Description, Tab;
 
     /**
      * The type of field.
@@ -35,14 +36,12 @@ class Heading implements Renderable
      *
      * @param  string  $name  The title of the heading.
      */
-    public function __construct(protected string $name)
-    {
-    }
+    public function __construct(protected string $name) {}
 
     /**
      * Static make method to create a new instance of the Heading.
      *
-     * @param mixed ...$args Required arguments (name)
+     * @param  mixed  ...$args  Required arguments (name)
      */
     public static function make(mixed ...$args): static
     {

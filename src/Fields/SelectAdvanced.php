@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Copyright (c) AmphiBee
  *
@@ -22,10 +23,10 @@ use AmphiBee\MetaboxMaker\Fields\Settings\ToggleAll;
  */
 class SelectAdvanced extends Field
 {
+    use JsOptions, Multiple, Options, ToggleAll;
+
     /**
      * The type of input field. Defaults to 'select_advanced'.
      */
     protected string $type = 'select_advanced';
-
-    use JsOptions, Multiple, Options, ToggleAll;
 }

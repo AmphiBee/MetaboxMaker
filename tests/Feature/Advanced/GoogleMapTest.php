@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 use AmphiBee\MetaboxMaker\Fields\GoogleMap;
 
 test('google map field is properly configured', function () {
