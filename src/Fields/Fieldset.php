@@ -6,7 +6,7 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  *
- * @see https://github.com/AmphiBee/metabox-builder
+ * @see https://github.com/AmphiBee/MetaboxMaker
  */
 
 declare(strict_types=1);
@@ -14,20 +14,14 @@ declare(strict_types=1);
 namespace AmphiBee\MetaboxMaker\Fields;
 
 /**
- * Fieldset field class for grouping multiple input fields.
+ * Fieldset field class for grouping multiple text inputs.
+ *
+ * Meta Box has no 'fieldset' type: this is a fieldset_text field.
+ *
+ * @deprecated Use FieldsetText instead.
  */
-class Fieldset extends Field
+class Fieldset extends FieldsetText
 {
-    /**
-     * The type of input field. Set to 'fieldset'.
-     */
-    protected string $type = 'fieldset';
-
-    /**
-     * Array of 'value' => 'Label' for the inputs.
-     */
-    protected array $options;
-
     /**
      * Set the input fields for the fieldset.
      *
@@ -35,8 +29,6 @@ class Fieldset extends Field
      */
     public function inputs(array $options): static
     {
-        $this->options = $options;
-
-        return $this;
+        return $this->options($options);
     }
 }

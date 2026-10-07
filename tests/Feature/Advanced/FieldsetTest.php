@@ -15,7 +15,7 @@ test('fieldset field can be configured with multiple inputs', function () {
     $config = $fieldset->build();
 
     expect($config)->toMatchArray([
-        'type' => 'fieldset',
+        'type' => 'fieldset_text',
         'name' => 'User Details',
         'id' => 'user_details',
         'options' => [

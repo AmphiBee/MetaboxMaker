@@ -6,7 +6,7 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  *
- * @see https://github.com/AmphiBee/metabox-builder
+ * @see https://github.com/AmphiBee/MetaboxMaker
  */
 
 declare(strict_types=1);
@@ -23,9 +23,9 @@ class GoogleMap extends Field
     use MapParams;
 
     /**
-     * The type of input field. Set to 'google_map'.
+     * The type of input field. Set to 'map'.
      */
-    protected string $type = 'google_map';
+    protected string $type = 'map';
 
     /**
      * Google Maps API key.
