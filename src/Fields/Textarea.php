@@ -4,11 +4,15 @@ declare(strict_types=1);
 
 namespace Pollora\Metabox\Fields;
 
+use Pollora\Metabox\Fields\Settings\TextLimiter;
+
 /**
  * Text field class for creating text input fields.
  */
 class Textarea extends Field
 {
+    use TextLimiter;
+
     /**
      * The type of the field.
      */

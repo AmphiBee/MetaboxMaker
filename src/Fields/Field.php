@@ -5,8 +5,11 @@ declare(strict_types=1);
 namespace Pollora\Metabox\Fields;
 
 use Pollora\Metabox\Contract\Renderable;
+use Pollora\Metabox\Fields\Settings\AdminColumn;
 use Pollora\Metabox\Fields\Settings\Attributes;
 use Pollora\Metabox\Fields\Settings\Clonable;
+use Pollora\Metabox\Fields\Settings\Columns;
+use Pollora\Metabox\Fields\Settings\ConditionalLogic;
 use Pollora\Metabox\Fields\Settings\DefaultValue;
 use Pollora\Metabox\Fields\Settings\Description;
 use Pollora\Metabox\Fields\Settings\FieldAccess;
@@ -16,6 +19,7 @@ use Pollora\Metabox\Fields\Settings\Required;
 use Pollora\Metabox\Fields\Settings\Saving;
 use Pollora\Metabox\Fields\Settings\Sortable;
 use Pollora\Metabox\Fields\Settings\Tab;
+use Pollora\Metabox\Fields\Settings\Tooltip;
 use Pollora\Metabox\Fields\Settings\Visibility;
 use Pollora\Metabox\Fields\Settings\Wrapper;
 use Pollora\Metabox\Fields\Utils\Builder;
@@ -27,17 +31,20 @@ use Pollora\Metabox\Fields\Utils\Builder;
  */
 abstract class Field implements Renderable
 {
+    use AdminColumn;
     /**
      * Trait for custom HTML attributes.
      */
     use Attributes;
-
     use Builder;
-
     /**
      * Trait for cloning the field.
      */
     use Clonable;
+
+    use Columns;
+
+    use ConditionalLogic;
 
     /**
      * Trait for setting a default value for the field.
@@ -80,6 +87,8 @@ abstract class Field implements Renderable
     use Sortable;
 
     use Tab;
+
+    use Tooltip;
 
     /**
      * Trait for hiding the field from the REST API and front-end forms.
@@ -128,6 +137,11 @@ abstract class Field implements Renderable
         [$name, $id] = $args;
 
         return new static($name, $id);
+    }
+
+    public function getId(): string
+    {
+        return $this->id;
     }
 
     public function getType(): string

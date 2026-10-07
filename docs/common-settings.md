@@ -60,7 +60,9 @@ Text::make('Product code', 'product_code')
 
 **Anything else**
 
-- **`setting(string $key, mixed $value)`**: Sets any other Meta Box setting, such as extension settings (`visible`, `columns`, `tooltip`, `admin_columns`...).
+- **`setting(string $key, mixed $value)`**: Sets any other Meta Box setting.
+
+Conditional logic, columns, tooltips, admin columns and text limits have their own methods: see [Extensions](extensions.md).
 
 ---
 

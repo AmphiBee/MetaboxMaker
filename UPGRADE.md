@@ -1,5 +1,20 @@
 # Upgrade guide
 
+## From pollora/metabox 2.1 to 2.2
+
+Nothing needs to change: 2.2 only adds methods.
+
+Settings passed with `setting()` keep working. They can be replaced with the new methods, which validate their values:
+
+| Before | After |
+|---|---|
+| `->setting('visible', ['link_type', '=', 'page'])` | `->visibleWhen('link_type', 'page')` |
+| `->setting('hidden', ['is_toggle', '1'])` | `->hiddenWhen('is_toggle', '1')` |
+| `->setting('columns', 6)` | `->columns(6)` |
+| `->setting('tooltip', 'Help text')` | `->tooltip('Help text')` |
+| `->setting('admin_columns', 'after title')` | `->adminColumn(after: 'title')` |
+| `->setting('limit', 160)` | `->maxCharacters(160)` |
+
 ## From pollora/metabox 2.0 to 2.1
 
 `Block::mode()` only accepts the values Meta Box supports, `edit` and `preview`, and throws an `InvalidArgumentException` for any other value. Meta Box displayed blocks with another value, such as `auto`, in preview mode: replace it with `preview` to keep the same behavior.

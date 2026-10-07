@@ -176,4 +176,5 @@ When using custom settings, refer to the [Meta Box Settings Page documentation](
 
 ---
 
-**Previous:** [Blocks](blocks.md)
+**Previous:** [Blocks](blocks.md)  
+**Next:** [Extensions](extensions.md)

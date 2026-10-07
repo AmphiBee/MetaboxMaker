@@ -10,7 +10,9 @@ use Pollora\Metabox\Enums\BoxStyle;
 use Pollora\Metabox\Enums\Context;
 use Pollora\Metabox\Enums\Priority;
 use Pollora\Metabox\Enums\TabStyle;
+use Pollora\Metabox\Enums\ToggleType;
 use Pollora\Metabox\Fields\Field;
+use Pollora\Metabox\Fields\Settings\ConditionalLogic;
 use Pollora\Metabox\Transformer\EmptyValueFilter;
 use Pollora\Metabox\Transformer\FieldTransformer;
 use Pollora\Metabox\Validation\OptionValidation;
@@ -22,6 +24,7 @@ use Pollora\Metabox\Validation\OptionValidation;
  */
 class Metabox implements Renderable
 {
+    use ConditionalLogic;
     use FieldTransformer;
 
     /**
@@ -128,6 +131,11 @@ class Metabox implements Renderable
      * The custom table storing the field values (MB Custom Table).
      */
     protected string $table;
+
+    /**
+     * How conditional logic shows and hides elements.
+     */
+    protected string $toggle_type;
 
     /**
      * The custom settings for the metabox.
@@ -406,6 +414,16 @@ class Metabox implements Renderable
     {
         $this->storage_type = 'custom_table';
         $this->table = $table;
+
+        return $this;
+    }
+
+    /**
+     * Set how conditional logic shows and hides the fields of the metabox.
+     */
+    public function toggleType(string|ToggleType $toggleType): static
+    {
+        $this->toggle_type = OptionValidation::check($toggleType, ToggleType::class);
 
         return $this;
     }

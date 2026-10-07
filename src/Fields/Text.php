@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Pollora\Metabox\Fields;
 
 use Pollora\Metabox\Enums\InputTextType;
+use Pollora\Metabox\Fields\Settings\TextLimiter;
 use Pollora\Metabox\Validation\OptionValidation;
 
 /**
@@ -12,6 +13,8 @@ use Pollora\Metabox\Validation\OptionValidation;
  */
 class Text extends Field
 {
+    use TextLimiter;
+
     /**
      * The type of input field. Defaults to 'text'.
      */
