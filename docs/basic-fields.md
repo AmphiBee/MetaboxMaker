@@ -22,6 +22,7 @@ Text::make('Username', 'username')
 
 ### Methods
 
+- **`type(string|InputTextType $type)`**: Sets the input type: `text` (default), `url`, `email`, `search`, `tel`, `month`, `week` or `datetime-local`.
 - **`placeholder(string $text)`**: Sets the placeholder text for the input field.
 - **`size(int $size)`**: Sets the size of the input field.
 - **`prepend(string $text)`**: Sets the text to prepend to the input field.

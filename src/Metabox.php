@@ -9,6 +9,7 @@ use Pollora\Metabox\Contract\Renderable;
 use Pollora\Metabox\Enums\BoxStyle;
 use Pollora\Metabox\Enums\Context;
 use Pollora\Metabox\Enums\Priority;
+use Pollora\Metabox\Enums\TabStyle;
 use Pollora\Metabox\Fields\Field;
 use Pollora\Metabox\Transformer\EmptyValueFilter;
 use Pollora\Metabox\Transformer\FieldTransformer;
@@ -87,6 +88,46 @@ class Metabox implements Renderable
      * The type of the metabox.
      */
     protected string $type;
+
+    /**
+     * The style of the tabs.
+     */
+    protected string $tab_style;
+
+    /**
+     * Whether the meta box wrapper is displayed around the tabs.
+     */
+    protected bool $tab_wrapper;
+
+    /**
+     * The ID of the tab active by default.
+     */
+    protected string $tab_default_active;
+
+    /**
+     * Whether the last active tab is remembered.
+     */
+    protected bool $tab_remember;
+
+    /**
+     * The validation rules and messages, keyed by input name.
+     */
+    protected array $validation;
+
+    /**
+     * Whether the field values are tracked in post revisions (MB Revision).
+     */
+    protected bool $revision;
+
+    /**
+     * Where the field values are stored, e.g. custom_table.
+     */
+    protected string $storage_type;
+
+    /**
+     * The custom table storing the field values (MB Custom Table).
+     */
+    protected string $table;
 
     /**
      * The custom settings for the metabox.
@@ -278,6 +319,93 @@ class Metabox implements Renderable
     public function type(string $type): static
     {
         $this->type = $type;
+
+        return $this;
+    }
+
+    /**
+     * Set the style of the tabs.
+     */
+    public function tabStyle(string|TabStyle $style): static
+    {
+        $this->tab_style = OptionValidation::check($style, TabStyle::class);
+
+        return $this;
+    }
+
+    /**
+     * Set whether the meta box wrapper is displayed around the tabs.
+     */
+    public function tabWrapper(bool $wrapper = true): static
+    {
+        $this->tab_wrapper = $wrapper;
+
+        return $this;
+    }
+
+    /**
+     * Set the ID of the tab active by default.
+     */
+    public function tabDefaultActive(string $tabId): static
+    {
+        $this->tab_default_active = $tabId;
+
+        return $this;
+    }
+
+    /**
+     * Remember the last active tab when saving.
+     */
+    public function tabRemember(bool $remember = true): static
+    {
+        $this->tab_remember = $remember;
+
+        return $this;
+    }
+
+    /**
+     * Set the validation rules (jQuery Validation) and their error messages.
+     *
+     * Rules and messages are keyed by input name: usually the field ID, but e.g.
+     * 'my_taxonomy[]' for a checkbox list or '_file_my_files[]' for file fields.
+     *
+     * @param  array  $rules  e.g. ['email' => ['required' => true, 'minlength' => 7]]
+     * @param  array  $messages  e.g. ['email' => ['required' => 'Email is required']]
+     */
+    public function validation(array $rules, array $messages = []): static
+    {
+        $this->validation = array_filter(['rules' => $rules, 'messages' => $messages]);
+
+        return $this;
+    }
+
+    /**
+     * Track the field values in post revisions (MB Revision).
+     */
+    public function revision(bool $revision = true): static
+    {
+        $this->revision = $revision;
+
+        return $this;
+    }
+
+    /**
+     * Set where the field values are stored, e.g. custom_table, or post_meta for blocks.
+     */
+    public function storageType(string $storageType): static
+    {
+        $this->storage_type = $storageType;
+
+        return $this;
+    }
+
+    /**
+     * Store the field values in a custom table (MB Custom Table).
+     */
+    public function customTable(string $table): static
+    {
+        $this->storage_type = 'custom_table';
+        $this->table = $table;
 
         return $this;
     }

@@ -1,6 +1,24 @@
 # Upgrade guide
 
-## From amphibee/metabox-maker 1.x to pollora/metabox 2.0
+## From pollora/metabox 2.0 to 2.1
+
+`Block::mode()` only accepts the values Meta Box supports, `edit` and `preview`, and throws an `InvalidArgumentException` for any other value. Meta Box displayed blocks with another value, such as `auto`, in preview mode: replace it with `preview` to keep the same behavior.
+
+```bash
+grep -rn "\->mode('auto')" app config --include='*.php'
+```
+
+```php
+// Before
+Block::make('Hero', 'hero')->mode('auto');
+
+// After
+Block::make('Hero', 'hero')->mode('preview');
+```
+
+Nothing else needs to change: 2.1 only adds methods and fields.
+
+## From amphibee/metabox-maker 1.x to pollora/metabox 2.x
 
 `amphibee/metabox-maker` is now `pollora/metabox`, and the `AmphiBee\MetaboxMaker` namespace is now `Pollora\Metabox`. Version 2.0 has no compatibility layer: the former names no longer exist, so every reference must be renamed. The package API is otherwise unchanged, apart from the few removals listed in step 4.
 
@@ -50,11 +68,12 @@ The `use` statements now start with `Pollora` instead of `AmphiBee`, so they may
 | `Fieldset` field | `FieldsetText`, with `options()` instead of `inputs()` |
 | `Button::setAttributes()` | `attributes()`, available on every field |
 | `Taxonomy::taxonomy()` / `TaxonomyAdvanced::taxonomy()` | `taxonomies()` |
+| `Block::mode('auto')`, or any value other than `edit` and `preview` (since 2.1) | `mode('preview')`: Meta Box already displayed these blocks in preview mode |
 
 Find them with:
 
 ```bash
-grep -rnE "Fields\\\\Fieldset;|Fieldset::make|->setAttributes\(|->taxonomy\(" app config --include='*.php'
+grep -rnE "Fields\\\\Fieldset;|Fieldset::make|->setAttributes\(|->taxonomy\(|->mode\('auto'\)" app config --include='*.php'
 ```
 
 `->taxonomy(` can also match unrelated code: only change the calls made on a Taxonomy or TaxonomyAdvanced field.
