@@ -32,18 +32,20 @@ use Pollora\Metabox\Fields\Utils\Builder;
 abstract class Field implements Renderable
 {
     use AdminColumn;
+
     /**
      * Trait for custom HTML attributes.
      */
     use Attributes;
+
     use Builder;
+
     /**
      * Trait for cloning the field.
      */
     use Clonable;
 
     use Columns;
-
     use ConditionalLogic;
 
     /**
@@ -87,7 +89,6 @@ abstract class Field implements Renderable
     use Sortable;
 
     use Tab;
-
     use Tooltip;
 
     /**
