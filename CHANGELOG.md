@@ -1,5 +1,18 @@
 # Changelog
 
+## 2.2.0 - Unreleased
+
+### Added
+
+- Conditional logic (Meta Box Conditional Logic): `visibleWhen()`, `orVisibleWhen()`, `hiddenWhen()` and `orHiddenWhen()` on fields, headings, dividers and meta boxes, accepting a field instance or an ID, and `Metabox::toggleType()`. Operators are validated.
+- `columns()` on fields (Meta Box Columns).
+- `tooltip()` on fields (Meta Box Tooltip).
+- `adminColumn()` on fields (MB Admin Columns), with named arguments.
+- `maxCharacters()` and `maxWords()` on Text, Textarea and Wysiwyg fields (MB Text Limiter).
+- `Field::getId()`.
+- `ToggleType`, `TooltipPosition` and `AdminColumnLink` enums.
+- Documentation page for the extensions.
+
 ## 2.1.0 - 2026-10-07
 
 ### Added

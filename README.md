@@ -100,7 +100,7 @@ Declare them when Meta Box reads its configuration, for instance in a theme's `f
 - Groups and tabs, with nested fields.
 - Enumerated settings (context, priority, styles…) accept a string or an enum, and an invalid value throws an exception.
 - Blocks restricted to, or excluded from, given post types.
-- `setting()` passes any other Meta Box setting, for instance those of the Conditional Logic, Columns or Admin Columns extensions.
+- Dedicated methods for the Conditional Logic, Columns, Tooltip, Admin Columns and Text Limiter extensions, and `setting()` for any other Meta Box setting.
 - Tested with Pest and analysed with PHPStan.
 
 ## Documentation
@@ -115,6 +115,7 @@ Declare them when Meta Box reads its configuration, for instance in a theme's `f
 - [Layout fields](docs/layout-fields.md): headings, dividers, groups and tabs.
 - [Blocks](docs/blocks.md): Gutenberg blocks with MB Blocks.
 - [Settings pages](docs/settings-pages.md): settings pages with MB Settings Page.
+- [Extensions](docs/extensions.md): conditional logic, columns, tooltips, admin columns and text limits.
 
 For every setting, the reference is the [Meta Box documentation](https://docs.metabox.io).
 

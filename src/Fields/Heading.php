@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Pollora\Metabox\Fields;
 
 use Pollora\Metabox\Contract\Renderable;
+use Pollora\Metabox\Fields\Settings\ConditionalLogic;
 use Pollora\Metabox\Fields\Settings\Description;
 use Pollora\Metabox\Fields\Settings\Tab;
 use Pollora\Metabox\Fields\Utils\Builder;
@@ -18,6 +19,7 @@ use Pollora\Metabox\Fields\Utils\Builder;
 class Heading implements Renderable
 {
     use Builder, Description, Tab;
+    use ConditionalLogic;
 
     /**
      * The type of field.

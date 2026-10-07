@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Pollora\Metabox\Fields;
 
 use Pollora\Metabox\Fields\Settings\EditorParams;
+use Pollora\Metabox\Fields\Settings\TextLimiter;
 
 /**
  * WYSIWYG (Rich Text Editor) field class to handle rich text inputs.
@@ -12,6 +13,7 @@ use Pollora\Metabox\Fields\Settings\EditorParams;
 class Wysiwyg extends Field
 {
     use EditorParams;
+    use TextLimiter;
 
     /**
      * The type of input field. Set to 'date'.
