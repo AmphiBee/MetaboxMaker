@@ -40,9 +40,9 @@ final class Slider extends Field
     public function __construct(string $name, string $id)
     {
         parent::__construct($name, $id);
+        // Leave 'value' unset: Meta Box fills it from the default value (std).
         $this->js_options = [
             'range' => 'min',
-            'value' => 0,
         ];
     }
 
