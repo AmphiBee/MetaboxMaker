@@ -79,7 +79,7 @@ The package does not create tables: create them with a migration, before the met
 
 ### With Laravel migrations (Pollora)
 
-In a Pollora application, [pollora/metabox-bridge](https://github.com/Pollora/metabox-bridge) adds `$table->metaboxObject()` and `$table->metaboxModel()` to migrations, which create the `ID` column and the columns of the model supports. It also provides Eloquent base models that unserialize the values stored by Meta Box and clear its cache when a row is saved. Without it, write the columns yourself:
+In a Pollora application, [pollora/metabox-bridge](https://github.com/Pollora/metabox-bridge) adds the `metaboxObject()` and `metaboxModel()` migration methods, which create the `ID` column and the columns of the model supports. It also provides Eloquent base models that unserialize the values stored by Meta Box and clear its cache when a row is saved. Without it, write the columns yourself:
 
 ```php
 use Illuminate\Database\Schema\Blueprint;
