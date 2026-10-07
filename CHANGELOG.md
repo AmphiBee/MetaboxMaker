@@ -1,5 +1,11 @@
 # Changelog
 
+## 2.4.1 - Unreleased
+
+### Fixed
+
+- Block post type restrictions replaced "all blocks allowed" with the list of server-side registered blocks on every post type as soon as one block was restricted, which removed the blocks registered in JavaScript only. The allowed blocks are now changed only on the post types where a block is removed, and the filter no longer loops over every block for each restriction.
+
 ## 2.4.0 - 2026-10-07
 
 ### Added

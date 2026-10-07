@@ -40,3 +40,16 @@ test('combines allowed and excluded post types', function () {
         ->and(BlockTypeFilter::filterBlockTypes(['meta-box/cards'], editorContext('post')))->toBe([])
         ->and(BlockTypeFilter::filterBlockTypes(['meta-box/cards'], editorContext('page')))->toBe(['meta-box/cards']);
 });
+
+test('keeps all blocks allowed when nothing is removed for the post type', function () {
+    Block::make('Banner', 'banner')->restrictToPostTypes(['page']);
+
+    expect(BlockTypeFilter::filterBlockTypes(true, editorContext('page')))->toBeTrue();
+});
+
+test('keeps an explicit list untouched when nothing is removed', function () {
+    Block::make('Banner', 'banner')->restrictToPostTypes(['page']);
+
+    expect(BlockTypeFilter::filterBlockTypes(['core/paragraph', 'meta-box/banner'], editorContext('page')))
+        ->toBe(['core/paragraph', 'meta-box/banner']);
+});
