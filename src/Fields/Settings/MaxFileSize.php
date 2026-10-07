@@ -12,14 +12,14 @@ trait MaxFileSize
     /**
      * The maximum size of file uploads allowed.
      */
-    protected string $max_file_size;
+    protected int|string $max_file_size;
 
     /**
      * Set the maximum size of file uploads allowed.
      *
-     * @param  string  $max  The maximum size of file uploads.
+     * @param  int|string  $max  The maximum size, in bytes or with a unit: "500kb", "10mb", "1gb".
      */
-    public function maxFileSize(string $max): static
+    public function maxFileSize(int|string $max): static
     {
         $this->max_file_size = $max;
 

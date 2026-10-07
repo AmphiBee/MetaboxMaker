@@ -157,7 +157,9 @@ describe('text limiter', function () {
             ->toMatchArray(['limit' => 60, 'limit_type' => 'character']);
     });
 
-    test('rejects field types MB Text Limiter ignores', function () {
-        Email::make('Email', 'email')->maxCharacters(60);
+    test('is only available on the field types MB Text Limiter supports', function () {
+        expect(method_exists(Email::class, 'maxCharacters'))->toBeFalse();
+
+        Text::make('Email', 'email')->type('email')->maxCharacters(60);
     })->throws(LogicException::class);
 });

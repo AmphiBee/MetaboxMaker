@@ -20,7 +20,7 @@ use Pollora\Metabox\Transformer\FieldTransformer;
 use Pollora\Metabox\Validation\OptionValidation;
 
 /**
- * Fieldset class for creating a field groups.
+ * Meta box: a group of fields registered with Meta Box.
  *
  * @phpstan-consistent-constructor
  */
@@ -30,62 +30,62 @@ class Metabox implements Renderable
     use FieldTransformer;
 
     /**
-     * The context of the fieldset.
+     * The context of the meta box.
      */
     protected string $context;
 
     /**
-     * The fields within the fieldset.
+     * The fields within the meta box.
      */
     protected array $fields = [];
 
     /**
-     * The tabs within the fieldset.
+     * The tabs within the meta box.
      */
     protected array $tabs = [];
 
     /**
-     * The location of the fieldset.
+     * The location of the meta box.
      */
     protected ?Location $location = null;
 
     /**
-     * The priority of the fieldset.
+     * The priority of the meta box.
      */
     protected string|Priority|null $priority = null;
 
     /**
-     * The style of the fieldset.
+     * The style of the meta box.
      */
     protected string $style;
 
     /**
-     * Whether the fieldset is initially closed.
+     * Whether the meta box is initially closed.
      */
     protected bool $closed;
 
     /**
-     * Whether the fieldset is initially hidden.
+     * Whether the meta box is initially hidden.
      */
     protected bool $default_hidden;
 
     /**
-     * Whether the fieldset autosaves its content.
+     * Whether the meta box autosaves its content.
      */
     protected bool $autosave;
 
     /**
-     * Whether the fieldset opens a media modal when clicked.
+     * Whether the meta box opens a media modal when clicked.
      */
     protected bool $media_modal;
 
     /**
-     * The class of the fieldset.
+     * The class of the meta box.
      */
     protected ?string $class = null;
 
     /**
-     * The description of the fieldset.
+     * The description of the meta box.
      */
     protected string $description;
 
@@ -165,10 +165,10 @@ class Metabox implements Renderable
     protected array $settings = [];
 
     /**
-     * Construct a new Fieldset instance.
+     * Construct a new meta box.
      *
-     * @param  string  $title  The title of the fieldset.
-     * @param  string  $id  The unique identifier of the fieldset.
+     * @param  string  $title  The title of the meta box.
+     * @param  string  $id  The unique identifier of the meta box.
      */
     public function __construct(protected string $id, protected string $title)
     {
@@ -186,21 +186,20 @@ class Metabox implements Renderable
     }
 
     /**
-     * Create a new Fieldset instance with default values.
+     * Create a meta box. It is registered with Meta Box automatically.
      *
-     * @param  mixed  ...$args  Required arguments (title, id)
+     * @param  string  $title  The title of the meta box.
+     * @param  string  $id  The ID of the meta box.
      */
-    public static function make(mixed ...$args): static
+    public static function make(string $title, string $id): static
     {
-        [$title, $id] = $args;
-
         return new static($id, $title);
     }
 
     /**
-     * Set the context of the fieldset.
+     * Set the context of the meta box.
      *
-     * @param  string  $context  The context of the fieldset.
+     * @param  string  $context  The context of the meta box.
      */
     public function context(string $context): static
     {
@@ -210,7 +209,7 @@ class Metabox implements Renderable
     }
 
     /**
-     * Add fields to the fieldset.
+     * Add fields to the meta box.
      *
      * @param  array<Field>  $fields  The fields to add.
      */
@@ -222,9 +221,9 @@ class Metabox implements Renderable
     }
 
     /**
-     * Set the tabs of the fieldset.
+     * Set the tabs of the meta box.
      *
-     * @param  array  $tabs  The tabs of the fieldset.
+     * @param  array  $tabs  The tabs of the meta box.
      */
     public function tabs(array $tabs): static
     {
@@ -234,9 +233,9 @@ class Metabox implements Renderable
     }
 
     /**
-     * Set the priority of the fieldset.
+     * Set the priority of the meta box.
      *
-     * @param  string|Priority  $priority  The priority of the fieldset.
+     * @param  string|Priority  $priority  The priority of the meta box.
      */
     public function priority(string|Priority $priority): static
     {
@@ -246,9 +245,9 @@ class Metabox implements Renderable
     }
 
     /**
-     * Set the location of the fieldset.
+     * Set the location of the meta box.
      *
-     * @param  Location  $location  The location of the fieldset.
+     * @param  Location  $location  The location of the meta box.
      */
     public function location(Location $location): static
     {
@@ -258,9 +257,9 @@ class Metabox implements Renderable
     }
 
     /**
-     * Set the style of the fieldset.
+     * Set the style of the meta box.
      *
-     * @param  string|BoxStyle  $style  The style of the fieldset.
+     * @param  string|BoxStyle  $style  The style of the meta box.
      */
     public function style(string|BoxStyle $style): static
     {
@@ -270,9 +269,9 @@ class Metabox implements Renderable
     }
 
     /**
-     * Set whether the fieldset is initially closed.
+     * Set whether the meta box is initially closed.
      *
-     * @param  bool  $closed  Whether the fieldset is initially closed.
+     * @param  bool  $closed  Whether the meta box is initially closed.
      */
     public function closed(bool $closed): static
     {
@@ -282,9 +281,9 @@ class Metabox implements Renderable
     }
 
     /**
-     * Set whether the fieldset is initially hidden.
+     * Set whether the meta box is initially hidden.
      *
-     * @param  bool  $defaultHidden  Whether the fieldset is initially hidden.
+     * @param  bool  $defaultHidden  Whether the meta box is initially hidden.
      */
     public function defaultHidden(bool $defaultHidden): static
     {
@@ -294,9 +293,9 @@ class Metabox implements Renderable
     }
 
     /**
-     * Set whether the fieldset autosaves its content.
+     * Set whether the meta box autosaves its content.
      *
-     * @param  bool  $autosave  Whether the fieldset autosaves its content.
+     * @param  bool  $autosave  Whether the meta box autosaves its content.
      */
     public function autosave(bool $autosave): static
     {
@@ -306,9 +305,9 @@ class Metabox implements Renderable
     }
 
     /**
-     * Set whether the fieldset opens a media modal when clicked.
+     * Set whether the meta box opens a media modal when clicked.
      *
-     * @param  bool  $mediaModal  Whether the fieldset opens a media modal when clicked.
+     * @param  bool  $mediaModal  Whether the meta box opens a media modal when clicked.
      */
     public function mediaModal(bool $mediaModal): static
     {
@@ -318,9 +317,9 @@ class Metabox implements Renderable
     }
 
     /**
-     * Set the class of the fieldset.
+     * Set the class of the meta box.
      *
-     * @param  string|null  $class  The class of the fieldset.
+     * @param  string|null  $class  The class of the meta box.
      */
     public function class(?string $class): static
     {
@@ -330,9 +329,9 @@ class Metabox implements Renderable
     }
 
     /**
-     * Set the description of the fieldset.
+     * Set the description of the meta box.
      *
-     * @param  string  $description  The description of the fieldset.
+     * @param  string  $description  The description of the meta box.
      */
     public function description(string $description): static
     {
@@ -342,9 +341,9 @@ class Metabox implements Renderable
     }
 
     /**
-     * Set the type of the fieldset.
+     * Set the type of the meta box.
      *
-     * @param  string  $type  The type of the fieldset.
+     * @param  string  $type  The type of the meta box.
      */
     public function type(string $type): static
     {
@@ -516,9 +515,9 @@ class Metabox implements Renderable
     }
 
     /**
-     * Build the fieldset and return its settings.
+     * Build the meta box and return its settings.
      *
-     * @return array The settings of the fieldset.
+     * @return array The settings of the meta box.
      */
     public function build(): array
     {

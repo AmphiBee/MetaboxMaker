@@ -37,6 +37,11 @@ class Icon extends SelectAdvanced
     protected ?string $icon_dir = null;
 
     /**
+     * The CSS class added before each icon class, e.g. 'fa' for Font Awesome 4.
+     */
+    protected string $icon_base_class;
+
+    /**
      * Set the icon set.
      *
      * @param  string  $icon_set  Icon set name.
@@ -80,6 +85,16 @@ class Icon extends SelectAdvanced
     public function iconDir(string $icon_dir): static
     {
         $this->icon_dir = $icon_dir;
+
+        return $this;
+    }
+
+    /**
+     * Set the CSS class added before each icon class of a custom icon font, e.g. 'fa' for Font Awesome 4.
+     */
+    public function iconBaseClass(string $class): static
+    {
+        $this->icon_base_class = $class;
 
         return $this;
     }

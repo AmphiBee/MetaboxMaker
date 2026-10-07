@@ -4,16 +4,11 @@ declare(strict_types=1);
 
 namespace Pollora\Metabox\Fields;
 
-use Pollora\Metabox\Fields\Settings\ForceDelete;
-use Pollora\Metabox\Fields\Settings\ImageSize;
-
 /**
- * SingleImage field class for handling single image uploads.
+ * Single image field: selects one image with the media library.
  */
-class SingleImage extends Image
+class SingleImage extends ImageAdvanced
 {
-    use ForceDelete, ImageSize;
-
     /**
      * The type of field.
      */

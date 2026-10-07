@@ -4,7 +4,7 @@ The package provides a variety of HTML5 fields that can be used to create modern
 
 ## Email Field
 
-The `Email` field is used to create email input fields. It extends the `Text` field and sets the input type to `email`.
+The `Email` field is used to create email input fields. It accepts the [input settings](basic-fields.md#input-settings).
 
 ### Example
 
@@ -27,7 +27,7 @@ Email::make('Email Address', 'email_address')
 
 ## Number Field
 
-The `Number` field is used to create number input fields. It extends the `Text` field and sets the input type to `number`. It uses the `RangeParams` trait to provide additional configuration options.
+The `Number` field is used to create number input fields. It accepts the [input settings](basic-fields.md#input-settings), plus `min()`, `max()` and `step()`.
 
 ### Example
 
@@ -50,7 +50,7 @@ Number::make('Quantity', 'quantity')
 
 ## Range Field
 
-The `Range` field is used to create range input fields. It extends the `Text` field and sets the input type to `range`. It uses the `RangeParams` trait to provide additional configuration options.
+The `Range` field is used to create range input fields. It accepts the [input settings](basic-fields.md#input-settings), plus `min()`, `max()` and `step()`.
 
 ### Example
 
@@ -73,7 +73,7 @@ Range::make('Volume', 'volume')
 
 ## Url Field
 
-The `Url` field is used to create URL input fields. It extends the `Text` field and sets the input type to `url`.
+The `Url` field is used to create URL input fields. It accepts the [input settings](basic-fields.md#input-settings).
 
 ### Example
 

@@ -9,7 +9,7 @@ use Pollora\Metabox\Fields\Settings\RangeParams;
 /**
  * Range field class for creating rang input fields.
  */
-class Range extends Text
+class Range extends Input
 {
     use RangeParams;
 

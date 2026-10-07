@@ -4,17 +4,11 @@ declare(strict_types=1);
 
 namespace Pollora\Metabox\Fields;
 
-use Pollora\Metabox\Fields\Settings\ForceDelete;
-use Pollora\Metabox\Fields\Settings\MaxFileUpload;
-use Pollora\Metabox\Fields\Settings\MaxStatus;
-
 /**
- * Video field class for handling video uploads.
+ * Video field: selects or uploads videos with the media library.
  */
-class Video extends Field
+class Video extends Media
 {
-    use ForceDelete, MaxFileUpload, MaxStatus;
-
     /**
      * The type of field.
      */

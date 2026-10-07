@@ -7,7 +7,7 @@ namespace Pollora\Metabox\Fields;
 use Pollora\Metabox\Fields\Settings\MaxFileSize;
 
 /**
- * FileAdvanced field class for handling file uploads.
+ * File upload field: a drag and drop area uploading files to the media library.
  */
 class FileUpload extends FileAdvanced
 {
