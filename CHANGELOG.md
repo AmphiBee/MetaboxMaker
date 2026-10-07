@@ -1,0 +1,46 @@
+# Changelog
+
+## 1.0.0 - Unreleased
+
+First tagged release. Projects previously required `dev-main`: switch to `^1.0` and read the upgrade notes below.
+
+### Upgrade notes
+
+- **Taxonomy / TaxonomyAdvanced fields now use the taxonomy you pass.** The field emitted a `taxonomies` key that Meta Box ignores, so it always listed **categories**, whatever was passed to `taxonomies()`. After upgrading:
+  - fields declared with a real taxonomy now list the right terms, but values saved so far are category IDs and may need to be cleaned up or migrated;
+  - fields declared with something that is not a taxonomy (for instance `taxonomies(['post'])`) only worked by accident and now list nothing: use `taxonomies('category')`;
+  - the `->setting('taxonomy', ...)` workaround still works and can be replaced by `->taxonomy(...)`.
+- **SettingsPage menu icons are now applied.** `iconType()`, `icon()` and `iconSvg()` are converted to the `icon_url` setting read by MB Settings Page. They had no effect before, so settings pages may show a new menu icon.
+- **`Context::Side` and `Context::FormTop`** now hold `side` and `form_top`. The string values `'side'` and `'normal'` behave as before.
+- **Block default category** is `design` instead of `layout`, which no longer exists since WordPress 5.8. Blocks that call `category()` are not affected.
+- **Calling `ajax()`** on Post, Taxonomy and User fields switches the default `select` field type to `select_advanced`, the only one Meta Box supports AJAX with.
+- **Strict types**: library and test files now declare `strict_types`. This only affects code calling the library from a file that declares it too.
+
+### Fixed
+
+- Taxonomy and TaxonomyAdvanced fields emit `taxonomy` instead of `taxonomies`.
+- GoogleMap emits the `map` type instead of `google_map`, which Meta Box rendered as a plain text input.
+- Fieldset emits `fieldset_text`: Meta Box has no `fieldset` type. `Fieldset` is deprecated in favor of `FieldsetText`.
+- `Context::Side` was `seamless` and `Context::FormTop` was `side`.
+- `Metabox::class(null)` threw a `TypeError`.
+- `Location::default()` emitted `post_type` instead of `post_types`. The tests and docs used the same wrong key.
+- SettingsPage icon settings were ignored at runtime.
+- SettingsPage is not registered twice when built inside the `mb_settings_pages` filter, like Metabox.
+- Slider forced its initial position to 0 and ignored `default()`.
+- Block post type restrictions matched any block whose name contained the block ID, such as `meta-box/hero-banner` for `hero`. They now match the exact `meta-box/{id}` name, and `restrictToPostTypes()` and `excludePostTypes()` combine instead of overwriting each other.
+- `ajax()` was silently ignored with the default `select` field type.
+- Group and Tab refused Heading and Divider.
+
+### Added
+
+- `attributes()` and `attribute()` on every field. They were only available on Button, as `setAttributes()`.
+- `class()`, `before()`, `after()`, `saveField()`, `sanitizeCallback()`, `hideFromRest()` and `hideFromFront()` on every field.
+- `Taxonomy::taxonomy()`, an alias of `taxonomies()`.
+- `Location::postTypes()`, `taxonomies()`, `settingsPages()`, `user()`, `comment()` and `andWhere()`.
+- Documentation of the settings shared by all fields (`doc/CommonSettings.md`).
+
+### Internal
+
+- The test suite runs again: `doing_filter()` had no stub since the "already in the rwmb_meta_boxes filter" fix.
+- PHPStan level 5 with the WordPress extension, Pint configuration and GitHub workflows for tests and coding standards, aligned with the Pollora packages.
+- `laravel/pint` moved from `require` to `require-dev`.
