@@ -93,6 +93,83 @@ Metabox::make('Contact', 'contact')
 
 Declare them when Meta Box reads its configuration, for instance in a theme's `functions.php` or on the `init` hook. Values are read with Meta Box's own functions, such as `rwmb_meta( 'venue' )`.
 
+## Why Metabox
+
+Compared with the arrays passed to the `rwmb_meta_boxes` filter:
+
+- Each field type is a class and each setting a method: the IDE completes them, and a typo is an error instead of a setting Meta Box silently ignores.
+- Enumerated values (contexts, styles, operators, block modes…) are checked when they are set, with a message listing the allowed values.
+- Extension settings get readable methods: `visibleWhen()`, `adminColumn(after: 'title')`, `include(Rule::template(...))`.
+- Fields can be referenced by instance in conditions, so renaming a field ID updates them too.
+- The meta box is registered for you: no filter callback to write.
+
+### With Metabox
+
+```php
+use Pollora\Metabox\Fields\Number;
+use Pollora\Metabox\Fields\Select;
+use Pollora\Metabox\Fields\Url;
+use Pollora\Metabox\Location;
+use Pollora\Metabox\Metabox;
+use Pollora\Metabox\Rules\Rule;
+
+$linkType = Select::make('Link type', 'link_type')
+    ->options(['page' => 'Page', 'custom' => 'Custom URL']);
+
+Metabox::make('Call to action', 'cta')
+    ->location(Location::postTypes('page'))
+    ->context('side')
+    ->include(Rule::template('templates/landing.php'))
+    ->fields([
+        $linkType,
+        Url::make('URL', 'cta_url')->visibleWhen($linkType, 'custom')->required(),
+        Number::make('Discount', 'discount')->min(0)->max(100)->columns(6)->tooltip('In percent'),
+    ]);
+```
+
+### The equivalent Meta Box array
+
+```php
+add_filter('rwmb_meta_boxes', function (array $metaBoxes): array {
+    $metaBoxes[] = [
+        'id' => 'cta',
+        'title' => 'Call to action',
+        'post_types' => ['page'],
+        'context' => 'side',
+        'include' => [
+            'relation' => 'AND',
+            'template' => ['templates/landing.php'],
+        ],
+        'fields' => [
+            [
+                'type' => 'select',
+                'name' => 'Link type',
+                'id' => 'link_type',
+                'options' => ['page' => 'Page', 'custom' => 'Custom URL'],
+            ],
+            [
+                'type' => 'url',
+                'name' => 'URL',
+                'id' => 'cta_url',
+                'visible' => ['link_type', '=', 'custom'],
+                'required' => true,
+            ],
+            [
+                'type' => 'number',
+                'name' => 'Discount',
+                'id' => 'discount',
+                'min' => 0,
+                'max' => 100,
+                'columns' => 6,
+                'tooltip' => 'In percent',
+            ],
+        ],
+    ];
+
+    return $metaBoxes;
+});
+```
+
 ## Features
 
 - About 50 field types, from text inputs to files, maps, posts, taxonomies and users, with the settings of each type as methods.
