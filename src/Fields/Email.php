@@ -7,7 +7,7 @@ namespace Pollora\Metabox\Fields;
 /**
  * Email field class for creating email input fields.
  */
-class Email extends Text
+class Email extends Input
 {
     /**
      * The type of input field. Set to 'email'.

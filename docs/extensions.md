@@ -124,7 +124,7 @@ Textarea::make('Summary', 'summary')->maxWords(40);
 - **`maxCharacters(int $limit)`**: Limits the number of characters.
 - **`maxWords(int $limit)`**: Limits the number of words.
 
-MB Text Limiter ignores the other field types, including `Email`, `Url` and `Number` which extend `Text`: on them, both methods throw a `LogicException`.
+MB Text Limiter ignores the other input types: on a `Text` field whose `type()` is changed, for instance to `email`, both methods throw a `LogicException`. To limit other inputs, use `maxLength()`, which the browser enforces without a counter.
 
 ## Include, exclude, show and hide
 

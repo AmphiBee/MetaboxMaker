@@ -185,6 +185,8 @@ Datepicker::make('Event Date', 'event_date')
 - **`inline()`**: Sets whether the date picker should be displayed inline.
 - **`size(int $size)`**: Sets the size of the input field.
 - **`jsOptions(array $options)`**: Sets JavaScript options for the date picker.
+- **`saveFormat(string $format)`**: Sets the PHP date format of the saved value, e.g. `Y-m-d`, when it differs from the displayed format.
+- **`saveAsTimestamp(bool $timestamp = true)`**: Saves the value as a Unix timestamp.
 
 ## DatetimePicker Field
 
@@ -208,6 +210,8 @@ DatetimePicker::make('Event DateTime', 'event_datetime')
 - **`inline()`**: Sets whether the datetime picker should be displayed inline.
 - **`size(int $size)`**: Sets the size of the input field.
 - **`jsOptions(array $options)`**: Sets JavaScript options for the datetime picker.
+- **`saveFormat(string $format)`**: Sets the PHP date format of the saved value, e.g. `Y-m-d`, when it differs from the displayed format.
+- **`saveAsTimestamp(bool $timestamp = true)`**: Saves the value as a Unix timestamp.
 
 ## FieldsetText Field
 
@@ -299,6 +303,7 @@ Icon::make('Select Icon', 'select_icon')
 - **`iconFile(string $icon_file)`**: Sets the path to the icon file.
 - **`iconCss(string|callable $icon_css)`**: Sets the URL to the CSS file or a callable function for enqueuing scripts.
 - **`iconDir(string $icon_dir)`**: Sets the directory containing icon files.
+- **`iconBaseClass(string $class)`**: Sets the CSS class added before each icon class of a custom icon font, e.g. `fa` for Font Awesome 4.
 
 ## KeyValue Field
 
@@ -358,6 +363,11 @@ GoogleMap::make('Location', 'location')
 ### Methods
 
 - **`apiKey(string $api_key)`**: Sets the Google Maps API key.
+- **`defaultLocation(string $location)`**: Sets the default location, as `'latitude,longitude,zoom'`.
+- **`addressField(string $addressField)`**: Sets the ID of the text field used to search the address, or several IDs separated by commas.
+- **`language(string $language)`**: Sets the language of the map, e.g. `fr`.
+- **`region(string $region)`**: Restricts the address search to a region, e.g. `fr`.
+- **`markerDraggable(bool $draggable = true)`**: Sets whether the marker can be dragged. Defaults to `true`.
 
 ## OEmbed Field
 
@@ -394,11 +404,15 @@ OpenStreetMap::make('Location', 'location');
 
 ### Methods
 
-- This field does not have additional methods beyond those inherited from the `Field` class.
+- **`defaultLocation(string $location)`**: Sets the default location, as `'latitude,longitude,zoom'`.
+- **`addressField(string $addressField)`**: Sets the ID of the text field used to search the address, or several IDs separated by commas.
+- **`language(string $language)`**: Sets the language of the map, e.g. `fr`.
+- **`region(string $region)`**: Restricts the address search to a region, e.g. `fr`.
+- **`markerDraggable(bool $draggable = true)`**: Sets whether the marker can be dragged. Defaults to `true`.
 
 ## Password Field
 
-The `Password` field is used to create secure password input fields. It uses the `Size` trait to provide additional configuration options.
+The `Password` field is used to create password input fields. It accepts the [input settings](basic-fields.md#input-settings).
 
 ### Example
 
@@ -412,7 +426,7 @@ Password::make('Password', 'password');
 
 ### Methods
 
-- This field does not have additional methods beyond those inherited from the `Field` class.
+See the [input settings](basic-fields.md#input-settings).
 
 ## SelectAdvanced Field
 
@@ -490,7 +504,7 @@ Switcher::make('Enable Feature', 'enable_feature')
 
 ### Methods
 
-- **`style(string $style)`**: Sets the style of the switch ('rounded' or 'square').
+- **`style(string|SwitchStyle $style)`**: Sets the style of the switch: `rounded` (default) or `square`.
 - **`onLabel(string $on_label)`**: Sets the custom label for the "On" status.
 - **`offLabel(string $off_label)`**: Sets the custom label for the "Off" status.
 
@@ -532,14 +546,15 @@ use Pollora\Metabox\Fields\Timepicker;
 Timepicker::make('Appointment Time', 'appointment_time')
     ->inline()
     ->size(20)
-    ->timepickerOptions(['timeFormat' => 'HH:mm']);
+    ->timeFormat('HH:mm')
+    ->stepMinute(15);
 ```
 
 ### Methods
 
 - **`inline()`**: Sets whether the timepicker should be displayed inline.
 - **`size(int $size)`**: Sets the size of the input field.
-- **`timepickerOptions(array $options)`**: Sets additional options for the timepicker.
+- **jQuery UI Timepicker options**: every [option](https://trentrichardson.com/examples/timepicker/#tp-options) has a method of the same name: `showButtonPanel()`, `timeOnly()`, `timeOnlyShowDate()`, `stepHour()`, `stepMinute()`, `stepSecond()`, `stepMillisec()`, `stepMicrosec()`, `hour()`, `minute()`, `second()`, `millisec()`, `microsec()`, `timezone()`, `controlType()`, `oneLine()`, `currentText()`, `closeText()`, `amNames()`, `pmNames()`, `timeFormat()`, `timeSuffix()`, `timeOnlyTitle()`, `timeText()`, `hourText()`, `minuteText()`, `secondText()`, `millisecText()`, `microsecText()`, `timezoneText()`, `isRTL()`, `hourGrid()`, `minuteGrid()`, `secondGrid()`, `millisecGrid()`, `microsecGrid()`, `showHour()`, `showMinute()`, `showSecond()`, `showMillisec()`, `showMicrosec()`, `showTimezone()`, `hourMin()`, `minuteMin()`, `secondMin()`, `millisecMin()`, `microsecMin()`, `hourMax()`, `minuteMax()`, `secondMax()`, `millisecMax()`, `microsecMax()`, `minDateTime()`, `maxDateTime()`, `minTime()`, `maxTime()`, `alwaysSetTime()`, `addSliderAccess()`, `sliderAccessArgs()`, `showTimepicker()`, `defaultTimeValue()` and `parse()`.
 
 ## Wysiwyg Field
 
@@ -559,6 +574,14 @@ Wysiwyg::make('Content', 'content')
 ### Methods
 
 - **`raw(bool $raw = true)`**: Sets whether to save data in raw format without `wpautop()`.
+- **`mediaButtons(bool $show)`**: Shows or hides the "Add Media" button.
+- **`defaultEditor(string $editor)`**: Sets the editor displayed first: `tinymce` (visual) or `html` (text).
+- **`dragDropUpload(bool $enable)`**: Enables uploading by dragging files into the editor.
+- **`textareaName(string $name)`**, **`textareaRows(int $rows)`**, **`tabindex(int $index)`**, **`tabfocusElements(string $elements)`**: Set the textarea name, rows, tab index and focus elements.
+- **`editorCss(string $css)`** / **`editorClass(string $class)`**: Adds CSS or a CSS class to the editor.
+- **`teeny(bool $useTeeny)`**: Uses the minimal editor toolbar.
+- **`tinymce(array $settings)`** / **`quicktags(array $settings)`**: Passes settings to TinyMCE or to the text editor toolbar.
+- **`maxCharacters(int $limit)`** / **`maxWords(int $limit)`**: Limits the length with a live counter (MB Text Limiter).
 
 ---
 

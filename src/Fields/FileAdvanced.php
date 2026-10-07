@@ -4,18 +4,11 @@ declare(strict_types=1);
 
 namespace Pollora\Metabox\Fields;
 
-use Pollora\Metabox\Fields\Settings\ForceDelete;
-use Pollora\Metabox\Fields\Settings\MaxFileUpload;
-use Pollora\Metabox\Fields\Settings\MaxStatus;
-use Pollora\Metabox\Fields\Settings\MimeType;
-
 /**
- * FileAdvanced field class for handling file uploads.
+ * File advanced field: selects or uploads files with the media library.
  */
-class FileAdvanced extends Field
+class FileAdvanced extends Media
 {
-    use ForceDelete, MaxFileUpload, MaxStatus, MimeType;
-
     /**
      * The type of field.
      */

@@ -42,6 +42,10 @@ Group::make('Group Name', 'group_name')
 ### Methods
 
 - **`fields(array $fields)`**: Adds fields to the group, which can include nested groups.
+- **`collapsible(bool $collapsible = true)`**: Makes the group collapsible.
+- **`defaultState(string|GroupState $state)`**: Sets whether a collapsible group starts `collapsed` or `expanded`.
+- **`saveState(bool $saveState = true)`**: Remembers whether the group is collapsed.
+- **`groupTitle(string $title)`**: Sets the title of a collapsible group. It can include field values, e.g. `{title}`, and `{#}` for the clone number.
 
 ## Heading Field
 

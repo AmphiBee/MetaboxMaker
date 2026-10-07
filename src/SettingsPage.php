@@ -7,6 +7,7 @@ namespace Pollora\Metabox;
 use Exception;
 use Pollora\Metabox\Contract\Renderable;
 use Pollora\Metabox\Enums\IconType;
+use Pollora\Metabox\Enums\SettingsPageStyle;
 use Pollora\Metabox\Enums\TabStyle;
 use Pollora\Metabox\Transformer\EmptyValueFilter;
 use Pollora\Metabox\Validation\OptionValidation;
@@ -150,15 +151,14 @@ class SettingsPage implements Renderable
     }
 
     /**
-     * Create a new SettingsPage instance.
+     * Create a settings page. It is registered with MB Settings Page automatically.
      *
-     * @param  mixed  ...$args  Required arguments (page_title, id)
+     * @param  string  $pageTitle  The title of the page.
+     * @param  string  $id  The ID of the page, used in its URL.
      */
-    public static function make(mixed ...$args): static
+    public static function make(string $pageTitle, string $id): static
     {
-        [$page_title, $id] = $args;
-
-        return new static($page_title, $id);
+        return new static($pageTitle, $id);
     }
 
     public function position(int $position): static
@@ -231,9 +231,9 @@ class SettingsPage implements Renderable
         return $this;
     }
 
-    public function style(string $style): static
+    public function style(string|SettingsPageStyle $style): static
     {
-        $this->style = $style;
+        $this->style = OptionValidation::check($style, SettingsPageStyle::class);
 
         return $this;
     }

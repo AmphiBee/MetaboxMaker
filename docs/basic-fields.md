@@ -23,11 +23,20 @@ Text::make('Username', 'username')
 ### Methods
 
 - **`type(string|InputTextType $type)`**: Sets the input type: `text` (default), `url`, `email`, `search`, `tel`, `month`, `week` or `datetime-local`.
-- **`placeholder(string $text)`**: Sets the placeholder text for the input field.
-- **`size(int $size)`**: Sets the size of the input field.
-- **`prepend(string $text)`**: Sets the text to prepend to the input field.
-- **`append(string $text)`**: Sets the text to append to the input field.
-- **`datalist(string $id, array $options)`**: Sets the datalist options for the input field.
+- **`maxCharacters(int $limit)`** / **`maxWords(int $limit)`**: Limits the length with a live counter (MB Text Limiter). See [Extensions](extensions.md#text-limiter).
+- The [input settings](#input-settings) below.
+
+### Input settings
+
+`Text`, `Email`, `Url`, `Number`, `Range` and `Password` are input fields, and share these settings:
+
+- **`placeholder(string $text)`**: Sets the placeholder text.
+- **`size(int $size)`**: Sets the size of the input.
+- **`prepend(string $text)`** / **`append(string $text)`**: Displays a text before or after the input.
+- **`datalist(string $id, array $options)`**: Suggests values while typing.
+- **`autocomplete(string $autocomplete)`**: Sets the browser autocomplete attribute, e.g. `email`, `tel` or `off`.
+- **`minLength(int $length)`** / **`maxLength(int $length)`**: Sets the minimum or maximum number of characters, checked by the browser.
+- **`pattern(string $pattern)`**: Sets a regular expression the value must match, checked by the browser, e.g. `[0-9]{5}`.
 
 ## Textarea Field
 
@@ -111,13 +120,13 @@ CheckboxList::make('Interests', 'interests')
         'music' => 'Music',
         'movies' => 'Movies',
     ])
-    ->toggleAll();
+    ->toggleAllButton();
 ```
 
 ### Methods
 
 - **`options(array $options)`**: Sets the options for the checkbox list.
-- **`toggleAll()`**: Adds a toggle all option to the checkbox list.
+- **`toggleAllButton()`**: Adds a toggle all option to the checkbox list.
 
 ## Radio Field
 

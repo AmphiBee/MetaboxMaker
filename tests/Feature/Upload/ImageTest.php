@@ -2,10 +2,15 @@
 
 declare(strict_types=1);
 
+use Pollora\Metabox\Enums\MediaPlacement;
+use Pollora\Metabox\Fields\File;
+use Pollora\Metabox\Fields\FileAdvanced;
+use Pollora\Metabox\Fields\FileUpload;
 use Pollora\Metabox\Fields\Image;
 use Pollora\Metabox\Fields\ImageAdvanced;
 use Pollora\Metabox\Fields\ImageUpload;
 use Pollora\Metabox\Fields\SingleImage;
+use Pollora\Metabox\Fields\Video;
 
 test('can configure image field with specific settings', function () {
     $uniqueFilenameCallback = fn ($dir, $name) => $dir.'/custom_'.$name;
@@ -32,11 +37,9 @@ test('can configure image advanced field with specific settings', function () {
     $args = ImageAdvanced::make('Advanced Image Field', 'advanced_image_field')
         ->maxFileUploads(10)
         ->forceDelete(true)
-        ->uploadDir('/custom/uploads')
-        ->uniqueFilenameCallback(fn ($file) => 'unique_'.$file)
         ->showMaxStatus(true)
         ->imageSize('medium')
-        ->newImagePlacement('beginning')
+        ->addTo(MediaPlacement::Beginning)
         ->build();
 
     expect($args)->toMatchArray([
@@ -45,8 +48,6 @@ test('can configure image advanced field with specific settings', function () {
         'id' => 'advanced_image_field',
         'max_file_uploads' => 10,
         'force_delete' => true,
-        'upload_dir' => '/custom/uploads',
-        'unique_filename_callback' => fn ($file) => 'unique_'.$file,
         'max_status' => true,
         'image_size' => 'medium',
         'add_to' => 'beginning',
@@ -74,7 +75,7 @@ test('can configure image upload field with specific settings', function () {
         ->forceDelete(true)
         ->showMaxStatus(true)
         ->imageSize('medium')
-        ->newImagePlacement('beginning')
+        ->addTo('beginning')
         ->maxFileSize('2mb')
         ->build();
 
@@ -90,3 +91,22 @@ test('can configure image upload field with specific settings', function () {
         'max_file_size' => '2mb',
     ]);
 });
+
+test('media library fields share the media settings', function (string $class) {
+    expect($class::make('Media', 'media')
+        ->maxFileUploads(3)
+        ->mimeType('image/jpeg')
+        ->addTo('end')
+        ->build())->toMatchArray(['max_file_uploads' => 3, 'mime_type' => 'image/jpeg', 'add_to' => 'end']);
+})->with([FileAdvanced::class, FileUpload::class, ImageAdvanced::class, ImageUpload::class, SingleImage::class, Video::class]);
+
+test('upload directory settings are only on classic file fields', function () {
+    expect(method_exists(File::class, 'uploadDir'))->toBeTrue()
+        ->and(method_exists(Image::class, 'uploadDir'))->toBeTrue()
+        ->and(method_exists(ImageAdvanced::class, 'uploadDir'))->toBeFalse()
+        ->and(method_exists(SingleImage::class, 'uploadDir'))->toBeFalse();
+});
+
+test('media placement is validated', function () {
+    ImageAdvanced::make('Gallery', 'gallery')->addTo('middle');
+})->throws(InvalidArgumentException::class);

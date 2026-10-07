@@ -1,5 +1,29 @@
 # Changelog
 
+## 2.4.0 - Unreleased
+
+### Added
+
+- Typed `make()` signatures: `Field::make(string $name, string $id)`, `Metabox::make(string $title, string $id)`, `SettingsPage::make(string $pageTitle, string $id)`, `Heading::make(string $name = '')` and `Divider::make()`. They give IDE completion, static analysis and named arguments.
+- `Input` base class for `Text`, `Email`, `Url`, `Number`, `Range` and `Password`, with `autocomplete()`, `minLength()`, `maxLength()` and `pattern()` on top of `size()`, `prepend()`, `append()` and `datalist()`.
+- `Media` base class for the media library fields (`FileAdvanced`, `FileUpload`, `ImageAdvanced`, `ImageUpload`, `SingleImage`, `Video`), with `addTo()` on all of them.
+- `markerDraggable()` on `GoogleMap` and `OpenStreetMap`, `iconBaseClass()` on `Icon`, `cloneEmptyStart()` on every field, `mimeType()` on `File` and `Image`, `imageSize()` on `Image`.
+- `MediaPlacement`, `SwitchStyle` and `SettingsPageStyle` enums.
+- A test keeps the documentation in sync with the public API.
+
+### Changed
+
+- `Email`, `Url`, `Number`, `Range` and `Password` extend `Input` instead of `Text`: they no longer have `type()`, and `Email`, `Url`, `Number` and `Range` are no longer instances of `Text`.
+- `ImageAdvanced`, `ImageUpload` and `SingleImage` extend `Media` instead of `Image`, like in Meta Box: they no longer have `uploadDir()` and `uniqueFilenameCallback()`, which Meta Box ignores for media library fields.
+- `ImageAdvanced::newImagePlacement()` is replaced by `addTo()`, available on every media library field.
+- `Switcher::style()` only accepts `rounded` and `square`, and `SettingsPage::style()` only accepts `boxes` and `no-boxes`.
+- `maxFileSize()` accepts a number of bytes as well as a string such as `10mb`.
+- `Renderable` no longer declares `make()`.
+
+### Fixed
+
+- Documentation: wrong method names (`maxFileUpload()`, `maxStatus()`, `toggleAll()`, `timepickerOptions()`), undocumented methods, and upload fields described with the wrong storage.
+
 ## 2.3.0 - 2026-10-07
 
 ### Added

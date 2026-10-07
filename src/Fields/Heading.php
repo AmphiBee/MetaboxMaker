@@ -34,13 +34,13 @@ class Heading implements Renderable
     public function __construct(protected string $name) {}
 
     /**
-     * Static make method to create a new instance of the Heading.
+     * Create a heading.
      *
-     * @param  mixed  ...$args  Required arguments (name)
+     * @param  string  $name  The heading text.
      */
-    public static function make(mixed ...$args): static
+    public static function make(string $name = ''): static
     {
-        return new static($args[0] ?? '');
+        return new static($name);
     }
 
     /**

@@ -50,7 +50,7 @@ SettingsPage::make('Theme Options', 'theme-options')
 
 - **`capability(string $capability)`**: Sets the required capability to access the page.
 - **`class(string $class)`**: Adds a custom CSS class.
-- **`style(string $style)`**: Sets the page style (`boxes` or `no-boxes`).
+- **`style(string|SettingsPageStyle $style)`**: Sets the page style: `boxes` (default, each meta box is a box) or `no-boxes` (each meta box is a section, like the WordPress settings pages).
 - **`columns(int $columns)`**: Sets the number of columns (1 or 2).
 
 #### Tabs Configuration
@@ -62,6 +62,7 @@ SettingsPage::make('Theme Options', 'theme-options')
 
 - **`submitButton(string $text)`**: Customizes the submit button text.
 - **`message(string $message)`**: Customizes the message displayed when saving.
+- **`helpTabs(array $tabs)`**: Adds tabs to the Help panel of the page, each an array with a `title` and a `content` or a `callback`.
 
 #### Customizer Configuration
 

@@ -25,11 +25,9 @@ class Divider implements Renderable
     protected string $type = 'divider';
 
     /**
-     * Factory method for creating a new instance of the Divider class.
-     *
-     * @param  mixed  ...$args  Not used for Divider
+     * Create a divider.
      */
-    public static function make(mixed ...$args): static
+    public static function make(): static
     {
         return new static;
     }

@@ -4,6 +4,9 @@ declare(strict_types=1);
 
 namespace Pollora\Metabox\Fields;
 
+use Pollora\Metabox\Enums\SwitchStyle;
+use Pollora\Metabox\Validation\OptionValidation;
+
 /**
  * Switch field class for creating toggle switches in forms.
  */
@@ -34,9 +37,9 @@ class Switcher extends Field
      *
      * @param  string  $style  The style of the switch ('rounded' or 'square').
      */
-    public function style(string $style): static
+    public function style(string|SwitchStyle $style): static
     {
-        $this->style = $style;
+        $this->style = OptionValidation::check($style, SwitchStyle::class);
 
         return $this;
     }

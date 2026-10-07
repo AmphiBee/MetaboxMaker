@@ -1,37 +1,25 @@
 # Upload fields
 
-The package provides a variety of fields specifically designed for handling file uploads. This document covers the upload-specific fields available in the package and how to use them.
+There are two families of upload fields:
 
-## File Field
+- **Media library fields** select or upload files with the WordPress media library: `FileAdvanced`, `FileUpload`, `ImageAdvanced`, `ImageUpload`, `SingleImage` and `Video`. They share the [media settings](#media-settings).
+- **Classic upload fields** use a plain file input: `File` and `Image`. Files are added to the media library, or uploaded to a custom directory with `uploadDir()`.
 
-The `File` field is used to handle file uploads. It uses several traits to provide additional configuration options for file handling.
+`FileInput` is a text input for one file URL, typed or picked from the media library.
 
-### Example
+## Media settings
 
-```php
-<?php
+`FileAdvanced`, `FileUpload`, `ImageAdvanced`, `ImageUpload`, `SingleImage` and `Video` share these settings:
 
-use Pollora\Metabox\Fields\File;
-
-File::make('Upload File', 'upload_file')
-    ->forceDelete(true)
-    ->maxFileUpload(5)
-    ->uniqueFilenameCallback(function($filename) {
-        return uniqid() . '-' . $filename;
-    })
-    ->uploadDir('/custom/upload/dir');
-```
-
-### Methods
-
-- **`forceDelete(bool $forceDelete = true)`**: Sets whether to force delete files when removed.
-- **`maxFileUpload(int $maxFiles)`**: Sets the maximum number of files that can be uploaded.
-- **`uniqueFilenameCallback(callable $callback)`**: Sets a callback function to generate unique filenames.
-- **`uploadDir(string $dir)`**: Sets the custom upload directory.
+- **`maxFileUploads(int $max)`**: Sets the maximum number of files.
+- **`showMaxStatus(bool $show = true)`**: Shows how many files can still be added.
+- **`mimeType(string $type)`**: Restricts the files to a MIME type, e.g. `application/pdf` or `image/jpeg,image/png`.
+- **`addTo(string|MediaPlacement $placement)`**: Sets where new files are added: at the `end` (default) or at the `beginning`.
+- **`forceDelete(bool $force = true)`**: Deletes the files from the media library when they are removed from the field. A file used elsewhere is deleted too.
 
 ## FileAdvanced Field
 
-The `FileAdvanced` field is an extension of the `File` field, providing more advanced file handling options.
+The `FileAdvanced` field selects or uploads files with the media library.
 
 ### Example
 
@@ -40,41 +28,18 @@ The `FileAdvanced` field is an extension of the `File` field, providing more adv
 
 use Pollora\Metabox\Fields\FileAdvanced;
 
-FileAdvanced::make('Upload Advanced File', 'upload_advanced_file')
-    ->forceDelete(true)
-    ->maxFileUpload(10)
-    ->maxStatus(true)
-    ->mimeType('image/jpeg');
+FileAdvanced::make('Brochures', 'brochures')
+    ->maxFileUploads(10)
+    ->mimeType('application/pdf');
 ```
 
 ### Methods
 
-- **`forceDelete(bool $forceDelete = true)`**: Sets whether to force delete files when removed.
-- **`maxFileUpload(int $maxFiles)`**: Sets the maximum number of files that can be uploaded.
-- **`maxStatus(bool $maxStatus = true)`**: Sets whether to display the maximum file upload status.
-- **`mimeType(string $mimeType)`**: Sets the allowed MIME type for file uploads.
-
-## FileInput Field
-
-The `FileInput` field is used to create a simple text input for uploading a single file.
-
-### Example
-
-```php
-<?php
-
-use Pollora\Metabox\Fields\FileInput;
-
-FileInput::make('Upload Single File', 'upload_single_file');
-```
-
-### Methods
-
-- This field does not have additional methods beyond those inherited from the `Field` class.
+See the [media settings](#media-settings).
 
 ## FileUpload Field
 
-The `FileUpload` field is an extension of the `FileAdvanced` field, providing additional options for file size.
+The `FileUpload` field is a drag and drop area uploading files to the media library.
 
 ### Example
 
@@ -83,85 +48,41 @@ The `FileUpload` field is an extension of the `FileAdvanced` field, providing ad
 
 use Pollora\Metabox\Fields\FileUpload;
 
-FileUpload::make('Upload File with Size Limit', 'upload_file_size_limit')
-    ->forceDelete(true)
-    ->maxFileUpload(5)
-    ->maxFileSize(1048576); // 1MB in bytes
+FileUpload::make('Attachments', 'attachments')
+    ->maxFileUploads(5)
+    ->maxFileSize('10mb');
 ```
 
 ### Methods
 
-- **`forceDelete(bool $forceDelete = true)`**: Sets whether to force delete files when removed.
-- **`maxFileUpload(int $maxFiles)`**: Sets the maximum number of files that can be uploaded.
-- **`maxFileSize(int $sizeInBytes)`**: Sets the maximum file size allowed for uploads.
-
-## Image Field
-
-The `Image` field is used to handle image uploads. It extends the `File` field.
-
-### Example
-
-```php
-<?php
-
-use Pollora\Metabox\Fields\Image;
-
-Image::make('Upload Image', 'upload_image')
-    ->forceDelete(true)
-    ->maxFileUpload(5);
-```
-
-### Methods
-
-- Inherits all methods from the `File` field.
+- **`maxFileSize(int|string $max)`**: Sets the maximum file size, in bytes or with a unit: `500kb`, `10mb`, `1gb`.
+- The [media settings](#media-settings).
 
 ## ImageAdvanced Field
 
-The `ImageAdvanced` field is an extension of the `Image` field, providing more advanced image handling options.
+The `ImageAdvanced` field selects or uploads images with the media library.
 
 ### Example
 
 ```php
 <?php
 
+use Pollora\Metabox\Enums\MediaPlacement;
 use Pollora\Metabox\Fields\ImageAdvanced;
 
-ImageAdvanced::make('Upload Advanced Image', 'upload_advanced_image')
+ImageAdvanced::make('Gallery', 'gallery')
     ->imageSize('thumbnail')
-    ->maxStatus(true)
-    ->newImagePlacement('beginning');
+    ->addTo(MediaPlacement::Beginning);
 ```
 
 ### Methods
 
-- **`imageSize(string $size)`**: Sets the image size for display.
-- **`maxStatus(bool $maxStatus = true)`**: Sets whether to display the maximum file upload status.
-- **`newImagePlacement(string $position)`**: Sets the placement of new images ('beginning' or 'end').
-
-## SingleImage Field
-
-The `SingleImage` field is used to handle single image uploads. It extends the `Image` field.
-
-### Example
-
-```php
-<?php
-
-use Pollora\Metabox\Fields\SingleImage;
-
-SingleImage::make('Upload Single Image', 'upload_single_image')
-    ->forceDelete(true)
-    ->imageSize('medium');
-```
-
-### Methods
-
-- **`forceDelete(bool $forceDelete = true)`**: Sets whether to force delete files when removed.
-- **`imageSize(string $size)`**: Sets the image size for display.
+- **`imageSize(string $size)`**: Sets the image size displayed in the field, e.g. `thumbnail` or `medium`.
+- The [media settings](#media-settings).
 
 ## ImageUpload Field
 
-The `ImageUpload` field is an extension of the `ImageAdvanced` field, providing additional options for file size and upload control.
+The `ImageUpload` field is a drag and drop area uploading images to the media library.
 
 ### Example
 
@@ -170,21 +91,40 @@ The `ImageUpload` field is an extension of the `ImageAdvanced` field, providing 
 
 use Pollora\Metabox\Fields\ImageUpload;
 
-ImageUpload::make('Upload Image with Size Limit', 'upload_image_size_limit')
-    ->forceDelete(true)
-    ->maxFileUpload(5)
-    ->maxFileSize(1048576); // 1MB in bytes
+ImageUpload::make('Photos', 'photos')
+    ->maxFileUploads(5)
+    ->maxFileSize('2mb');
 ```
 
 ### Methods
 
-- **`forceDelete(bool $forceDelete = true)`**: Sets whether to force delete files when removed.
-- **`maxFileUpload(int $maxFiles)`**: Sets the maximum number of files that can be uploaded.
-- **`maxFileSize(int $sizeInBytes)`**: Sets the maximum file size allowed for uploads.
+- **`imageSize(string $size)`**: Sets the image size displayed in the field.
+- **`maxFileSize(int|string $max)`**: Sets the maximum file size, in bytes or with a unit.
+- The [media settings](#media-settings).
+
+## SingleImage Field
+
+The `SingleImage` field selects one image with the media library.
+
+### Example
+
+```php
+<?php
+
+use Pollora\Metabox\Fields\SingleImage;
+
+SingleImage::make('Cover', 'cover')
+    ->imageSize('medium');
+```
+
+### Methods
+
+- **`imageSize(string $size)`**: Sets the image size displayed in the field.
+- The [media settings](#media-settings).
 
 ## Video Field
 
-The `Video` field is used to handle video uploads. It provides options for file upload control.
+The `Video` field selects or uploads videos with the media library.
 
 ### Example
 
@@ -193,17 +133,79 @@ The `Video` field is used to handle video uploads. It provides options for file 
 
 use Pollora\Metabox\Fields\Video;
 
-Video::make('Upload Video', 'upload_video')
-    ->forceDelete(true)
-    ->maxFileUpload(3)
-    ->maxStatus(true);
+Video::make('Videos', 'videos')
+    ->maxFileUploads(3)
+    ->showMaxStatus();
 ```
 
 ### Methods
 
-- **`forceDelete(bool $forceDelete = true)`**: Sets whether to force delete files when removed.
-- **`maxFileUpload(int $maxFiles)`**: Sets the maximum number of files that can be uploaded.
-- **`maxStatus(bool $maxStatus = true)`**: Sets whether to display the maximum file upload status.
+See the [media settings](#media-settings).
+
+## File Field
+
+The `File` field uploads files with a plain file input. They are added to the media library, unless `uploadDir()` sets a custom directory.
+
+### Example
+
+```php
+<?php
+
+use Pollora\Metabox\Fields\File;
+
+File::make('Contract', 'contract')
+    ->maxFileUploads(1)
+    ->mimeType('application/pdf')
+    ->uploadDir(WP_CONTENT_DIR.'/contracts')
+    ->uniqueFilenameCallback(fn (string $dir, string $name, string $ext) => uniqid().$ext);
+```
+
+### Methods
+
+- **`maxFileUploads(int $max)`**: Sets the maximum number of files.
+- **`mimeType(string $type)`**: Restricts the files to a MIME type.
+- **`forceDelete(bool $force = true)`**: Deletes the files from the media library when they are removed from the field.
+- **`uploadDir(string $dir)`**: Uploads the files to a custom directory instead of the media library. The absolute path must be inside the WordPress directory (`ABSPATH`): Meta Box ignores the upload otherwise.
+- **`uniqueFilenameCallback(callable $callback)`**: Sets the callback naming the uploaded files in a custom directory. It receives the directory, the file name and the extension, like the callback of `wp_unique_filename()`.
+
+## Image Field
+
+The `Image` field uploads images with a plain file input, like the `File` field.
+
+### Example
+
+```php
+<?php
+
+use Pollora\Metabox\Fields\Image;
+
+Image::make('Logo', 'logo')
+    ->maxFileUploads(1)
+    ->imageSize('thumbnail');
+```
+
+### Methods
+
+- **`imageSize(string $size)`**: Sets the image size displayed in the field.
+- The methods of the `File` field.
+
+## FileInput Field
+
+The `FileInput` field is a text input for one file URL: typed, even for a file hosted elsewhere, or picked from the media library. It saves the URL.
+
+### Example
+
+```php
+<?php
+
+use Pollora\Metabox\Fields\FileInput;
+
+FileInput::make('Download', 'download');
+```
+
+### Methods
+
+This field only has the [common field settings](common-settings.md).
 
 ---
 

@@ -44,6 +44,7 @@ Text::make('Product code', 'product_code')
 - **`cloneAsMultiple(bool $cloneAsMultiple = true)`**: Saves clones as multiple meta rows.
 - **`minClone(int $minClone)`** / **`maxClone(int|string $maxClone)`**: Sets the number of clones allowed.
 - **`addButton(string $addButton)`**: Sets the text of the "add clone" button.
+- **`cloneEmptyStart(bool $cloneEmptyStart = true)`**: Starts without any clone: only the add button is displayed.
 
 **Layout**
 

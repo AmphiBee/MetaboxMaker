@@ -1,5 +1,26 @@
 # Upgrade guide
 
+## From pollora/metabox 2.3 to 2.4
+
+Most projects have nothing to change. Check the following calls:
+
+| Before | After |
+|---|---|
+| `Email::make(...)->type(...)`, same for `Url`, `Number`, `Range` | Use the class of the wanted type, or `Text::make(...)->type(...)` |
+| `$field instanceof Text` for an `Email`, `Url`, `Number` or `Range` field | `$field instanceof Input` |
+| `ImageAdvanced`, `ImageUpload` or `SingleImage` with `->uploadDir()` or `->uniqueFilenameCallback()` | Remove the call: Meta Box ignored it for these fields. To upload to a custom directory, use `Image` |
+| `ImageAdvanced::make(...)->newImagePlacement('beginning')` | `->addTo('beginning')` or `->addTo(MediaPlacement::Beginning)` |
+| `Switcher::make(...)->style(...)` with a value other than `rounded` or `square` | `rounded` or `square`: Meta Box ignored other values |
+| `SettingsPage::make(...)->style(...)` with a value other than `boxes` or `no-boxes` | `boxes` or `no-boxes` |
+
+Find them with:
+
+```bash
+grep -rnE "(Email|Url|Number|Range)::make\([^;]*->type\(|instanceof Text\b|->uploadDir\(|->uniqueFilenameCallback\(|->newImagePlacement\(|->style\(" app config --include='*.php'
+```
+
+`->uploadDir()` and `->style()` also match valid calls, on `File` and `Image` or with a supported value: only change the ones listed above.
+
 ## From pollora/metabox 2.2 to 2.3
 
 Nothing needs to change: 2.3 only adds methods.
@@ -96,11 +117,14 @@ The `use` statements now start with `Pollora` instead of `AmphiBee`, so they may
 | `Button::setAttributes()` | `attributes()`, available on every field |
 | `Taxonomy::taxonomy()` / `TaxonomyAdvanced::taxonomy()` | `taxonomies()` |
 | `Block::mode('auto')`, or any value other than `edit` and `preview` (since 2.1) | `mode('preview')`: Meta Box already displayed these blocks in preview mode |
+| `ImageAdvanced::newImagePlacement()` (since 2.4) | `addTo()` |
+| `uploadDir()` / `uniqueFilenameCallback()` on `ImageAdvanced`, `ImageUpload` or `SingleImage` (since 2.4) | Remove the call: Meta Box ignored it for these fields |
+| `type()` on `Email`, `Url`, `Number` or `Range` (since 2.4) | The class of the wanted type, or `Text::make(...)->type(...)` |
 
 Find them with:
 
 ```bash
-grep -rnE "Fields\\\\Fieldset;|Fieldset::make|->setAttributes\(|->taxonomy\(|->mode\('auto'\)" app config --include='*.php'
+grep -rnE "Fields\\\\Fieldset;|Fieldset::make|->setAttributes\(|->taxonomy\(|->mode\('auto'\)|->newImagePlacement\(|->uploadDir\(|->uniqueFilenameCallback\(" app config --include='*.php'
 ```
 
 `->taxonomy(` can also match unrelated code: only change the calls made on a Taxonomy or TaxonomyAdvanced field.

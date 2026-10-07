@@ -40,6 +40,11 @@ trait Clonable
     protected string $add_button;
 
     /**
+     * Whether the field starts without any clone, only with the add button.
+     */
+    protected bool $clone_empty_start;
+
+    /**
      * Indicates whether the field can be cloned.
      *
      * @param  bool  $clone  Defaults to true.
@@ -101,6 +106,16 @@ trait Clonable
     public function addButton(string $addButton): static
     {
         $this->add_button = $addButton;
+
+        return $this;
+    }
+
+    /**
+     * Start without any clone: only the add button is displayed.
+     */
+    public function cloneEmptyStart(bool $cloneEmptyStart = true): static
+    {
+        $this->clone_empty_start = $cloneEmptyStart;
 
         return $this;
     }

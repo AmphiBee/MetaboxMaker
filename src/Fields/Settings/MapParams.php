@@ -25,6 +25,11 @@ trait MapParams
     protected string $region;
 
     /**
+     * Whether the marker can be dragged to change the location.
+     */
+    protected bool $marker_draggable;
+
+    /**
      * Set the default location coordinates.
      *
      * @param  string  $location  Default location in 'latitude,longitude' format.
@@ -68,6 +73,16 @@ trait MapParams
     public function region(string $region): static
     {
         $this->region = $region;
+
+        return $this;
+    }
+
+    /**
+     * Set whether the marker can be dragged to change the location. Defaults to true.
+     */
+    public function markerDraggable(bool $draggable = true): static
+    {
+        $this->marker_draggable = $draggable;
 
         return $this;
     }
