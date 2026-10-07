@@ -19,6 +19,7 @@ MetaboxMaker is designed to simplify the process of creating metaboxes and custo
 To help you get started, we've organized the documentation into several sections:
 
 - **[Metabox](Metabox.md)**: Learn how to create and manage metaboxes with MetaboxMaker.
+- **[Common Settings](CommonSettings.md)**: Settings shared by every field: attributes, cloning, CSS class, sanitization, visibility.
 - **[Basics](Basics.md)**: Discover the basic concepts to get started with MetaboxMaker.
 - **[Advanced Fields](Advanced.md)**: Learn about the advanced fields available in MetaboxMaker, including autocomplete, sliders, and more.
 - **[HTML5 Fields](Html5.md)**: Discover the HTML5 fields supported by MetaboxMaker, such as email, number, and URL inputs.

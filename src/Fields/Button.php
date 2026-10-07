@@ -13,15 +13,11 @@ declare(strict_types=1);
 
 namespace AmphiBee\MetaboxMaker\Fields;
 
-use AmphiBee\MetaboxMaker\Fields\Settings\Attributes;
-
 /**
  * Button field class for creating button elements.
  */
 class Button extends Field
 {
-    use Attributes;
-
     /**
      * The type of input field. Set to 'button'.
      */
