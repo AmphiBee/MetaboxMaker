@@ -13,6 +13,8 @@ use Pollora\Metabox\Enums\TabStyle;
 use Pollora\Metabox\Enums\ToggleType;
 use Pollora\Metabox\Fields\Field;
 use Pollora\Metabox\Fields\Settings\ConditionalLogic;
+use Pollora\Metabox\Rules\Rule;
+use Pollora\Metabox\Rules\RuleGroup;
 use Pollora\Metabox\Transformer\EmptyValueFilter;
 use Pollora\Metabox\Transformer\FieldTransformer;
 use Pollora\Metabox\Validation\OptionValidation;
@@ -136,6 +138,26 @@ class Metabox implements Renderable
      * How conditional logic shows and hides elements.
      */
     protected string $toggle_type;
+
+    /**
+     * The rules registering the meta box (MB Include Exclude).
+     */
+    protected array $include;
+
+    /**
+     * The rules not registering the meta box (MB Include Exclude).
+     */
+    protected array $exclude;
+
+    /**
+     * The rules displaying the meta box (MB Show Hide).
+     */
+    protected array $show;
+
+    /**
+     * The rules hiding the meta box (MB Show Hide).
+     */
+    protected array $hide;
 
     /**
      * The custom settings for the metabox.
@@ -429,6 +451,48 @@ class Metabox implements Renderable
     }
 
     /**
+     * Only register the meta box when the rule matches, e.g. Rule::template('landing.php'),
+     * evaluated when the edit screen loads (MB Include Exclude).
+     */
+    public function include(Rule|RuleGroup $rule): static
+    {
+        $this->include = $this->buildRules($rule, 'include');
+
+        return $this;
+    }
+
+    /**
+     * Do not register the meta box when the rule matches (MB Include Exclude).
+     */
+    public function exclude(Rule|RuleGroup $rule): static
+    {
+        $this->exclude = $this->buildRules($rule, 'exclude');
+
+        return $this;
+    }
+
+    /**
+     * Display the meta box when the rule matches, updated live while editing,
+     * e.g. when the page template changes (MB Show Hide).
+     */
+    public function show(Rule|RuleGroup $rule): static
+    {
+        $this->show = $this->buildRules($rule, 'show');
+
+        return $this;
+    }
+
+    /**
+     * Hide the meta box when the rule matches, updated live while editing (MB Show Hide).
+     */
+    public function hide(Rule|RuleGroup $rule): static
+    {
+        $this->hide = $this->buildRules($rule, 'hide');
+
+        return $this;
+    }
+
+    /**
      * Set a custom setting for the metabox.
      *
      * @param  string  $key  The setting key.
@@ -473,5 +537,13 @@ class Metabox implements Renderable
         }
 
         return $metaboxData + $this->location->get();
+    }
+
+    /**
+     * Convert a rule or a group of rules to the Meta Box settings.
+     */
+    protected function buildRules(Rule|RuleGroup $rule, string $method): array
+    {
+        return ($rule instanceof Rule ? Rule::all($rule) : $rule)->toArray($method);
     }
 }

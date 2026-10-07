@@ -126,14 +126,58 @@ Textarea::make('Summary', 'summary')->maxWords(40);
 
 MB Text Limiter ignores the other field types, including `Email`, `Url` and `Number` which extend `Text`: on them, both methods throw a `LogicException`.
 
-## Other extensions
+## Include, exclude, show and hide
 
-Pass the settings of the other extensions, such as Include Exclude or Show Hide, with `setting()`:
+Registers or displays a whole meta box depending on the post, the user or the edit screen. Requires [MB Include Exclude](https://docs.metabox.io/extensions/meta-box-include-exclude/) for `include()` and `exclude()`, and [MB Show Hide](https://docs.metabox.io/extensions/meta-box-show-hide/) for `show()` and `hide()`.
 
 ```php
+<?php
+
+use Pollora\Metabox\Metabox;
+use Pollora\Metabox\Rules\Rule;
+
 Metabox::make('Homepage', 'homepage')
-    ->setting('include', ['template' => ['front-page.php']]);
+    ->include(Rule::template('front-page.php'));
+
+Metabox::make('Editors only', 'editors')
+    ->include(Rule::all(Rule::userRole('editor', 'administrator'), Rule::template('landing.php')))
+    ->exclude(Rule::any(Rule::postIds(12, 14), Rule::isChild()));
+
+Metabox::make('Video', 'video')
+    ->show(Rule::postFormat('video'));
 ```
+
+`include()` and `exclude()` are checked when the edit screen loads: the meta box is registered or not. `show()` and `hide()` are applied in the browser and follow the changes made while editing, such as a new page template or post format.
+
+Combine rules with `Rule::all()` (every rule must match) or `Rule::any()` (one rule is enough). A rule accepts several values and matches any of them: `Rule::userRole('editor', 'administrator')`.
+
+### Methods
+
+- **`include(Rule|RuleGroup $rule)`** / **`exclude(Rule|RuleGroup $rule)`**: Registers, or does not register, the meta box when the rule matches.
+- **`show(Rule|RuleGroup $rule)`** / **`hide(Rule|RuleGroup $rule)`**: Displays or hides the meta box when the rule matches.
+
+### Rules
+
+Rule | `include` / `exclude` | `show` / `hide`
+--- | :---: | :---:
+`Rule::postIds(int ...$ids)` | ✓ |
+`Rule::parentIds(int ...$ids)` | ✓ |
+`Rule::slugs(string ...$slugs)` | ✓ |
+`Rule::template(string ...$templates)` | ✓ | ✓
+`Rule::postFormat(string ...$formats)` | | ✓
+`Rule::category(int\|string ...$categories)` | ✓ | ✓ (IDs and names, not slugs)
+`Rule::tag(int\|string ...$tags)` | ✓ |
+`Rule::terms(string $taxonomy, int\|string ...$terms)` | ✓ | ✓ (IDs and names, not slugs)
+`Rule::parentCategory(...)`, `Rule::parentTag(...)`, `Rule::parentTerms($taxonomy, ...)` | ✓ |
+`Rule::isChild(bool $isChild = true)` | ✓ | ✓
+`Rule::userRole(string ...$roles)` | ✓ |
+`Rule::userId(int ...$ids)` | ✓ |
+`Rule::capability(string ...$capabilities)` | ✓ |
+`Rule::editedUserRole(...)`, `Rule::editedUserId(...)` (MB User Meta) | ✓ |
+`Rule::custom(callable $callback)`: receives the meta box settings, returns a boolean | ✓ |
+`Rule::inputValue(string $selector, mixed $value)`: an input of the edit screen has a value, `true` for a checked checkbox | | ✓
+
+Passing a rule to a method that does not support it throws an `InvalidArgumentException`, instead of being ignored. Meta Box cannot combine two rules with the same key with AND, so `Rule::all(Rule::template('a.php'), Rule::template('b.php'))` throws a `LogicException`: use `Rule::template('a.php', 'b.php')`, which matches either template.
 
 ---
 
