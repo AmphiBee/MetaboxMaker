@@ -21,7 +21,7 @@ test('can add taxonomy field with specific query args and taxonomy type', functi
         'type' => 'taxonomy',
         'name' => 'Taxonomy Field',
         'id' => 'taxonomy_field',
-        'taxonomies' => ['post_tag', 'gender'],
+        'taxonomy' => ['post_tag', 'gender'],
         'query_args' => ['hide_empty' => true, 'parent' => 0],
         'add_new' => true,
         'ajax' => true,
@@ -48,7 +48,7 @@ test('can add advanced taxonomy field with specific query args and taxonomy type
         'type' => 'taxonomy_advanced',
         'name' => 'Taxonomy Field',
         'id' => 'taxonomy_field',
-        'taxonomies' => ['post_tag', 'gender'],
+        'taxonomy' => ['post_tag', 'gender'],
         'query_args' => ['hide_empty' => true, 'parent' => 0],
         'add_new' => true,
         'ajax' => true,
@@ -58,4 +58,13 @@ test('can add advanced taxonomy field with specific query args and taxonomy type
             'minimumInputLength' => 1,
         ],
     ]);
+});
+
+test('emits the taxonomy key expected by Meta Box', function () {
+    expect(Taxonomy::make('Tags', 'tags')->taxonomy('post_tag')->build())
+        ->toHaveKey('taxonomy', 'post_tag')
+        ->not->toHaveKey('taxonomies');
+
+    expect(Taxonomy::make('Categories', 'categories')->build())
+        ->toHaveKey('taxonomy', 'category');
 });
