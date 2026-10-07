@@ -19,7 +19,7 @@ test('can add custom settings to a settings page', function () {
         'id' => 'custom_settings_page',
         'menu_title' => 'Custom Settings Page',
         'capability' => 'manage_options',
-        'icon' => 'dashicons-admin-settings',
+        'icon_url' => 'dashicons-admin-settings',
         'enable_debug' => true,
         'api_key' => 'test_key_123',
         'cache_duration' => 3600,

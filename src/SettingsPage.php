@@ -140,11 +140,13 @@ class SettingsPage implements Renderable
 
         $this->menu_title = $page_title;
 
-        add_filter('mb_settings_pages', function ($settings_pages) {
-            $settings_pages[] = $this->build();
+        if (! doing_filter('mb_settings_pages')) {
+            add_filter('mb_settings_pages', function ($settings_pages) {
+                $settings_pages[] = $this->build();
 
-            return $settings_pages;
-        });
+                return $settings_pages;
+            });
+        }
     }
 
     /**
@@ -333,8 +335,13 @@ class SettingsPage implements Renderable
     {
         $pageData = EmptyValueFilter::filter(get_object_vars($this));
 
-        // Remove the settings array from the page data
-        unset($pageData['settings']);
+        // Remove the settings array and the builder-only icon keys from the page data
+        unset($pageData['settings'], $pageData['icon_type'], $pageData['icon'], $pageData['icon_svg']);
+
+        $iconUrl = $this->resolveIconUrl();
+        if ($iconUrl !== null) {
+            $pageData['icon_url'] = $iconUrl;
+        }
 
         // Merge custom settings if they exist
         if (! empty($this->settings)) {
@@ -342,5 +349,36 @@ class SettingsPage implements Renderable
         }
 
         return $pageData;
+    }
+
+    /**
+     * Resolve the menu icon into the icon_url setting read by MB Settings Page.
+     *
+     * The icon_type / icon / icon_svg keys only exist in Meta Box Builder, which
+     * converts them before registering the page: do the same conversion here.
+     */
+    protected function resolveIconUrl(): ?string
+    {
+        if ($this->icon_url !== null) {
+            return $this->icon_url;
+        }
+
+        $type = $this->icon_type ?? IconType::DASHICONS->value;
+
+        if ($type === IconType::SVG->value && $this->icon_svg !== null) {
+            return str_starts_with($this->icon_svg, 'data:')
+                ? $this->icon_svg
+                : 'data:image/svg+xml;base64,'.base64_encode($this->icon_svg);
+        }
+
+        if ($this->icon === null) {
+            return null;
+        }
+
+        if ($type === IconType::DASHICONS->value && ! str_starts_with($this->icon, 'dashicons-')) {
+            return 'dashicons-'.$this->icon;
+        }
+
+        return $this->icon;
     }
 }

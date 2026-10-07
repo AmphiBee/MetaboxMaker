@@ -39,8 +39,36 @@ test('can configure icon settings', function () {
 
     $config = $this->settings->build();
 
-    expect($config)->toHaveKey('icon_type', 'dashicons')
-        ->and($config)->toHaveKey('icon', 'dashicons-admin-settings');
+    expect($config)->toHaveKey('icon_url', 'dashicons-admin-settings')
+        ->not->toHaveKeys(['icon_type', 'icon', 'icon_svg']);
+});
+
+test('prefixes dashicons names when needed', function () {
+    expect($this->settings->iconType(IconType::DASHICONS)->icon('admin-generic')->build())
+        ->toHaveKey('icon_url', 'dashicons-admin-generic');
+
+    expect(SettingsPage::make('Other', 'other')->icon('chart-bar')->build())
+        ->toHaveKey('icon_url', 'dashicons-chart-bar');
+});
+
+test('converts an inline SVG icon to a data URI', function () {
+    $svg = '<svg xmlns="http://www.w3.org/2000/svg"></svg>';
+
+    expect($this->settings->iconType(IconType::SVG)->iconSvg($svg)->build())
+        ->toHaveKey('icon_url', 'data:image/svg+xml;base64,'.base64_encode($svg));
+});
+
+test('passes font awesome classes and URLs through', function () {
+    expect($this->settings->iconType(IconType::FONTAWESOME)->icon('fas fa-gear')->build())
+        ->toHaveKey('icon_url', 'fas fa-gear');
+
+    expect(SettingsPage::make('Other', 'other')->iconType(IconType::URL)->icon('https://example.com/icon.png')->build())
+        ->toHaveKey('icon_url', 'https://example.com/icon.png');
+});
+
+test('an explicit icon URL wins over the icon type', function () {
+    expect($this->settings->iconType(IconType::DASHICONS)->icon('admin-generic')->iconUrl('https://example.com/i.png')->build())
+        ->toHaveKey('icon_url', 'https://example.com/i.png');
 });
 
 test('can set parent menu', function () {
@@ -137,8 +165,7 @@ test('can create a complete settings page configuration', function () {
         'id' => 'complete-settings',
         'menu_title' => 'Custom Menu',
         'position' => 25,
-        'icon_type' => 'dashicons',
-        'icon' => 'dashicons-admin-settings',
+        'icon_url' => 'dashicons-admin-settings',
         'capability' => 'manage_options',
         'tabs' => [
             'general' => 'General Settings',
