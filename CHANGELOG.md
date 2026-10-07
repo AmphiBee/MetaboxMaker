@@ -1,6 +1,6 @@
 # Changelog
 
-## 2.0.0 - Unreleased
+## 2.0.0 - 2026-10-07
 
 The package moves to the Pollora organization. Follow the [upgrade guide](UPGRADE.md) to migrate from `amphibee/metabox-maker`.
 
