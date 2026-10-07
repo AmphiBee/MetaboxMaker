@@ -35,6 +35,11 @@ trait Ajax
     {
         $this->ajax = $ajax;
 
+        // Meta Box only supports AJAX for select_advanced: switch away from the plain select default.
+        if ($ajax && $this->field_type === 'select') {
+            $this->field_type = 'select_advanced';
+        }
+
         return $this;
     }
 
