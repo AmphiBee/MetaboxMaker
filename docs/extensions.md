@@ -226,4 +226,5 @@ Passing a rule to a method that does not support it throws an `InvalidArgumentEx
 
 ---
 
-**Previous:** [Settings pages](settings-pages.md)
+**Previous:** [Settings pages](settings-pages.md)  
+**Next:** [Relationships](relationships.md)

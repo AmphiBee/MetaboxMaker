@@ -1,5 +1,11 @@
 # Changelog
 
+## 2.6.0 - Unreleased
+
+### Added
+
+- Relationships (MB Relationships): `Relationship::make()` with `from()`, `to()` and `reciprocal()`, and `Side::posts()`, `Side::terms()` and `Side::users()` with `metaBox()`, `field()`, `adminColumn()` and `hasOne()`. Every setting of a side applies to the screens of its objects: the package moves the field settings to the side where Meta Box expects them. Relationships are registered on `mb_relationships_init`; a relationship declared too late, declared twice, or reciprocal between different objects throws a `LogicException`.
+
 ## 2.5.0 - 2026-10-07
 
 ### Added

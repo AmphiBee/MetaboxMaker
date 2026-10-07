@@ -17,6 +17,23 @@ function add_filter(string $hookName, callable $callback, int $priority = 10, in
     return true;
 }
 
+function add_action(string $hookName, callable $callback, int $priority = 10, int $acceptedArgs = 1): bool
+{
+    $GLOBALS['test_actions'][$hookName][] = $priority;
+
+    return true;
+}
+
+function did_action(string $hookName): int
+{
+    return (int) in_array($hookName, $GLOBALS['test_did_actions'] ?? [], true);
+}
+
+function doing_action(?string $hookName = null): bool
+{
+    return in_array($hookName, $GLOBALS['test_doing_actions'] ?? [], true);
+}
+
 function doing_filter(?string $hookName = null): bool
 {
     return false;

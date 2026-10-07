@@ -193,6 +193,7 @@ add_filter('rwmb_meta_boxes', function (array $metaBoxes): array {
 - [Blocks](docs/blocks.md): Gutenberg blocks with MB Blocks.
 - [Settings pages](docs/settings-pages.md): settings pages with MB Settings Page.
 - [Extensions](docs/extensions.md): conditional logic, columns, tooltips, admin columns, text limits, and rules registering or displaying meta boxes.
+- [Relationships](docs/relationships.md): relationships between posts, terms and users with MB Relationships.
 
 For every setting, the reference is the [Meta Box documentation](https://docs.metabox.io).
 

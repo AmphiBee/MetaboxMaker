@@ -28,7 +28,7 @@ function publicApi(): array
         }
 
         $reflection = new ReflectionClass($class);
-        $documented = str_contains($class, '\\Fields\\') || in_array($reflection->getShortName(), ['Metabox', 'Block', 'SettingsPage', 'Location', 'Rule'], true);
+        $documented = str_contains($class, '\\Fields\\') || in_array($reflection->getShortName(), ['Metabox', 'Block', 'SettingsPage', 'Location', 'Rule', 'Relationship', 'Side'], true);
 
         if (! $documented) {
             continue;
