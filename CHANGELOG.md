@@ -1,5 +1,11 @@
 # Changelog
 
+## 2.5.0 - Unreleased
+
+### Documentation
+
+- The defaults that differ from Meta Box are documented, with how to get the Meta Box behavior: settings pages have one column (`columns(2)` for the sidebar layout) and blocks display their fields in the block body (`context('side')` for the block sidebar).
+
 ## 2.4.1 - 2026-10-07
 
 ### Fixed

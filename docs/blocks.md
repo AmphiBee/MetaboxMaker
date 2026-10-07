@@ -44,7 +44,7 @@ Block::make('Example Block', 'example-block')
 - **`category(string $category)`**: Sets the category of the block: `text`, `media`, `design` (default), `widgets`, `theme`, `embed`, or a custom category.
 - **`keywords(array $keywords)`**: Sets the keywords used to search the block.
 - **`version(string $version)`**: Sets the block version.
-- **`context(string|Context $context)`**: Sets where the block settings are displayed: `side` (in the block sidebar) or `normal` (in the block, by clicking the edit icon). Defaults to `normal`.
+- **`context(string|Context $context)`**: Sets where the block settings are displayed: `side` (in the block sidebar) or `normal` (in the block, by clicking the edit icon). Defaults to `normal`, while MB Blocks defaults to `side`: see [Defaults that differ from Meta Box](#defaults-that-differ-from-meta-box).
 - **`mode(string|BlockMode $mode)`**: Sets the default mode of the block: `edit` (default) shows the fields, `preview` shows the rendered block. Any other value throws an exception.
 - **`supports(array $supports)`**: Sets the block supports, e.g. `['align' => ['wide', 'full']]`.
 - **`renderTemplate(string $path)`**: Renders the block with a PHP template.
@@ -137,6 +137,20 @@ The `BlockTypeFilter` service manages these restrictions efficiently, respecting
 
 - If you use both `restrictToPostTypes()` and `excludePostTypes()` on the same block, both restrictions will be applied.
 - These methods only affect the visibility of blocks in the editor interface, not blocks that have already been inserted into existing content.
+
+## Defaults that differ from Meta Box
+
+A block displays its fields **in the block body** by default (`context` set to `normal`): the fields appear in the block when it is in edit mode, or when clicking its edit icon in preview mode. MB Blocks defaults to `side`, which displays the fields in the block sidebar of the editor.
+
+The package keeps `normal` on purpose: changing it would move the fields of the existing blocks. To get the MB Blocks behavior, call `context('side')`:
+
+```php
+Block::make('Hero', 'hero')
+    ->context('side')
+    ->fields([
+        Text::make('Title', 'title'),
+    ]);
+```
 
 ## Custom Settings
 

@@ -12,7 +12,6 @@ To create a settings page, use the `SettingsPage::make()` method which initializ
 <?php
 
 use Pollora\Metabox\SettingsPage;
-use Pollora\Metabox\Enums\MenuType;
 use Pollora\Metabox\Enums\IconType;
 use Pollora\Metabox\Enums\TabStyle;
 
@@ -51,7 +50,7 @@ SettingsPage::make('Theme Options', 'theme-options')
 - **`capability(string $capability)`**: Sets the required capability to access the page.
 - **`class(string $class)`**: Adds a custom CSS class.
 - **`style(string|SettingsPageStyle $style)`**: Sets the page style: `boxes` (default, each meta box is a box) or `no-boxes` (each meta box is a section, like the WordPress settings pages).
-- **`columns(int $columns)`**: Sets the number of columns (1 or 2).
+- **`columns(int $columns)`**: Sets the number of columns: `1` (default) or `2`. See [Defaults that differ from Meta Box](#defaults-that-differ-from-meta-box).
 
 #### Tabs Configuration
 
@@ -132,6 +131,19 @@ SettingsPage::make('Customizer Options', 'customizer-options')
     ->customizer(true)
     ->optionName('my_theme_options');
 ```
+
+## Defaults that differ from Meta Box
+
+A settings page has **one column** by default: the meta boxes take the full width and the save button is below them. MB Settings Page defaults to two columns, with a sidebar holding the save button.
+
+The package keeps one column on purpose: changing it would change the layout of the existing settings pages. To get the Meta Box layout, call `columns(2)`:
+
+```php
+SettingsPage::make('Theme Options', 'theme-options')
+    ->columns(2);
+```
+
+With two columns, a meta box registered with `->context('side')` is displayed in the sidebar, under the save button.
 
 ## Custom Settings
 
