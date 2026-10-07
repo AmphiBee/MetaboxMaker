@@ -11,6 +11,9 @@ use AmphiBee\MetaboxMaker\Transformer\EmptyValueFilter;
 use AmphiBee\MetaboxMaker\Validation\OptionValidation;
 use Exception;
 
+/**
+ * @phpstan-consistent-constructor
+ */
 class SettingsPage implements Renderable
 {
     /**

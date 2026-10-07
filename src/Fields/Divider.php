@@ -19,6 +19,8 @@ use AmphiBee\MetaboxMaker\Fields\Utils\Builder;
 
 /**
  * Divider field class for creating visual separators in the UI.
+ *
+ * @phpstan-consistent-constructor
  */
 class Divider implements Renderable
 {

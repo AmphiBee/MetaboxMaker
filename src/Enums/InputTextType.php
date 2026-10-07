@@ -20,22 +20,16 @@ enum InputTextType: string
 {
     /**
      * Represents a standard text input field.
-     *
-     * @var string Text
      */
     case Text = 'text';
 
     /**
      * Represents a URL input field.
-     *
-     * @var string URL
      */
     case URL = 'url';
 
     /**
      * Represents an email input field.
-     *
-     * @var string Email
      */
     case Email = 'email';
 }

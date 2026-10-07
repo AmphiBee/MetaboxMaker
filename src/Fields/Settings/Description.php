@@ -19,7 +19,7 @@ namespace AmphiBee\MetaboxMaker\Fields\Settings;
 trait Description
 {
     /**
-     * @var string|null The description of the field.
+     * @var string The description of the field.
      */
     protected string $desc;
 

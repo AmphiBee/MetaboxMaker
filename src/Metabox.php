@@ -25,6 +25,8 @@ use Exception;
 
 /**
  * Fieldset class for creating a field groups.
+ *
+ * @phpstan-consistent-constructor
  */
 class Metabox implements Renderable
 {

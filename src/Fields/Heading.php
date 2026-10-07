@@ -21,6 +21,8 @@ use AmphiBee\MetaboxMaker\Fields\Utils\Builder;
 /**
  * Heading field class for creating section headings in the UI.
  * Cette classe est un type spécial de champ qui ne nécessite qu'un titre.
+ *
+ * @phpstan-consistent-constructor
  */
 class Heading implements Renderable
 {

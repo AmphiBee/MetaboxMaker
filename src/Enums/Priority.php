@@ -20,15 +20,11 @@ enum Priority: string
 {
     /**
      * High priority level.
-     *
-     * @var string High
      */
     case High = 'high';
 
     /**
      * Low priority level.
-     *
-     * @var string Low
      */
     case Low = 'low';
 }

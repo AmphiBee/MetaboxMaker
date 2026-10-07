@@ -20,15 +20,11 @@ enum BoxStyle: string
 {
     /**
      * Default box style.
-     *
-     * @var string Default
      */
     case Default = 'default';
 
     /**
      * Seamless box style.
-     *
-     * @var string Seamless
      */
     case Seamless = 'seamless';
 }

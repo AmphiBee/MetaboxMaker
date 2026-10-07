@@ -27,6 +27,8 @@ use AmphiBee\MetaboxMaker\Fields\Utils\Builder;
 
 /**
  * Abstract class for all fields.
+ *
+ * @phpstan-consistent-constructor
  */
 abstract class Field implements Renderable
 {

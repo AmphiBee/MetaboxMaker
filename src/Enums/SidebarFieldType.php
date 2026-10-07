@@ -20,29 +20,21 @@ enum SidebarFieldType: string
 {
     /**
      * Represents a select field in the sidebar.
-     *
-     * @var string
      */
     case SELECT = 'select';
 
     /**
      * Represents an advanced select field in the sidebar.
-     *
-     * @var string
      */
     case SELECT_ADVANCED = 'select_advanced';
 
     /**
      * Represents a checkbox list field in the sidebar.
-     *
-     * @var string
      */
     case CHECKBOX_LIST = 'checkbox_list';
 
     /**
      * Represents a radio list field in the sidebar.
-     *
-     * @var string
      */
     case RADIO_LIST = 'radio_list';
 }

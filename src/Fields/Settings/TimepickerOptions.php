@@ -47,7 +47,7 @@ trait TimepickerOptions
     /**
      * Show or hide the date when using time-only mode in the jQuery UI Timepicker.
      *
-     * @param  bool  $showWhether  to show the date when using time-only mode.
+     * @param  bool  $showDate  Whether to show the date when using time-only mode.
      */
     public function timeOnlyShowDate(bool $showDate = true): static
     {

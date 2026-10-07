@@ -15,6 +15,8 @@ namespace AmphiBee\MetaboxMaker;
 
 /**
  * This class is used to define conditions for a conditional location of a fieldset.
+ *
+ * @phpstan-consistent-constructor
  */
 class Location
 {
