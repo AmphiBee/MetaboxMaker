@@ -113,7 +113,7 @@ The `Location` class allows you to define where the metabox should appear based 
 use AmphiBee\MetaboxMaker\Location;
 
 Metabox::make('Custom Metabox', 'custom_metabox')
-    ->location(Location::where('post_types', 'page'))
+    ->location(Location::postTypes('page'))
     ->fields([
         Text::make('Page Title', 'page_title'),
     ]);
@@ -121,8 +121,14 @@ Metabox::make('Custom Metabox', 'custom_metabox')
 
 ### Methods
 
-- **`Location::where(string $type, string|array $values)`**: Creates a new location condition based on the type and values provided.
-- **`Location::default()`**: Sets the default location condition, typically for posts.
+- **`Location::postTypes(string|array $postTypes)`**: Shows the metabox on the given post types.
+- **`Location::taxonomies(string|array $taxonomies)`**: Shows the metabox on terms of the given taxonomies (MB Term Meta).
+- **`Location::settingsPages(string|array $settingsPages)`**: Shows the metabox on the given settings pages (MB Settings Page).
+- **`Location::user()`**: Shows the metabox on user profiles (MB User Meta).
+- **`Location::comment()`**: Shows the metabox on comments (MB Comment Meta).
+- **`andWhere(string $type, string|array $values)`**: Adds another condition, e.g. `Location::settingsPages('options')->andWhere('tab', 'general')`.
+- **`Location::where(string $type, string|array $values)`**: Creates a condition with any Meta Box key. Note that Meta Box expects `post_types`, not `post_type`.
+- **`Location::default()`**: The location used when none is set: posts.
 
 ---
 
