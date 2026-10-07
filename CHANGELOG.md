@@ -1,6 +1,6 @@
 # Changelog
 
-## 1.0.0 - Unreleased
+## 1.0.0 - 2026-10-07
 
 First tagged release. Projects previously required `dev-main`: switch to `^1.0` and read the upgrade notes below.
 
