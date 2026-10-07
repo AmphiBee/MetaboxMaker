@@ -1,5 +1,17 @@
 # Upgrade guide
 
+## From pollora/metabox 2.2 to 2.3
+
+Nothing needs to change: 2.3 only adds methods.
+
+`include`, `exclude`, `show` and `hide` settings passed with `setting()` keep working. Note that Meta Box combines their rules with OR by default: use `Rule::any()` to keep the same behavior when replacing them.
+
+| Before | After |
+|---|---|
+| `->setting('include', ['template' => ['front-page.php']])` | `->include(Rule::template('front-page.php'))` |
+| `->setting('exclude', ['ID' => [12, 14], 'is_child' => true])` | `->exclude(Rule::any(Rule::postIds(12, 14), Rule::isChild()))` |
+| `->setting('show', ['relation' => 'AND', 'post_format' => ['video'], 'category' => ['News']])` | `->show(Rule::all(Rule::postFormat('video'), Rule::category('News')))` |
+
 ## From pollora/metabox 2.1 to 2.2
 
 Nothing needs to change: 2.2 only adds methods.

@@ -1,5 +1,12 @@
 # Changelog
 
+## 2.3.0 - Unreleased
+
+### Added
+
+- `Metabox::include()`, `exclude()` (MB Include Exclude), `show()` and `hide()` (MB Show Hide), taking a `Rule` or a group of rules built with `Rule::all()` (AND) or `Rule::any()` (OR).
+- `Rule` constructors for every rule of both extensions, including the `capability` rule. Rules unsupported by the method, and rules with the same key combined with AND, throw an exception.
+
 ## 2.2.0 - 2026-10-07
 
 ### Added
