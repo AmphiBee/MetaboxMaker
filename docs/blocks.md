@@ -41,8 +41,20 @@ Block::make('Example Block', 'example-block')
 
 - **`description(string $description)`**: Sets the description of the block.
 - **`icon(string|array $icon)`**: Sets the icon for the block. Can be a Dashicon, FontAwesome icon, or custom SVG.
-- **`category(string $category)`**: Sets the category of the block. Options include `text`, `media`, `design`, `widgets`, `theme`, and `embed`.
-- **`renderCallback(callable $callback)`**: Sets the callback function to render the block.
+- **`category(string $category)`**: Sets the category of the block: `text`, `media`, `design` (default), `widgets`, `theme`, `embed`, or a custom category.
+- **`keywords(array $keywords)`**: Sets the keywords used to search the block.
+- **`version(string $version)`**: Sets the block version.
+- **`context(string|Context $context)`**: Sets where the block settings are displayed: `side` (in the block sidebar) or `normal` (in the block, by clicking the edit icon). Defaults to `normal`.
+- **`mode(string|BlockMode $mode)`**: Sets the default mode of the block: `edit` (default) shows the fields, `preview` shows the rendered block. Any other value throws an exception.
+- **`supports(array $supports)`**: Sets the block supports, e.g. `['align' => ['wide', 'full']]`.
+- **`renderTemplate(string $path)`**: Renders the block with a PHP template.
+- **`renderCallback(callable $callback)`**: Renders the block with a callback.
+- **`enqueueStyle(string $url)`** / **`enqueueScript(string $url)`**: Enqueues a stylesheet or a script with the block.
+- **`enqueueAssets(callable $callback)`**: Enqueues assets with a callback.
+- **`preview(array $preview)`**: Sets the field values used in the block inserter preview.
+- **`storageType(string $storageType)`**: Sets where the field values are stored: `attributes` (default, in the block), `post_meta` or `custom_table`.
+- **`customTable(string $table)`**: Stores the field values in a custom table (MB Custom Table).
+- **`restrictToPostTypes(array $postTypes)`** / **`excludePostTypes(array $postTypes)`**: See [Restricting Blocks by Post Type](#restricting-blocks-by-post-type).
 - **`fields(array $fields)`**: Adds fields to the block. Accepts an array of field instances.
 - **`setting(string $key, mixed $value)`**: Adds a custom Meta Box setting that isn't explicitly defined. This allows you to pass any Meta Box-specific option directly.
 

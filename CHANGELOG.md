@@ -1,5 +1,26 @@
 # Changelog
 
+## 2.1.0 - Unreleased
+
+### Added
+
+- `BlockEditor` field (`block_editor`), with `allowedBlocks()`, `height()` and `toolbarPosition()`.
+- `Link` field.
+- `Text::type()` accepts the `search`, `tel`, `month`, `week` and `datetime-local` input types.
+- Meta box tab settings: `tabStyle()`, `tabWrapper()`, `tabDefaultActive()` and `tabRemember()`. `TabStyle::BOX` is added.
+- `Metabox::validation()` for validation rules and messages.
+- `Metabox::revision()` (MB Revision).
+- `Metabox::customTable()` and `Metabox::storageType()` (MB Custom Table). `storageType()` was only available on blocks.
+- `BlockMode` and `ToolbarPosition` enums.
+
+### Changed
+
+- `Block::mode()` only accepts `edit` and `preview`, and throws an exception for any other value. Meta Box displayed blocks with another value, such as `auto`, in preview mode: see the [upgrade guide](UPGRADE.md#from-pollorametabox-20-to-21).
+
+### Documentation
+
+- Complete list of the meta box and block methods.
+
 ## 2.0.0 - 2026-10-07
 
 The package moves to the Pollora organization. Follow the [upgrade guide](UPGRADE.md) to migrate from `amphibee/metabox-maker`.

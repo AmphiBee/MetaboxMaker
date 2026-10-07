@@ -4,7 +4,9 @@ declare(strict_types=1);
 
 namespace Pollora\Metabox;
 
+use Pollora\Metabox\Enums\BlockMode;
 use Pollora\Metabox\Services\BlockTypeFilter;
+use Pollora\Metabox\Validation\OptionValidation;
 
 /**
  * Class for creating Gutenberg blocks.
@@ -90,11 +92,6 @@ class Block extends Metabox
      * The preview data for the block.
      */
     protected array $preview = [];
-
-    /**
-     * The storage type for the block fields.
-     */
-    protected string $storage_type;
 
     /**
      * The post types for the block.
@@ -203,13 +200,11 @@ class Block extends Metabox
     }
 
     /**
-     * Set the default mode of the block.
-     *
-     * @param  string  $mode  The default mode of the block.
+     * Set the default mode of the block: edit fields or rendered preview.
      */
-    public function mode(string $mode): static
+    public function mode(string|BlockMode $mode): static
     {
-        $this->mode = $mode;
+        $this->mode = OptionValidation::check($mode, BlockMode::class);
 
         return $this;
     }
@@ -246,18 +241,6 @@ class Block extends Metabox
     public function preview(array $preview): static
     {
         $this->preview = $preview;
-
-        return $this;
-    }
-
-    /**
-     * Set the storage type for the block fields.
-     *
-     * @param  string  $storageType  The storage type.
-     */
-    public function storageType(string $storageType): static
-    {
-        $this->storage_type = $storageType;
 
         return $this;
     }

@@ -31,11 +31,55 @@ Metabox::make('User Information', 'user_info')
 
 ### Methods
 
+**Display**
+
 - **`description(string $description)`**: Sets the description of the metabox.
-- **`context(string $context)`**: Sets the context where the metabox should appear. Options include `normal`, `side`, and `advanced`.
-- **`priority(string $priority)`**: Sets the priority of the metabox. Options include `high`, `core`, `default`, and `low`.
-- **`fields(array $fields)`**: Adds fields to the metabox. Accepts an array of field instances.
+- **`context(string|Context $context)`**: Sets where the metabox appears: `normal`, `advanced`, `side`, `form_top`, `after_title`, `after_editor` or `before_permalink`.
+- **`priority(string|Priority $priority)`**: Sets the priority of the metabox: `high`, `low` or `default`.
+- **`style(string|BoxStyle $style)`**: Sets the style: `default` or `seamless` (without the box wrapper).
+- **`closed(bool $closed)`**: Collapses the metabox by default.
+- **`defaultHidden(bool $defaultHidden)`**: Hides the metabox by default. It can be shown again from the screen options.
+- **`class(?string $class)`**: Adds a CSS class to the metabox.
+- **`location(Location $location)`**: Sets where the metabox is displayed. See [Setting the Location](#setting-the-location).
+
+**Fields and tabs**
+
+- **`fields(array $fields)`**: Adds fields to the metabox. Accepts an array of field instances, including `Tab` instances.
+- **`tabStyle(string|TabStyle $style)`**: Sets the style of the tabs: `default`, `box` or `left` (Meta Box Tabs).
+- **`tabWrapper(bool $wrapper = true)`**: Set to `false` to remove the metabox wrapper around the tabs.
+- **`tabDefaultActive(string $tabId)`**: Sets the tab active by default.
+- **`tabRemember(bool $remember = true)`**: Remembers the last active tab when saving.
+
+**Saving and validation**
+
+- **`validation(array $rules, array $messages = [])`**: Sets [validation rules](https://docs.metabox.io/validation/) and their error messages, keyed by input name. The input name is usually the field ID, but it is `my_field[]` for a checkbox list and `_file_my_field[]` for file and image fields.
+- **`autosave(bool $autosave)`**: Saves the field values when WordPress autosaves the post.
+- **`mediaModal(bool $mediaModal)`**: Shows the fields in the media modal (attachments only).
+- **`revision(bool $revision = true)`**: Tracks the field values in post revisions (MB Revision).
+- **`customTable(string $table)`**: Stores the field values in a custom table (MB Custom Table).
+- **`storageType(string $storageType)`**: Sets the storage type directly. Prefer `customTable()` for custom tables.
+
+**Anything else**
+
 - **`setting(string $key, mixed $value)`**: Adds a custom Meta Box setting that isn't explicitly defined. This allows you to pass any Meta Box-specific option directly.
+
+### Validation example
+
+```php
+<?php
+
+use Pollora\Metabox\Fields\Email;
+use Pollora\Metabox\Metabox;
+
+Metabox::make('Contact', 'contact')
+    ->fields([
+        Email::make('Email', 'email'),
+    ])
+    ->validation(
+        ['email' => ['required' => true, 'minlength' => 7]],
+        ['email' => ['required' => 'Email is required']],
+    );
+```
 
 ## Adding Fields
 

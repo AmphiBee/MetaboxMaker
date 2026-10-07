@@ -51,6 +51,30 @@ Background::make('Background Settings', 'background_settings');
 
 - This field does not have additional methods beyond those inherited from the `Field` class.
 
+## BlockEditor Field
+
+The `BlockEditor` field edits content with the WordPress block editor (Gutenberg). The value is saved as block markup.
+
+### Example
+
+```php
+<?php
+
+use Pollora\Metabox\Enums\ToolbarPosition;
+use Pollora\Metabox\Fields\BlockEditor;
+
+BlockEditor::make('Content blocks', 'content_blocks')
+    ->allowedBlocks(['core/heading', 'core/paragraph', 'core/image'])
+    ->height('500px')
+    ->toolbarPosition(ToolbarPosition::Contextual);
+```
+
+### Methods
+
+- **`allowedBlocks(array $allowedBlocks)`**: Sets the block types allowed in the editor. All blocks are allowed by default.
+- **`height(string $height)`**: Sets the height of the editor, as a CSS value. Defaults to `300px`.
+- **`toolbarPosition(string|ToolbarPosition $position)`**: Sets the toolbar position: `top` (default) or `contextual` (above the selected block).
+
 ## Button Field
 
 The `Button` field is used to create button elements. It uses the `Attributes` trait to provide additional configuration options.
@@ -297,6 +321,24 @@ KeyValue::make('Key Value', 'key_value')
 ### Methods
 
 - **`placeholder(array $placeholders)`**: Sets the placeholder texts for key and value inputs.
+
+## Link Field
+
+The `Link` field selects a URL, a link text and a target with the WordPress link picker. The value is saved as an array with the `url`, `title`, `target` and `post_id` keys.
+
+### Example
+
+```php
+<?php
+
+use Pollora\Metabox\Fields\Link;
+
+Link::make('Call to action', 'cta_link');
+```
+
+### Methods
+
+This field only has the [common field settings](common-settings.md).
 
 ## GoogleMap Field
 
