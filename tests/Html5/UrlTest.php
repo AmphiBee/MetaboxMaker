@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 use AmphiBee\MetaboxMaker\Fields\Url;
 
 it('can create a URL field', function () {
@@ -14,4 +16,4 @@ it('can create a URL field', function () {
         ->and($settings['size'])->toBe(50)
         ->and($settings['prepend'])->toBe('https://')
         ->and($settings['append'])->toBe('.com');
-}); 
+});

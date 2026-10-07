@@ -1,11 +1,12 @@
 <?php
+
 /**
  * Copyright (c) AmphiBee
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  *
- * @see https://github.com/AmphiBee/metabox-builder
+ * @see https://github.com/AmphiBee/MetaboxMaker
  */
 
 declare(strict_types=1);
@@ -28,7 +29,7 @@ trait Attributes
      * @param  array  $attributes  Attributes in 'key' => 'value' format.
      * @return $this
      */
-    public function setAttributes(array $attributes): self
+    public function setAttributes(array $attributes): static
     {
         foreach ($attributes as $key => $value) {
             if (is_array($value)) {
@@ -42,10 +43,28 @@ trait Attributes
     }
 
     /**
+     * Set custom HTML attributes for the field, e.g. maxlength, pattern or data-* attributes.
+     *
+     * @param  array  $attributes  Attributes in 'key' => 'value' format.
+     */
+    public function attributes(array $attributes): static
+    {
+        return $this->setAttributes($attributes);
+    }
+
+    /**
+     * Set a single custom HTML attribute for the field.
+     */
+    public function attribute(string $key, mixed $value): static
+    {
+        return $this->setAttributes([$key => $value]);
+    }
+
+    /**
      * Get all custom attributes.
      */
     public function getAttributes(): array
     {
-        return $this->attributes;
+        return $this->attributes ?? [];
     }
 }

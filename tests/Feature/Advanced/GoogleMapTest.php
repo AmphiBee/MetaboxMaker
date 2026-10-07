@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 use AmphiBee\MetaboxMaker\Fields\GoogleMap;
 
 test('google map field is properly configured', function () {
@@ -13,7 +15,7 @@ test('google map field is properly configured', function () {
     $config = $googleMapField->build();
 
     expect($config)->toMatchArray([
-        'type' => 'google_map',
+        'type' => 'map',
         'name' => 'Map Location',
         'id' => 'map_location',
         'api_key' => 'YOUR_API_KEY',

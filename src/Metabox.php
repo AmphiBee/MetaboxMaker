@@ -1,35 +1,37 @@
 <?php
+
 /**
  * Copyright (c) AmphiBee
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  *
- * @see https://github.com/AmphiBee/metabox-builder
+ * @see https://github.com/AmphiBee/MetaboxMaker
  */
 
 declare(strict_types=1);
 
 namespace AmphiBee\MetaboxMaker;
 
-use AmphiBee\MetaboxMaker\Fields\Field;
-use AmphiBee\MetaboxMaker\Transformer\EmptyValueFilter;
-use AmphiBee\MetaboxMaker\Transformer\FieldTransformer;
-use Exception;
 use AmphiBee\MetaboxMaker\Contract\Renderable;
 use AmphiBee\MetaboxMaker\Enums\BoxStyle;
 use AmphiBee\MetaboxMaker\Enums\Context;
 use AmphiBee\MetaboxMaker\Enums\Priority;
+use AmphiBee\MetaboxMaker\Fields\Field;
+use AmphiBee\MetaboxMaker\Transformer\EmptyValueFilter;
+use AmphiBee\MetaboxMaker\Transformer\FieldTransformer;
 use AmphiBee\MetaboxMaker\Validation\OptionValidation;
-
-use add_filter;
+use Exception;
 
 /**
  * Fieldset class for creating a field groups.
+ *
+ * @phpstan-consistent-constructor
  */
 class Metabox implements Renderable
 {
     use FieldTransformer;
+
     /**
      * The context of the fieldset.
      */
@@ -83,7 +85,7 @@ class Metabox implements Renderable
     /**
      * The class of the fieldset.
      */
-    protected string $class;
+    protected ?string $class = null;
 
     /**
      * The description of the fieldset.
@@ -103,18 +105,19 @@ class Metabox implements Renderable
     /**
      * Construct a new Fieldset instance.
      *
-     * @param string $title The title of the fieldset.
-     * @param string $id The unique identifier of the fieldset.
+     * @param  string  $title  The title of the fieldset.
+     * @param  string  $id  The unique identifier of the fieldset.
      */
     public function __construct(protected string $id, protected string $title)
     {
-        if (!function_exists('add_filter')) {
+        if (! function_exists('add_filter')) {
             throw new Exception('Metabox Maker requires WordPress to be loaded.');
         }
 
-        if (!doing_filter('rwmb_meta_boxes')) {
+        if (! doing_filter('rwmb_meta_boxes')) {
             add_filter('rwmb_meta_boxes', function ($meta_boxes) {
                 $meta_boxes[] = $this->build();
+
                 return $meta_boxes;
             });
         }
@@ -123,18 +126,19 @@ class Metabox implements Renderable
     /**
      * Create a new Fieldset instance with default values.
      *
-     * @param mixed ...$args Required arguments (title, id)
+     * @param  mixed  ...$args  Required arguments (title, id)
      */
     public static function make(mixed ...$args): static
     {
         [$title, $id] = $args;
+
         return new static($id, $title);
     }
 
     /**
      * Set the context of the fieldset.
      *
-     * @param string $context The context of the fieldset.
+     * @param  string  $context  The context of the fieldset.
      */
     public function context(string $context): static
     {
@@ -146,18 +150,19 @@ class Metabox implements Renderable
     /**
      * Add fields to the fieldset.
      *
-     * @param array<Field> $fields The fields to add.
+     * @param  array<Field>  $fields  The fields to add.
      */
     public function fields(array $fields): static
     {
         $this->buildFieldset($fields);
+
         return $this;
     }
 
     /**
      * Set the tabs of the fieldset.
      *
-     * @param array $tabs The tabs of the fieldset.
+     * @param  array  $tabs  The tabs of the fieldset.
      */
     public function tabs(array $tabs): static
     {
@@ -169,7 +174,7 @@ class Metabox implements Renderable
     /**
      * Set the priority of the fieldset.
      *
-     * @param string|Priority $priority The priority of the fieldset.
+     * @param  string|Priority  $priority  The priority of the fieldset.
      */
     public function priority(string|Priority $priority): static
     {
@@ -181,7 +186,7 @@ class Metabox implements Renderable
     /**
      * Set the location of the fieldset.
      *
-     * @param Location $location The location of the fieldset.
+     * @param  Location  $location  The location of the fieldset.
      */
     public function location(Location $location): static
     {
@@ -193,7 +198,7 @@ class Metabox implements Renderable
     /**
      * Set the style of the fieldset.
      *
-     * @param string|BoxStyle $style The style of the fieldset.
+     * @param  string|BoxStyle  $style  The style of the fieldset.
      */
     public function style(string|BoxStyle $style): static
     {
@@ -205,7 +210,7 @@ class Metabox implements Renderable
     /**
      * Set whether the fieldset is initially closed.
      *
-     * @param bool $closed Whether the fieldset is initially closed.
+     * @param  bool  $closed  Whether the fieldset is initially closed.
      */
     public function closed(bool $closed): static
     {
@@ -217,7 +222,7 @@ class Metabox implements Renderable
     /**
      * Set whether the fieldset is initially hidden.
      *
-     * @param bool $defaultHidden Whether the fieldset is initially hidden.
+     * @param  bool  $defaultHidden  Whether the fieldset is initially hidden.
      */
     public function defaultHidden(bool $defaultHidden): static
     {
@@ -229,7 +234,7 @@ class Metabox implements Renderable
     /**
      * Set whether the fieldset autosaves its content.
      *
-     * @param bool $autosave Whether the fieldset autosaves its content.
+     * @param  bool  $autosave  Whether the fieldset autosaves its content.
      */
     public function autosave(bool $autosave): static
     {
@@ -241,7 +246,7 @@ class Metabox implements Renderable
     /**
      * Set whether the fieldset opens a media modal when clicked.
      *
-     * @param bool $mediaModal Whether the fieldset opens a media modal when clicked.
+     * @param  bool  $mediaModal  Whether the fieldset opens a media modal when clicked.
      */
     public function mediaModal(bool $mediaModal): static
     {
@@ -253,7 +258,7 @@ class Metabox implements Renderable
     /**
      * Set the class of the fieldset.
      *
-     * @param string|null $class The class of the fieldset.
+     * @param  string|null  $class  The class of the fieldset.
      */
     public function class(?string $class): static
     {
@@ -265,37 +270,37 @@ class Metabox implements Renderable
     /**
      * Set the description of the fieldset.
      *
-     * @param string $description The description of the fieldset.
-     * @return static
+     * @param  string  $description  The description of the fieldset.
      */
     public function description(string $description): static
     {
         $this->description = $description;
+
         return $this;
     }
 
     /**
      * Set the type of the fieldset.
      *
-     * @param string $type The type of the fieldset.
-     * @return static
+     * @param  string  $type  The type of the fieldset.
      */
     public function type(string $type): static
     {
         $this->type = $type;
+
         return $this;
     }
 
     /**
      * Set a custom setting for the metabox.
      *
-     * @param string $key The setting key.
-     * @param mixed $value The setting value.
-     * @return static
+     * @param  string  $key  The setting key.
+     * @param  mixed  $value  The setting value.
      */
     public function setting(string $key, mixed $value): static
     {
         $this->settings[$key] = $value;
+
         return $this;
     }
 
@@ -316,7 +321,7 @@ class Metabox implements Renderable
      */
     public function build(): array
     {
-        if (!$this->location) {
+        if (! $this->location) {
             $this->location = Location::default();
         }
 
@@ -326,7 +331,7 @@ class Metabox implements Renderable
         unset($metaboxData['settings'], $metaboxData['location']);
 
         // Merge custom settings if they exist
-        if (!empty($this->settings)) {
+        if (! empty($this->settings)) {
             $metaboxData = array_merge($metaboxData, $this->settings);
         }
 

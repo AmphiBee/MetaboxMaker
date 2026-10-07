@@ -1,11 +1,12 @@
 <?php
+
 /**
  * Copyright (c) AmphiBee
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  *
- * @see https://github.com/AmphiBee/metabox-builder
+ * @see https://github.com/AmphiBee/MetaboxMaker
  */
 
 declare(strict_types=1);
@@ -29,9 +30,9 @@ class Taxonomy extends Field
     protected string $type = 'taxonomy';
 
     /**
-     * The type of taxonomy to select.
+     * The taxonomies to select terms from.
      */
-    protected string|array $taxonomies = 'category';
+    protected string|array $taxonomy = 'category';
 
     /**
      * The arguments to pass to the WP_Term_Query function.
@@ -54,15 +55,25 @@ class Taxonomy extends Field
     protected string $field_type = 'select';
 
     /**
-     * Set the type of taxomies to select.
+     * Set the taxonomies to select terms from.
      *
-     * @param  string|array  $taxonomies  The type of post to select.
+     * @param  string|array  $taxonomies  A taxonomy slug or a list of taxonomy slugs.
      */
     public function taxonomies(string|array $taxonomies): static
     {
-        $this->taxonomies = $taxonomies;
+        $this->taxonomy = $taxonomies;
 
         return $this;
+    }
+
+    /**
+     * Alias of taxonomies(), matching the Meta Box setting name.
+     *
+     * @param  string|array  $taxonomy  A taxonomy slug or a list of taxonomy slugs.
+     */
+    public function taxonomy(string|array $taxonomy): static
+    {
+        return $this->taxonomies($taxonomy);
     }
 
     /**

@@ -1,11 +1,12 @@
 <?php
+
 /**
  * Copyright (c) AmphiBee
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  *
- * @see https://github.com/AmphiBee/metabox-builder
+ * @see https://github.com/AmphiBee/MetaboxMaker
  */
 
 declare(strict_types=1);
@@ -13,6 +14,7 @@ declare(strict_types=1);
 namespace AmphiBee\MetaboxMaker\Fields;
 
 use AmphiBee\MetaboxMaker\Contract\Renderable;
+use AmphiBee\MetaboxMaker\Fields\Settings\Attributes;
 use AmphiBee\MetaboxMaker\Fields\Settings\Clonable;
 use AmphiBee\MetaboxMaker\Fields\Settings\DefaultValue;
 use AmphiBee\MetaboxMaker\Fields\Settings\Description;
@@ -20,26 +22,26 @@ use AmphiBee\MetaboxMaker\Fields\Settings\FieldAccess;
 use AmphiBee\MetaboxMaker\Fields\Settings\Multiple;
 use AmphiBee\MetaboxMaker\Fields\Settings\Placeholder;
 use AmphiBee\MetaboxMaker\Fields\Settings\Required;
+use AmphiBee\MetaboxMaker\Fields\Settings\Saving;
 use AmphiBee\MetaboxMaker\Fields\Settings\Sortable;
 use AmphiBee\MetaboxMaker\Fields\Settings\Tab;
+use AmphiBee\MetaboxMaker\Fields\Settings\Visibility;
+use AmphiBee\MetaboxMaker\Fields\Settings\Wrapper;
 use AmphiBee\MetaboxMaker\Fields\Utils\Builder;
-use AmphiBee\MetaboxMaker\Transformer\EmptyValueFilter;
 
 /**
  * Abstract class for all fields.
+ *
+ * @phpstan-consistent-constructor
  */
 abstract class Field implements Renderable
 {
-    use Builder;
     /**
-     * The type of the field.
+     * Trait for custom HTML attributes.
      */
-    protected string $type = 'text';
+    use Attributes;
 
-    /**
-     * The settings for the field.
-     */
-    protected array $settings = [];
+    use Builder;
 
     /**
      * Trait for cloning the field.
@@ -77,11 +79,36 @@ abstract class Field implements Renderable
     use Required;
 
     /**
+     * Trait for how the field value is saved.
+     */
+    use Saving;
+
+    /**
      * Trait for setting the sort order of the field.
      */
     use Sortable;
 
     use Tab;
+
+    /**
+     * Trait for hiding the field from the REST API and front-end forms.
+     */
+    use Visibility;
+
+    /**
+     * Trait for the wrapper class and the HTML before / after the field.
+     */
+    use Wrapper;
+
+    /**
+     * The type of the field.
+     */
+    protected string $type = 'text';
+
+    /**
+     * The settings for the field.
+     */
+    protected array $settings = [];
 
     /**
      * Constructor for the Field class.
@@ -98,17 +125,17 @@ abstract class Field implements Renderable
          * The id of the field.
          */
         protected string $id
-    ) {
-    }
+    ) {}
 
     /**
      * Factory method for creating a new instance of the Field class.
      *
-     * @param mixed ...$args Required arguments (name, id)
+     * @param  mixed  ...$args  Required arguments (name, id)
      */
     public static function make(mixed ...$args): static
     {
         [$name, $id] = $args;
+
         return new static($name, $id);
     }
 
@@ -120,6 +147,7 @@ abstract class Field implements Renderable
     public function setting(string $key, mixed $value): static
     {
         $this->settings[$key] = $value;
+
         return $this;
     }
 

@@ -1,11 +1,12 @@
 <?php
+
 /**
  * Copyright (c) AmphiBee
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  *
- * @see https://github.com/AmphiBee/metabox-builder
+ * @see https://github.com/AmphiBee/MetaboxMaker
  */
 
 declare(strict_types=1);
@@ -46,7 +47,7 @@ trait TimepickerOptions
     /**
      * Show or hide the date when using time-only mode in the jQuery UI Timepicker.
      *
-     * @param  bool  $showWhether  to show the date when using time-only mode.
+     * @param  bool  $showDate  Whether to show the date when using time-only mode.
      */
     public function timeOnlyShowDate(bool $showDate = true): static
     {

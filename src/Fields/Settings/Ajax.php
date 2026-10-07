@@ -1,11 +1,12 @@
 <?php
+
 /**
  * Copyright (c) AmphiBee
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  *
- * @see https://github.com/AmphiBee/metabox-builder
+ * @see https://github.com/AmphiBee/MetaboxMaker
  */
 
 declare(strict_types=1);
@@ -17,12 +18,12 @@ namespace AmphiBee\MetaboxMaker\Fields\Settings;
  */
 trait Ajax
 {
+    use JsOptions;
+
     /**
      * @var bool Whether the field should use AJAX. Defaults to true.
      */
     protected bool $ajax;
-
-    use JsOptions;
 
     /**
      * Set whether the field should use AJAX.
@@ -33,6 +34,11 @@ trait Ajax
     public function ajax(bool $ajax = true): self
     {
         $this->ajax = $ajax;
+
+        // Meta Box only supports AJAX for select_advanced: switch away from the plain select default.
+        if ($ajax && $this->field_type === 'select') {
+            $this->field_type = 'select_advanced';
+        }
 
         return $this;
     }

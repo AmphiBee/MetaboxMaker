@@ -136,7 +136,7 @@ User::make('Speakers', 'speaker_ids')
 - **`queryArgs(array $queryArgs)`**: Sets the arguments to pass to the WP_User_Query function.
 - **`fieldType(EntityFieldType|string $fieldType)`**: Sets the type of field.
 - **`displayField(string $displayField)`**: Sets the `WP_User` property used as the option label. Defaults to `display_name`.
-- **`ajax(bool $ajax = true)`**: Enables AJAX search. Requires `fieldType('select_advanced')`.
+- **`ajax(bool $ajax = true)`**: Enables AJAX search. Meta Box only supports it with `select_advanced`, so the default `select` field type is switched to `select_advanced`.
 - **`minimumInputLength(int $length)`**: Sets how many characters must be typed before the AJAX search fires.
 
 ---

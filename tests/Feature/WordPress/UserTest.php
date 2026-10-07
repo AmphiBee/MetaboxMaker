@@ -1,6 +1,10 @@
 <?php
 
+declare(strict_types=1);
+
 use AmphiBee\MetaboxMaker\Enums\EntityFieldType;
+use AmphiBee\MetaboxMaker\Fields\Post;
+use AmphiBee\MetaboxMaker\Fields\Taxonomy;
 use AmphiBee\MetaboxMaker\Fields\User;
 
 test('can add user field with specific query args', function () {
@@ -42,4 +46,19 @@ test('can add user field with ajax search', function () {
             'minimumInputLength' => 2,
         ],
     ]);
+});
+
+test('enabling ajax switches the default select to select_advanced', function () {
+    expect(User::make('Author', 'author')->ajax()->build())
+        ->toHaveKey('field_type', 'select_advanced')
+        ->toHaveKey('ajax', true);
+
+    expect(Post::make('Related', 'related')->ajax()->build())
+        ->toHaveKey('field_type', 'select_advanced');
+
+    expect(Taxonomy::make('Tags', 'tags')->ajax()->build())
+        ->toHaveKey('field_type', 'select_advanced');
+
+    expect(Post::make('Related', 'related')->fieldType('checkbox_list')->ajax()->build())
+        ->toHaveKey('field_type', 'checkbox_list');
 });

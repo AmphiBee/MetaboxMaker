@@ -1,7 +1,8 @@
 <?php
 
-use AmphiBee\MetaboxMaker\Fields\Autocomplete;
+declare(strict_types=1);
 
+use AmphiBee\MetaboxMaker\Fields\Autocomplete;
 
 test('can configure autocomplete with static and remote options', function () {
     $staticOptions = [

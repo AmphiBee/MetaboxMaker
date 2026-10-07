@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 use AmphiBee\MetaboxMaker\Fields\SelectAdvanced;
 
 test('select advanced field can be configured with multiple options and Select2 features', function () {

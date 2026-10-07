@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 use AmphiBee\MetaboxMaker\Fields\Slider;
 
 test('slider field can be configured with individual js options', function () {
@@ -28,4 +30,11 @@ test('slider field can be configured with individual js options', function () {
             'value' => 150,
         ],
     ]);
+});
+
+test('slider does not override the default value', function () {
+    $config = Slider::make('Volume', 'volume')->default(50)->build();
+
+    expect($config['std'])->toBe(50)
+        ->and($config['js_options'])->not->toHaveKey('value');
 });

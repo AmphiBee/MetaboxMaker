@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 use AmphiBee\MetaboxMaker\Fields\Datepicker;
 use AmphiBee\MetaboxMaker\Fields\DatetimePicker;
 
@@ -43,7 +45,7 @@ test('can configure date picker with specific settings', function () {
         'firstDay' => 1,  // Monday as first day of week
     ];
 
-    $args = DatePicker::make('Event Date', 'event_date')
+    $args = Datepicker::make('Event Date', 'event_date')
         ->size(15)
         ->inline(true)
         ->saveAsTimestamp(true)

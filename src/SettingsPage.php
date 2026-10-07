@@ -11,6 +11,9 @@ use AmphiBee\MetaboxMaker\Transformer\EmptyValueFilter;
 use AmphiBee\MetaboxMaker\Validation\OptionValidation;
 use Exception;
 
+/**
+ * @phpstan-consistent-constructor
+ */
 class SettingsPage implements Renderable
 {
     /**
@@ -126,170 +129,195 @@ class SettingsPage implements Renderable
     /**
      * Constructor for the SettingsPage class.
      *
-     * @param string $page_title The title of the settings page
-     * @param string $id The unique identifier for the settings page
+     * @param  string  $page_title  The title of the settings page
+     * @param  string  $id  The unique identifier for the settings page
      */
     public function __construct(protected string $page_title, protected string $id)
     {
-        if (!function_exists('add_filter')) {
+        if (! function_exists('add_filter')) {
             throw new Exception('Metabox Maker requires WordPress to be loaded.');
         }
 
         $this->menu_title = $page_title;
 
-        add_filter('mb_settings_pages', function ($settings_pages) {
-            $settings_pages[] = $this->build();
-            return $settings_pages;
-        });
+        if (! doing_filter('mb_settings_pages')) {
+            add_filter('mb_settings_pages', function ($settings_pages) {
+                $settings_pages[] = $this->build();
+
+                return $settings_pages;
+            });
+        }
     }
 
     /**
      * Create a new SettingsPage instance.
      *
-     * @param mixed ...$args Required arguments (page_title, id)
+     * @param  mixed  ...$args  Required arguments (page_title, id)
      */
     public static function make(mixed ...$args): static
     {
         [$page_title, $id] = $args;
+
         return new static($page_title, $id);
     }
 
     public function position(int $position): static
     {
         $this->position = $position;
+
         return $this;
     }
 
     public function menuTitle(string $title): static
     {
         $this->menu_title = $title;
+
         return $this;
     }
 
     public function submenuTitle(string $title): static
     {
         $this->submenu_title = $title;
+
         return $this;
     }
 
     public function iconType(string|IconType $type): static
     {
         $this->icon_type = OptionValidation::check($type, IconType::class);
+
         return $this;
     }
 
     public function icon(string $icon): static
     {
         $this->icon = $icon;
+
         return $this;
     }
 
     public function iconSvg(string $svg): static
     {
         $this->icon_svg = $svg;
+
         return $this;
     }
 
     public function iconUrl(string $url): static
     {
         $this->icon_url = $url;
+
         return $this;
     }
 
     public function parent(string $parent): static
     {
         $this->parent = $parent;
+
         return $this;
     }
 
     public function capability(string $capability): static
     {
         $this->capability = $capability;
+
         return $this;
     }
 
     public function class(string $class): static
     {
         $this->class = $class;
+
         return $this;
     }
 
     public function style(string $style): static
     {
         $this->style = $style;
+
         return $this;
     }
 
     public function columns(int $columns): static
     {
         $this->columns = $columns;
+
         return $this;
     }
 
     public function tabs(array $tabs): static
     {
         $this->tabs = $tabs;
+
         return $this;
     }
 
     public function tabStyle(string|TabStyle $style): static
     {
         $this->tab_style = OptionValidation::check($style, TabStyle::class);
+
         return $this;
     }
 
     public function submitButton(string $text): static
     {
         $this->submit_button = $text;
+
         return $this;
     }
 
     public function message(string $message): static
     {
         $this->message = $message;
+
         return $this;
     }
 
     public function helpTabs(array $tabs): static
     {
         $this->help_tabs = $tabs;
+
         return $this;
     }
 
     public function customizer(bool $enabled = true): static
     {
         $this->customizer = $enabled;
+
         return $this;
     }
 
     public function customizerOnly(bool $enabled = true): static
     {
         $this->customizer_only = $enabled;
+
         return $this;
     }
 
     public function network(bool $enabled = true): static
     {
         $this->network = $enabled;
+
         return $this;
     }
 
     public function optionName(string $name): static
     {
         $this->option_name = $name;
+
         return $this;
     }
 
     /**
      * Set a custom setting for the settings page.
      *
-     * @param string $key The setting key.
-     * @param mixed $value The setting value.
-     * @return static
+     * @param  string  $key  The setting key.
+     * @param  mixed  $value  The setting value.
      */
     public function setting(string $key, mixed $value): static
     {
         $this->settings[$key] = $value;
+
         return $this;
     }
 
@@ -304,16 +332,53 @@ class SettingsPage implements Renderable
     }
 
     public function build(): array
-    {$pageData = EmptyValueFilter::filter(get_object_vars($this));
-        
-        // Remove the settings array from the page data
-        unset($pageData['settings']);
-        
+    {
+        $pageData = EmptyValueFilter::filter(get_object_vars($this));
+
+        // Remove the settings array and the builder-only icon keys from the page data
+        unset($pageData['settings'], $pageData['icon_type'], $pageData['icon'], $pageData['icon_svg']);
+
+        $iconUrl = $this->resolveIconUrl();
+        if ($iconUrl !== null) {
+            $pageData['icon_url'] = $iconUrl;
+        }
+
         // Merge custom settings if they exist
-        if (!empty($this->settings)) {
+        if (! empty($this->settings)) {
             $pageData = array_merge($pageData, $this->settings);
         }
-        
+
         return $pageData;
     }
-} 
+
+    /**
+     * Resolve the menu icon into the icon_url setting read by MB Settings Page.
+     *
+     * The icon_type / icon / icon_svg keys only exist in Meta Box Builder, which
+     * converts them before registering the page: do the same conversion here.
+     */
+    protected function resolveIconUrl(): ?string
+    {
+        if ($this->icon_url !== null) {
+            return $this->icon_url;
+        }
+
+        $type = $this->icon_type ?? IconType::DASHICONS->value;
+
+        if ($type === IconType::SVG->value && $this->icon_svg !== null) {
+            return str_starts_with($this->icon_svg, 'data:')
+                ? $this->icon_svg
+                : 'data:image/svg+xml;base64,'.base64_encode($this->icon_svg);
+        }
+
+        if ($this->icon === null) {
+            return null;
+        }
+
+        if ($type === IconType::DASHICONS->value && ! str_starts_with($this->icon, 'dashicons-')) {
+            return 'dashicons-'.$this->icon;
+        }
+
+        return $this->icon;
+    }
+}

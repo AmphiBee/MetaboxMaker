@@ -1,17 +1,28 @@
 <?php
 
+declare(strict_types=1);
+
 /*
 |--------------------------------------------------------------------------
-| Test Case
+| WordPress stubs
 |--------------------------------------------------------------------------
 |
-| The closure you provide to your test functions is always bound to a specific PHPUnit test
-| case class. By default, that class is "PHPUnit\Framework\TestCase". Of course, you may
-| need to change it using the "uses()" function to bind a different classes or traits.
+| The builders register themselves on WordPress filters. Tests only check
+| the generated configuration arrays, so the hook API is stubbed out.
 |
 */
-// uses(Tests\TestCase::class)->in('Feature')
 
-function add_filter($tag, $function_to_add, $priority = 10, $accepted = 2) {
-    //
+function add_filter(string $hookName, callable $callback, int $priority = 10, int $acceptedArgs = 1): bool
+{
+    return true;
+}
+
+function doing_filter(?string $hookName = null): bool
+{
+    return false;
+}
+
+function sanitize_title(string $title): string
+{
+    return strtolower(trim((string) preg_replace('/[^A-Za-z0-9_]+/', '-', $title), '-'));
 }

@@ -1,15 +1,17 @@
 <?php
 
+declare(strict_types=1);
+
 use AmphiBee\MetaboxMaker\Fields\Group;
 use AmphiBee\MetaboxMaker\Fields\Text;
-use AmphiBee\MetaboxMaker\Metabox;
 use AmphiBee\MetaboxMaker\Location;
+use AmphiBee\MetaboxMaker\Metabox;
 
 $fieldset = Metabox::make('Example Fieldset', 'example_fieldset');
 
 beforeEach(function () {
     // Simulate a location object
-    $this->location = Location::where('post_type', ['post', 'page']); // Assurez-vous de définir correctement cette classe selon votre implémentation
+    $this->location = Location::where('post_types', ['post', 'page']);
     $this->fieldset = Metabox::make('Example Fieldset', 'example_fieldset');
 });
 
@@ -49,7 +51,7 @@ test('can configure additional options', function () {
 
 test('can set location', function () {
     $this->fieldset->location($this->location);
-    expect($this->fieldset->build())->toHaveKey('post_type');
+    expect($this->fieldset->build())->toHaveKey('post_types');
 });
 
 test('can add groups and fields', function () {
@@ -65,7 +67,7 @@ test('can add groups and fields', function () {
         ])
         ->priority('high')
         ->context('side')
-        ->location(Location::where('post_type', ['post', 'page']));
+        ->location(Location::where('post_types', ['post', 'page']));
 
     $expectedArray = [
         'title' => 'Test Fieldset',
@@ -93,7 +95,7 @@ test('can add groups and fields', function () {
                 ],
             ],
         ],
-        'post_type' => ['post', 'page'],
+        'post_types' => ['post', 'page'],
     ];
 
     expect($mainGroup->build())->toMatchArray($expectedArray);

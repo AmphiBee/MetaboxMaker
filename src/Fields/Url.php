@@ -13,4 +13,4 @@ class Url extends Text
      * The type of input field. Set to 'url'.
      */
     protected string $type = 'url';
-} 
+}

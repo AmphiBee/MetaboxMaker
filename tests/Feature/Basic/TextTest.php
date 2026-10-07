@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 use AmphiBee\MetaboxMaker\Enums\InputTextType;
 use AmphiBee\MetaboxMaker\Fields\Text;
 
@@ -77,4 +79,4 @@ it('can throws an exception for invalid field type string', function () {
 it('can throws an exception for incorrect type usage', function () {
     Text::make('Incorrect Type Usage', 'incorrect_usage')
         ->type(123);  // This is an incorrect usage, passing an integer instead of string or FieldType
-})->throws(InvalidArgumentException::class);
+})->throws(TypeError::class);

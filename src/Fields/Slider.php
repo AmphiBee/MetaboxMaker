@@ -1,11 +1,12 @@
 <?php
+
 /**
  * Copyright (c) AmphiBee
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  *
- * @see https://github.com/AmphiBee/metabox-builder
+ * @see https://github.com/AmphiBee/MetaboxMaker
  */
 
 declare(strict_types=1);
@@ -39,9 +40,9 @@ final class Slider extends Field
     public function __construct(string $name, string $id)
     {
         parent::__construct($name, $id);
+        // Leave 'value' unset: Meta Box fills it from the default value (std).
         $this->js_options = [
             'range' => 'min',
-            'value' => 0,
         ];
     }
 

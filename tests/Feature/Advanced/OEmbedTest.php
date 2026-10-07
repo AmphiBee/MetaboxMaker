@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 use AmphiBee\MetaboxMaker\Fields\OEmbed;
 
 test('oembed field can be configured with specific settings', function () {

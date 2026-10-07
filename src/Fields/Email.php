@@ -13,4 +13,4 @@ class Email extends Text
      * The type of input field. Set to 'email'.
      */
     protected string $type = 'email';
-} 
+}

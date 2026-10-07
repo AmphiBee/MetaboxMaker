@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 use AmphiBee\MetaboxMaker\Enums\SidebarFieldType;
 use AmphiBee\MetaboxMaker\Fields\Sidebar;
 

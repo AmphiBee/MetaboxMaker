@@ -1,11 +1,12 @@
 <?php
+
 /**
  * Copyright (c) AmphiBee
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  *
- * @see https://github.com/AmphiBee/metabox-builder
+ * @see https://github.com/AmphiBee/MetaboxMaker
  */
 
 declare(strict_types=1);
@@ -19,15 +20,11 @@ enum Priority: string
 {
     /**
      * High priority level.
-     *
-     * @var string High
      */
     case High = 'high';
 
     /**
      * Low priority level.
-     *
-     * @var string Low
      */
     case Low = 'low';
 }

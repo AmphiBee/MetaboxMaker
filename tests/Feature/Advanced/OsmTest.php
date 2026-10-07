@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 use AmphiBee\MetaboxMaker\Fields\OpenStreetMap;
 
 test('OSM field is properly configured', function () {

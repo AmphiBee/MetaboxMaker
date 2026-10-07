@@ -1,8 +1,10 @@
 <?php
 
-use AmphiBee\MetaboxMaker\Fields\Text;
-use AmphiBee\MetaboxMaker\Fields\Select;
+declare(strict_types=1);
+
 use AmphiBee\MetaboxMaker\Fields\Number;
+use AmphiBee\MetaboxMaker\Fields\Select;
+use AmphiBee\MetaboxMaker\Fields\Text;
 
 test('can add custom settings to a field', function () {
     $field = Text::make('Name', 'name')

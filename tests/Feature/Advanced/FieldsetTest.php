@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 use AmphiBee\MetaboxMaker\Fields\Fieldset;
 
 test('fieldset field can be configured with multiple inputs', function () {
@@ -13,7 +15,7 @@ test('fieldset field can be configured with multiple inputs', function () {
     $config = $fieldset->build();
 
     expect($config)->toMatchArray([
-        'type' => 'fieldset',
+        'type' => 'fieldset_text',
         'name' => 'User Details',
         'id' => 'user_details',
         'options' => [

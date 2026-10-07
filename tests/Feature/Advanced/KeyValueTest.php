@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 use AmphiBee\MetaboxMaker\Fields\KeyValue;
 
 test('key value field can be configured with placeholders', function () {

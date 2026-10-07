@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 use AmphiBee\MetaboxMaker\Fields\TextList;
 
 it('can create a text list field', function () {
@@ -18,4 +20,4 @@ it('can create a text list field', function () {
             'name@domain.com' => 'Email',
         ])
         ->and($settings['clone'])->toBeTrue();
-}); 
+});

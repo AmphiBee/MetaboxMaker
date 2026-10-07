@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 use AmphiBee\MetaboxMaker\Fields\Email;
 
 it('can create an Email field', function () {
@@ -14,4 +16,4 @@ it('can create an Email field', function () {
         ->and($settings['size'])->toBe(30)
         ->and($settings['prepend'])->toBe('user@')
         ->and($settings['append'])->toBe('.com');
-}); 
+});

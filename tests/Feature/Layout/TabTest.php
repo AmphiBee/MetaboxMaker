@@ -1,6 +1,9 @@
 <?php
 
+declare(strict_types=1);
+
 use AmphiBee\MetaboxMaker\Fields\Group;
+use AmphiBee\MetaboxMaker\Fields\Heading;
 use AmphiBee\MetaboxMaker\Fields\Tab;
 use AmphiBee\MetaboxMaker\Fields\Text;
 use AmphiBee\MetaboxMaker\Metabox;
@@ -27,38 +30,38 @@ test('can assign tabs to fields', function () {
         ]);
 
     expect($tabs->build())->toMatchArray([
-            'fields' => [
-                [
-                    'type' => 'text',
-                    'name' => 'Main Text',
-                    'id' => 'main_text',
-                    'placeholder' => 'Enter main text',
-                    'tab' => 'contact',
+        'fields' => [
+            [
+                'type' => 'text',
+                'name' => 'Main Text',
+                'id' => 'main_text',
+                'placeholder' => 'Enter main text',
+                'tab' => 'contact',
+            ],
+            [
+                'type' => 'group',
+                'name' => 'Sub group',
+                'id' => 'sub_group',
+                'tab' => 'social',
+                'fields' => [
+                    [
+                        'type' => 'text',
+                        'name' => 'Sub Text',
+                        'id' => 'sub_text', 'placeholder' => 'Enter sub text'],
                 ],
-                [
-                    'type' => 'group',
-                    'name' => 'Sub group',
-                    'id' => 'sub_group',
-                    'tab' => 'social',
-                    'fields' => [
-                        [
-                            'type' => 'text',
-                            'name' => 'Sub Text',
-                            'id' => 'sub_text', 'placeholder' => 'Enter sub text']
-                    ]
-                ]
             ],
-            'tabs' => [
-                'contact' => 'Contact',
-                'social' => [
-                    'label' => 'Social Media',
-                    'icon' => 'dashicons-share'
-                ]
+        ],
+        'tabs' => [
+            'contact' => 'Contact',
+            'social' => [
+                'label' => 'Social Media',
+                'icon' => 'dashicons-share',
             ],
-            'title' => 'Multi-level nested groups',
-            'id' => 'main_group',
-            'post_type' => ['post']
-        ]
+        ],
+        'title' => 'Multi-level nested groups',
+        'id' => 'main_group',
+        'post_types' => ['post'],
+    ]
     );
 });
 
@@ -68,55 +71,67 @@ test('can assign group tabs', function () {
             Tab::make('Contact', 'contact')
                 ->fields([
                     Text::make('Main Text', 'main_text')
-                        ->placeholder('Enter main text')
+                        ->placeholder('Enter main text'),
                 ]),
-            Tab::make('Social Media','social')
+            Tab::make('Social Media', 'social')
                 ->icon('dashicons-share')
                 ->fields([
                     Group::make('Sub group', 'sub_group')
                         ->fields([
                             Text::make('Sub Text', 'sub_text')
                                 ->placeholder('Enter sub text'),
-                        ])
+                        ]),
                 ]),
         ]);
 
     expect($tabs->build())->toMatchArray([
-            'fields' => [
-                [
-                    'type' => 'text',
-                    'name' => 'Main Text',
-                    'id' => 'main_text',
-                    'placeholder' => 'Enter main text',
-                    'tab' => 'contact',
-                ],
-                [
-                    'type' => 'group',
-                    'name' => 'Sub group',
-                    'id' => 'sub_group',
-                    'tab' => 'social',
-                    'fields' => [
-                        [
-                            'type' => 'text',
-                            'name' => 'Sub Text',
-                            'id' => 'sub_text',
-                            'placeholder' => 'Enter sub text',
-                        ]
-                    ]
-                ]
+        'fields' => [
+            [
+                'type' => 'text',
+                'name' => 'Main Text',
+                'id' => 'main_text',
+                'placeholder' => 'Enter main text',
+                'tab' => 'contact',
             ],
-            'tabs' => [
-                'contact' => [
-                    'label' => 'Contact',
+            [
+                'type' => 'group',
+                'name' => 'Sub group',
+                'id' => 'sub_group',
+                'tab' => 'social',
+                'fields' => [
+                    [
+                        'type' => 'text',
+                        'name' => 'Sub Text',
+                        'id' => 'sub_text',
+                        'placeholder' => 'Enter sub text',
+                    ],
                 ],
-                'social' => [
-                    'label' => 'Social Media',
-                    'icon' => 'dashicons-share'
-                ]
             ],
-            'title' => 'Multi-level nested groups',
-            'id' => 'main_group',
-            'post_type' => ['post']
-        ]
+        ],
+        'tabs' => [
+            'contact' => [
+                'label' => 'Contact',
+            ],
+            'social' => [
+                'label' => 'Social Media',
+                'icon' => 'dashicons-share',
+            ],
+        ],
+        'title' => 'Multi-level nested groups',
+        'id' => 'main_group',
+        'post_types' => ['post'],
+    ]
     );
+});
+
+test('tab accepts layout fields and assigns them to the tab', function () {
+    $config = Metabox::make('Box', 'box')->fields([
+        Tab::make('General', 'general')->fields([
+            Heading::make('Section'),
+            Text::make('Label', 'label'),
+        ]),
+    ])->build();
+
+    expect($config['fields'][0])->toMatchArray(['type' => 'heading', 'tab' => 'general'])
+        ->and($config['fields'][1])->toMatchArray(['type' => 'text', 'tab' => 'general']);
 });

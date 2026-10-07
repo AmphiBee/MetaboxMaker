@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 use AmphiBee\MetaboxMaker\Fields\Image;
 use AmphiBee\MetaboxMaker\Fields\ImageAdvanced;
 use AmphiBee\MetaboxMaker\Fields\ImageUpload;
