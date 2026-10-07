@@ -21,3 +21,8 @@ function doing_filter(?string $hookName = null): bool
 {
     return false;
 }
+
+function sanitize_title(string $title): string
+{
+    return strtolower(trim((string) preg_replace('/[^A-Za-z0-9_]+/', '-', $title), '-'));
+}

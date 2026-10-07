@@ -44,7 +44,7 @@ class Block extends Metabox
     /**
      * The category of the block.
      */
-    protected string $category = 'layout';
+    protected string $category = 'design';
 
     /**
      * The keywords for the block.

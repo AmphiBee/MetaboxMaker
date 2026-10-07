@@ -27,7 +27,7 @@ class BlockTypeFilter
      */
     public static function registerRestrictions(string $blockId, array $restrictions): void
     {
-        self::$restrictions[$blockId] = $restrictions;
+        self::$restrictions[$blockId] = array_merge(self::$restrictions[$blockId] ?? [], $restrictions);
         self::setupFilter();
     }
 
@@ -61,16 +61,18 @@ class BlockTypeFilter
             $should_keep = true;
 
             foreach (self::$restrictions as $block_id => $restrictions) {
-                if (strpos($block_name, $block_id) !== false) {
-                    if (isset($restrictions['allowed']) && ! in_array($post_type, $restrictions['allowed'])) {
-                        $should_keep = false;
-                        break;
-                    }
+                if ($block_name !== self::blockName($block_id)) {
+                    continue;
+                }
 
-                    if (isset($restrictions['excluded']) && in_array($post_type, $restrictions['excluded'])) {
-                        $should_keep = false;
-                        break;
-                    }
+                if (isset($restrictions['allowed']) && ! in_array($post_type, $restrictions['allowed'], true)) {
+                    $should_keep = false;
+                    break;
+                }
+
+                if (isset($restrictions['excluded']) && in_array($post_type, $restrictions['excluded'], true)) {
+                    $should_keep = false;
+                    break;
                 }
             }
 
@@ -80,6 +82,22 @@ class BlockTypeFilter
         }
 
         return $filtered_blocks;
+    }
+
+    /**
+     * Get the registered block name for a Meta Box block ID, as MB Blocks does.
+     */
+    public static function blockName(string $blockId): string
+    {
+        return 'meta-box/'.sanitize_title($blockId);
+    }
+
+    /**
+     * Get the registered restrictions, keyed by block ID.
+     */
+    public static function getRestrictions(): array
+    {
+        return self::$restrictions;
     }
 
     /**
