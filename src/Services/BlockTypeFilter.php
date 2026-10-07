@@ -40,48 +40,27 @@ class BlockTypeFilter
      */
     public static function filterBlockTypes($allowed_blocks, $context): mixed
     {
-        if (! isset($context->post) || empty(self::$restrictions)) {
+        if (! isset($context->post) || self::$restrictions === []) {
             return $allowed_blocks;
         }
 
-        $post_type = $context->post->post_type;
+        $removed = self::blocksRemovedFor($context->post->post_type);
+
+        // Keep the value untouched when nothing is removed: expanding `true` to the server-side
+        // registry would drop the blocks registered in JavaScript only.
+        if ($removed === [] || $allowed_blocks === false) {
+            return $allowed_blocks;
+        }
 
         if ($allowed_blocks === true) {
-            $registry = \WP_Block_Type_Registry::get_instance();
-            $allowed_blocks = array_keys($registry->get_all_registered());
+            $allowed_blocks = array_keys(\WP_Block_Type_Registry::get_instance()->get_all_registered());
         }
 
         if (! is_array($allowed_blocks)) {
             return $allowed_blocks;
         }
 
-        $filtered_blocks = [];
-
-        foreach ($allowed_blocks as $block_name) {
-            $should_keep = true;
-
-            foreach (self::$restrictions as $block_id => $restrictions) {
-                if ($block_name !== self::blockName($block_id)) {
-                    continue;
-                }
-
-                if (isset($restrictions['allowed']) && ! in_array($post_type, $restrictions['allowed'], true)) {
-                    $should_keep = false;
-                    break;
-                }
-
-                if (isset($restrictions['excluded']) && in_array($post_type, $restrictions['excluded'], true)) {
-                    $should_keep = false;
-                    break;
-                }
-            }
-
-            if ($should_keep) {
-                $filtered_blocks[] = $block_name;
-            }
-        }
-
-        return $filtered_blocks;
+        return array_values(array_filter($allowed_blocks, fn ($blockName) => ! isset($removed[$blockName])));
     }
 
     /**
@@ -98,6 +77,27 @@ class BlockTypeFilter
     public static function getRestrictions(): array
     {
         return self::$restrictions;
+    }
+
+    /**
+     * Get the names of the restricted blocks not allowed on a post type.
+     *
+     * @return array<string, true> Block names as keys.
+     */
+    protected static function blocksRemovedFor(string $postType): array
+    {
+        $removed = [];
+
+        foreach (self::$restrictions as $blockId => $restrictions) {
+            $notAllowed = isset($restrictions['allowed']) && ! in_array($postType, $restrictions['allowed'], true);
+            $excluded = isset($restrictions['excluded']) && in_array($postType, $restrictions['excluded'], true);
+
+            if ($notAllowed || $excluded) {
+                $removed[self::blockName($blockId)] = true;
+            }
+        }
+
+        return $removed;
     }
 
     /**
