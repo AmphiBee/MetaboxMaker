@@ -1,5 +1,28 @@
 # Upgrade guide
 
+## From pollora/metabox 2.5 to 2.6
+
+Nothing needs to change: 2.6 only adds classes.
+
+Relationships registered with `MB_Relationships_API::register()` keep working. They can be replaced with `Relationship`, which validates them. Note that the `field` settings move to the other side: in the Meta Box array, they configure the field displayed on the screen of the other side, while a `Side` configures the screens of its own objects.
+
+| Before | After |
+|---|---|
+| `add_action('mb_relationships_init', fn () => MB_Relationships_API::register(['id' => 'posts_to_pages', 'from' => 'post', 'to' => 'page']))` | `Relationship::make('posts_to_pages')->from(Side::posts())->to(Side::posts('page'))` |
+| `'from' => ['object_type' => 'term', 'taxonomy' => 'category']` | `->from(Side::terms('category'))` |
+| `'from' => ['object_type' => 'user']` | `->from(Side::users())` |
+| `'from' => ['meta_box' => ['title' => 'Pages', 'context' => 'normal']]` | `->from(Side::posts()->metaBox(title: 'Pages', context: 'normal'))` |
+| `'to' => ['field' => ['max_clone' => 3, 'query_args' => [...]]]` | `->from(Side::posts()->field(max: 3, queryArgs: [...]))`: on the from side |
+| `'from' => ['admin_column' => 'after title']` | `->from(Side::posts()->adminColumn(after: 'title'))` |
+| `'from' => ['has_one_relationship' => true]` | `->from(Side::posts('product')->hasOne())` |
+| `'reciprocal' => true` | `->reciprocal()` |
+
+Find them with:
+
+```bash
+grep -rn "MB_Relationships_API::register" app config --include='*.php'
+```
+
 ## From pollora/metabox 2.4 to 2.5
 
 Nothing needs to change: 2.5 adds methods and fields.
