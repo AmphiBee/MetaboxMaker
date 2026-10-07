@@ -3,6 +3,7 @@
 declare(strict_types=1);
 
 use AmphiBee\MetaboxMaker\Fields\Group;
+use AmphiBee\MetaboxMaker\Fields\Heading;
 use AmphiBee\MetaboxMaker\Fields\Tab;
 use AmphiBee\MetaboxMaker\Fields\Text;
 use AmphiBee\MetaboxMaker\Metabox;
@@ -121,4 +122,16 @@ test('can assign group tabs', function () {
         'post_types' => ['post'],
     ]
     );
+});
+
+test('tab accepts layout fields and assigns them to the tab', function () {
+    $config = Metabox::make('Box', 'box')->fields([
+        Tab::make('General', 'general')->fields([
+            Heading::make('Section'),
+            Text::make('Label', 'label'),
+        ]),
+    ])->build();
+
+    expect($config['fields'][0])->toMatchArray(['type' => 'heading', 'tab' => 'general'])
+        ->and($config['fields'][1])->toMatchArray(['type' => 'text', 'tab' => 'general']);
 });

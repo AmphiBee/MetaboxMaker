@@ -13,6 +13,7 @@ declare(strict_types=1);
 
 namespace AmphiBee\MetaboxMaker\Fields;
 
+use AmphiBee\MetaboxMaker\Contract\Renderable;
 use InvalidArgumentException;
 
 /**
@@ -59,10 +60,12 @@ class Tab extends Field
     public function fields(array $fields): self
     {
         foreach ($fields as $field) {
-            if (! $field instanceof Field) {
-                throw new InvalidArgumentException('All fields must be instances of Field.');
+            if (! $field instanceof Renderable) {
+                throw new InvalidArgumentException('All fields must implement Renderable.');
             }
-            $field->tab($this->id);
+            if (method_exists($field, 'tab')) {
+                $field->tab($this->id);
+            }
             $this->fields[] = $field;
         }
 

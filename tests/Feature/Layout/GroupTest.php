@@ -2,7 +2,9 @@
 
 declare(strict_types=1);
 
+use AmphiBee\MetaboxMaker\Fields\Divider;
 use AmphiBee\MetaboxMaker\Fields\Group;
+use AmphiBee\MetaboxMaker\Fields\Heading;
 use AmphiBee\MetaboxMaker\Fields\Text;
 
 test('can add group with nested groups and fields', function () {
@@ -81,4 +83,14 @@ test('can add group with advanced properties handles settings correctly', functi
     ];
 
     expect($group->build())->toMatchArray($expectedArray);
+});
+
+test('group accepts layout fields such as headings and dividers', function () {
+    $config = Group::make('Links', 'links')->fields([
+        Heading::make('Section'),
+        Divider::make(),
+        Text::make('Label', 'label'),
+    ])->build();
+
+    expect(array_column($config['fields'], 'type'))->toBe(['heading', 'divider', 'text']);
 });
