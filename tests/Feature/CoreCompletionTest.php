@@ -72,7 +72,7 @@ test('meta box validation, revision and custom table', function () {
         ],
         'revision' => true,
         'storage_type' => 'custom_table',
-        'table' => 'transactions',
+        'table' => 'wp_transactions',
     ]);
 });
 

@@ -2,7 +2,22 @@
 
 ## From pollora/metabox 2.5 to 2.6
 
-Nothing needs to change: 2.6 only adds classes.
+`customTable()` now adds the WordPress table prefix to the table name, like a Laravel database connection: `customTable('events')` stores the values in `wp_events`. Check every call:
+
+| Before | After |
+|---|---|
+| `->customTable('wp_events')` or `->customTable($wpdb->prefix.'events')` | `->customTable('events')` |
+| `->customTable('events')`, for a table really named `events` | `->customTable('events', prefix: false)` |
+| `->storageType('custom_table')->setting('table', 'wp_events')` | `->customTable('events')` |
+| `->setting('models', ['transaction'])` with `->customTable(...)`, after `mb_register_model()` | `MetaboxModel::make('transaction')->table('transactions')` and `->location(Location::models('transaction'))` |
+
+Find them with:
+
+```bash
+grep -rnE "customTable\(|custom_table|mb_register_model" app config --include='*.php'
+```
+
+Nothing else needs to change: the rest of 2.6 only adds classes.
 
 Relationships registered with `MB_Relationships_API::register()` keep working. They can be replaced with `Relationship`, which validates them. Note that the `field` settings move to the other side: in the Meta Box array, they configure the field displayed on the screen of the other side, while a `Side` configures the screens of its own objects.
 

@@ -14,3 +14,9 @@ class MB_Relationships_API
      */
     public static function register($settings) {}
 }
+
+/**
+ * @param  array<string, mixed>  $args
+ * @return object
+ */
+function mb_register_model(string $name, array $args) {}

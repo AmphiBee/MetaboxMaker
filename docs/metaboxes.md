@@ -58,7 +58,7 @@ Metabox::make('User Information', 'user_info')
 - **`autosave(bool $autosave)`**: Saves the field values when WordPress autosaves the post.
 - **`mediaModal(bool $mediaModal)`**: Shows the fields in the media modal (attachments only).
 - **`revision(bool $revision = true)`**: Tracks the field values in post revisions (MB Revision).
-- **`customTable(string $table)`**: Stores the field values in a custom table (MB Custom Table).
+- **`customTable(string $table, bool $prefix = true)`**: Stores the field values in a custom table (MB Custom Table), named without the WordPress table prefix, which is added. See [Custom tables](custom-tables.md).
 - **`storageType(string $storageType)`**: Sets the storage type directly. Prefer `customTable()` for custom tables.
 
 **Anything else**
@@ -170,6 +170,7 @@ Metabox::make('Custom Metabox', 'custom_metabox')
 - **`Location::postTypes(string|array $postTypes)`**: Shows the metabox on the given post types.
 - **`Location::taxonomies(string|array $taxonomies)`**: Shows the metabox on terms of the given taxonomies (MB Term Meta).
 - **`Location::settingsPages(string|array $settingsPages, ?string $tab = null)`**: Shows the metabox on the given settings pages (MB Settings Page), in the given tab when the pages have tabs: `Location::settingsPages('theme-options', tab: 'general')`.
+- **`Location::models(string|array $models)`**: Shows the metabox on the screens of custom models, and stores its values in their table (MB Custom Table). See [Custom tables](custom-tables.md#custom-models).
 - **`Location::user()`**: Shows the metabox on user profiles (MB User Meta).
 - **`Location::comment()`**: Shows the metabox on comments (MB Comment Meta).
 - **`andWhere(string $type, string|array $values)`**: Adds another condition with any Meta Box key.
