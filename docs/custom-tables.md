@@ -79,6 +79,8 @@ The package does not create tables: create them with a migration, before the met
 
 ### With Laravel migrations (Pollora)
 
+In a Pollora application, [pollora/metabox-bridge](https://github.com/Pollora/metabox-bridge) adds `$table->metaboxObject()` and `$table->metaboxModel()` to migrations, which create the `ID` column and the columns of the model supports. It also provides Eloquent base models that unserialize the values stored by Meta Box and clear its cache when a row is saved. Without it, write the columns yourself:
+
 ```php
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -120,6 +122,8 @@ add_action('init', function () {
 For a model, call it after the model is registered (the code above runs at priority 20, after `MetaboxModel`), so that the `ID` column is auto-incremented.
 
 ## Reading values
+
+With [pollora/metabox-bridge](https://github.com/Pollora/metabox-bridge), read and write the rows with Eloquent. Otherwise, use the Meta Box functions:
 
 ```php
 // Formatted value, cached for the request
