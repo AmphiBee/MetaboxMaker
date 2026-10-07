@@ -2,8 +2,8 @@
 
 declare(strict_types=1);
 
-use AmphiBee\MetaboxMaker\Enums\SidebarFieldType;
-use AmphiBee\MetaboxMaker\Fields\Sidebar;
+use Pollora\Metabox\Enums\SidebarFieldType;
+use Pollora\Metabox\Fields\Sidebar;
 
 test('can add sidebar with advanced select type', function () {
     $args = Sidebar::make('Sidebar', 'sidebar')

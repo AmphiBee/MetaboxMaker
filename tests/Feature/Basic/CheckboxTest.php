@@ -2,8 +2,8 @@
 
 declare(strict_types=1);
 
-use AmphiBee\MetaboxMaker\Fields\Checkbox;
-use AmphiBee\MetaboxMaker\Fields\CheckboxList;
+use Pollora\Metabox\Fields\Checkbox;
+use Pollora\Metabox\Fields\CheckboxList;
 
 test('can set checkbox as checked by default', function () {
     $args = Checkbox::make('Accept Terms', 'accept_terms')

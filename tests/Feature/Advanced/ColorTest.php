@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-use AmphiBee\MetaboxMaker\Fields\Color;
+use Pollora\Metabox\Fields\Color;
 
 test('color field can be created with valid js_options', function () {
     $jsOptions = [

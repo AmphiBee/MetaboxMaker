@@ -2,8 +2,8 @@
 
 declare(strict_types=1);
 
-use AmphiBee\MetaboxMaker\Enums\InputTextType;
-use AmphiBee\MetaboxMaker\Fields\Text;
+use Pollora\Metabox\Enums\InputTextType;
+use Pollora\Metabox\Fields\Text;
 
 test('can add text with all properties', function () {
     $args = Text::make('Website URL', 'website_url')

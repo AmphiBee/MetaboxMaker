@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-use AmphiBee\MetaboxMaker\Enums\IconType;
-use AmphiBee\MetaboxMaker\Enums\TabStyle;
-use AmphiBee\MetaboxMaker\SettingsPage;
+use Pollora\Metabox\Enums\IconType;
+use Pollora\Metabox\Enums\TabStyle;
+use Pollora\Metabox\SettingsPage;
 
 beforeEach(function () {
     $this->settings = SettingsPage::make('Example Settings', 'example-settings');

@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-use AmphiBee\MetaboxMaker\Fields\Heading;
+use Pollora\Metabox\Fields\Heading;
 
 test('can initialize and configure heading field', function () {
     $heading = Heading::make('Section Title')

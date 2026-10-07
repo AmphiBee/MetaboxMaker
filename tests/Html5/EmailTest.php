@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-use AmphiBee\MetaboxMaker\Fields\Email;
+use Pollora\Metabox\Fields\Email;
 
 it('can create an Email field', function () {
     $emailField = Email::make('Email Address', 'email_address')

@@ -1,6 +1,6 @@
-# Basic Fields in MetaboxMaker
+# Basic fields
 
-MetaboxMaker provides a variety of basic fields that can be used to create custom metaboxes and blocks in WordPress. This document covers the basic fields available in the package and how to use them.
+The package provides a variety of basic fields that can be used to create custom metaboxes and blocks in WordPress. This document covers the basic fields available in the package and how to use them.
 
 ## Text Field
 
@@ -11,7 +11,7 @@ The `Text` field is used to create a simple text input field.
 ```php
 <?php
 
-use AmphiBee\MetaboxMaker\Fields\Text;
+use Pollora\Metabox\Fields\Text;
 
 Text::make('Username', 'username')
     ->placeholder('Enter your username')
@@ -37,7 +37,7 @@ The `Textarea` field is used to create a multi-line text input field.
 ```php
 <?php
 
-use AmphiBee\MetaboxMaker\Fields\Textarea;
+use Pollora\Metabox\Fields\Textarea;
 
 Textarea::make('Description', 'description')
     ->rows(5)
@@ -58,7 +58,7 @@ The `Select` field is used to create a dropdown select field.
 ```php
 <?php
 
-use AmphiBee\MetaboxMaker\Fields\Select;
+use Pollora\Metabox\Fields\Select;
 
 Select::make('Country', 'country')
     ->options([
@@ -83,7 +83,7 @@ The `Checkbox` field is used to create a checkbox input field.
 ```php
 <?php
 
-use AmphiBee\MetaboxMaker\Fields\Checkbox;
+use Pollora\Metabox\Fields\Checkbox;
 
 Checkbox::make('Subscribe', 'subscribe')
     ->checkedByDefault();
@@ -102,7 +102,7 @@ The `CheckboxList` field is used to create a list of checkboxes.
 ```php
 <?php
 
-use AmphiBee\MetaboxMaker\Fields\CheckboxList;
+use Pollora\Metabox\Fields\CheckboxList;
 
 CheckboxList::make('Interests', 'interests')
     ->options([
@@ -127,7 +127,7 @@ The `Radio` field is used to create a set of radio button input fields.
 ```php
 <?php
 
-use AmphiBee\MetaboxMaker\Fields\Radio;
+use Pollora\Metabox\Fields\Radio;
 
 Radio::make('Gender', 'gender')
     ->options([
@@ -144,5 +144,5 @@ Radio::make('Gender', 'gender')
 
 ---
 
-**Previous :** [Metabox](Metabox.md)  
-**Next :** [Advanced Fields](Advanced.md)
+**Previous:** [Common field settings](common-settings.md)  
+**Next:** [Advanced fields](advanced-fields.md)

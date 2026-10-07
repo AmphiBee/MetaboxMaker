@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-use AmphiBee\MetaboxMaker\Fields\Button;
-use AmphiBee\MetaboxMaker\Fields\ButtonGroup;
+use Pollora\Metabox\Fields\Button;
+use Pollora\Metabox\Fields\ButtonGroup;
 
 test('can configure button with custom attributes', function () {
     $button = Button::make('Submit', 'submit_button');
-    $button->setAttributes([
+    $button->attributes([
         'required' => true,
         'data-option1' => 'value1',
         'data-option2' => json_encode(['key1' => 'value1', 'key2' => 'value2']),

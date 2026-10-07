@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-use AmphiBee\MetaboxMaker\Location;
+use Pollora\Metabox\Location;
 
 test('typed constructors emit the keys expected by Meta Box', function () {
     expect(Location::postTypes('page')->get())->toBe(['post_types' => ['page']])

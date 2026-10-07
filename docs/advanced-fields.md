@@ -1,6 +1,6 @@
-# Advanced Fields in MetaboxMaker
+# Advanced fields
 
-MetaboxMaker provides a variety of advanced fields that can be used to create more complex and interactive metaboxes and blocks in WordPress. This document covers the advanced fields available in the package and how to use them.
+The package provides a variety of advanced fields that can be used to create more complex and interactive metaboxes and blocks in WordPress. This document covers the advanced fields available in the package and how to use them.
 
 ## Autocomplete Field
 
@@ -11,7 +11,7 @@ The `Autocomplete` field is used to create an input field with autocomplete func
 ```php
 <?php
 
-use AmphiBee\MetaboxMaker\Fields\Autocomplete;
+use Pollora\Metabox\Fields\Autocomplete;
 
 // Static options
 Autocomplete::make('Search', 'search')
@@ -42,7 +42,7 @@ The `Background` field is used to set background properties in a UI. It does not
 ```php
 <?php
 
-use AmphiBee\MetaboxMaker\Fields\Background;
+use Pollora\Metabox\Fields\Background;
 
 Background::make('Background Settings', 'background_settings');
 ```
@@ -60,7 +60,7 @@ The `Button` field is used to create button elements. It uses the `Attributes` t
 ```php
 <?php
 
-use AmphiBee\MetaboxMaker\Fields\Button;
+use Pollora\Metabox\Fields\Button;
 
 Button::make('Submit', 'submit_button')
     ->attributes(['class' => 'btn btn-primary']);
@@ -79,7 +79,7 @@ The `ButtonGroup` field is used to create groups of button elements. It uses the
 ```php
 <?php
 
-use AmphiBee\MetaboxMaker\Fields\ButtonGroup;
+use Pollora\Metabox\Fields\ButtonGroup;
 
 ButtonGroup::make('Options', 'options')
     ->options([
@@ -106,7 +106,7 @@ The `Color` field is used to create color picker elements. It uses the `JsOption
 ```php
 <?php
 
-use AmphiBee\MetaboxMaker\Fields\Color;
+use Pollora\Metabox\Fields\Color;
 
 Color::make('Background Color', 'background_color')
     ->alphaChannel(true);
@@ -125,7 +125,7 @@ The `CustomHtml` field is used to render custom HTML content. It allows you to s
 ```php
 <?php
 
-use AmphiBee\MetaboxMaker\Fields\CustomHtml;
+use Pollora\Metabox\Fields\CustomHtml;
 
 CustomHtml::make('Custom HTML', 'custom_html')
     ->content('<p>This is custom HTML content.</p>')
@@ -148,7 +148,7 @@ The `Datepicker` field is used to create date input fields with a date picker. I
 ```php
 <?php
 
-use AmphiBee\MetaboxMaker\Fields\Datepicker;
+use Pollora\Metabox\Fields\Datepicker;
 
 Datepicker::make('Event Date', 'event_date')
     ->inline()
@@ -171,7 +171,7 @@ The `DatetimePicker` field is used to create datetime input fields with a dateti
 ```php
 <?php
 
-use AmphiBee\MetaboxMaker\Fields\DatetimePicker;
+use Pollora\Metabox\Fields\DatetimePicker;
 
 DatetimePicker::make('Event DateTime', 'event_datetime')
     ->inline()
@@ -194,7 +194,7 @@ The `FieldsetText` field is used to create a set of text inputs grouped together
 ```php
 <?php
 
-use AmphiBee\MetaboxMaker\Fields\FieldsetText;
+use Pollora\Metabox\Fields\FieldsetText;
 
 FieldsetText::make('Contact Information', 'contact_info')
     ->options([
@@ -217,7 +217,7 @@ The `Hidden` field is used to create a hidden input field. It does not use any a
 ```php
 <?php
 
-use AmphiBee\MetaboxMaker\Fields\Hidden;
+use Pollora\Metabox\Fields\Hidden;
 
 Hidden::make('Secret Key', 'secret_key');
 ```
@@ -235,7 +235,7 @@ The `ImageSelect` field is used to create image selection fields. It uses the `M
 ```php
 <?php
 
-use AmphiBee\MetaboxMaker\Fields\ImageSelect;
+use Pollora\Metabox\Fields\ImageSelect;
 
 ImageSelect::make('Choose an Image', 'choose_image')
     ->options([
@@ -260,7 +260,7 @@ The `Icon` field is used to create a field for selecting icons. It extends the `
 ```php
 <?php
 
-use AmphiBee\MetaboxMaker\Fields\Icon;
+use Pollora\Metabox\Fields\Icon;
 
 Icon::make('Select Icon', 'select_icon')
     ->iconSet('fontawesome')
@@ -285,7 +285,7 @@ The `KeyValue` field is used to create inputs that accept key-value pairs. It us
 ```php
 <?php
 
-use AmphiBee\MetaboxMaker\Fields\KeyValue;
+use Pollora\Metabox\Fields\KeyValue;
 
 KeyValue::make('Key Value', 'key_value')
     ->placeholder([
@@ -307,7 +307,7 @@ The `GoogleMap` field is used to integrate Google Maps into forms or meta boxes.
 ```php
 <?php
 
-use AmphiBee\MetaboxMaker\Fields\GoogleMap;
+use Pollora\Metabox\Fields\GoogleMap;
 
 GoogleMap::make('Location', 'location')
     ->apiKey('YOUR_GOOGLE_MAPS_API_KEY');
@@ -326,7 +326,7 @@ The `OEmbed` field is used to embed media content from various oEmbed-supported 
 ```php
 <?php
 
-use AmphiBee\MetaboxMaker\Fields\OEmbed;
+use Pollora\Metabox\Fields\OEmbed;
 
 OEmbed::make('Video', 'video')
     ->notAvailableText('Video not available');
@@ -345,7 +345,7 @@ The `OpenStreetMap` field is used to integrate Open Street Map into forms or met
 ```php
 <?php
 
-use AmphiBee\MetaboxMaker\Fields\OpenStreetMap;
+use Pollora\Metabox\Fields\OpenStreetMap;
 
 OpenStreetMap::make('Location', 'location');
 ```
@@ -363,7 +363,7 @@ The `Password` field is used to create secure password input fields. It uses the
 ```php
 <?php
 
-use AmphiBee\MetaboxMaker\Fields\Password;
+use Pollora\Metabox\Fields\Password;
 
 Password::make('Password', 'password');
 ```
@@ -381,7 +381,7 @@ The `SelectAdvanced` field is used to create enhanced select input fields using 
 ```php
 <?php
 
-use AmphiBee\MetaboxMaker\Fields\SelectAdvanced;
+use Pollora\Metabox\Fields\SelectAdvanced;
 
 SelectAdvanced::make('Select Options', 'select_options')
     ->options([
@@ -408,7 +408,7 @@ The `Slider` field is used to create slider input fields using jQuery UI. It all
 ```php
 <?php
 
-use AmphiBee\MetaboxMaker\Fields\Slider;
+use Pollora\Metabox\Fields\Slider;
 
 Slider::make('Volume', 'volume')
     ->minValue(0)
@@ -438,7 +438,7 @@ The `Switcher` field is used to create toggle switches in forms. It allows custo
 ```php
 <?php
 
-use AmphiBee\MetaboxMaker\Fields\Switcher;
+use Pollora\Metabox\Fields\Switcher;
 
 Switcher::make('Enable Feature', 'enable_feature')
     ->style('rounded')
@@ -461,7 +461,7 @@ The `TextList` field is used to create a list of text inputs. It supports option
 ```php
 <?php
 
-use AmphiBee\MetaboxMaker\Fields\TextList;
+use Pollora\Metabox\Fields\TextList;
 
 TextList::make('Text List', 'text_list')
     ->options([
@@ -485,7 +485,7 @@ The `Timepicker` field is used to create time input fields with enhanced jQuery 
 ```php
 <?php
 
-use AmphiBee\MetaboxMaker\Fields\Timepicker;
+use Pollora\Metabox\Fields\Timepicker;
 
 Timepicker::make('Appointment Time', 'appointment_time')
     ->inline()
@@ -508,7 +508,7 @@ The `Wysiwyg` field is used to handle rich text inputs with a WYSIWYG editor. It
 ```php
 <?php
 
-use AmphiBee\MetaboxMaker\Fields\Wysiwyg;
+use Pollora\Metabox\Fields\Wysiwyg;
 
 Wysiwyg::make('Content', 'content')
     ->raw(true);
@@ -520,5 +520,5 @@ Wysiwyg::make('Content', 'content')
 
 ---
 
-**Previous :** [Basics](Basics.md)  
-**Next :** [HTML5 Fields](Html5.md)
+**Previous:** [Basic fields](basic-fields.md)  
+**Next:** [HTML5 fields](html5-fields.md)

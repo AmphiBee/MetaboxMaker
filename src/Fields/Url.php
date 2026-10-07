@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace AmphiBee\MetaboxMaker\Fields;
+namespace Pollora\Metabox\Fields;
 
 /**
  * Url field class for creating URL input fields.

@@ -1,22 +1,13 @@
 <?php
 
-/**
- * Copyright (c) AmphiBee
- *
- * For the full copyright and license information, please view the LICENSE
- * file that was distributed with this source code.
- *
- * @see https://github.com/AmphiBee/MetaboxMaker
- */
-
 declare(strict_types=1);
 
-namespace AmphiBee\MetaboxMaker\Fields;
+namespace Pollora\Metabox\Fields;
 
-use AmphiBee\MetaboxMaker\Fields\Settings\DateParams;
-use AmphiBee\MetaboxMaker\Fields\Settings\Inline;
-use AmphiBee\MetaboxMaker\Fields\Settings\JsOptions;
-use AmphiBee\MetaboxMaker\Fields\Settings\Size;
+use Pollora\Metabox\Fields\Settings\DateParams;
+use Pollora\Metabox\Fields\Settings\Inline;
+use Pollora\Metabox\Fields\Settings\JsOptions;
+use Pollora\Metabox\Fields\Settings\Size;
 
 /**
  * Date field class for creating date input fields with optional date picker enhancements.

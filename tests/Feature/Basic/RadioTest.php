@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-use AmphiBee\MetaboxMaker\Fields\Radio;
+use Pollora\Metabox\Fields\Radio;
 
 test('can configure radio buttons with options and inline display', function () {
     $options = [

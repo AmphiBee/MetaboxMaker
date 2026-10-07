@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-use AmphiBee\MetaboxMaker\Fields\TextList;
+use Pollora\Metabox\Fields\TextList;
 
 it('can create a text list field', function () {
     $textList = TextList::make('Text List', 'text_list')

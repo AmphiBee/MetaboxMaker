@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-use AmphiBee\MetaboxMaker\Fields\KeyValue;
+use Pollora\Metabox\Fields\KeyValue;
 
 it('can create a key-value field', function () {
     $keyValue = KeyValue::make('Key Value', 'key_value')

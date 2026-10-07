@@ -1,6 +1,6 @@
-# Creating Settings Pages with MetaboxMaker
+# Settings pages
 
-MetaboxMaker allows you to easily create settings pages in WordPress using the `SettingsPage` class. This functionality relies on the [MB Settings Page](https://docs.metabox.io/extensions/mb-settings-page/) extension of the Meta Box plugin.
+You can create settings pages in WordPress using the `SettingsPage` class. This functionality relies on the [MB Settings Page](https://docs.metabox.io/extensions/mb-settings-page/) extension of the Meta Box plugin.
 
 ## Basic Usage
 
@@ -11,10 +11,10 @@ To create a settings page, use the `SettingsPage::make()` method which initializ
 ```php
 <?php
 
-use AmphiBee\MetaboxMaker\SettingsPage;
-use AmphiBee\MetaboxMaker\Enums\MenuType;
-use AmphiBee\MetaboxMaker\Enums\IconType;
-use AmphiBee\MetaboxMaker\Enums\TabStyle;
+use Pollora\Metabox\SettingsPage;
+use Pollora\Metabox\Enums\MenuType;
+use Pollora\Metabox\Enums\IconType;
+use Pollora\Metabox\Enums\TabStyle;
 
 SettingsPage::make('Theme Options', 'theme-options')
     ->menuTitle('Theme Settings')
@@ -134,7 +134,7 @@ SettingsPage::make('Customizer Options', 'customizer-options')
 
 ## Custom Settings
 
-The `setting()` method allows you to add any Meta Box settings page option that isn't explicitly provided by MetaboxMaker. This is particularly useful for advanced configurations.
+The `setting()` method allows you to add any Meta Box settings page option that isn't wrapped by a dedicated method. This is particularly useful for advanced configurations.
 
 ### Example with Custom Settings
 
@@ -168,7 +168,7 @@ Custom settings are useful when you need to:
 - Add help tabs to your settings page
 - Set up custom sanitization callbacks
 - Enable AJAX functionality
-- Add any Meta Box Settings Page feature not yet wrapped by MetaboxMaker
+- Add any Meta Box Settings Page feature not yet wrapped by a dedicated method
 
 ### Important Note
 
@@ -176,4 +176,4 @@ When using custom settings, refer to the [Meta Box Settings Page documentation](
 
 ---
 
-**Previous:** [Block](Block.md) 
+**Previous:** [Blocks](blocks.md)

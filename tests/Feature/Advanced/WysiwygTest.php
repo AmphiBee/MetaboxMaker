@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-use AmphiBee\MetaboxMaker\Fields\Wysiwyg;
+use Pollora\Metabox\Fields\Wysiwyg;
 
 test('wysiwyg field can be configured with specific editor settings', function () {
     $wysiwygField = Wysiwyg::make('Advanced Editor', 'advanced_editor');

@@ -2,14 +2,14 @@
 
 declare(strict_types=1);
 
-namespace AmphiBee\MetaboxMaker;
+namespace Pollora\Metabox;
 
-use AmphiBee\MetaboxMaker\Contract\Renderable;
-use AmphiBee\MetaboxMaker\Enums\IconType;
-use AmphiBee\MetaboxMaker\Enums\TabStyle;
-use AmphiBee\MetaboxMaker\Transformer\EmptyValueFilter;
-use AmphiBee\MetaboxMaker\Validation\OptionValidation;
 use Exception;
+use Pollora\Metabox\Contract\Renderable;
+use Pollora\Metabox\Enums\IconType;
+use Pollora\Metabox\Enums\TabStyle;
+use Pollora\Metabox\Transformer\EmptyValueFilter;
+use Pollora\Metabox\Validation\OptionValidation;
 
 /**
  * @phpstan-consistent-constructor

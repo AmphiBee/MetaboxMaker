@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-use AmphiBee\MetaboxMaker\Fields\Divider;
+use Pollora\Metabox\Fields\Divider;
 
 test('can initialize divider field', function () {
     $divider = new Divider;

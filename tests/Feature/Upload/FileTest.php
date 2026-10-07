@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-use AmphiBee\MetaboxMaker\Fields\File;
-use AmphiBee\MetaboxMaker\Fields\FileAdvanced;
-use AmphiBee\MetaboxMaker\Fields\FileInput;
-use AmphiBee\MetaboxMaker\Fields\FileUpload;
+use Pollora\Metabox\Fields\File;
+use Pollora\Metabox\Fields\FileAdvanced;
+use Pollora\Metabox\Fields\FileInput;
+use Pollora\Metabox\Fields\FileUpload;
 
 test('can configure file field with specific settings', function () {
     $uniqueFilenameCallback = fn ($dir, $name) => $dir.'/custom_'.$name;

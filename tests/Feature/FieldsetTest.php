@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-use AmphiBee\MetaboxMaker\Fields\Group;
-use AmphiBee\MetaboxMaker\Fields\Text;
-use AmphiBee\MetaboxMaker\Location;
-use AmphiBee\MetaboxMaker\Metabox;
+use Pollora\Metabox\Fields\Group;
+use Pollora\Metabox\Fields\Text;
+use Pollora\Metabox\Location;
+use Pollora\Metabox\Metabox;
 
 $fieldset = Metabox::make('Example Fieldset', 'example_fieldset');
 

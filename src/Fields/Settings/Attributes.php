@@ -1,17 +1,8 @@
 <?php
 
-/**
- * Copyright (c) AmphiBee
- *
- * For the full copyright and license information, please view the LICENSE
- * file that was distributed with this source code.
- *
- * @see https://github.com/AmphiBee/MetaboxMaker
- */
-
 declare(strict_types=1);
 
-namespace AmphiBee\MetaboxMaker\Fields\Settings;
+namespace Pollora\Metabox\Fields\Settings;
 
 /**
  * Trait to handle custom HTML5 attributes for form fields.
@@ -24,32 +15,17 @@ trait Attributes
     protected array $attributes;
 
     /**
-     * Set custom HTML5 attributes for the field.
-     *
-     * @param  array  $attributes  Attributes in 'key' => 'value' format.
-     * @return $this
-     */
-    public function setAttributes(array $attributes): static
-    {
-        foreach ($attributes as $key => $value) {
-            if (is_array($value)) {
-                $this->attributes[$key] = json_encode($value);
-            } else {
-                $this->attributes[$key] = $value;
-            }
-        }
-
-        return $this;
-    }
-
-    /**
      * Set custom HTML attributes for the field, e.g. maxlength, pattern or data-* attributes.
      *
      * @param  array  $attributes  Attributes in 'key' => 'value' format.
      */
     public function attributes(array $attributes): static
     {
-        return $this->setAttributes($attributes);
+        foreach ($attributes as $key => $value) {
+            $this->attributes[$key] = is_array($value) ? json_encode($value) : $value;
+        }
+
+        return $this;
     }
 
     /**
@@ -57,7 +33,7 @@ trait Attributes
      */
     public function attribute(string $key, mixed $value): static
     {
-        return $this->setAttributes([$key => $value]);
+        return $this->attributes([$key => $value]);
     }
 
     /**

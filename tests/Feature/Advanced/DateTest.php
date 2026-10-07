@@ -2,8 +2,8 @@
 
 declare(strict_types=1);
 
-use AmphiBee\MetaboxMaker\Fields\Datepicker;
-use AmphiBee\MetaboxMaker\Fields\DatetimePicker;
+use Pollora\Metabox\Fields\Datepicker;
+use Pollora\Metabox\Fields\DatetimePicker;
 
 test('date field can be configured correctly', function () {
     $dateField = DatetimePicker::make('Event Date', 'event_date');

@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-use AmphiBee\MetaboxMaker\Fields\Icon;
+use Pollora\Metabox\Fields\Icon;
 
 test('icon field can be configured with various icon library settings', function () {
     $iconField = Icon::make('Choose an Icon', 'icon_field');

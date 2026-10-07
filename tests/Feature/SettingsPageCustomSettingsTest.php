@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-use AmphiBee\MetaboxMaker\SettingsPage;
+use Pollora\Metabox\SettingsPage;
 
 test('can add custom settings to a settings page', function () {
     $page = SettingsPage::make('Custom Settings Page', 'custom_settings_page')

@@ -1,4 +1,4 @@
-# Common Field Settings
+# Common field settings
 
 Every field extending `Field` shares the following settings, on top of its own methods.
 
@@ -7,7 +7,7 @@ Every field extending `Field` shares the following settings, on top of its own m
 ```php
 <?php
 
-use AmphiBee\MetaboxMaker\Fields\Text;
+use Pollora\Metabox\Fields\Text;
 
 Text::make('Product code', 'product_code')
     ->description('6 uppercase letters or digits')
@@ -64,5 +64,5 @@ Text::make('Product code', 'product_code')
 
 ---
 
-**Previous :** [Metabox](Metabox.md)
-**Next :** [Basic Fields](Basics.md)
+**Previous:** [Meta boxes](metaboxes.md)  
+**Next:** [Basic fields](basic-fields.md)

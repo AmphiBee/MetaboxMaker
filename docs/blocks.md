@@ -1,6 +1,6 @@
-# Creating a Block with MetaboxMaker
+# Blocks
 
-The `Block` class in MetaboxMaker extends the `Metabox` class to provide a streamlined way to create custom Gutenberg blocks in WordPress. This guide will walk you through the process of creating a block and adding fields to it.
+The `Block` class extends the `Metabox` class to provide a streamlined way to create custom Gutenberg blocks in WordPress. This guide will walk you through the process of creating a block and adding fields to it.
 
 ## Basic Usage
 
@@ -11,15 +11,15 @@ To create a block, you need to use the `Block::make` method, which initializes a
 ```php
 <?php
 
-use AmphiBee\MetaboxMaker\Block;
-use AmphiBee\MetaboxMaker\Fields\Text;
-use AmphiBee\MetaboxMaker\Fields\Wysiwyg;
-use AmphiBee\MetaboxMaker\Fields\Group;
+use Pollora\Metabox\Block;
+use Pollora\Metabox\Fields\Text;
+use Pollora\Metabox\Fields\Wysiwyg;
+use Pollora\Metabox\Fields\Group;
 
 Block::make('Example Block', 'example-block')
     ->description('An example Gutenberg block')
     ->icon('book-alt')
-    ->category('layout')
+    ->category('design')
     ->renderCallback(function ($attributes) {
         echo '<div>' . $attributes['content'] . '</div>';
     })
@@ -48,7 +48,7 @@ Block::make('Example Block', 'example-block')
 
 ## Adding Fields
 
-Fields are added to a block using the `fields` method. MetaboxMaker supports a variety of field types, including text, wysiwyg, group, and more. Each field type has its own set of methods for configuration.
+Fields are added to a block using the `fields` method. The package supports a variety of field types, including text, wysiwyg, group, and more. Each field type has its own set of methods for configuration.
 
 ### Field Types
 
@@ -62,8 +62,8 @@ Fields are added to a block using the `fields` method. MetaboxMaker supports a v
 ```php
 <?php
 
-use AmphiBee\MetaboxMaker\Fields\Textarea;
-use AmphiBee\MetaboxMaker\Fields\SingleImage;
+use Pollora\Metabox\Fields\Textarea;
+use Pollora\Metabox\Fields\SingleImage;
 
 Block::make('Post Details', 'post_details')
     ->fields([
@@ -78,7 +78,7 @@ Block::make('Post Details', 'post_details')
 
 ## Restricting Blocks by Post Type
 
-MetaboxMaker allows you to restrict the availability of blocks based on post types, making it easy to control which blocks can be used in different content types.
+You can restrict the availability of blocks based on post types, making it easy to control which blocks can be used in different content types.
 
 ### Methods
 
@@ -128,7 +128,7 @@ The `BlockTypeFilter` service manages these restrictions efficiently, respecting
 
 ## Custom Settings
 
-Just like with metaboxes, the `setting()` method allows you to add any Meta Box-specific option that isn't explicitly provided by MetaboxMaker. This is particularly useful for block-specific settings.
+Just like with metaboxes, the `setting()` method allows you to add any Meta Box-specific option that isn't wrapped by a dedicated method. This is particularly useful for block-specific settings.
 
 ### Example with Custom Settings
 
@@ -160,4 +160,5 @@ The custom settings work on both the block itself and individual fields within t
 
 ---
 
-**Previous :** [Layout Fields](Layout.md)
+**Previous:** [Layout fields](layout-fields.md)  
+**Next:** [Settings pages](settings-pages.md)

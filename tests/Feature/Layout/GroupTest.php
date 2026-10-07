@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-use AmphiBee\MetaboxMaker\Fields\Divider;
-use AmphiBee\MetaboxMaker\Fields\Group;
-use AmphiBee\MetaboxMaker\Fields\Heading;
-use AmphiBee\MetaboxMaker\Fields\Text;
+use Pollora\Metabox\Fields\Divider;
+use Pollora\Metabox\Fields\Group;
+use Pollora\Metabox\Fields\Heading;
+use Pollora\Metabox\Fields\Text;
 
 test('can add group with nested groups and fields', function () {
     $mainGroup = Group::make('Multi-level nested groups', 'main_group')

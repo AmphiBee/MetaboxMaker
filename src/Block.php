@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace AmphiBee\MetaboxMaker;
+namespace Pollora\Metabox;
 
-use AmphiBee\MetaboxMaker\Services\BlockTypeFilter;
+use Pollora\Metabox\Services\BlockTypeFilter;
 
 /**
  * Class for creating Gutenberg blocks.

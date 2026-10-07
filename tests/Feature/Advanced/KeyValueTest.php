@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-use AmphiBee\MetaboxMaker\Fields\KeyValue;
+use Pollora\Metabox\Fields\KeyValue;
 
 test('key value field can be configured with placeholders', function () {
     $placeholders = [

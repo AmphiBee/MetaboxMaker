@@ -1,6 +1,6 @@
-# Creating a Metabox with MetaboxMaker
+# Meta boxes
 
-The `Metabox` class in MetaboxMaker provides a powerful and flexible way to create custom metaboxes in WordPress. This guide will walk you through the process of creating a metabox and adding fields to it.
+The `Metabox` class provides a powerful and flexible way to create custom metaboxes in WordPress. This guide will walk you through the process of creating a metabox and adding fields to it.
 
 ## Basic Usage
 
@@ -11,9 +11,9 @@ To create a metabox, you need to use the `Metabox::make` method, which initializ
 ```php
 <?php
 
-use AmphiBee\MetaboxMaker\Metabox;
-use AmphiBee\MetaboxMaker\Fields\Text;
-use AmphiBee\MetaboxMaker\Fields\Number;
+use Pollora\Metabox\Metabox;
+use Pollora\Metabox\Fields\Text;
+use Pollora\Metabox\Fields\Number;
 
 Metabox::make('User Information', 'user_info')
     ->description('A metabox for user information')
@@ -39,7 +39,7 @@ Metabox::make('User Information', 'user_info')
 
 ## Adding Fields
 
-Fields are added to a metabox using the `fields` method. MetaboxMaker supports a variety of field types, including text, number, textarea, and more. Each field type has its own set of methods for configuration.
+Fields are added to a metabox using the `fields` method. The package supports a variety of field types, including text, number, textarea, and more. Each field type has its own set of methods for configuration.
 
 ### Field Types
 
@@ -53,8 +53,8 @@ Fields are added to a metabox using the `fields` method. MetaboxMaker supports a
 ```php
 <?php
 
-use AmphiBee\MetaboxMaker\Fields\Textarea;
-use AmphiBee\MetaboxMaker\Fields\SingleImage;
+use Pollora\Metabox\Fields\Textarea;
+use Pollora\Metabox\Fields\SingleImage;
 
 Metabox::make('Post Details', 'post_details')
     ->fields([
@@ -69,7 +69,7 @@ Metabox::make('Post Details', 'post_details')
 
 ## Custom Settings
 
-The `setting()` method allows you to add any Meta Box-specific option that isn't explicitly provided by MetaboxMaker. This is useful when you need to use Meta Box features that aren't yet wrapped by MetaboxMaker.
+The `setting()` method allows you to add any Meta Box-specific option that isn't wrapped by a dedicated method. This is useful when you need to use Meta Box features that aren't yet wrapped by Metabox.
 
 ### Example with Custom Settings
 
@@ -110,7 +110,7 @@ The `Location` class allows you to define where the metabox should appear based 
 ```php
 <?php
 
-use AmphiBee\MetaboxMaker\Location;
+use Pollora\Metabox\Location;
 
 Metabox::make('Custom Metabox', 'custom_metabox')
     ->location(Location::postTypes('page'))
@@ -132,5 +132,5 @@ Metabox::make('Custom Metabox', 'custom_metabox')
 
 ---
 
-**Previous :** [Getting Started](GettingStarted.md)  
-**Next :** [Basics](Basics.md)
+**Previous:** [Overview](../README.md)  
+**Next:** [Common field settings](common-settings.md)

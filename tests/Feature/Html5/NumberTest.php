@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-use AmphiBee\MetaboxMaker\Fields\Number;
+use Pollora\Metabox\Fields\Number;
 
 test('can add number field with min, max and step values', function () {
     $args = Number::make('Number', 'number')
