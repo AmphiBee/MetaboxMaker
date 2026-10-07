@@ -6,10 +6,12 @@ use Pollora\Metabox\Block;
 use Pollora\Metabox\Fields\Email;
 use Pollora\Metabox\Fields\Group;
 use Pollora\Metabox\Fields\Number;
+use Pollora\Metabox\Fields\Select;
 use Pollora\Metabox\Fields\Text;
 use Pollora\Metabox\Fields\Url;
 use Pollora\Metabox\Location;
 use Pollora\Metabox\Metabox;
+use Pollora\Metabox\Rules\Rule;
 use Pollora\Metabox\SettingsPage;
 
 // Keeps the Quick start examples of the README working.
@@ -68,4 +70,55 @@ test('README settings page example', function () {
 
     expect($page)->toMatchArray(['id' => 'site-options', 'icon_url' => 'dashicons-admin-generic', 'option_name' => 'site_options'])
         ->and($box)->toMatchArray(['settings_pages' => ['site-options']]);
+});
+
+test('README "Why Metabox" example builds the array shown next to it', function () {
+    $linkType = Select::make('Link type', 'link_type')
+        ->options(['page' => 'Page', 'custom' => 'Custom URL']);
+
+    $config = Metabox::make('Call to action', 'cta')
+        ->location(Location::postTypes('page'))
+        ->context('side')
+        ->include(Rule::template('templates/landing.php'))
+        ->fields([
+            $linkType,
+            Url::make('URL', 'cta_url')->visibleWhen($linkType, 'custom')->required(),
+            Number::make('Discount', 'discount')->min(0)->max(100)->columns(6)->tooltip('In percent'),
+        ])
+        ->build();
+
+    expect($config)->toEqual([
+        'id' => 'cta',
+        'title' => 'Call to action',
+        'post_types' => ['page'],
+        'context' => 'side',
+        'include' => [
+            'relation' => 'AND',
+            'template' => ['templates/landing.php'],
+        ],
+        'fields' => [
+            [
+                'type' => 'select',
+                'name' => 'Link type',
+                'id' => 'link_type',
+                'options' => ['page' => 'Page', 'custom' => 'Custom URL'],
+            ],
+            [
+                'type' => 'url',
+                'name' => 'URL',
+                'id' => 'cta_url',
+                'visible' => ['link_type', '=', 'custom'],
+                'required' => true,
+            ],
+            [
+                'type' => 'number',
+                'name' => 'Discount',
+                'id' => 'discount',
+                'min' => 0,
+                'max' => 100,
+                'columns' => 6,
+                'tooltip' => 'In percent',
+            ],
+        ],
+    ]);
 });
