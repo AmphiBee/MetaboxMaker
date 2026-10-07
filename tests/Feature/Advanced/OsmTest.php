@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-use AmphiBee\MetaboxMaker\Fields\OpenStreetMap;
+use Pollora\Metabox\Fields\OpenStreetMap;
 
 test('OSM field is properly configured', function () {
     $osmField = new OpenStreetMap('Map View', 'osm_field');

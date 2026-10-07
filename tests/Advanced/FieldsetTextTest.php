@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-use AmphiBee\MetaboxMaker\Fields\FieldsetText;
+use Pollora\Metabox\Fields\FieldsetText;
 
 it('can create a fieldset text field', function () {
     $fieldsetText = FieldsetText::make('Contact Information', 'contact_info')

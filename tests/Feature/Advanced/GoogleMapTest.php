@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-use AmphiBee\MetaboxMaker\Fields\GoogleMap;
+use Pollora\Metabox\Fields\GoogleMap;
 
 test('google map field is properly configured', function () {
     $googleMapField = GoogleMap::make('Map Location', 'map_location');

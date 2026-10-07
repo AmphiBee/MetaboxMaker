@@ -1,17 +1,8 @@
 <?php
 
-/**
- * Copyright (c) AmphiBee
- *
- * For the full copyright and license information, please view the LICENSE
- * file that was distributed with this source code.
- *
- * @see https://github.com/AmphiBee/MetaboxMaker
- */
-
 declare(strict_types=1);
 
-namespace AmphiBee\MetaboxMaker;
+namespace Pollora\Metabox;
 
 /**
  * This class is used to define conditions for a conditional location of a fieldset.

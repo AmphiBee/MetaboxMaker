@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-use AmphiBee\MetaboxMaker\Fields\Timepicker;
+use Pollora\Metabox\Fields\Timepicker;
 
 test('timepicker field can be configured with specific settings', function () {
     $timepicker = Timepicker::make('Appointment Time', 'appointment_time');

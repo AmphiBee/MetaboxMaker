@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-use AmphiBee\MetaboxMaker\Enums\Context;
-use AmphiBee\MetaboxMaker\Fields\Text;
-use AmphiBee\MetaboxMaker\Location;
-use AmphiBee\MetaboxMaker\Metabox;
+use Pollora\Metabox\Enums\Context;
+use Pollora\Metabox\Fields\Text;
+use Pollora\Metabox\Location;
+use Pollora\Metabox\Metabox;
 
 test('can add custom settings to a metabox', function () {
     $metabox = Metabox::make('Custom Settings Test', 'custom_settings_test')

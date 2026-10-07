@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-use AmphiBee\MetaboxMaker\Fields\OEmbed;
+use Pollora\Metabox\Fields\OEmbed;
 
 test('oembed field can be configured with specific settings', function () {
     $oEmbedField = new OEmbed('Embed Media', 'embed_media');

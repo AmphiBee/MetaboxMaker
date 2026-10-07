@@ -1,6 +1,6 @@
-# Layout Fields in MetaboxMaker
+# Layout fields
 
-MetaboxMaker provides a variety of fields specifically designed for layout purposes, allowing you to organize and structure your metaboxes and blocks in WordPress. This document covers the layout-specific fields available in the package and how to use them.
+The package provides a variety of fields specifically designed for layout purposes, allowing you to organize and structure your metaboxes and blocks in WordPress. This document covers the layout-specific fields available in the package and how to use them.
 
 ## Divider Field
 
@@ -11,7 +11,7 @@ The `Divider` field is used to create visual separators in the UI. It helps in o
 ```php
 <?php
 
-use AmphiBee\MetaboxMaker\Fields\Divider;
+use Pollora\Metabox\Fields\Divider;
 
 Divider::make();
 ```
@@ -29,8 +29,8 @@ The `Group` field is used to create a group of fields, allowing for nested field
 ```php
 <?php
 
-use AmphiBee\MetaboxMaker\Fields\Group;
-use AmphiBee\MetaboxMaker\Fields\Text;
+use Pollora\Metabox\Fields\Group;
+use Pollora\Metabox\Fields\Text;
 
 Group::make('Group Name', 'group_name')
     ->fields([
@@ -52,7 +52,7 @@ The `Heading` field is used to create section headings in the UI. It can include
 ```php
 <?php
 
-use AmphiBee\MetaboxMaker\Fields\Heading;
+use Pollora\Metabox\Fields\Heading;
 
 Heading::make('Section Title')
     ->description('This is a section description.');
@@ -71,8 +71,8 @@ The `Tab` field is used to create tabbed sections in the UI, allowing for better
 ```php
 <?php
 
-use AmphiBee\MetaboxMaker\Fields\Tab;
-use AmphiBee\MetaboxMaker\Fields\Text;
+use Pollora\Metabox\Fields\Tab;
+use Pollora\Metabox\Fields\Text;
 
 Tab::make('Tab Title')
     ->icon('dashicons-admin-generic')
@@ -88,5 +88,5 @@ Tab::make('Tab Title')
 
 ---
 
-**Previous :** [Upload Fields](Upload.md)  
-**Next :** [Block](Block.md) 
+**Previous:** [Upload fields](upload-fields.md)  
+**Next:** [Blocks](blocks.md)

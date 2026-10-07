@@ -2,8 +2,8 @@
 
 declare(strict_types=1);
 
-use AmphiBee\MetaboxMaker\Fields\Number;
-use AmphiBee\MetaboxMaker\Fields\Text;
+use Pollora\Metabox\Fields\Number;
+use Pollora\Metabox\Fields\Text;
 
 test('any field accepts custom HTML attributes', function () {
     $config = Text::make('Code', 'code')

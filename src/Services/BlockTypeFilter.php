@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace AmphiBee\MetaboxMaker\Services;
+namespace Pollora\Metabox\Services;
 
 /**
  * Service for filtering blocks by post type

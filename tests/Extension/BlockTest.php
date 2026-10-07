@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-use AmphiBee\MetaboxMaker\Block;
+use Pollora\Metabox\Block;
 
 it('can initialize a block', function () {
     $block = Block::make('Test Block', 'test-block');

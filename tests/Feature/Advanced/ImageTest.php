@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-use AmphiBee\MetaboxMaker\Fields\ImageSelect;
+use Pollora\Metabox\Fields\ImageSelect;
 
 test('image select field can be configured with multiple options', function () {
     $options = [

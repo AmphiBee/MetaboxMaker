@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-use AmphiBee\MetaboxMaker\Fields\Background;
+use Pollora\Metabox\Fields\Background;
 
 test('can initialize background field with minimal settings', function () {
     $args = Background::make('Section background', 'background')

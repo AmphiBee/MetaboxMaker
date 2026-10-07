@@ -1,27 +1,18 @@
 <?php
 
-/**
- * Copyright (c) AmphiBee
- *
- * For the full copyright and license information, please view the LICENSE
- * file that was distributed with this source code.
- *
- * @see https://github.com/AmphiBee/MetaboxMaker
- */
-
 declare(strict_types=1);
 
-namespace AmphiBee\MetaboxMaker;
+namespace Pollora\Metabox;
 
-use AmphiBee\MetaboxMaker\Contract\Renderable;
-use AmphiBee\MetaboxMaker\Enums\BoxStyle;
-use AmphiBee\MetaboxMaker\Enums\Context;
-use AmphiBee\MetaboxMaker\Enums\Priority;
-use AmphiBee\MetaboxMaker\Fields\Field;
-use AmphiBee\MetaboxMaker\Transformer\EmptyValueFilter;
-use AmphiBee\MetaboxMaker\Transformer\FieldTransformer;
-use AmphiBee\MetaboxMaker\Validation\OptionValidation;
 use Exception;
+use Pollora\Metabox\Contract\Renderable;
+use Pollora\Metabox\Enums\BoxStyle;
+use Pollora\Metabox\Enums\Context;
+use Pollora\Metabox\Enums\Priority;
+use Pollora\Metabox\Fields\Field;
+use Pollora\Metabox\Transformer\EmptyValueFilter;
+use Pollora\Metabox\Transformer\FieldTransformer;
+use Pollora\Metabox\Validation\OptionValidation;
 
 /**
  * Fieldset class for creating a field groups.

@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-use AmphiBee\MetaboxMaker\Fields\Slider;
+use Pollora\Metabox\Fields\Slider;
 
 test('slider field can be configured with individual js options', function () {
     $sliderField = Slider::make('Volume Control', 'volume');

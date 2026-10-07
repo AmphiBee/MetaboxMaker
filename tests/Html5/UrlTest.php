@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-use AmphiBee\MetaboxMaker\Fields\Url;
+use Pollora\Metabox\Fields\Url;
 
 it('can create a URL field', function () {
     $urlField = Url::make('Website', 'website')

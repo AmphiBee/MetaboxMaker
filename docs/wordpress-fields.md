@@ -1,6 +1,6 @@
-# WordPress Fields in MetaboxMaker
+# WordPress fields
 
-MetaboxMaker provides a variety of fields specifically designed for WordPress, allowing you to interact with posts, taxonomies, users, and more. This document covers the WordPress-specific fields available in the package and how to use them.
+The package provides a variety of fields specifically designed for WordPress, allowing you to interact with posts, taxonomies, users, and more. This document covers the WordPress-specific fields available in the package and how to use them.
 
 ## Post Field
 
@@ -11,7 +11,7 @@ The `Post` field is used to create fields that allow selecting posts. It uses th
 ```php
 <?php
 
-use AmphiBee\MetaboxMaker\Fields\Post;
+use Pollora\Metabox\Fields\Post;
 
 Post::make('Select Post', 'select_post')
     ->postType('post')
@@ -36,7 +36,7 @@ The `Sidebar` field is used to create different types of sidebar input fields.
 ```php
 <?php
 
-use AmphiBee\MetaboxMaker\Fields\Sidebar;
+use Pollora\Metabox\Fields\Sidebar;
 
 Sidebar::make('Select Sidebar', 'select_sidebar')
     ->fieldType('select');
@@ -55,7 +55,7 @@ The `Taxonomy` field is used to create fields that allow selecting terms. It use
 ```php
 <?php
 
-use AmphiBee\MetaboxMaker\Fields\Taxonomy;
+use Pollora\Metabox\Fields\Taxonomy;
 
 Taxonomy::make('Select Category', 'select_category')
     ->taxonomies('category')
@@ -82,7 +82,7 @@ The `TaxonomyAdvanced` field is an extension of the `Taxonomy` field, allowing f
 ```php
 <?php
 
-use AmphiBee\MetaboxMaker\Fields\TaxonomyAdvanced;
+use Pollora\Metabox\Fields\TaxonomyAdvanced;
 
 TaxonomyAdvanced::make('Select Advanced Category', 'select_advanced_category')
     ->taxonomies('category')
@@ -105,7 +105,7 @@ The `User` field is used to create fields that allow selecting users.
 ```php
 <?php
 
-use AmphiBee\MetaboxMaker\Fields\User;
+use Pollora\Metabox\Fields\User;
 
 User::make('Select User', 'select_user')
     ->queryArgs(['role' => 'editor'])
@@ -120,7 +120,7 @@ AJAX so Meta Box queries users on demand instead:
 ```php
 <?php
 
-use AmphiBee\MetaboxMaker\Fields\User;
+use Pollora\Metabox\Fields\User;
 
 User::make('Speakers', 'speaker_ids')
     ->queryArgs(['role' => 'subscriber'])
@@ -141,5 +141,5 @@ User::make('Speakers', 'speaker_ids')
 
 ---
 
-**Previous :** [HTML5 Fields](Html5.md)  
-**Next :** [Upload Fields](Upload.md) 
+**Previous:** [HTML5 fields](html5-fields.md)  
+**Next:** [Upload fields](upload-fields.md)

@@ -1,16 +1,30 @@
 {
-    "name": "amphibee/metabox-maker",
-    "description": "Create MetaBox fields in a fluent way.",
-    "license": "GPL-2.0-or-later",
+    "name": "pollora/metabox",
+    "description": "Declare Meta Box meta boxes, fields, blocks and settings pages with a fluent PHP API.",
+    "type": "library",
+    "keywords": [
+        "wordpress",
+        "meta-box",
+        "metabox",
+        "custom-fields",
+        "gutenberg-blocks",
+        "fluent",
+        "pollora"
+    ],
+    "homepage": "https://github.com/Pollora/metabox",
+    "license": "MIT",
     "authors": [
         {
-            "name": "Olivier Gorzalka",
-            "email": "olivier@amphibee.fr",
-            "role": "Developer"
+            "name": "Amphibee",
+            "email": "contact@amphibee.fr"
         }
     ],
+    "support": {
+        "issues": "https://github.com/Pollora/metabox/issues",
+        "source": "https://github.com/Pollora/metabox"
+    },
     "require": {
-        "php": "^8.1.0"
+        "php": "^8.2"
     },
     "require-dev": {
         "pestphp/pest": "^3.0",
@@ -22,7 +36,7 @@
     },
     "autoload": {
         "psr-4": {
-            "AmphiBee\\MetaboxMaker\\": "src/"
+            "Pollora\\Metabox\\": "src/"
         }
     },
     "scripts": {
@@ -38,11 +52,18 @@
         "lint": "pint",
         "lint:check": "pint --test"
     },
+    "extra": {
+        "branch-alias": {
+            "dev-main": "2.x-dev"
+        }
+    },
     "config": {
         "allow-plugins": {
             "pestphp/pest-plugin": true,
             "dealerdirect/phpcodesniffer-composer-installer": true,
             "phpstan/extension-installer": true
         }
-    }
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true
 }

@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-use AmphiBee\MetaboxMaker\Enums\EntityFieldType;
-use AmphiBee\MetaboxMaker\Fields\Taxonomy;
-use AmphiBee\MetaboxMaker\Fields\TaxonomyAdvanced;
+use Pollora\Metabox\Enums\EntityFieldType;
+use Pollora\Metabox\Fields\Taxonomy;
+use Pollora\Metabox\Fields\TaxonomyAdvanced;
 
 test('can add taxonomy field with specific query args and taxonomy type', function () {
     $args = Taxonomy::make('Taxonomy Field', 'taxonomy_field')
@@ -61,7 +61,7 @@ test('can add advanced taxonomy field with specific query args and taxonomy type
 });
 
 test('emits the taxonomy key expected by Meta Box', function () {
-    expect(Taxonomy::make('Tags', 'tags')->taxonomy('post_tag')->build())
+    expect(Taxonomy::make('Tags', 'tags')->taxonomies('post_tag')->build())
         ->toHaveKey('taxonomy', 'post_tag')
         ->not->toHaveKey('taxonomies');
 

@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-use AmphiBee\MetaboxMaker\Fields\Image;
-use AmphiBee\MetaboxMaker\Fields\ImageAdvanced;
-use AmphiBee\MetaboxMaker\Fields\ImageUpload;
-use AmphiBee\MetaboxMaker\Fields\SingleImage;
+use Pollora\Metabox\Fields\Image;
+use Pollora\Metabox\Fields\ImageAdvanced;
+use Pollora\Metabox\Fields\ImageUpload;
+use Pollora\Metabox\Fields\SingleImage;
 
 test('can configure image field with specific settings', function () {
     $uniqueFilenameCallback = fn ($dir, $name) => $dir.'/custom_'.$name;

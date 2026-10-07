@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-use AmphiBee\MetaboxMaker\Fields\Group;
-use AmphiBee\MetaboxMaker\Fields\Heading;
-use AmphiBee\MetaboxMaker\Fields\Tab;
-use AmphiBee\MetaboxMaker\Fields\Text;
-use AmphiBee\MetaboxMaker\Metabox;
+use Pollora\Metabox\Fields\Group;
+use Pollora\Metabox\Fields\Heading;
+use Pollora\Metabox\Fields\Tab;
+use Pollora\Metabox\Fields\Text;
+use Pollora\Metabox\Metabox;
 
 test('can assign tabs to fields', function () {
     $tabs = Metabox::make('Multi-level nested groups', 'main_group')

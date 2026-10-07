@@ -1,6 +1,6 @@
-# HTML5 Fields in MetaboxMaker
+# HTML5 fields
 
-MetaboxMaker provides a variety of HTML5 fields that can be used to create modern and interactive metaboxes and blocks in WordPress. This document covers the HTML5 fields available in the package and how to use them.
+The package provides a variety of HTML5 fields that can be used to create modern and interactive metaboxes and blocks in WordPress. This document covers the HTML5 fields available in the package and how to use them.
 
 ## Email Field
 
@@ -11,7 +11,7 @@ The `Email` field is used to create email input fields. It extends the `Text` fi
 ```php
 <?php
 
-use AmphiBee\MetaboxMaker\Fields\Email;
+use Pollora\Metabox\Fields\Email;
 
 Email::make('Email Address', 'email_address')
     ->size(30)
@@ -34,7 +34,7 @@ The `Number` field is used to create number input fields. It extends the `Text` 
 ```php
 <?php
 
-use AmphiBee\MetaboxMaker\Fields\Number;
+use Pollora\Metabox\Fields\Number;
 
 Number::make('Quantity', 'quantity')
     ->min(1)
@@ -57,7 +57,7 @@ The `Range` field is used to create range input fields. It extends the `Text` fi
 ```php
 <?php
 
-use AmphiBee\MetaboxMaker\Fields\Range;
+use Pollora\Metabox\Fields\Range;
 
 Range::make('Volume', 'volume')
     ->min(0)
@@ -80,7 +80,7 @@ The `Url` field is used to create URL input fields. It extends the `Text` field 
 ```php
 <?php
 
-use AmphiBee\MetaboxMaker\Fields\Url;
+use Pollora\Metabox\Fields\Url;
 
 Url::make('Website', 'website')
     ->size(50)
@@ -96,5 +96,5 @@ Url::make('Website', 'website')
 
 ---
 
-**Previous :** [Advanced Fields](Advanced.md)  
-**Next :** [WordPress Fields](WordPress.md) 
+**Previous:** [Advanced fields](advanced-fields.md)  
+**Next:** [WordPress fields](wordpress-fields.md)

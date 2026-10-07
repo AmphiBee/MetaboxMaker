@@ -2,8 +2,8 @@
 
 declare(strict_types=1);
 
-use AmphiBee\MetaboxMaker\Block;
-use AmphiBee\MetaboxMaker\Services\BlockTypeFilter;
+use Pollora\Metabox\Block;
+use Pollora\Metabox\Services\BlockTypeFilter;
 
 function editorContext(string $postType): object
 {

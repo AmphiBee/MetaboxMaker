@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace AmphiBee\MetaboxMaker\Fields;
+namespace Pollora\Metabox\Fields;
 
-use AmphiBee\MetaboxMaker\Fields\Settings\Options;
+use Pollora\Metabox\Fields\Settings\Options;
 
 /**
  * TextList field class for creating a list of text inputs.

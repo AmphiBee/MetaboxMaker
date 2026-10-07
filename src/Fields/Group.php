@@ -1,22 +1,13 @@
 <?php
 
-/**
- * Copyright (c) AmphiBee
- *
- * For the full copyright and license information, please view the LICENSE
- * file that was distributed with this source code.
- *
- * @see https://github.com/AmphiBee/MetaboxMaker
- */
-
 declare(strict_types=1);
 
-namespace AmphiBee\MetaboxMaker\Fields;
+namespace Pollora\Metabox\Fields;
 
-use AmphiBee\MetaboxMaker\Contract\Renderable;
-use AmphiBee\MetaboxMaker\Enums\GroupState;
-use AmphiBee\MetaboxMaker\Validation\OptionValidation;
 use InvalidArgumentException;
+use Pollora\Metabox\Contract\Renderable;
+use Pollora\Metabox\Enums\GroupState;
+use Pollora\Metabox\Validation\OptionValidation;
 
 /**
  * Represents a group field in a metabox.

@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-use AmphiBee\MetaboxMaker\Enums\EntityFieldType;
-use AmphiBee\MetaboxMaker\Fields\Post;
-use AmphiBee\MetaboxMaker\Fields\Taxonomy;
-use AmphiBee\MetaboxMaker\Fields\User;
+use Pollora\Metabox\Enums\EntityFieldType;
+use Pollora\Metabox\Fields\Post;
+use Pollora\Metabox\Fields\Taxonomy;
+use Pollora\Metabox\Fields\User;
 
 test('can add user field with specific query args', function () {
     $args = User::make('User Field', 'user_field')

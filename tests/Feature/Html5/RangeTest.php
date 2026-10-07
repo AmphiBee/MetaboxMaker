@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-use AmphiBee\MetaboxMaker\Fields\Range;
+use Pollora\Metabox\Fields\Range;
 
 test('can add range field with min, max and step values', function () {
     $args = Range::make('Range', 'range')

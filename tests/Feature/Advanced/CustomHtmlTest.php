@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-use AmphiBee\MetaboxMaker\Fields\CustomHtml;
+use Pollora\Metabox\Fields\CustomHtml;
 
 test('custom html field stores static html content', function () {
     $htmlContent = '<div><p>Static HTML Content</p></div>';

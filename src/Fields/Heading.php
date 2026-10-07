@@ -1,22 +1,13 @@
 <?php
 
-/**
- * Copyright (c) AmphiBee
- *
- * For the full copyright and license information, please view the LICENSE
- * file that was distributed with this source code.
- *
- * @see https://github.com/AmphiBee/MetaboxMaker
- */
-
 declare(strict_types=1);
 
-namespace AmphiBee\MetaboxMaker\Fields;
+namespace Pollora\Metabox\Fields;
 
-use AmphiBee\MetaboxMaker\Contract\Renderable;
-use AmphiBee\MetaboxMaker\Fields\Settings\Description;
-use AmphiBee\MetaboxMaker\Fields\Settings\Tab;
-use AmphiBee\MetaboxMaker\Fields\Utils\Builder;
+use Pollora\Metabox\Contract\Renderable;
+use Pollora\Metabox\Fields\Settings\Description;
+use Pollora\Metabox\Fields\Settings\Tab;
+use Pollora\Metabox\Fields\Utils\Builder;
 
 /**
  * Heading field class for creating section headings in the UI.

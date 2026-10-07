@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-use AmphiBee\MetaboxMaker\Fields\Select;
+use Pollora\Metabox\Fields\Select;
 
 test('can configure select with multiple choices and toggle all feature', function () {
     $options = [

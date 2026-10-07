@@ -1,109 +1,135 @@
-# MetaboxMaker
+<p align="center">
+  <a href="https://pollora.dev">
+    <img src="https://raw.githubusercontent.com/Pollora/.github/main/brand/banners/metabox.png" width="100%" alt="Metabox: Meta Box fields, blocks and settings pages in a fluent API">
+  </a>
+</p>
 
-MetaboxMaker is a powerful and flexible WordPress package designed to simplify the creation and management of custom metaboxes and fields. It provides developers with an object-oriented interface to generate various types of fields quickly and integrate them seamlessly into WordPress themes or plugins.
+<p align="center">
+  <a href="https://packagist.org/packages/pollora/metabox"><img src="https://img.shields.io/packagist/v/pollora/metabox" alt="Latest version"></a>
+  <a href="https://packagist.org/packages/pollora/metabox"><img src="https://img.shields.io/packagist/dt/pollora/metabox" alt="Total downloads"></a>
+  <a href="https://github.com/Pollora/metabox/actions/workflows/tests.yml"><img src="https://github.com/Pollora/metabox/actions/workflows/tests.yml/badge.svg" alt="Tests"></a>
+  <a href="LICENSE"><img src="https://img.shields.io/github/license/Pollora/metabox" alt="License"></a>
+</p>
 
-## Features
+Metabox declares [Meta Box](https://metabox.io) meta boxes, custom fields, Gutenberg blocks and settings pages with chained, type-hinted methods instead of the nested arrays passed to the `rwmb_meta_boxes` filter. Each field type is a class, each setting a method, enumerated values are checked when they are set, and the configuration is registered with Meta Box for you. It is for WordPress developers who use Meta Box and are tired of looking up array keys.
 
-- **Object-Oriented Approach**: Leverages modern PHP practices to offer a clean and maintainable codebase.
-- **Extensible Field Types**: Includes a variety of field types such as text, number, file, image, video, and more.
-- **Customizable Options**: Each field type comes with configurable settings to suit different requirements.
-- **Easy Integration**: Easily integrates with existing WordPress setups, enhancing custom content types with minimal effort.
-- **Advanced Field Configurations**: Supports advanced features like force deletion, custom upload directories, and unique filename callbacks.
+> Part of [Pollora](https://pollora.dev), the Laravel framework for WordPress. It works in any WordPress project that uses Composer, with or without Pollora.
 
 ## Installation
 
-To install MetaboxMaker, you can install the composer package into your WordPress plugin or theme directory.
-
 ```bash
-composer require amphibee/metabox-maker
+composer require pollora/metabox
 ```
 
-## Usage
+Requires PHP 8.2+, WordPress and the [Meta Box](https://wordpress.org/plugins/meta-box/) plugin. Some features need a Meta Box extension: [MB Blocks](https://docs.metabox.io/extensions/mb-blocks/) for blocks, [MB Settings Page](https://docs.metabox.io/extensions/mb-settings-page/) for settings pages, [Meta Box Group](https://docs.metabox.io/extensions/meta-box-group/) for groups and [Meta Box Tabs](https://docs.metabox.io/extensions/meta-box-tabs/) for tabs. They are all included in Meta Box AIO.
 
-### Basic Usage
+Coming from `amphibee/metabox-maker`? Read the [upgrade guide](UPGRADE.md).
 
-Here is a quick example of how to create a custom metabox with text and number fields:
+## Quick start
+
+A meta box with two fields in the sidebar of the page editor:
 
 ```php
-<?php
+use Pollora\Metabox\Fields\Number;
+use Pollora\Metabox\Fields\Text;
+use Pollora\Metabox\Location;
+use Pollora\Metabox\Metabox;
 
-use AmphiBee\MetaboxMaker\Fields\Text;
-use AmphiBee\MetaboxMaker\Fields\Number;
-
-// Add fields to your metabox and display it in the post editor
-Metabox::make('User Information', 'user_info')
-       ->fields([
-           Text::make('Username', 'username')
-                ->placeholder('Enter your username'),
-           Number::make('Age', 'age')
-                ->min(18)
-                ->max(100)
-                ->step(1)
-       ])
-       ->context('side')
-       ->priority('high');
+Metabox::make('Event', 'event')
+    ->location(Location::postTypes('page'))
+    ->context('side')
+    ->fields([
+        Text::make('Venue', 'venue')
+            ->placeholder('Where does it take place?')
+            ->required(),
+        Number::make('Seats', 'seats')
+            ->min(1)
+            ->step(1),
+    ]);
 ```
 
-### Creating Gutenberg Blocks
-
-You can also create custom Gutenberg blocks using the `Block` class:
+A Gutenberg block with a repeatable group of links:
 
 ```php
-<?php
+use Pollora\Metabox\Block;
+use Pollora\Metabox\Fields\Group;
+use Pollora\Metabox\Fields\Text;
+use Pollora\Metabox\Fields\Url;
 
-use AmphiBee\MetaboxMaker\Block;
-use AmphiBee\MetaboxMaker\Fields\Text;
-use AmphiBee\MetaboxMaker\Fields\Wysiwyg;
-use AmphiBee\MetaboxMaker\Fields\Group;
-
-Block::make('Example Block', 'example-block')
-    ->description('An example Gutenberg block')
-    ->icon('book-alt')
-    ->category('layout')
-    ->renderCallback(function ($attributes) {
-        echo '<div>' . $attributes['content'] . '</div>';
-    })
+Block::make('Useful links', 'useful-links')
+    ->icon('admin-links')
+    ->category('widgets')
+    ->renderTemplate(get_theme_file_path('blocks/useful-links.php'))
     ->fields([
         Text::make('Title', 'title'),
-        Wysiwyg::make('Content', 'content'),
         Group::make('Links', 'links')
             ->cloneable()
             ->addButton('Add a link')
-            ->maxClone(3)
             ->fields([
-                Text::make('Link', 'link'),
                 Text::make('Label', 'label'),
+                Url::make('URL', 'url'),
             ]),
     ]);
 ```
 
-### Advanced Features
-
-You can also utilize advanced features such as image upload fields with custom settings:
+A settings page, and a meta box displayed on it:
 
 ```php
-<?php
+use Pollora\Metabox\Fields\Email;
+use Pollora\Metabox\Location;
+use Pollora\Metabox\Metabox;
+use Pollora\Metabox\SettingsPage;
 
-use AmphiBee\MetaboxMaker\Fields\ImageUpload;
+SettingsPage::make('Site options', 'site-options')
+    ->icon('admin-generic')
+    ->optionName('site_options');
 
-$imageField = ImageUpload::make('Profile Picture', 'profile_picture')
-                ->maxFileSize('5mb')
-                ->imageSize('medium')
-                ->forceDelete(true);
-
-Metabox::make('Profile', [$imageField])
-       ->context('normal')
-       ->priority('default');
+Metabox::make('Contact', 'contact')
+    ->location(Location::settingsPages('site-options'))
+    ->fields([
+        Email::make('Contact email', 'contact_email'),
+    ]);
 ```
+
+Declare them when Meta Box reads its configuration, for instance in a theme's `functions.php` or on the `init` hook. Values are read with Meta Box's own functions, such as `rwmb_meta( 'venue' )`.
+
+## Features
+
+- About 50 field types, from text inputs to files, maps, posts, taxonomies and users, with the settings of each type as methods.
+- Meta boxes, Gutenberg blocks (MB Blocks) and settings pages (MB Settings Page), displayed on post types, terms, users, comments or settings pages.
+- Groups and tabs, with nested fields.
+- Enumerated settings (context, priority, styles…) accept a string or an enum, and an invalid value throws an exception.
+- Blocks restricted to, or excluded from, given post types.
+- `setting()` passes any other Meta Box setting, for instance those of the Conditional Logic, Columns or Admin Columns extensions.
+- Tested with Pest and analysed with PHPStan.
 
 ## Documentation
 
-To get started with MetaboxMaker and explore all its features, please refer to our [Getting Started guide](doc/GettingStarted.md). This document will provide you with all the necessary information to integrate and effectively use MetaboxMaker in your WordPress projects.
+- [Meta boxes](docs/metaboxes.md): creating meta boxes and choosing where they are displayed.
+- [Common field settings](docs/common-settings.md): the settings shared by every field.
+- [Basic fields](docs/basic-fields.md): text, textarea, select, checkbox, radio…
+- [Advanced fields](docs/advanced-fields.md): autocomplete, color, date and time pickers, maps, sliders, WYSIWYG…
+- [HTML5 fields](docs/html5-fields.md): email, number, range, URL.
+- [WordPress fields](docs/wordpress-fields.md): post, taxonomy, user and sidebar selectors.
+- [Upload fields](docs/upload-fields.md): files, images and videos.
+- [Layout fields](docs/layout-fields.md): headings, dividers, groups and tabs.
+- [Blocks](docs/blocks.md): Gutenberg blocks with MB Blocks.
+- [Settings pages](docs/settings-pages.md): settings pages with MB Settings Page.
+
+For every setting, the reference is the [Meta Box documentation](https://docs.metabox.io).
+
+## Testing
+
+```bash
+composer test
+```
+
+This runs the Pest tests, PHPStan and Pint. The tests check the configuration arrays generated for Meta Box, with the WordPress hook functions stubbed in `tests/Pest.php`.
 
 ## Contributing
 
-Contributions are welcome! Please feel free to submit pull requests or create issues for bugs and feature requests.
+Contributions are welcome: see the [contributing guide](https://github.com/Pollora/.github/blob/main/CONTRIBUTING.md). Report security issues privately, as described in the [security policy](https://github.com/Pollora/.github/blob/main/SECURITY.md).
 
 ## License
 
-This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details.
+Metabox is open-source software licensed under the [MIT license](LICENSE). © [RuBee group](https://rubee.group)

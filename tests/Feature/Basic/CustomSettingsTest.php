@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-use AmphiBee\MetaboxMaker\Fields\Number;
-use AmphiBee\MetaboxMaker\Fields\Select;
-use AmphiBee\MetaboxMaker\Fields\Text;
+use Pollora\Metabox\Fields\Number;
+use Pollora\Metabox\Fields\Select;
+use Pollora\Metabox\Fields\Text;
 
 test('can add custom settings to a field', function () {
     $field = Text::make('Name', 'name')

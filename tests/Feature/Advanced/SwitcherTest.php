@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-use AmphiBee\MetaboxMaker\Fields\Switcher;
+use Pollora\Metabox\Fields\Switcher;
 
 test('switch field can be configured with specific style and labels', function () {
     $switchField = Switcher::make('Toggle Feature', 'toggle_feature');

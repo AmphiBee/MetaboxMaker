@@ -1,5 +1,22 @@
 # Changelog
 
+## 2.0.0 - Unreleased
+
+The package moves to the Pollora organization. Follow the [upgrade guide](UPGRADE.md) to migrate from `amphibee/metabox-maker`.
+
+### Changed
+
+- The package is renamed `pollora/metabox`, and the namespace `AmphiBee\MetaboxMaker` is now `Pollora\Metabox`. There is no compatibility layer for the former names.
+- License: MIT instead of GPL-2.0-or-later.
+- PHP 8.2 or later is required.
+- The documentation moves to `docs/`, with one page per topic.
+
+### Removed
+
+- The `Fieldset` field: use `FieldsetText`.
+- `Button::setAttributes()`: use `attributes()`, available on every field.
+- `Taxonomy::taxonomy()`: use `taxonomies()`.
+
 ## 1.0.0 - 2026-10-07
 
 First tagged release. Projects previously required `dev-main`: switch to `^1.0` and read the upgrade notes below.

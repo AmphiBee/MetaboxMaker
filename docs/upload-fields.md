@@ -1,6 +1,6 @@
-# Upload Fields in MetaboxMaker
+# Upload fields
 
-MetaboxMaker provides a variety of fields specifically designed for handling file uploads. This document covers the upload-specific fields available in the package and how to use them.
+The package provides a variety of fields specifically designed for handling file uploads. This document covers the upload-specific fields available in the package and how to use them.
 
 ## File Field
 
@@ -11,7 +11,7 @@ The `File` field is used to handle file uploads. It uses several traits to provi
 ```php
 <?php
 
-use AmphiBee\MetaboxMaker\Fields\File;
+use Pollora\Metabox\Fields\File;
 
 File::make('Upload File', 'upload_file')
     ->forceDelete(true)
@@ -38,7 +38,7 @@ The `FileAdvanced` field is an extension of the `File` field, providing more adv
 ```php
 <?php
 
-use AmphiBee\MetaboxMaker\Fields\FileAdvanced;
+use Pollora\Metabox\Fields\FileAdvanced;
 
 FileAdvanced::make('Upload Advanced File', 'upload_advanced_file')
     ->forceDelete(true)
@@ -63,7 +63,7 @@ The `FileInput` field is used to create a simple text input for uploading a sing
 ```php
 <?php
 
-use AmphiBee\MetaboxMaker\Fields\FileInput;
+use Pollora\Metabox\Fields\FileInput;
 
 FileInput::make('Upload Single File', 'upload_single_file');
 ```
@@ -81,7 +81,7 @@ The `FileUpload` field is an extension of the `FileAdvanced` field, providing ad
 ```php
 <?php
 
-use AmphiBee\MetaboxMaker\Fields\FileUpload;
+use Pollora\Metabox\Fields\FileUpload;
 
 FileUpload::make('Upload File with Size Limit', 'upload_file_size_limit')
     ->forceDelete(true)
@@ -104,7 +104,7 @@ The `Image` field is used to handle image uploads. It extends the `File` field.
 ```php
 <?php
 
-use AmphiBee\MetaboxMaker\Fields\Image;
+use Pollora\Metabox\Fields\Image;
 
 Image::make('Upload Image', 'upload_image')
     ->forceDelete(true)
@@ -124,7 +124,7 @@ The `ImageAdvanced` field is an extension of the `Image` field, providing more a
 ```php
 <?php
 
-use AmphiBee\MetaboxMaker\Fields\ImageAdvanced;
+use Pollora\Metabox\Fields\ImageAdvanced;
 
 ImageAdvanced::make('Upload Advanced Image', 'upload_advanced_image')
     ->imageSize('thumbnail')
@@ -147,7 +147,7 @@ The `SingleImage` field is used to handle single image uploads. It extends the `
 ```php
 <?php
 
-use AmphiBee\MetaboxMaker\Fields\SingleImage;
+use Pollora\Metabox\Fields\SingleImage;
 
 SingleImage::make('Upload Single Image', 'upload_single_image')
     ->forceDelete(true)
@@ -168,7 +168,7 @@ The `ImageUpload` field is an extension of the `ImageAdvanced` field, providing 
 ```php
 <?php
 
-use AmphiBee\MetaboxMaker\Fields\ImageUpload;
+use Pollora\Metabox\Fields\ImageUpload;
 
 ImageUpload::make('Upload Image with Size Limit', 'upload_image_size_limit')
     ->forceDelete(true)
@@ -191,7 +191,7 @@ The `Video` field is used to handle video uploads. It provides options for file 
 ```php
 <?php
 
-use AmphiBee\MetaboxMaker\Fields\Video;
+use Pollora\Metabox\Fields\Video;
 
 Video::make('Upload Video', 'upload_video')
     ->forceDelete(true)
@@ -207,5 +207,5 @@ Video::make('Upload Video', 'upload_video')
 
 ---
 
-**Previous :** [WordPress Fields](WordPress.md)  
-**Next :** [Layout Fields](Layout.md) 
+**Previous:** [WordPress fields](wordpress-fields.md)  
+**Next:** [Layout fields](layout-fields.md)

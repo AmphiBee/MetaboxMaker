@@ -1,21 +1,12 @@
 <?php
 
-/**
- * Copyright (c) AmphiBee
- *
- * For the full copyright and license information, please view the LICENSE
- * file that was distributed with this source code.
- *
- * @see https://github.com/AmphiBee/MetaboxMaker
- */
-
 declare(strict_types=1);
 
-namespace AmphiBee\MetaboxMaker\Fields;
+namespace Pollora\Metabox\Fields;
 
-use AmphiBee\MetaboxMaker\Enums\EntityFieldType;
-use AmphiBee\MetaboxMaker\Fields\Settings\Ajax;
-use AmphiBee\MetaboxMaker\Validation\OptionValidation;
+use Pollora\Metabox\Enums\EntityFieldType;
+use Pollora\Metabox\Fields\Settings\Ajax;
+use Pollora\Metabox\Validation\OptionValidation;
 
 /**
  * Taxonomy field class for creating fields that allow selecting terms.
@@ -64,16 +55,6 @@ class Taxonomy extends Field
         $this->taxonomy = $taxonomies;
 
         return $this;
-    }
-
-    /**
-     * Alias of taxonomies(), matching the Meta Box setting name.
-     *
-     * @param  string|array  $taxonomy  A taxonomy slug or a list of taxonomy slugs.
-     */
-    public function taxonomy(string|array $taxonomy): static
-    {
-        return $this->taxonomies($taxonomy);
     }
 
     /**

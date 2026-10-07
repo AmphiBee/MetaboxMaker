@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace AmphiBee\MetaboxMaker\Enums;
+namespace Pollora\Metabox\Enums;
 
 enum IconType: string
 {

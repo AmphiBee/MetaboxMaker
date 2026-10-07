@@ -1,33 +1,24 @@
 <?php
 
-/**
- * Copyright (c) AmphiBee
- *
- * For the full copyright and license information, please view the LICENSE
- * file that was distributed with this source code.
- *
- * @see https://github.com/AmphiBee/MetaboxMaker
- */
-
 declare(strict_types=1);
 
-namespace AmphiBee\MetaboxMaker\Fields;
+namespace Pollora\Metabox\Fields;
 
-use AmphiBee\MetaboxMaker\Contract\Renderable;
-use AmphiBee\MetaboxMaker\Fields\Settings\Attributes;
-use AmphiBee\MetaboxMaker\Fields\Settings\Clonable;
-use AmphiBee\MetaboxMaker\Fields\Settings\DefaultValue;
-use AmphiBee\MetaboxMaker\Fields\Settings\Description;
-use AmphiBee\MetaboxMaker\Fields\Settings\FieldAccess;
-use AmphiBee\MetaboxMaker\Fields\Settings\Multiple;
-use AmphiBee\MetaboxMaker\Fields\Settings\Placeholder;
-use AmphiBee\MetaboxMaker\Fields\Settings\Required;
-use AmphiBee\MetaboxMaker\Fields\Settings\Saving;
-use AmphiBee\MetaboxMaker\Fields\Settings\Sortable;
-use AmphiBee\MetaboxMaker\Fields\Settings\Tab;
-use AmphiBee\MetaboxMaker\Fields\Settings\Visibility;
-use AmphiBee\MetaboxMaker\Fields\Settings\Wrapper;
-use AmphiBee\MetaboxMaker\Fields\Utils\Builder;
+use Pollora\Metabox\Contract\Renderable;
+use Pollora\Metabox\Fields\Settings\Attributes;
+use Pollora\Metabox\Fields\Settings\Clonable;
+use Pollora\Metabox\Fields\Settings\DefaultValue;
+use Pollora\Metabox\Fields\Settings\Description;
+use Pollora\Metabox\Fields\Settings\FieldAccess;
+use Pollora\Metabox\Fields\Settings\Multiple;
+use Pollora\Metabox\Fields\Settings\Placeholder;
+use Pollora\Metabox\Fields\Settings\Required;
+use Pollora\Metabox\Fields\Settings\Saving;
+use Pollora\Metabox\Fields\Settings\Sortable;
+use Pollora\Metabox\Fields\Settings\Tab;
+use Pollora\Metabox\Fields\Settings\Visibility;
+use Pollora\Metabox\Fields\Settings\Wrapper;
+use Pollora\Metabox\Fields\Utils\Builder;
 
 /**
  * Abstract class for all fields.
