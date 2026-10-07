@@ -5,6 +5,8 @@ declare(strict_types=1);
 namespace Pollora\Metabox\Fields;
 
 use Pollora\Metabox\Enums\InputTextType;
+use Pollora\Metabox\Fields\Settings\InputTooltip;
+use Pollora\Metabox\Fields\Settings\SeoAnalysis;
 use Pollora\Metabox\Fields\Settings\TextLimiter;
 use Pollora\Metabox\Validation\OptionValidation;
 
@@ -13,6 +15,8 @@ use Pollora\Metabox\Validation\OptionValidation;
  */
 class Text extends Input
 {
+    use InputTooltip;
+    use SeoAnalysis;
     use TextLimiter;
 
     /**
@@ -29,6 +33,10 @@ class Text extends Input
     public function type(string|InputTextType $type): static
     {
         $this->type = OptionValidation::check($type, InputTextType::class);
+
+        if (isset($this->tooltip_input)) {
+            self::ensureInputTooltipSupported($this->type);
+        }
 
         return $this;
     }

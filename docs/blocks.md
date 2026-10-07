@@ -52,6 +52,7 @@ Block::make('Example Block', 'example-block')
 - **`enqueueStyle(string $url)`** / **`enqueueScript(string $url)`**: Enqueues a stylesheet or a script with the block.
 - **`enqueueAssets(callable $callback)`**: Enqueues assets with a callback.
 - **`preview(array $preview)`**: Sets the field values used in the block inserter preview.
+- **`attributes(array $attributes)`**: Adds attributes to the block type, e.g. `['theme' => ['type' => 'string', 'default' => 'light']]`, available in the render template or callback. Each attribute needs a type: `string`, `number`, `integer`, `boolean`, `object`, `array` or `null`. The MB Blocks attributes (`id`, `name`, `data` and `anchor`) are kept, and their names are reserved.
 - **`storageType(string $storageType)`**: Sets where the field values are stored: `attributes` (default, in the block), `post_meta` or `custom_table`.
 - **`customTable(string $table)`**: Stores the field values in a custom table (MB Custom Table).
 - **`restrictToPostTypes(array $postTypes)`** / **`excludePostTypes(array $postTypes)`**: See [Restricting Blocks by Post Type](#restricting-blocks-by-post-type).

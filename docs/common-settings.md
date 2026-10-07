@@ -32,6 +32,8 @@ Text::make('Product code', 'product_code')
 - **`required(bool $required = true)`**: Makes the field required.
 - **`readOnly(bool $readOnly = true)`**: Makes the field read-only.
 - **`disabled(bool $disabled = true)`**: Disables the field.
+- **`autofocus(bool $autofocus = true)`**: Focuses the field input when the page loads.
+- **`fieldName(string $fieldName)`**: Sets the name of the input, when it must differ from the field ID.
 - **`multiple(bool $multiple = true)`**: Allows multiple values.
 - **`attributes(array $attributes)`**: Sets custom HTML attributes, e.g. `maxlength`, `pattern`, `min` or `data-*`. Array values are JSON-encoded.
 - **`attribute(string $key, mixed $value)`**: Sets a single custom HTML attribute.
@@ -58,12 +60,13 @@ Text::make('Product code', 'product_code')
 - **`sanitizeCallback(callable|string $callback)`**: Sets a custom sanitize callback, or `'none'` to skip sanitization.
 - **`hideFromRest(bool $hide = true)`**: Hides the field from the REST API.
 - **`hideFromFront(bool $hide = true)`**: Hides the field from front-end forms (MB Frontend Submission).
+- **`hideFromBlockBindings(bool $hide = true)`**: Hides the field from the block bindings of the block editor (WordPress 6.5+).
 
 **Anything else**
 
 - **`setting(string $key, mixed $value)`**: Sets any other Meta Box setting.
 
-Conditional logic, columns, tooltips, admin columns and text limits have their own methods: see [Extensions](extensions.md).
+Conditional logic, columns, tooltips, admin columns, text limits, geolocation and SEO analysis have their own methods: see [Extensions](extensions.md).
 
 ---
 

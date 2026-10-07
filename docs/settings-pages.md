@@ -21,11 +21,9 @@ SettingsPage::make('Theme Options', 'theme-options')
     ->iconType('dashicons')
     ->icon('dashicons-admin-settings')
     ->capability('manage_options')
-    ->tabs([
-        'general' => 'General Settings',
-        'style' => 'Style',
-        'advanced' => 'Advanced'
-    ])
+    ->tab('general', 'General Settings')
+    ->tab('style', 'Style', icon: 'dashicons-art')
+    ->tab('advanced', 'Advanced')
     ->tabStyle('left');
 ```
 
@@ -54,7 +52,8 @@ SettingsPage::make('Theme Options', 'theme-options')
 
 #### Tabs Configuration
 
-- **`tabs(array $tabs)`**: Sets the page tabs.
+- **`tab(string $id, string $label, ?string $icon = null)`**: Adds a tab. The icon is a Dashicons or icon font class, e.g. `dashicons-admin-generic`, or an image URL. Adding a tab ID twice throws an exception.
+- **`tabs(array $tabs)`**: Sets all the tabs at once, as `'id' => 'Label'` or `'id' => ['label' => 'Label', 'icon' => '...']`.
 - **`tabStyle(TabStyle|string $style)`**: Sets the tab style (`DEFAULT`/`'default'` or `LEFT`/`'left'`).
 
 #### Message Configuration
@@ -110,19 +109,34 @@ SettingsPage::make('Theme Options', 'theme-options')
 SettingsPage::make('Advanced Options', 'advanced-options')
     ->iconType(IconType::DASHICONS)
     ->icon('dashicons-admin-tools')
-    ->tabs([
-        'general' => [
-            'label' => 'General',
-            'icon' => 'dashicons-admin-settings'
-        ],
-        'appearance' => [
-            'label' => 'Appearance',
-            'icon' => 'dashicons-admin-customizer'
-        ]
-    ])
+    ->tab('general', 'General', icon: 'dashicons-admin-settings')
+    ->tab('appearance', 'Appearance', icon: 'dashicons-admin-customizer')
     ->tabStyle(TabStyle::LEFT)
     ->columns(2);
+
+Metabox::make('Colors', 'colors')
+    ->location(Location::settingsPages('advanced-options', tab: 'appearance'))
+    ->fields([
+        Color::make('Text color', 'text_color'),
+    ]);
 ```
+
+### Backup and restore
+
+A `Backup` field shows the values of the settings page as JSON. Copy them to back up the settings; paste a backup and save the page to restore them. It only works in a meta box displayed on a settings page.
+
+```php
+use Pollora\Metabox\Fields\Backup;
+
+Metabox::make('Backup', 'backup')
+    ->location(Location::settingsPages('advanced-options', tab: 'advanced'))
+    ->fields([
+        Backup::make(),
+    ]);
+```
+
+- **`Backup::make(string $name = 'Backup', string $id = 'backup')`**: Creates the field. Its value is not saved.
+- **`rows(int $rows)`**: Sets the number of rows of the textarea. Defaults to 5.
 
 ### Customizer Settings Page
 
@@ -131,6 +145,26 @@ SettingsPage::make('Customizer Options', 'customizer-options')
     ->customizer(true)
     ->optionName('my_theme_options');
 ```
+
+Each meta box of the page becomes a section of the Customizer. An integer `priority()` on the meta box sets the position of the section.
+
+### Customizer sections without a settings page
+
+A meta box can be a Customizer section on its own, without a settings page: its values are saved in the theme mods of the active theme, or in the option given with `optionName`.
+
+```php
+Metabox::make('Header', 'header')
+    ->customizer()               // a top-level section
+    ->priority(30)
+    ->fields([
+        FileInput::make('Logo', 'logo'),
+    ]);
+
+Metabox::make('Footer', 'footer')
+    ->customizer(panel: 'theme_options', optionName: 'footer_settings'); // in the panel 'theme_options'
+```
+
+`File` and `Image` fields are converted to `FileAdvanced` and `ImageAdvanced` by MB Settings Page, as the Customizer does not support them.
 
 ## Defaults that differ from Meta Box
 

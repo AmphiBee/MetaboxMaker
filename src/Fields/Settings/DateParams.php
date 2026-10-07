@@ -44,4 +44,15 @@ trait DateParams
 
         return $this;
     }
+
+    /**
+     * Set the displayed date format, in the jQuery UI format, e.g. 'dd/mm/yy'.
+     * Defaults to 'yy-mm-dd'. To save the value in another format, use saveFormat().
+     */
+    public function dateFormat(string $format): static
+    {
+        $this->js_options['dateFormat'] = $format;
+
+        return $this;
+    }
 }

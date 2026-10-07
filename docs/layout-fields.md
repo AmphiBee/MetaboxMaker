@@ -88,7 +88,38 @@ Tab::make('Tab Title')
 ### Methods
 
 - **`icon(string $icon)`**: Sets the icon for the tab.
-- **`fields(array $fields)`**: Adds fields to the tab, which can include nested groups.
+- **`fields(array $fields)`**: Adds fields to the tab, which can include nested groups and columns.
+
+## Column
+
+A `Column` holds several fields in one column of the 12-column grid, one below the other. It requires [Meta Box Columns](https://docs.metabox.io/extensions/meta-box-columns/). To give a single field its own column, use [`columns()`](extensions.md#columns) on the field instead.
+
+### Example
+
+```php
+<?php
+
+use Pollora\Metabox\Fields\Column;
+
+Metabox::make('Contact', 'contact')
+    ->fields([
+        Column::make(4)->fields([
+            Text::make('Name', 'name'),
+            Email::make('Email', 'email'),
+        ]),
+        Column::make(8)->class('contact-message')->fields([
+            Textarea::make('Message', 'message'),
+        ]),
+    ]);
+```
+
+### Methods
+
+- **`Column::make(int $size)`**: Creates a column spanning `$size` grid columns, from 1 to 12. Another size throws an exception.
+- **`class(string $class)`**: Adds a CSS class to the column.
+- **`fields(array $fields)`**: Adds fields, headings and dividers to the column.
+
+Columns can be used in meta boxes, blocks and tabs. A tab or a column inside a column, or a column inside a group, throws an exception: inside a group, use `columns()` on the sub-fields.
 
 ---
 

@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace Pollora\Metabox\Fields;
 
+use Pollora\Metabox\Fields\Settings\GeoBinding;
+use Pollora\Metabox\Fields\Settings\InputTooltip;
 use Pollora\Metabox\Fields\Settings\JsOptions;
 use Pollora\Metabox\Fields\Settings\Multiple;
 use Pollora\Metabox\Fields\Settings\Options;
@@ -14,6 +16,8 @@ use Pollora\Metabox\Fields\Settings\ToggleAll;
  */
 class SelectAdvanced extends Field
 {
+    use GeoBinding;
+    use InputTooltip;
     use JsOptions, Multiple, Options, ToggleAll;
 
     /**

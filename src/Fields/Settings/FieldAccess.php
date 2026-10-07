@@ -20,6 +20,11 @@ trait FieldAccess
     protected bool $disabled;
 
     /**
+     * @var bool Whether the field input is focused when the page loads.
+     */
+    protected bool $autofocus;
+
+    /**
      * Sets the field as read-only.
      *
      * @param  bool  $readOnly  Defaults to true.
@@ -41,6 +46,16 @@ trait FieldAccess
     public function disabled(bool $disabled = true): static
     {
         $this->disabled = $disabled;
+
+        return $this;
+    }
+
+    /**
+     * Focus the field input when the page loads.
+     */
+    public function autofocus(bool $autofocus = true): static
+    {
+        $this->autofocus = $autofocus;
 
         return $this;
     }

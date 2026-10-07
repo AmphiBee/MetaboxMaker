@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Pollora\Metabox\Fields;
 
 use Pollora\Metabox\Fields\Settings\EditorParams;
+use Pollora\Metabox\Fields\Settings\SeoAnalysis;
 use Pollora\Metabox\Fields\Settings\TextLimiter;
 
 /**
@@ -13,6 +14,7 @@ use Pollora\Metabox\Fields\Settings\TextLimiter;
 class Wysiwyg extends Field
 {
     use EditorParams;
+    use SeoAnalysis;
     use TextLimiter;
 
     /**

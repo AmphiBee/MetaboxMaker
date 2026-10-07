@@ -17,7 +17,7 @@ trait JsOptions
     protected array $js_options;
 
     /**
-     * Set JavaScript options for the field.
+     * Set JavaScript options for the field, merged with the options set before.
      *
      * @param  array  $js_options  JavaScript options.
      * @return static Returns the instance of the field class for method chaining.
@@ -31,7 +31,7 @@ trait JsOptions
             }
         }
 
-        $this->js_options = $js_options;
+        $this->js_options = array_merge($this->js_options ?? [], $js_options);
 
         return $this;
     }

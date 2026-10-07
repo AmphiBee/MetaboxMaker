@@ -6,6 +6,7 @@ namespace Pollora\Metabox\Fields;
 
 use Pollora\Metabox\Enums\EntityFieldType;
 use Pollora\Metabox\Fields\Settings\Ajax;
+use Pollora\Metabox\Fields\Settings\ToggleAll;
 use Pollora\Metabox\Validation\OptionValidation;
 
 /**
@@ -14,6 +15,7 @@ use Pollora\Metabox\Validation\OptionValidation;
 class User extends Field
 {
     use Ajax;
+    use ToggleAll;
 
     protected string $type = 'user';
 
@@ -25,6 +27,11 @@ class User extends Field
      * The user property used as the option label.
      */
     protected string $display_field = 'display_name';
+
+    /**
+     * Whether a button opens a form to create a new user.
+     */
+    protected bool $add_new;
 
     public function queryArgs(array $queryArgs): static
     {
@@ -48,6 +55,16 @@ class User extends Field
     public function displayField(string $displayField): static
     {
         $this->display_field = $displayField;
+
+        return $this;
+    }
+
+    /**
+     * Show a button opening a form to create a new user.
+     */
+    public function addNew(bool $addNew = true): static
+    {
+        $this->add_new = $addNew;
 
         return $this;
     }

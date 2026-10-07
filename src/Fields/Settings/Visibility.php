@@ -20,6 +20,11 @@ trait Visibility
     protected bool $hide_from_front;
 
     /**
+     * Whether the field is hidden from the block bindings.
+     */
+    protected bool $hide_from_block_bindings;
+
+    /**
      * Hide the field from the REST API.
      */
     public function hideFromRest(bool $hide = true): static
@@ -35,6 +40,16 @@ trait Visibility
     public function hideFromFront(bool $hide = true): static
     {
         $this->hide_from_front = $hide;
+
+        return $this;
+    }
+
+    /**
+     * Hide the field from the block bindings of the block editor (WordPress 6.5+).
+     */
+    public function hideFromBlockBindings(bool $hide = true): static
+    {
+        $this->hide_from_block_bindings = $hide;
 
         return $this;
     }

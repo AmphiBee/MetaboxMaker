@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Pollora\Metabox;
 
+use InvalidArgumentException;
 use Pollora\Metabox\Enums\BlockMode;
 use Pollora\Metabox\Services\BlockTypeFilter;
 use Pollora\Metabox\Validation\OptionValidation;
@@ -67,6 +68,11 @@ class Block extends Metabox
      * The enqueue script URL for the block.
      */
     protected string $enqueue_script;
+
+    /**
+     * The custom attributes of the block type.
+     */
+    protected array $attributes;
 
     /**
      * The supports options for the block.
@@ -269,5 +275,51 @@ class Block extends Metabox
         BlockTypeFilter::registerRestrictions($this->id, ['excluded' => $postTypes]);
 
         return $this;
+    }
+
+    /**
+     * Add attributes to the block type, e.g. ['theme' => ['type' => 'string', 'default' => 'light']].
+     * They are available in the render template or callback with the field values.
+     *
+     * @param  array  $attributes  Attribute definitions keyed by name, each with a 'type' and an optional 'default'.
+     */
+    public function attributes(array $attributes): static
+    {
+        $types = ['string', 'number', 'integer', 'boolean', 'object', 'array', 'null'];
+
+        foreach ($attributes as $name => $attribute) {
+            if (in_array($name, ['id', 'name', 'data', 'anchor'], true)) {
+                throw new InvalidArgumentException("The block attribute '{$name}' is reserved by MB Blocks.");
+            }
+
+            if (! is_array($attribute) || ! in_array($attribute['type'] ?? null, $types, true)) {
+                throw new InvalidArgumentException("The block attribute '{$name}' needs a type: '".implode("', '", $types)."'.");
+            }
+        }
+
+        $this->attributes = $attributes;
+
+        return $this;
+    }
+
+    /**
+     * Build the block and return its settings.
+     *
+     * MB Blocks replaces its default attributes with the custom ones: keep them.
+     */
+    public function build(): array
+    {
+        $block = parent::build();
+
+        if (isset($block['attributes'])) {
+            $block['attributes'] = [
+                'id' => ['type' => 'string', 'default' => $this->id],
+                'name' => ['type' => 'string', 'default' => $this->id],
+                'data' => ['type' => 'object', 'default' => $this->preview],
+                'anchor' => ['type' => 'string', 'default' => ''],
+            ] + $block['attributes'];
+        }
+
+        return $block;
     }
 }

@@ -80,11 +80,14 @@ class Location
     }
 
     /**
-     * Show the meta box on the given settings pages (MB Settings Page).
+     * Show the meta box on the given settings pages (MB Settings Page), in the given tab
+     * when the pages have tabs.
      */
-    public static function settingsPages(string|array $settingsPages): static
+    public static function settingsPages(string|array $settingsPages, ?string $tab = null): static
     {
-        return new static('settings_pages', (array) $settingsPages);
+        $location = new static('settings_pages', (array) $settingsPages);
+
+        return $tab === null ? $location : $location->andWhere('tab', $tab);
     }
 
     /**

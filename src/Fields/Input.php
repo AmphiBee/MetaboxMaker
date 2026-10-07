@@ -4,11 +4,19 @@ declare(strict_types=1);
 
 namespace Pollora\Metabox\Fields;
 
+use Pollora\Metabox\Fields\Settings\AutocompleteAttribute;
+use Pollora\Metabox\Fields\Settings\GeoBinding;
+use Pollora\Metabox\Fields\Settings\TextLength;
+
 /**
  * Base class for the fields rendered as an HTML input: text, email, url, number, range and password.
  */
 abstract class Input extends Field
 {
+    use AutocompleteAttribute;
+    use GeoBinding;
+    use TextLength;
+
     /**
      * The size of the input field.
      */
@@ -28,21 +36,6 @@ abstract class Input extends Field
      * The datalist options for the input field.
      */
     protected array $datalist;
-
-    /**
-     * The autocomplete attribute of the input.
-     */
-    protected string $autocomplete;
-
-    /**
-     * The minimum number of characters.
-     */
-    protected int $minlength;
-
-    /**
-     * The maximum number of characters.
-     */
-    protected int $maxlength;
 
     /**
      * The regular expression the value must match.
@@ -101,38 +94,6 @@ abstract class Input extends Field
             'id' => $id,
             'options' => $options,
         ];
-
-        return $this;
-    }
-
-    /**
-     * Set the autocomplete attribute of the input, e.g. 'email', 'tel' or 'off'.
-     */
-    public function autocomplete(string $autocomplete): static
-    {
-        $this->autocomplete = $autocomplete;
-
-        return $this;
-    }
-
-    /**
-     * Set the minimum number of characters, checked by the browser.
-     */
-    public function minLength(int $length): static
-    {
-        $this->minlength = $length;
-
-        return $this;
-    }
-
-    /**
-     * Set the maximum number of characters, checked by the browser.
-     *
-     * To show a live counter, use maxCharacters() on a Text field instead (MB Text Limiter).
-     */
-    public function maxLength(int $length): static
-    {
-        $this->maxlength = $length;
 
         return $this;
     }

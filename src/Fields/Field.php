@@ -112,6 +112,11 @@ abstract class Field implements Renderable
     protected array $settings = [];
 
     /**
+     * The name of the input, when it differs from the field ID.
+     */
+    protected string $field_name;
+
+    /**
      * Constructor for the Field class.
      *
      * @param  string  $name  The name of the field.
@@ -137,6 +142,16 @@ abstract class Field implements Renderable
     public static function make(string $name, string $id): static
     {
         return new static($name, $id);
+    }
+
+    /**
+     * Set the name of the input, when it must differ from the field ID.
+     */
+    public function fieldName(string $fieldName): static
+    {
+        $this->field_name = $fieldName;
+
+        return $this;
     }
 
     public function getId(): string

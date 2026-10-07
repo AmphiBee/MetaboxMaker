@@ -166,4 +166,14 @@ trait EditorParams
 
         return $this;
     }
+
+    /**
+     * Enable the distraction-free writing mode (full screen) of the editor. Enabled by default.
+     */
+    public function distractionFreeWriting(bool $enabled = true): static
+    {
+        $this->options['dfw'] = $enabled;
+
+        return $this;
+    }
 }

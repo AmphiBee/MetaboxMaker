@@ -55,6 +55,9 @@ class Group extends Field
     public function fields(array $fields): self
     {
         foreach ($fields as $field) {
+            if ($field instanceof Column) {
+                throw new InvalidArgumentException('Columns are only supported in meta boxes and tabs: use columns() on the fields of the group.');
+            }
             if (! $field instanceof Renderable) {
                 throw new InvalidArgumentException('All fields must implement Renderable.');
             }

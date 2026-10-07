@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Pollora\Metabox\Fields;
 
+use Pollora\Metabox\Fields\Settings\InputTooltip;
 use Pollora\Metabox\Fields\Settings\RangeParams;
 
 /**
@@ -11,6 +12,7 @@ use Pollora\Metabox\Fields\Settings\RangeParams;
  */
 class Number extends Input
 {
+    use InputTooltip;
     use RangeParams;
 
     protected string $type = 'number';

@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Pollora\Metabox;
 
 use Exception;
+use InvalidArgumentException;
 use Pollora\Metabox\Contract\Renderable;
 use Pollora\Metabox\Enums\IconType;
 use Pollora\Metabox\Enums\SettingsPageStyle;
@@ -248,6 +249,24 @@ class SettingsPage implements Renderable
     public function tabs(array $tabs): static
     {
         $this->tabs = $tabs;
+
+        return $this;
+    }
+
+    /**
+     * Add a tab to the page. Meta boxes are displayed in it with Location::settingsPages($page, tab: $id).
+     *
+     * @param  string  $id  The ID of the tab.
+     * @param  string  $label  The label of the tab.
+     * @param  string|null  $icon  A Dashicons or icon font class, e.g. 'dashicons-admin-generic', or an image URL.
+     */
+    public function tab(string $id, string $label, ?string $icon = null): static
+    {
+        if (isset($this->tabs[$id])) {
+            throw new InvalidArgumentException("The settings page already has a tab '{$id}'.");
+        }
+
+        $this->tabs[$id] = $icon === null ? $label : ['label' => $label, 'icon' => $icon];
 
         return $this;
     }

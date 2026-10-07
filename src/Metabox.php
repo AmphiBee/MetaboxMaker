@@ -5,6 +5,8 @@ declare(strict_types=1);
 namespace Pollora\Metabox;
 
 use Exception;
+use InvalidArgumentException;
+use LogicException;
 use Pollora\Metabox\Contract\Renderable;
 use Pollora\Metabox\Enums\BoxStyle;
 use Pollora\Metabox\Enums\Context;
@@ -52,7 +54,7 @@ class Metabox implements Renderable
     /**
      * The priority of the meta box.
      */
-    protected string|Priority|null $priority = null;
+    protected string|int|null $priority = null;
 
     /**
      * The style of the meta box.
@@ -160,6 +162,26 @@ class Metabox implements Renderable
     protected array $hide;
 
     /**
+     * The columns holding several fields (Meta Box Columns).
+     */
+    protected array $columns = [];
+
+    /**
+     * The geolocation settings (MB Geolocation).
+     */
+    protected bool|array $geo;
+
+    /**
+     * The Customizer panel of the section, or '' for a top-level section (MB Settings Page).
+     */
+    protected string $panel;
+
+    /**
+     * The option saving the values of a Customizer section.
+     */
+    protected ?string $option_name = null;
+
+    /**
      * The custom settings for the metabox.
      */
     protected array $settings = [];
@@ -199,9 +221,9 @@ class Metabox implements Renderable
     /**
      * Set the context of the meta box.
      *
-     * @param  string  $context  The context of the meta box.
+     * @param  string|Context  $context  The context of the meta box.
      */
-    public function context(string $context): static
+    public function context(string|Context $context): static
     {
         $this->context = OptionValidation::check($context, Context::class);
 
@@ -233,13 +255,14 @@ class Metabox implements Renderable
     }
 
     /**
-     * Set the priority of the meta box.
+     * Set the priority of the meta box: 'high' or 'low', or the position of the
+     * section in the Customizer, e.g. 30.
      *
-     * @param  string|Priority  $priority  The priority of the meta box.
+     * @param  string|int|Priority  $priority  The priority of the meta box.
      */
-    public function priority(string|Priority $priority): static
+    public function priority(string|int|Priority $priority): static
     {
-        $this->priority = OptionValidation::check($priority, Priority::class);
+        $this->priority = is_int($priority) ? $priority : OptionValidation::check($priority, Priority::class);
 
         return $this;
     }
@@ -492,6 +515,62 @@ class Metabox implements Renderable
     }
 
     /**
+     * Fill the fields from the address selected in an autocomplete address field (MB Geolocation).
+     *
+     * The autocomplete field is a text field with an ID starting with 'address', and
+     * the fields named after an address component, e.g. 'locality', are filled.
+     *
+     * @param  string|null  $apiKey  The Google Maps API key, unless a Google Maps field sets it. Without a key, OpenStreetMap is used.
+     * @param  array  $types  The Google place types suggested, e.g. ['establishment'] or ['(cities)'].
+     * @param  string|array<string>  $countries  The ISO 3166-1 alpha-2 codes of the countries the suggestions are restricted to, at most 5 (Google Maps).
+     */
+    public function geolocation(?string $apiKey = null, array $types = [], string|array $countries = []): static
+    {
+        $countries = array_map('strtolower', (array) $countries);
+
+        foreach ($countries as $country) {
+            if (! preg_match('/^[a-z]{2}$/', $country)) {
+                throw new InvalidArgumentException("'{$country}' is not an ISO 3166-1 alpha-2 country code.");
+            }
+        }
+
+        if (count($countries) > 5) {
+            throw new InvalidArgumentException('Google Maps restricts the suggestions to 5 countries at most.');
+        }
+
+        foreach ($types as $type) {
+            if (! is_string($type) || $type === '') {
+                throw new InvalidArgumentException('The place types must be non-empty strings.');
+            }
+        }
+
+        $geo = array_filter([
+            'api_key' => $apiKey,
+            'types' => array_values($types),
+            'componentRestrictions' => $countries === [] ? null : ['country' => count($countries) === 1 ? $countries[0] : $countries],
+        ]);
+
+        $this->geo = $geo === [] ? true : $geo;
+
+        return $this;
+    }
+
+    /**
+     * Display the meta box as a section of the Customizer instead of an edit screen,
+     * at the top level or in the given panel (MB Settings Page).
+     *
+     * @param  string|null  $panel  The ID of the panel holding the section.
+     * @param  string|null  $optionName  The option saving the values. Defaults to the theme mods of the active theme.
+     */
+    public function customizer(?string $panel = null, ?string $optionName = null): static
+    {
+        $this->panel = $panel ?? '';
+        $this->option_name = $optionName;
+
+        return $this;
+    }
+
+    /**
      * Set a custom setting for the metabox.
      *
      * @param  string  $key  The setting key.
@@ -521,8 +600,12 @@ class Metabox implements Renderable
      */
     public function build(): array
     {
-        if (! $this->location) {
+        if (! $this->location && ! isset($this->panel)) {
             $this->location = Location::default();
+        }
+
+        if (is_int($this->priority) && ! isset($this->panel) && ! isset($this->location?->get()['settings_pages'])) {
+            throw new LogicException('An integer priority sets the position of a Customizer section: use customizer() or a settings page location, or the high or low priority.');
         }
 
         $metaboxData = EmptyValueFilter::filter(get_object_vars($this));
@@ -535,7 +618,7 @@ class Metabox implements Renderable
             $metaboxData = array_merge($metaboxData, $this->settings);
         }
 
-        return $metaboxData + $this->location->get();
+        return $metaboxData + ($this->location?->get() ?? []);
     }
 
     /**

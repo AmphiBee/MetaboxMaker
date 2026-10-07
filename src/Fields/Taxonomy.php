@@ -6,6 +6,7 @@ namespace Pollora\Metabox\Fields;
 
 use Pollora\Metabox\Enums\EntityFieldType;
 use Pollora\Metabox\Fields\Settings\Ajax;
+use Pollora\Metabox\Fields\Settings\ToggleAll;
 use Pollora\Metabox\Validation\OptionValidation;
 
 /**
@@ -14,6 +15,7 @@ use Pollora\Metabox\Validation\OptionValidation;
 class Taxonomy extends Field
 {
     use Ajax;
+    use ToggleAll;
 
     /**
      * The type of field.

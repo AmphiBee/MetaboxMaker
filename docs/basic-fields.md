@@ -56,8 +56,10 @@ Textarea::make('Description', 'description')
 
 ### Methods
 
-- **`rows(int $rows)`**: Sets the number of rows for the textarea.
-- **`cols(int $cols)`**: Sets the number of columns for the textarea.
+- **`rows(int $rows)`**: Sets the number of rows for the textarea. Defaults to 4 (3 in Meta Box).
+- **`cols(int $cols)`**: Sets the number of columns for the textarea. Defaults to 60.
+- **`wrap(string|TextareaWrap $wrap)`**: Sets how the text wraps when the form is submitted: `soft` (default), `hard` (line breaks are added at the `cols` width) or `off`. Any other value throws an exception.
+- **`autocomplete(string $autocomplete)`**, **`minLength(int $length)`** and **`maxLength(int $length)`**: Same as the [input settings](#input-settings).
 
 ## Select Field
 
@@ -83,6 +85,35 @@ Select::make('Country', 'country')
 
 - **`options(array $options)`**: Sets the options for the select field.
 - **`flatten(bool $flatten = true)`**: Sets whether to display sub-items without indentation.
+
+## SelectTree Field
+
+The `SelectTree` field displays hierarchical options as a select per level: selecting an option shows the select of its children. It saves several values: the selected option and its parents.
+
+### Example
+
+```php
+<?php
+
+use Pollora\Metabox\Fields\SelectTree;
+
+SelectTree::make('Region', 'region')
+    ->placeholder('Select a region')
+    ->tree([
+        'europe' => [
+            'label' => 'Europe',
+            'children' => [
+                'fr' => 'France',
+                'be' => ['label' => 'Belgium', 'children' => ['brussels' => 'Brussels']],
+            ],
+        ],
+        'asia' => 'Asia',
+    ]);
+```
+
+### Methods
+
+- **`tree(array $tree)`**: Sets the options. Each option is a `'value' => 'Label'` pair, or `'value' => ['label' => 'Label', 'children' => [...]]` for an option with children. A malformed option, or a value used twice, throws an exception.
 
 ## Checkbox Field
 
@@ -126,7 +157,20 @@ CheckboxList::make('Interests', 'interests')
 ### Methods
 
 - **`options(array $options)`**: Sets the options for the checkbox list.
-- **`toggleAllButton()`**: Adds a toggle all option to the checkbox list.
+- **`tree(array $tree)`**: Sets hierarchical options, displayed as a checkbox tree. See [SelectTree](#selecttree-field) for the format.
+- **`collapse(bool $collapse = true)`**: For a tree, hides the children of an option until it is checked. Defaults to `true`: use `collapse(false)` to show every option.
+- **`toggleAllButton(bool $select_all_none = true)`**: Adds a button checking or unchecking every option.
+
+### Checkbox tree
+
+```php
+CheckboxList::make('Regions', 'regions')
+    ->tree([
+        'europe' => ['label' => 'Europe', 'children' => ['fr' => 'France', 'be' => 'Belgium']],
+        'asia' => 'Asia',
+    ])
+    ->collapse(false);
+```
 
 ## Radio Field
 
